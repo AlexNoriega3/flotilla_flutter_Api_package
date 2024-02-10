@@ -1,0 +1,16 @@
+targets:
+  $default:
+    sources:     
+      - swaggers/**
+      - input_folder/**
+      - lib/**
+    builders:
+      chopper_generator:
+        options:
+          header: "//Generated code"
+      swagger_dart_code_generator:
+        options:
+          input_folder: "input_folder/"
+          output_folder: "lib/"
+          input_urls:
+            - "http://terravital-dev.modd.tech/swagger/v1/swagger.json"
