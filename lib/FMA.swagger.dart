@@ -8,34 +8,34 @@ import 'package:chopper/chopper.dart';
 
 import 'client_mapping.dart';
 import 'package:chopper/chopper.dart' as chopper;
-import 'swagger.enums.swagger.dart' as enums;
-export 'swagger.enums.swagger.dart';
+import 'FMA.enums.swagger.dart' as enums;
+export 'FMA.enums.swagger.dart';
 
-part 'swagger.swagger.chopper.dart';
-part 'swagger.swagger.g.dart';
+part 'FMA.swagger.chopper.dart';
+part 'FMA.swagger.g.dart';
 
 // **************************************************************************
 // SwaggerChopperGenerator
 // **************************************************************************
 
 @ChopperApi()
-abstract class Swagger extends ChopperService {
-  static Swagger create(
+abstract class FMA extends ChopperService {
+  static FMA create(
       {ChopperClient? client,
       Authenticator? authenticator,
       String? baseUrl,
       Iterable<dynamic>? interceptors}) {
     if (client != null) {
-      return _$Swagger(client);
+      return _$FMA(client);
     }
 
     final newClient = ChopperClient(
-        services: [_$Swagger()],
+        services: [_$FMA()],
         converter: $JsonSerializableConverter(),
         interceptors: interceptors ?? [],
         authenticator: authenticator,
         baseUrl: baseUrl ?? 'http://');
-    return _$Swagger(newClient);
+    return _$FMA(newClient);
   }
 
   ///Endpoint para realizar el login del usuario de los usuarios

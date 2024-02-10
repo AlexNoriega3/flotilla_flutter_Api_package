@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'swagger.swagger.dart';
+part of 'FMA.swagger.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
