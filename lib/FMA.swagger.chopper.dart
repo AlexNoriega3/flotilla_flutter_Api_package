@@ -122,6 +122,58 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<List<CategoryDTO>>> _apiCategoryGet() {
+    final $url = '/api/Category';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<CategoryDTO>, CategoryDTO>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiCategoryPost({required CategoryDTO? body}) {
+    final $url = '/api/Category';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<CategoryDTOPagedResult>> _apiCategorySearchGet(
+      {required int? page, String? search, required int? pageSize}) {
+    final $url = '/api/Category/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client
+        .send<CategoryDTOPagedResult, CategoryDTOPagedResult>($request);
+  }
+
+  @override
+  Future<Response<CategoryDTO>> _apiCategoryIdGet({required String? id}) {
+    final $url = '/api/Category/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<CategoryDTO, CategoryDTO>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiCategoryIdPut(
+      {required String? id, required CategoryDTO? body}) {
+    final $url = '/api/Category/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiCategoryIdDelete({required String? id}) {
+    final $url = '/api/Category/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<CompanyDTO>>> _apiCompanyGet() {
     final $url = '/api/Company';
     final $request = Request('GET', $url, client.baseUrl);
@@ -1466,6 +1518,20 @@ class _$FMA extends FMA {
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<VehicleDTOPagedResult, VehicleDTOPagedResult>($request);
+  }
+
+  @override
+  Future<Response<VehicleInboxDTOPagedResult>> _apiVehicleInboxGet(
+      {required int? page, String? search, required int? pageSize}) {
+    final $url = '/api/Vehicle/Inbox';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client
+        .send<VehicleInboxDTOPagedResult, VehicleInboxDTOPagedResult>($request);
   }
 
   @override

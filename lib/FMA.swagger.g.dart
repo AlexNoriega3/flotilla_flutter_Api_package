@@ -79,79 +79,6 @@ Map<String, dynamic> _$AppUserDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-AppUsuario _$AppUsuarioFromJson(Map<String, dynamic> json) => AppUsuario(
-      id: json['id'] as String?,
-      userName: json['userName'] as String?,
-      normalizedUserName: json['normalizedUserName'] as String?,
-      normalizedEmail: json['normalizedEmail'] as String?,
-      emailConfirmed: json['emailConfirmed'] as bool?,
-      passwordHash: json['passwordHash'] as String?,
-      securityStamp: json['securityStamp'] as String?,
-      concurrencyStamp: json['concurrencyStamp'] as String?,
-      phoneNumber: json['phoneNumber'] as String?,
-      phoneNumberConfirmed: json['phoneNumberConfirmed'] as bool?,
-      twoFactorEnabled: json['twoFactorEnabled'] as bool?,
-      lockoutEnd: json['lockoutEnd'] == null
-          ? null
-          : DateTime.parse(json['lockoutEnd'] as String),
-      lockoutEnabled: json['lockoutEnabled'] as bool?,
-      accessFailedCount: json['accessFailedCount'] as int?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      name: json['name'] as String?,
-      email: json['email'] as String?,
-      url: json['url'] as String?,
-      titleAbbreviation: json['titleAbbreviation'] as String?,
-      image: json['image'] as String?,
-      gender: genderEnumFromJson(json['gender']),
-      active: json['active'] as bool?,
-      parentId: json['parentId'] as String?,
-      projectId: json['projectId'] as String?,
-      parent: json['parent'] == null
-          ? null
-          : AppUsuario.fromJson(json['parent'] as Map<String, dynamic>),
-      subordinates: (json['subordinates'] as List<dynamic>?)
-              ?.map((e) => AppUsuario.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      userRoles: (json['userRoles'] as List<dynamic>?)
-              ?.map((e) => UserRole.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$AppUsuarioToJson(AppUsuario instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'userName': instance.userName,
-      'normalizedUserName': instance.normalizedUserName,
-      'normalizedEmail': instance.normalizedEmail,
-      'emailConfirmed': instance.emailConfirmed,
-      'passwordHash': instance.passwordHash,
-      'securityStamp': instance.securityStamp,
-      'concurrencyStamp': instance.concurrencyStamp,
-      'phoneNumber': instance.phoneNumber,
-      'phoneNumberConfirmed': instance.phoneNumberConfirmed,
-      'twoFactorEnabled': instance.twoFactorEnabled,
-      'lockoutEnd': instance.lockoutEnd?.toIso8601String(),
-      'lockoutEnabled': instance.lockoutEnabled,
-      'accessFailedCount': instance.accessFailedCount,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'name': instance.name,
-      'email': instance.email,
-      'url': instance.url,
-      'titleAbbreviation': instance.titleAbbreviation,
-      'image': instance.image,
-      'gender': genderEnumToJson(instance.gender),
-      'active': instance.active,
-      'parentId': instance.parentId,
-      'projectId': instance.projectId,
-      'parent': instance.parent?.toJson(),
-      'subordinates': instance.subordinates?.map((e) => e.toJson()).toList(),
-      'userRoles': instance.userRoles?.map((e) => e.toJson()).toList(),
-    };
-
 AuthResponseDTO _$AuthResponseDTOFromJson(Map<String, dynamic> json) =>
     AuthResponseDTO(
       userId: json['userId'] as String?,
@@ -164,9 +91,6 @@ AuthResponseDTO _$AuthResponseDTOFromJson(Map<String, dynamic> json) =>
       url: json['url'] as String?,
       phone: json['phone'] as String?,
       active: json['active'] as bool?,
-      roles:
-          (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              [],
     );
 
 Map<String, dynamic> _$AuthResponseDTOToJson(AuthResponseDTO instance) =>
@@ -181,27 +105,6 @@ Map<String, dynamic> _$AuthResponseDTOToJson(AuthResponseDTO instance) =>
       'url': instance.url,
       'phone': instance.phone,
       'active': instance.active,
-      'roles': instance.roles,
-    };
-
-Brand _$BrandFromJson(Map<String, dynamic> json) => Brand(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
-      description: json['description'] as String?,
-    );
-
-Map<String, dynamic> _$BrandToJson(Brand instance) => <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'name': instance.name,
-      'code': instance.code,
-      'description': instance.description,
     };
 
 BrandDTO _$BrandDTOFromJson(Map<String, dynamic> json) => BrandDTO(
@@ -240,15 +143,49 @@ Map<String, dynamic> _$BrandDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+CategoryDTO _$CategoryDTOFromJson(Map<String, dynamic> json) => CategoryDTO(
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+      code: json['code'] as String?,
+      description: json['description'] as String?,
+    );
+
+Map<String, dynamic> _$CategoryDTOToJson(CategoryDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'code': instance.code,
+      'description': instance.description,
+    };
+
+CategoryDTOPagedResult _$CategoryDTOPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    CategoryDTOPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => CategoryDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$CategoryDTOPagedResultToJson(
+        CategoryDTOPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 CompanyDTO _$CompanyDTOFromJson(Map<String, dynamic> json) => CompanyDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      vehicles: (json['vehicles'] as List<dynamic>?)
-              ?.map((e) => VehicleDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$CompanyDTOToJson(CompanyDTO instance) =>
@@ -257,7 +194,6 @@ Map<String, dynamic> _$CompanyDTOToJson(CompanyDTO instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'vehicles': instance.vehicles?.map((e) => e.toJson()).toList(),
     };
 
 CompanyDTOPagedResult _$CompanyDTOPagedResultFromJson(
@@ -324,24 +260,6 @@ Map<String, dynamic> _$CostCenterDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-Document _$DocumentFromJson(Map<String, dynamic> json) => Document(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      path: json['path'] as String?,
-      fileName: json['fileName'] as String?,
-    );
-
-Map<String, dynamic> _$DocumentToJson(Document instance) => <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'path': instance.path,
-      'fileName': instance.fileName,
-    };
-
 DocumentDTO _$DocumentDTOFromJson(Map<String, dynamic> json) => DocumentDTO(
       id: json['id'] as String?,
       path: json['path'] as String?,
@@ -396,9 +314,6 @@ EngineDTO _$EngineDTOFromJson(Map<String, dynamic> json) => EngineDTO(
       code: json['code'] as String?,
       description: json['description'] as String?,
       modelId: json['modelId'] as String?,
-      model: json['model'] == null
-          ? null
-          : ModelDTO.fromJson(json['model'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EngineDTOToJson(EngineDTO instance) => <String, dynamic>{
@@ -407,7 +322,6 @@ Map<String, dynamic> _$EngineDTOToJson(EngineDTO instance) => <String, dynamic>{
       'code': instance.code,
       'description': instance.description,
       'modelId': instance.modelId,
-      'model': instance.model?.toJson(),
     };
 
 EngineDTOPagedResult _$EngineDTOPagedResultFromJson(
@@ -433,50 +347,6 @@ Map<String, dynamic> _$EngineDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-FuelLoad _$FuelLoadFromJson(Map<String, dynamic> json) => FuelLoad(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      amount: (json['amount'] as num?)?.toDouble(),
-      reference: json['reference'] as String?,
-      full: json['full'] as bool?,
-      liters: (json['liters'] as num?)?.toDouble(),
-      unitCost: (json['unitCost'] as num?)?.toDouble(),
-      vehicleId: json['vehicleId'] as String?,
-      documentId: json['documentId'] as String?,
-      chargeDate: json['chargeDate'] == null
-          ? null
-          : DateTime.parse(json['chargeDate'] as String),
-      chargeHour: json['chargeHour'] == null
-          ? null
-          : TimeSpan.fromJson(json['chargeHour'] as Map<String, dynamic>),
-      vehicle: json['vehicle'] == null
-          ? null
-          : Vehicle.fromJson(json['vehicle'] as Map<String, dynamic>),
-      document: json['document'] == null
-          ? null
-          : Document.fromJson(json['document'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$FuelLoadToJson(FuelLoad instance) => <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'amount': instance.amount,
-      'reference': instance.reference,
-      'full': instance.full,
-      'liters': instance.liters,
-      'unitCost': instance.unitCost,
-      'vehicleId': instance.vehicleId,
-      'documentId': instance.documentId,
-      'chargeDate': instance.chargeDate?.toIso8601String(),
-      'chargeHour': instance.chargeHour?.toJson(),
-      'vehicle': instance.vehicle?.toJson(),
-      'document': instance.document?.toJson(),
-    };
-
 FuelLoadDTO _$FuelLoadDTOFromJson(Map<String, dynamic> json) => FuelLoadDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
@@ -495,12 +365,6 @@ FuelLoadDTO _$FuelLoadDTOFromJson(Map<String, dynamic> json) => FuelLoadDTO(
       full: json['full'] as bool?,
       documentId: json['documentId'] as int?,
       vehicleId: json['vehicleId'] as int?,
-      vehicle: json['vehicle'] == null
-          ? null
-          : Vehicle.fromJson(json['vehicle'] as Map<String, dynamic>),
-      document: json['document'] == null
-          ? null
-          : DocumentDTO.fromJson(json['document'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FuelLoadDTOToJson(FuelLoadDTO instance) =>
@@ -518,8 +382,6 @@ Map<String, dynamic> _$FuelLoadDTOToJson(FuelLoadDTO instance) =>
       'full': instance.full,
       'documentId': instance.documentId,
       'vehicleId': instance.vehicleId,
-      'vehicle': instance.vehicle?.toJson(),
-      'document': instance.document?.toJson(),
     };
 
 FuelLoadDTOPagedResult _$FuelLoadDTOPagedResultFromJson(
@@ -550,10 +412,6 @@ FuelTypeDTO _$FuelTypeDTOFromJson(Map<String, dynamic> json) => FuelTypeDTO(
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      fuelLoads: (json['fuelLoads'] as List<dynamic>?)
-              ?.map((e) => FuelLoadDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$FuelTypeDTOToJson(FuelTypeDTO instance) =>
@@ -562,7 +420,6 @@ Map<String, dynamic> _$FuelTypeDTOToJson(FuelTypeDTO instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'fuelLoads': instance.fuelLoads?.map((e) => e.toJson()).toList(),
     };
 
 FuelTypeDTOPagedResult _$FuelTypeDTOPagedResultFromJson(
@@ -595,10 +452,6 @@ FuelVendorDTO _$FuelVendorDTOFromJson(Map<String, dynamic> json) =>
       code: json['code'] as String?,
       description: json['description'] as String?,
       externalId: json['externalId'] as int?,
-      fuelLoads: (json['fuelLoads'] as List<dynamic>?)
-              ?.map((e) => FuelLoadDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$FuelVendorDTOToJson(FuelVendorDTO instance) =>
@@ -608,7 +461,6 @@ Map<String, dynamic> _$FuelVendorDTOToJson(FuelVendorDTO instance) =>
       'code': instance.code,
       'description': instance.description,
       'externalId': instance.externalId,
-      'fuelLoads': instance.fuelLoads?.map((e) => e.toJson()).toList(),
     };
 
 FuelVendorDTOPagedResult _$FuelVendorDTOPagedResultFromJson(
@@ -640,9 +492,6 @@ ImageDTO _$ImageDTOFromJson(Map<String, dynamic> json) => ImageDTO(
       name: json['name'] as String?,
       extension: json['extension'] as String?,
       vehicleId: json['vehicleId'] as String?,
-      vehicle: json['vehicle'] == null
-          ? null
-          : VehicleDTO.fromJson(json['vehicle'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ImageDTOToJson(ImageDTO instance) => <String, dynamic>{
@@ -651,7 +500,6 @@ Map<String, dynamic> _$ImageDTOToJson(ImageDTO instance) => <String, dynamic>{
       'name': instance.name,
       'extension': instance.extension,
       'vehicleId': instance.vehicleId,
-      'vehicle': instance.vehicle?.toJson(),
     };
 
 ImageDTOPagedResult _$ImageDTOPagedResultFromJson(Map<String, dynamic> json) =>
@@ -682,9 +530,6 @@ IncidentDTO _$IncidentDTOFromJson(Map<String, dynamic> json) => IncidentDTO(
       code: json['code'] as String?,
       description: json['description'] as String?,
       vehicleId: json['vehicleId'] as String?,
-      vehicle: json['vehicle'] == null
-          ? null
-          : VehicleDTO.fromJson(json['vehicle'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$IncidentDTOToJson(IncidentDTO instance) =>
@@ -694,7 +539,6 @@ Map<String, dynamic> _$IncidentDTOToJson(IncidentDTO instance) =>
       'code': instance.code,
       'description': instance.description,
       'vehicleId': instance.vehicleId,
-      'vehicle': instance.vehicle?.toJson(),
     };
 
 IncidentDTOPagedResult _$IncidentDTOPagedResultFromJson(
@@ -724,22 +568,14 @@ IncisoDTO _$IncisoDTOFromJson(Map<String, dynamic> json) => IncisoDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
       vehicleId: json['vehicleId'] as String?,
-      vehicle: json['vehicle'] == null
-          ? null
-          : VehicleDTO.fromJson(json['vehicle'] as Map<String, dynamic>),
       policyId: json['policyId'] as String?,
-      policy: json['policy'] == null
-          ? null
-          : PolicyDTO.fromJson(json['policy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$IncisoDTOToJson(IncisoDTO instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'vehicleId': instance.vehicleId,
-      'vehicle': instance.vehicle?.toJson(),
       'policyId': instance.policyId,
-      'policy': instance.policy?.toJson(),
     };
 
 IncisoDTOPagedResult _$IncisoDTOPagedResultFromJson(
@@ -765,43 +601,12 @@ Map<String, dynamic> _$IncisoDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-InsuranceCompany _$InsuranceCompanyFromJson(Map<String, dynamic> json) =>
-    InsuranceCompany(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
-      description: json['description'] as String?,
-      policies: (json['policies'] as List<dynamic>?)
-              ?.map((e) => Policy.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$InsuranceCompanyToJson(InsuranceCompany instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'name': instance.name,
-      'code': instance.code,
-      'description': instance.description,
-      'policies': instance.policies?.map((e) => e.toJson()).toList(),
-    };
-
 InsuranceCompanyDTO _$InsuranceCompanyDTOFromJson(Map<String, dynamic> json) =>
     InsuranceCompanyDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      policies: (json['policies'] as List<dynamic>?)
-              ?.map((e) => PolicyDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$InsuranceCompanyDTOToJson(
@@ -811,7 +616,6 @@ Map<String, dynamic> _$InsuranceCompanyDTOToJson(
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'policies': instance.policies?.map((e) => e.toJson()).toList(),
     };
 
 InsuranceCompanyDTOPagedResult _$InsuranceCompanyDTOPagedResultFromJson(
@@ -871,28 +675,6 @@ MaintenanceDTO _$MaintenanceDTOFromJson(Map<String, dynamic> json) =>
       vendorId: json['vendorId'] as String?,
       vehicleId: json['vehicleId'] as String?,
       documentId: json['documentId'] as String?,
-      vendor: json['vendor'] == null
-          ? null
-          : VendorDTO.fromJson(json['vendor'] as Map<String, dynamic>),
-      document: json['document'] == null
-          ? null
-          : DocumentDTO.fromJson(json['document'] as Map<String, dynamic>),
-      maintenanceGroup: json['maintenanceGroup'] == null
-          ? null
-          : MaintenanceGroupDTO.fromJson(
-              json['maintenanceGroup'] as Map<String, dynamic>),
-      maintenanceType: json['maintenanceType'] == null
-          ? null
-          : MaintenanceTypeDTO.fromJson(
-              json['maintenanceType'] as Map<String, dynamic>),
-      vehicle: json['vehicle'] == null
-          ? null
-          : VehicleDTO.fromJson(json['vehicle'] as Map<String, dynamic>),
-      maintenanceParts: (json['maintenanceParts'] as List<dynamic>?)
-              ?.map(
-                  (e) => MaintenancePartDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$MaintenanceDTOToJson(MaintenanceDTO instance) =>
@@ -910,13 +692,6 @@ Map<String, dynamic> _$MaintenanceDTOToJson(MaintenanceDTO instance) =>
       'vendorId': instance.vendorId,
       'vehicleId': instance.vehicleId,
       'documentId': instance.documentId,
-      'vendor': instance.vendor?.toJson(),
-      'document': instance.document?.toJson(),
-      'maintenanceGroup': instance.maintenanceGroup?.toJson(),
-      'maintenanceType': instance.maintenanceType?.toJson(),
-      'vehicle': instance.vehicle?.toJson(),
-      'maintenanceParts':
-          instance.maintenanceParts?.map((e) => e.toJson()).toList(),
     };
 
 MaintenanceDTOPagedResult _$MaintenanceDTOPagedResultFromJson(
@@ -948,10 +723,6 @@ MaintenanceGroupDTO _$MaintenanceGroupDTOFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      maintenances: (json['maintenances'] as List<dynamic>?)
-              ?.map((e) => MaintenanceDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$MaintenanceGroupDTOToJson(
@@ -961,7 +732,6 @@ Map<String, dynamic> _$MaintenanceGroupDTOToJson(
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'maintenances': instance.maintenances?.map((e) => e.toJson()).toList(),
     };
 
 MaintenanceGroupDTOPagedResult _$MaintenanceGroupDTOPagedResultFromJson(
@@ -993,13 +763,6 @@ MaintenancePartDTO _$MaintenancePartDTOFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       maintenanceId: json['maintenanceId'] as String?,
       partId: json['partId'] as String?,
-      maintenance: json['maintenance'] == null
-          ? null
-          : MaintenanceDTO.fromJson(
-              json['maintenance'] as Map<String, dynamic>),
-      $part: json['part'] == null
-          ? null
-          : PartDTO.fromJson(json['part'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MaintenancePartDTOToJson(MaintenancePartDTO instance) =>
@@ -1007,8 +770,6 @@ Map<String, dynamic> _$MaintenancePartDTOToJson(MaintenancePartDTO instance) =>
       'id': instance.id,
       'maintenanceId': instance.maintenanceId,
       'partId': instance.partId,
-      'maintenance': instance.maintenance?.toJson(),
-      'part': instance.$part?.toJson(),
     };
 
 MaintenancePartDTOPagedResult _$MaintenancePartDTOPagedResultFromJson(
@@ -1075,41 +836,12 @@ Map<String, dynamic> _$MaintenanceTypeDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-Model _$ModelFromJson(Map<String, dynamic> json) => Model(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
-      description: json['description'] as String?,
-      brandId: json['brandId'] as String?,
-      brand: json['brand'] == null
-          ? null
-          : Brand.fromJson(json['brand'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$ModelToJson(Model instance) => <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'name': instance.name,
-      'code': instance.code,
-      'description': instance.description,
-      'brandId': instance.brandId,
-      'brand': instance.brand?.toJson(),
-    };
-
 ModelDTO _$ModelDTOFromJson(Map<String, dynamic> json) => ModelDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
       brandId: json['brandId'] as int?,
-      brand: json['brand'] == null
-          ? null
-          : BrandDTO.fromJson(json['brand'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ModelDTOToJson(ModelDTO instance) => <String, dynamic>{
@@ -1118,7 +850,6 @@ Map<String, dynamic> _$ModelDTOToJson(ModelDTO instance) => <String, dynamic>{
       'code': instance.code,
       'description': instance.description,
       'brandId': instance.brandId,
-      'brand': instance.brand?.toJson(),
     };
 
 ModelDTOPagedResult _$ModelDTOPagedResultFromJson(Map<String, dynamic> json) =>
@@ -1150,14 +881,6 @@ PartDTO _$PartDTOFromJson(Map<String, dynamic> json) => PartDTO(
       description: json['description'] as String?,
       externalId: json['externalId'] as int?,
       vendorId: json['vendorId'] as String?,
-      vendor: json['vendor'] == null
-          ? null
-          : VendorDTO.fromJson(json['vendor'] as Map<String, dynamic>),
-      maintenanceParts: (json['maintenanceParts'] as List<dynamic>?)
-              ?.map(
-                  (e) => MaintenancePartDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$PartDTOToJson(PartDTO instance) => <String, dynamic>{
@@ -1167,9 +890,6 @@ Map<String, dynamic> _$PartDTOToJson(PartDTO instance) => <String, dynamic>{
       'description': instance.description,
       'externalId': instance.externalId,
       'vendorId': instance.vendorId,
-      'vendor': instance.vendor?.toJson(),
-      'maintenanceParts':
-          instance.maintenanceParts?.map((e) => e.toJson()).toList(),
     };
 
 PartDTOPagedResult _$PartDTOPagedResultFromJson(Map<String, dynamic> json) =>
@@ -1193,60 +913,6 @@ Map<String, dynamic> _$PartDTOPagedResultToJson(PartDTOPagedResult instance) =>
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-Policy _$PolicyFromJson(Map<String, dynamic> json) => Policy(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
-      description: json['description'] as String?,
-      startDate: json['startDate'] == null
-          ? null
-          : DateTime.parse(json['startDate'] as String),
-      endDate: json['endDate'] == null
-          ? null
-          : DateTime.parse(json['endDate'] as String),
-      quantityVehicles: json['quantityVehicles'] as int?,
-      vehicles: (json['vehicles'] as List<dynamic>?)
-              ?.map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      policyStatusId: json['policyStatusId'] as String?,
-      policyStatus: json['policyStatus'] == null
-          ? null
-          : PolicyStatus.fromJson(json['policyStatus'] as Map<String, dynamic>),
-      policyPacketId: json['policyPacketId'] as String?,
-      policyPacket: json['policyPacket'] == null
-          ? null
-          : PolicyPacket.fromJson(json['policyPacket'] as Map<String, dynamic>),
-      insuranceCompanyId: json['insuranceCompanyId'] as String?,
-      insuranceCompany: json['insuranceCompany'] == null
-          ? null
-          : InsuranceCompany.fromJson(
-              json['insuranceCompany'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$PolicyToJson(Policy instance) => <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'name': instance.name,
-      'code': instance.code,
-      'description': instance.description,
-      'startDate': instance.startDate?.toIso8601String(),
-      'endDate': instance.endDate?.toIso8601String(),
-      'quantityVehicles': instance.quantityVehicles,
-      'vehicles': instance.vehicles?.map((e) => e.toJson()).toList(),
-      'policyStatusId': instance.policyStatusId,
-      'policyStatus': instance.policyStatus?.toJson(),
-      'policyPacketId': instance.policyPacketId,
-      'policyPacket': instance.policyPacket?.toJson(),
-      'insuranceCompanyId': instance.insuranceCompanyId,
-      'insuranceCompany': instance.insuranceCompany?.toJson(),
-    };
-
 PolicyDTO _$PolicyDTOFromJson(Map<String, dynamic> json) => PolicyDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
@@ -1259,25 +925,9 @@ PolicyDTO _$PolicyDTOFromJson(Map<String, dynamic> json) => PolicyDTO(
           ? null
           : DateTime.parse(json['endDate'] as String),
       quantityVehicles: json['quantityVehicles'] as int?,
-      vehicles: (json['vehicles'] as List<dynamic>?)
-              ?.map((e) => VehicleDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
       policyStatusId: json['policyStatusId'] as String?,
-      policyStatus: json['policyStatus'] == null
-          ? null
-          : PolicyStatusDTO.fromJson(
-              json['policyStatus'] as Map<String, dynamic>),
       policyPacketId: json['policyPacketId'] as String?,
-      policyPacket: json['policyPacket'] == null
-          ? null
-          : PolicyPacketDTO.fromJson(
-              json['policyPacket'] as Map<String, dynamic>),
       insuranceCompanyId: json['insuranceCompanyId'] as String?,
-      insuranceCompany: json['insuranceCompany'] == null
-          ? null
-          : InsuranceCompanyDTO.fromJson(
-              json['insuranceCompany'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PolicyDTOToJson(PolicyDTO instance) => <String, dynamic>{
@@ -1288,13 +938,9 @@ Map<String, dynamic> _$PolicyDTOToJson(PolicyDTO instance) => <String, dynamic>{
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),
       'quantityVehicles': instance.quantityVehicles,
-      'vehicles': instance.vehicles?.map((e) => e.toJson()).toList(),
       'policyStatusId': instance.policyStatusId,
-      'policyStatus': instance.policyStatus?.toJson(),
       'policyPacketId': instance.policyPacketId,
-      'policyPacket': instance.policyPacket?.toJson(),
       'insuranceCompanyId': instance.insuranceCompanyId,
-      'insuranceCompany': instance.insuranceCompany?.toJson(),
     };
 
 PolicyDTOPagedResult _$PolicyDTOPagedResultFromJson(
@@ -1320,42 +966,12 @@ Map<String, dynamic> _$PolicyDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-PolicyPacket _$PolicyPacketFromJson(Map<String, dynamic> json) => PolicyPacket(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
-      description: json['description'] as String?,
-      policies: (json['policies'] as List<dynamic>?)
-              ?.map((e) => Policy.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$PolicyPacketToJson(PolicyPacket instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'name': instance.name,
-      'code': instance.code,
-      'description': instance.description,
-      'policies': instance.policies?.map((e) => e.toJson()).toList(),
-    };
-
 PolicyPacketDTO _$PolicyPacketDTOFromJson(Map<String, dynamic> json) =>
     PolicyPacketDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      policies: (json['policies'] as List<dynamic>?)
-              ?.map((e) => PolicyDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$PolicyPacketDTOToJson(PolicyPacketDTO instance) =>
@@ -1364,7 +980,6 @@ Map<String, dynamic> _$PolicyPacketDTOToJson(PolicyPacketDTO instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'policies': instance.policies?.map((e) => e.toJson()).toList(),
     };
 
 PolicyPacketDTOPagedResult _$PolicyPacketDTOPagedResultFromJson(
@@ -1390,42 +1005,12 @@ Map<String, dynamic> _$PolicyPacketDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-PolicyStatus _$PolicyStatusFromJson(Map<String, dynamic> json) => PolicyStatus(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
-      description: json['description'] as String?,
-      policies: (json['policies'] as List<dynamic>?)
-              ?.map((e) => Policy.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$PolicyStatusToJson(PolicyStatus instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'name': instance.name,
-      'code': instance.code,
-      'description': instance.description,
-      'policies': instance.policies?.map((e) => e.toJson()).toList(),
-    };
-
 PolicyStatusDTO _$PolicyStatusDTOFromJson(Map<String, dynamic> json) =>
     PolicyStatusDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      policies: (json['policies'] as List<dynamic>?)
-              ?.map((e) => PolicyDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$PolicyStatusDTOToJson(PolicyStatusDTO instance) =>
@@ -1434,7 +1019,6 @@ Map<String, dynamic> _$PolicyStatusDTOToJson(PolicyStatusDTO instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'policies': instance.policies?.map((e) => e.toJson()).toList(),
     };
 
 PolicyStatusDTOPagedResult _$PolicyStatusDTOPagedResultFromJson(
@@ -1485,18 +1069,8 @@ ProjectDTO _$ProjectDTOFromJson(Map<String, dynamic> json) => ProjectDTO(
       description: json['description'] as String?,
       externalId: json['externalId'] as int?,
       packetId: json['packetId'] as String?,
-      packet: json['packet'] == null
-          ? null
-          : PolicyDTO.fromJson(json['packet'] as Map<String, dynamic>),
       documentId: json['documentId'] as String?,
-      document: json['document'] == null
-          ? null
-          : DocumentDTO.fromJson(json['document'] as Map<String, dynamic>),
       maintenanceId: json['maintenanceId'] as String?,
-      maintenance: json['maintenance'] == null
-          ? null
-          : MaintenanceDTO.fromJson(
-              json['maintenance'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ProjectDTOToJson(ProjectDTO instance) =>
@@ -1507,11 +1081,8 @@ Map<String, dynamic> _$ProjectDTOToJson(ProjectDTO instance) =>
       'description': instance.description,
       'externalId': instance.externalId,
       'packetId': instance.packetId,
-      'packet': instance.packet?.toJson(),
       'documentId': instance.documentId,
-      'document': instance.document?.toJson(),
       'maintenanceId': instance.maintenanceId,
-      'maintenance': instance.maintenance?.toJson(),
     };
 
 ProjectDTOPagedResult _$ProjectDTOPagedResultFromJson(
@@ -1551,39 +1122,6 @@ Map<String, dynamic> _$ResetPasswordModelToJson(ResetPasswordModel instance) =>
       'confirmPassword': instance.confirmPassword,
       'email': instance.email,
       'token': instance.token,
-    };
-
-Role _$RoleFromJson(Map<String, dynamic> json) => Role(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
-      normalizedName: json['normalizedName'] as String?,
-      concurrencyStamp: json['concurrencyStamp'] as String?,
-      active: json['active'] as bool?,
-      createBy: json['createBy'] as String?,
-      updateBy: json['updateBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      dtUpdateDate: json['dtUpdateDate'] == null
-          ? null
-          : DateTime.parse(json['dtUpdateDate'] as String),
-      userRoles: (json['userRoles'] as List<dynamic>?)
-              ?.map((e) => UserRole.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$RoleToJson(Role instance) => <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'normalizedName': instance.normalizedName,
-      'concurrencyStamp': instance.concurrencyStamp,
-      'active': instance.active,
-      'createBy': instance.createBy,
-      'updateBy': instance.updateBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'dtUpdateDate': instance.dtUpdateDate?.toIso8601String(),
-      'userRoles': instance.userRoles?.map((e) => e.toJson()).toList(),
     };
 
 RoleDTO _$RoleDTOFromJson(Map<String, dynamic> json) => RoleDTO(
@@ -1634,10 +1172,6 @@ ServiceDTO _$ServiceDTOFromJson(Map<String, dynamic> json) => ServiceDTO(
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      vehicles: (json['vehicles'] as List<dynamic>?)
-              ?.map((e) => VehicleDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$ServiceDTOToJson(ServiceDTO instance) =>
@@ -1646,7 +1180,6 @@ Map<String, dynamic> _$ServiceDTOToJson(ServiceDTO instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'vehicles': instance.vehicles?.map((e) => e.toJson()).toList(),
     };
 
 ServiceDTOPagedResult _$ServiceDTOPagedResultFromJson(
@@ -1762,24 +1295,6 @@ Map<String, dynamic> _$UserPutDTOToJson(UserPutDTO instance) =>
       'costPerAppointment': instance.costPerAppointment,
     };
 
-UserRole _$UserRoleFromJson(Map<String, dynamic> json) => UserRole(
-      userId: json['userId'] as String?,
-      roleId: json['roleId'] as String?,
-      user: json['user'] == null
-          ? null
-          : AppUsuario.fromJson(json['user'] as Map<String, dynamic>),
-      role: json['role'] == null
-          ? null
-          : Role.fromJson(json['role'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$UserRoleToJson(UserRole instance) => <String, dynamic>{
-      'userId': instance.userId,
-      'roleId': instance.roleId,
-      'user': instance.user?.toJson(),
-      'role': instance.role?.toJson(),
-    };
-
 UserVehicleDTO _$UserVehicleDTOFromJson(Map<String, dynamic> json) =>
     UserVehicleDTO(
       id: json['id'] as String?,
@@ -1788,13 +1303,7 @@ UserVehicleDTO _$UserVehicleDTOFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       externalId: json['externalId'] as String?,
       userId: json['userId'] as String?,
-      user: json['user'] == null
-          ? null
-          : AppUsuario.fromJson(json['user'] as Map<String, dynamic>),
       vehicleId: json['vehicleId'] as String?,
-      vehicle: json['vehicle'] == null
-          ? null
-          : Vehicle.fromJson(json['vehicle'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserVehicleDTOToJson(UserVehicleDTO instance) =>
@@ -1805,9 +1314,7 @@ Map<String, dynamic> _$UserVehicleDTOToJson(UserVehicleDTO instance) =>
       'description': instance.description,
       'externalId': instance.externalId,
       'userId': instance.userId,
-      'user': instance.user?.toJson(),
       'vehicleId': instance.vehicleId,
-      'vehicle': instance.vehicle?.toJson(),
     };
 
 UserVehicleDTOPagedResult _$UserVehicleDTOPagedResultFromJson(
@@ -1833,59 +1340,6 @@ Map<String, dynamic> _$UserVehicleDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-Vehicle _$VehicleFromJson(Map<String, dynamic> json) => Vehicle(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      drillRigId: json['drillRigId'] as int?,
-      vin: json['vin'] as String?,
-      placas: json['placas'] as String?,
-      inciso: json['inciso'] as String?,
-      economicNumber: json['economicNumber'] as String?,
-      modelId: json['modelId'] as String?,
-      model: json['model'] == null
-          ? null
-          : Model.fromJson(json['model'] as Map<String, dynamic>),
-      documentId: json['documentId'] as String?,
-      document: json['document'] == null
-          ? null
-          : Document.fromJson(json['document'] as Map<String, dynamic>),
-      policyId: json['policyId'] as String?,
-      policy: json['policy'] == null
-          ? null
-          : Policy.fromJson(json['policy'] as Map<String, dynamic>),
-      vehicleTypeId: json['vehicleTypeId'] as String?,
-      vehicleType: json['vehicleType'] == null
-          ? null
-          : VehicleType.fromJson(json['vehicleType'] as Map<String, dynamic>),
-      fuelLoads: (json['fuelLoads'] as List<dynamic>?)
-              ?.map((e) => FuelLoad.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$VehicleToJson(Vehicle instance) => <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'drillRigId': instance.drillRigId,
-      'vin': instance.vin,
-      'placas': instance.placas,
-      'inciso': instance.inciso,
-      'economicNumber': instance.economicNumber,
-      'modelId': instance.modelId,
-      'model': instance.model?.toJson(),
-      'documentId': instance.documentId,
-      'document': instance.document?.toJson(),
-      'policyId': instance.policyId,
-      'policy': instance.policy?.toJson(),
-      'vehicleTypeId': instance.vehicleTypeId,
-      'vehicleType': instance.vehicleType?.toJson(),
-      'fuelLoads': instance.fuelLoads?.map((e) => e.toJson()).toList(),
-    };
-
 VehicleDTO _$VehicleDTOFromJson(Map<String, dynamic> json) => VehicleDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
@@ -1895,24 +1349,13 @@ VehicleDTO _$VehicleDTOFromJson(Map<String, dynamic> json) => VehicleDTO(
       placas: json['placas'] as String?,
       drillRigId: json['drillRigId'] as int?,
       inciso: json['inciso'] as String?,
-      economicNumber: json['economicNumber'] as int?,
+      economicNumber: json['economicNumber'] as String?,
       modelId: json['modelId'] as String?,
-      model: json['model'] == null
-          ? null
-          : ModelDTO.fromJson(json['model'] as Map<String, dynamic>),
       documentId: json['documentId'] as String?,
-      document: json['document'] == null
-          ? null
-          : DocumentDTO.fromJson(json['document'] as Map<String, dynamic>),
       policyId: json['policyId'] as String?,
-      policy: json['policy'] == null
-          ? null
-          : PolicyDTO.fromJson(json['policy'] as Map<String, dynamic>),
       vehicleTypeId: json['vehicleTypeId'] as String?,
-      vehicleType: json['vehicleType'] == null
-          ? null
-          : VehicleTypeDTO.fromJson(
-              json['vehicleType'] as Map<String, dynamic>),
+      projectId: json['projectId'] as String?,
+      companyId: json['companyId'] as String?,
     );
 
 Map<String, dynamic> _$VehicleDTOToJson(VehicleDTO instance) =>
@@ -1927,13 +1370,11 @@ Map<String, dynamic> _$VehicleDTOToJson(VehicleDTO instance) =>
       'inciso': instance.inciso,
       'economicNumber': instance.economicNumber,
       'modelId': instance.modelId,
-      'model': instance.model?.toJson(),
       'documentId': instance.documentId,
-      'document': instance.document?.toJson(),
       'policyId': instance.policyId,
-      'policy': instance.policy?.toJson(),
       'vehicleTypeId': instance.vehicleTypeId,
-      'vehicleType': instance.vehicleType?.toJson(),
+      'projectId': instance.projectId,
+      'companyId': instance.companyId,
     };
 
 VehicleDTOPagedResult _$VehicleDTOPagedResultFromJson(
@@ -1959,27 +1400,51 @@ Map<String, dynamic> _$VehicleDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-VehicleType _$VehicleTypeFromJson(Map<String, dynamic> json) => VehicleType(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
-      excludeFromLog: json['excludeFromLog'] as bool?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
+VehicleInboxDTO _$VehicleInboxDTOFromJson(Map<String, dynamic> json) =>
+    VehicleInboxDTO(
       description: json['description'] as String?,
-      inUse: json['inUse'] as bool?,
+      economicNumber: json['economicNumber'] as String?,
+      vin: json['vin'] as String?,
+      placas: json['placas'] as String?,
+      category: json['category'] as String?,
+      vehicleTypeId: json['vehicleTypeId'] as String?,
+      projectName: json['projectName'] as String?,
+      companyId: json['companyId'] as String?,
     );
 
-Map<String, dynamic> _$VehicleTypeToJson(VehicleType instance) =>
+Map<String, dynamic> _$VehicleInboxDTOToJson(VehicleInboxDTO instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'isActive': instance.isActive,
-      'excludeFromLog': instance.excludeFromLog,
-      'name': instance.name,
-      'code': instance.code,
       'description': instance.description,
-      'inUse': instance.inUse,
+      'economicNumber': instance.economicNumber,
+      'vin': instance.vin,
+      'placas': instance.placas,
+      'category': instance.category,
+      'vehicleTypeId': instance.vehicleTypeId,
+      'projectName': instance.projectName,
+      'companyId': instance.companyId,
+    };
+
+VehicleInboxDTOPagedResult _$VehicleInboxDTOPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    VehicleInboxDTOPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => VehicleInboxDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$VehicleInboxDTOPagedResultToJson(
+        VehicleInboxDTOPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 VehicleTypeDTO _$VehicleTypeDTOFromJson(Map<String, dynamic> json) =>
@@ -2028,14 +1493,6 @@ VendorDTO _$VendorDTOFromJson(Map<String, dynamic> json) => VendorDTO(
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      maintenances: (json['maintenances'] as List<dynamic>?)
-              ?.map((e) => MaintenanceDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      parts: (json['parts'] as List<dynamic>?)
-              ?.map((e) => PartDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$VendorDTOToJson(VendorDTO instance) => <String, dynamic>{
@@ -2043,8 +1500,6 @@ Map<String, dynamic> _$VendorDTOToJson(VendorDTO instance) => <String, dynamic>{
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'maintenances': instance.maintenances?.map((e) => e.toJson()).toList(),
-      'parts': instance.parts?.map((e) => e.toJson()).toList(),
     };
 
 VendorDTOPagedResult _$VendorDTOPagedResultFromJson(

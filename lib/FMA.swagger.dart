@@ -208,6 +208,93 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  Future<chopper.Response<List<CategoryDTO>>> apiCategoryGet() {
+    generatedMapping.putIfAbsent(
+        CategoryDTO, () => CategoryDTO.fromJsonFactory);
+
+    return _apiCategoryGet();
+  }
+
+  ///
+  @Get(path: '/api/Category')
+  Future<chopper.Response<List<CategoryDTO>>> _apiCategoryGet();
+
+  ///
+  Future<chopper.Response<String>> apiCategoryPost(
+      {required CategoryDTO? body}) {
+    return _apiCategoryPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Category')
+  Future<chopper.Response<String>> _apiCategoryPost(
+      {@Body() required CategoryDTO? body});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<CategoryDTOPagedResult>> apiCategorySearchGet(
+      {required int? page, String? search, required int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        CategoryDTOPagedResult, () => CategoryDTOPagedResult.fromJsonFactory);
+
+    return _apiCategorySearchGet(
+        page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Category/Search')
+  Future<chopper.Response<CategoryDTOPagedResult>> _apiCategorySearchGet(
+      {@Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') required int? pageSize});
+
+  ///
+  ///@param id
+  Future<chopper.Response<CategoryDTO>> apiCategoryIdGet(
+      {required String? id}) {
+    generatedMapping.putIfAbsent(
+        CategoryDTO, () => CategoryDTO.fromJsonFactory);
+
+    return _apiCategoryIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Category/{id}')
+  Future<chopper.Response<CategoryDTO>> _apiCategoryIdGet(
+      {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiCategoryIdPut(
+      {required String? id, required CategoryDTO? body}) {
+    return _apiCategoryIdPut(id: id, body: body);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/Category/{id}')
+  Future<chopper.Response<bool>> _apiCategoryIdPut(
+      {@Path('id') required String? id, @Body() required CategoryDTO? body});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiCategoryIdDelete({required String? id}) {
+    return _apiCategoryIdDelete(id: id);
+  }
+
+  ///
+  ///@param id
+  @Delete(path: '/api/Category/{id}')
+  Future<chopper.Response<bool>> _apiCategoryIdDelete(
+      {@Path('id') required String? id});
+
+  ///
   Future<chopper.Response<List<CompanyDTO>>> apiCompanyGet() {
     generatedMapping.putIfAbsent(CompanyDTO, () => CompanyDTO.fromJsonFactory);
 
@@ -2419,6 +2506,28 @@ abstract class FMA extends ChopperService {
       @Query('PageSize') required int? pageSize});
 
   ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<VehicleInboxDTOPagedResult>> apiVehicleInboxGet(
+      {required int? page, String? search, required int? pageSize}) {
+    generatedMapping.putIfAbsent(VehicleInboxDTOPagedResult,
+        () => VehicleInboxDTOPagedResult.fromJsonFactory);
+
+    return _apiVehicleInboxGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Vehicle/Inbox')
+  Future<chopper.Response<VehicleInboxDTOPagedResult>> _apiVehicleInboxGet(
+      {@Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') required int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<VehicleDTO>> apiVehicleIdGet({required String? id}) {
     generatedMapping.putIfAbsent(VehicleDTO, () => VehicleDTO.fromJsonFactory);
@@ -2898,278 +3007,6 @@ extension $AppUserDTOPagedResultExtension on AppUserDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AppUsuario {
-  AppUsuario({
-    this.id,
-    this.userName,
-    this.normalizedUserName,
-    this.normalizedEmail,
-    this.emailConfirmed,
-    this.passwordHash,
-    this.securityStamp,
-    this.concurrencyStamp,
-    this.phoneNumber,
-    this.phoneNumberConfirmed,
-    this.twoFactorEnabled,
-    this.lockoutEnd,
-    this.lockoutEnabled,
-    this.accessFailedCount,
-    this.firstName,
-    this.lastName,
-    this.name,
-    this.email,
-    this.url,
-    this.titleAbbreviation,
-    this.image,
-    this.gender,
-    this.active,
-    this.parentId,
-    this.projectId,
-    this.parent,
-    this.subordinates,
-    this.userRoles,
-  });
-
-  factory AppUsuario.fromJson(Map<String, dynamic> json) =>
-      _$AppUsuarioFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'userName')
-  final String? userName;
-  @JsonKey(name: 'normalizedUserName')
-  final String? normalizedUserName;
-  @JsonKey(name: 'normalizedEmail')
-  final String? normalizedEmail;
-  @JsonKey(name: 'emailConfirmed')
-  final bool? emailConfirmed;
-  @JsonKey(name: 'passwordHash')
-  final String? passwordHash;
-  @JsonKey(name: 'securityStamp')
-  final String? securityStamp;
-  @JsonKey(name: 'concurrencyStamp')
-  final String? concurrencyStamp;
-  @JsonKey(name: 'phoneNumber')
-  final String? phoneNumber;
-  @JsonKey(name: 'phoneNumberConfirmed')
-  final bool? phoneNumberConfirmed;
-  @JsonKey(name: 'twoFactorEnabled')
-  final bool? twoFactorEnabled;
-  @JsonKey(name: 'lockoutEnd')
-  final DateTime? lockoutEnd;
-  @JsonKey(name: 'lockoutEnabled')
-  final bool? lockoutEnabled;
-  @JsonKey(name: 'accessFailedCount')
-  final int? accessFailedCount;
-  @JsonKey(name: 'firstName')
-  final String? firstName;
-  @JsonKey(name: 'lastName')
-  final String? lastName;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'email')
-  final String? email;
-  @JsonKey(name: 'url')
-  final String? url;
-  @JsonKey(name: 'titleAbbreviation')
-  final String? titleAbbreviation;
-  @JsonKey(name: 'image')
-  final String? image;
-  @JsonKey(
-      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
-  final enums.GenderEnum? gender;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'parentId')
-  final String? parentId;
-  @JsonKey(name: 'projectId')
-  final String? projectId;
-  @JsonKey(name: 'parent')
-  final AppUsuario? parent;
-  @JsonKey(name: 'subordinates', defaultValue: <AppUsuario>[])
-  final List<AppUsuario>? subordinates;
-  @JsonKey(name: 'userRoles', defaultValue: <UserRole>[])
-  final List<UserRole>? userRoles;
-  static const fromJsonFactory = _$AppUsuarioFromJson;
-  static const toJsonFactory = _$AppUsuarioToJson;
-  Map<String, dynamic> toJson() => _$AppUsuarioToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is AppUsuario &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.normalizedUserName, normalizedUserName) ||
-                const DeepCollectionEquality()
-                    .equals(other.normalizedUserName, normalizedUserName)) &&
-            (identical(other.normalizedEmail, normalizedEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.normalizedEmail, normalizedEmail)) &&
-            (identical(other.emailConfirmed, emailConfirmed) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailConfirmed, emailConfirmed)) &&
-            (identical(other.passwordHash, passwordHash) ||
-                const DeepCollectionEquality()
-                    .equals(other.passwordHash, passwordHash)) &&
-            (identical(other.securityStamp, securityStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.securityStamp, securityStamp)) &&
-            (identical(other.concurrencyStamp, concurrencyStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.concurrencyStamp, concurrencyStamp)) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.phoneNumberConfirmed, phoneNumberConfirmed) ||
-                const DeepCollectionEquality().equals(
-                    other.phoneNumberConfirmed, phoneNumberConfirmed)) &&
-            (identical(other.twoFactorEnabled, twoFactorEnabled) ||
-                const DeepCollectionEquality()
-                    .equals(other.twoFactorEnabled, twoFactorEnabled)) &&
-            (identical(other.lockoutEnd, lockoutEnd) ||
-                const DeepCollectionEquality()
-                    .equals(other.lockoutEnd, lockoutEnd)) &&
-            (identical(other.lockoutEnabled, lockoutEnabled) ||
-                const DeepCollectionEquality()
-                    .equals(other.lockoutEnabled, lockoutEnabled)) &&
-            (identical(other.accessFailedCount, accessFailedCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.accessFailedCount, accessFailedCount)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.titleAbbreviation, titleAbbreviation) ||
-                const DeepCollectionEquality()
-                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.parentId, parentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.parentId, parentId)) &&
-            (identical(other.projectId, projectId) ||
-                const DeepCollectionEquality()
-                    .equals(other.projectId, projectId)) &&
-            (identical(other.parent, parent) || const DeepCollectionEquality().equals(other.parent, parent)) &&
-            (identical(other.subordinates, subordinates) || const DeepCollectionEquality().equals(other.subordinates, subordinates)) &&
-            (identical(other.userRoles, userRoles) || const DeepCollectionEquality().equals(other.userRoles, userRoles)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(normalizedUserName) ^
-      const DeepCollectionEquality().hash(normalizedEmail) ^
-      const DeepCollectionEquality().hash(emailConfirmed) ^
-      const DeepCollectionEquality().hash(passwordHash) ^
-      const DeepCollectionEquality().hash(securityStamp) ^
-      const DeepCollectionEquality().hash(concurrencyStamp) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(phoneNumberConfirmed) ^
-      const DeepCollectionEquality().hash(twoFactorEnabled) ^
-      const DeepCollectionEquality().hash(lockoutEnd) ^
-      const DeepCollectionEquality().hash(lockoutEnabled) ^
-      const DeepCollectionEquality().hash(accessFailedCount) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(titleAbbreviation) ^
-      const DeepCollectionEquality().hash(image) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(parentId) ^
-      const DeepCollectionEquality().hash(projectId) ^
-      const DeepCollectionEquality().hash(parent) ^
-      const DeepCollectionEquality().hash(subordinates) ^
-      const DeepCollectionEquality().hash(userRoles) ^
-      runtimeType.hashCode;
-}
-
-extension $AppUsuarioExtension on AppUsuario {
-  AppUsuario copyWith(
-      {String? id,
-      String? userName,
-      String? normalizedUserName,
-      String? normalizedEmail,
-      bool? emailConfirmed,
-      String? passwordHash,
-      String? securityStamp,
-      String? concurrencyStamp,
-      String? phoneNumber,
-      bool? phoneNumberConfirmed,
-      bool? twoFactorEnabled,
-      DateTime? lockoutEnd,
-      bool? lockoutEnabled,
-      int? accessFailedCount,
-      String? firstName,
-      String? lastName,
-      String? name,
-      String? email,
-      String? url,
-      String? titleAbbreviation,
-      String? image,
-      enums.GenderEnum? gender,
-      bool? active,
-      String? parentId,
-      String? projectId,
-      AppUsuario? parent,
-      List<AppUsuario>? subordinates,
-      List<UserRole>? userRoles}) {
-    return AppUsuario(
-        id: id ?? this.id,
-        userName: userName ?? this.userName,
-        normalizedUserName: normalizedUserName ?? this.normalizedUserName,
-        normalizedEmail: normalizedEmail ?? this.normalizedEmail,
-        emailConfirmed: emailConfirmed ?? this.emailConfirmed,
-        passwordHash: passwordHash ?? this.passwordHash,
-        securityStamp: securityStamp ?? this.securityStamp,
-        concurrencyStamp: concurrencyStamp ?? this.concurrencyStamp,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        phoneNumberConfirmed: phoneNumberConfirmed ?? this.phoneNumberConfirmed,
-        twoFactorEnabled: twoFactorEnabled ?? this.twoFactorEnabled,
-        lockoutEnd: lockoutEnd ?? this.lockoutEnd,
-        lockoutEnabled: lockoutEnabled ?? this.lockoutEnabled,
-        accessFailedCount: accessFailedCount ?? this.accessFailedCount,
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        name: name ?? this.name,
-        email: email ?? this.email,
-        url: url ?? this.url,
-        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
-        image: image ?? this.image,
-        gender: gender ?? this.gender,
-        active: active ?? this.active,
-        parentId: parentId ?? this.parentId,
-        projectId: projectId ?? this.projectId,
-        parent: parent ?? this.parent,
-        subordinates: subordinates ?? this.subordinates,
-        userRoles: userRoles ?? this.userRoles);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class AuthResponseDTO {
   AuthResponseDTO({
     this.userId,
@@ -3182,7 +3019,6 @@ class AuthResponseDTO {
     this.url,
     this.phone,
     this.active,
-    this.roles,
   });
 
   factory AuthResponseDTO.fromJson(Map<String, dynamic> json) =>
@@ -3208,8 +3044,6 @@ class AuthResponseDTO {
   final String? phone;
   @JsonKey(name: 'active')
   final bool? active;
-  @JsonKey(name: 'roles', defaultValue: <String>[])
-  final List<String>? roles;
   static const fromJsonFactory = _$AuthResponseDTOFromJson;
   static const toJsonFactory = _$AuthResponseDTOToJson;
   Map<String, dynamic> toJson() => _$AuthResponseDTOToJson(this);
@@ -3243,9 +3077,7 @@ class AuthResponseDTO {
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.roles, roles) ||
-                const DeepCollectionEquality().equals(other.roles, roles)));
+                const DeepCollectionEquality().equals(other.active, active)));
   }
 
   @override
@@ -3260,7 +3092,6 @@ class AuthResponseDTO {
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(roles) ^
       runtimeType.hashCode;
 }
 
@@ -3275,8 +3106,7 @@ extension $AuthResponseDTOExtension on AuthResponseDTO {
       String? lastName,
       String? url,
       String? phone,
-      bool? active,
-      List<String>? roles}) {
+      bool? active}) {
     return AuthResponseDTO(
         userId: userId ?? this.userId,
         token: token ?? this.token,
@@ -3287,98 +3117,7 @@ extension $AuthResponseDTOExtension on AuthResponseDTO {
         lastName: lastName ?? this.lastName,
         url: url ?? this.url,
         phone: phone ?? this.phone,
-        active: active ?? this.active,
-        roles: roles ?? this.roles);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class Brand {
-  Brand({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.name,
-    this.code,
-    this.description,
-  });
-
-  factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
-  @JsonKey(name: 'description')
-  final String? description;
-  static const fromJsonFactory = _$BrandFromJson;
-  static const toJsonFactory = _$BrandToJson;
-  Map<String, dynamic> toJson() => _$BrandToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Brand &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      runtimeType.hashCode;
-}
-
-extension $BrandExtension on Brand {
-  Brand copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      String? name,
-      String? code,
-      String? description}) {
-    return Brand(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        name: name ?? this.name,
-        code: code ?? this.code,
-        description: description ?? this.description);
+        active: active ?? this.active);
   }
 }
 
@@ -3521,13 +3260,150 @@ extension $BrandDTOPagedResultExtension on BrandDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
+class CategoryDTO {
+  CategoryDTO({
+    this.id,
+    this.name,
+    this.code,
+    this.description,
+  });
+
+  factory CategoryDTO.fromJson(Map<String, dynamic> json) =>
+      _$CategoryDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'code')
+  final String? code;
+  @JsonKey(name: 'description')
+  final String? description;
+  static const fromJsonFactory = _$CategoryDTOFromJson;
+  static const toJsonFactory = _$CategoryDTOToJson;
+  Map<String, dynamic> toJson() => _$CategoryDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CategoryDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(description) ^
+      runtimeType.hashCode;
+}
+
+extension $CategoryDTOExtension on CategoryDTO {
+  CategoryDTO copyWith(
+      {String? id, String? name, String? code, String? description}) {
+    return CategoryDTO(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        code: code ?? this.code,
+        description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CategoryDTOPagedResult {
+  CategoryDTOPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory CategoryDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$CategoryDTOPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <CategoryDTO>[])
+  final List<CategoryDTO>? items;
+  static const fromJsonFactory = _$CategoryDTOPagedResultFromJson;
+  static const toJsonFactory = _$CategoryDTOPagedResultToJson;
+  Map<String, dynamic> toJson() => _$CategoryDTOPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CategoryDTOPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $CategoryDTOPagedResultExtension on CategoryDTOPagedResult {
+  CategoryDTOPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<CategoryDTO>? items}) {
+    return CategoryDTOPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class CompanyDTO {
   CompanyDTO({
     this.id,
     this.name,
     this.code,
     this.description,
-    this.vehicles,
   });
 
   factory CompanyDTO.fromJson(Map<String, dynamic> json) =>
@@ -3541,8 +3417,6 @@ class CompanyDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'vehicles', defaultValue: <VehicleDTO>[])
-  final List<VehicleDTO>? vehicles;
   static const fromJsonFactory = _$CompanyDTOFromJson;
   static const toJsonFactory = _$CompanyDTOToJson;
   Map<String, dynamic> toJson() => _$CompanyDTOToJson(this);
@@ -3562,10 +3436,7 @@ class CompanyDTO {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.vehicles, vehicles) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicles, vehicles)));
+                    .equals(other.description, description)));
   }
 
   @override
@@ -3574,23 +3445,17 @@ class CompanyDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(vehicles) ^
       runtimeType.hashCode;
 }
 
 extension $CompanyDTOExtension on CompanyDTO {
   CompanyDTO copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      List<VehicleDTO>? vehicles}) {
+      {String? id, String? name, String? code, String? description}) {
     return CompanyDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
-        description: description ?? this.description,
-        vehicles: vehicles ?? this.vehicles);
+        description: description ?? this.description);
   }
 }
 
@@ -3821,89 +3686,6 @@ extension $CostCenterDTOPagedResultExtension on CostCenterDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Document {
-  Document({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.path,
-    this.fileName,
-  });
-
-  factory Document.fromJson(Map<String, dynamic> json) =>
-      _$DocumentFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'path')
-  final String? path;
-  @JsonKey(name: 'fileName')
-  final String? fileName;
-  static const fromJsonFactory = _$DocumentFromJson;
-  static const toJsonFactory = _$DocumentToJson;
-  Map<String, dynamic> toJson() => _$DocumentToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Document &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.path, path) ||
-                const DeepCollectionEquality().equals(other.path, path)) &&
-            (identical(other.fileName, fileName) ||
-                const DeepCollectionEquality()
-                    .equals(other.fileName, fileName)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(path) ^
-      const DeepCollectionEquality().hash(fileName) ^
-      runtimeType.hashCode;
-}
-
-extension $DocumentExtension on Document {
-  Document copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      String? path,
-      String? fileName}) {
-    return Document(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        path: path ?? this.path,
-        fileName: fileName ?? this.fileName);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class DocumentDTO {
   DocumentDTO({
     this.id,
@@ -4086,7 +3868,6 @@ class EngineDTO {
     this.code,
     this.description,
     this.modelId,
-    this.model,
   });
 
   factory EngineDTO.fromJson(Map<String, dynamic> json) =>
@@ -4102,8 +3883,6 @@ class EngineDTO {
   final String? description;
   @JsonKey(name: 'modelId')
   final String? modelId;
-  @JsonKey(name: 'model')
-  final ModelDTO? model;
   static const fromJsonFactory = _$EngineDTOFromJson;
   static const toJsonFactory = _$EngineDTOToJson;
   Map<String, dynamic> toJson() => _$EngineDTOToJson(this);
@@ -4125,10 +3904,7 @@ class EngineDTO {
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
             (identical(other.modelId, modelId) ||
-                const DeepCollectionEquality()
-                    .equals(other.modelId, modelId)) &&
-            (identical(other.model, model) ||
-                const DeepCollectionEquality().equals(other.model, model)));
+                const DeepCollectionEquality().equals(other.modelId, modelId)));
   }
 
   @override
@@ -4138,7 +3914,6 @@ class EngineDTO {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(modelId) ^
-      const DeepCollectionEquality().hash(model) ^
       runtimeType.hashCode;
 }
 
@@ -4148,15 +3923,13 @@ extension $EngineDTOExtension on EngineDTO {
       String? name,
       String? code,
       String? description,
-      String? modelId,
-      ModelDTO? model}) {
+      String? modelId}) {
     return EngineDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
-        modelId: modelId ?? this.modelId,
-        model: model ?? this.model);
+        modelId: modelId ?? this.modelId);
   }
 }
 
@@ -4237,168 +4010,6 @@ extension $EngineDTOPagedResultExtension on EngineDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class FuelLoad {
-  FuelLoad({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.amount,
-    this.reference,
-    this.full,
-    this.liters,
-    this.unitCost,
-    this.vehicleId,
-    this.documentId,
-    this.chargeDate,
-    this.chargeHour,
-    this.vehicle,
-    this.document,
-  });
-
-  factory FuelLoad.fromJson(Map<String, dynamic> json) =>
-      _$FuelLoadFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'amount')
-  final double? amount;
-  @JsonKey(name: 'reference')
-  final String? reference;
-  @JsonKey(name: 'full')
-  final bool? full;
-  @JsonKey(name: 'liters')
-  final double? liters;
-  @JsonKey(name: 'unitCost')
-  final double? unitCost;
-  @JsonKey(name: 'vehicleId')
-  final String? vehicleId;
-  @JsonKey(name: 'documentId')
-  final String? documentId;
-  @JsonKey(name: 'chargeDate')
-  final DateTime? chargeDate;
-  @JsonKey(name: 'chargeHour')
-  final TimeSpan? chargeHour;
-  @JsonKey(name: 'vehicle')
-  final Vehicle? vehicle;
-  @JsonKey(name: 'document')
-  final Document? document;
-  static const fromJsonFactory = _$FuelLoadFromJson;
-  static const toJsonFactory = _$FuelLoadToJson;
-  Map<String, dynamic> toJson() => _$FuelLoadToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is FuelLoad &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.reference, reference) ||
-                const DeepCollectionEquality()
-                    .equals(other.reference, reference)) &&
-            (identical(other.full, full) ||
-                const DeepCollectionEquality().equals(other.full, full)) &&
-            (identical(other.liters, liters) ||
-                const DeepCollectionEquality().equals(other.liters, liters)) &&
-            (identical(other.unitCost, unitCost) ||
-                const DeepCollectionEquality()
-                    .equals(other.unitCost, unitCost)) &&
-            (identical(other.vehicleId, vehicleId) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.documentId, documentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)) &&
-            (identical(other.chargeDate, chargeDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.chargeDate, chargeDate)) &&
-            (identical(other.chargeHour, chargeHour) ||
-                const DeepCollectionEquality()
-                    .equals(other.chargeHour, chargeHour)) &&
-            (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicle, vehicle)) &&
-            (identical(other.document, document) ||
-                const DeepCollectionEquality()
-                    .equals(other.document, document)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(reference) ^
-      const DeepCollectionEquality().hash(full) ^
-      const DeepCollectionEquality().hash(liters) ^
-      const DeepCollectionEquality().hash(unitCost) ^
-      const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(documentId) ^
-      const DeepCollectionEquality().hash(chargeDate) ^
-      const DeepCollectionEquality().hash(chargeHour) ^
-      const DeepCollectionEquality().hash(vehicle) ^
-      const DeepCollectionEquality().hash(document) ^
-      runtimeType.hashCode;
-}
-
-extension $FuelLoadExtension on FuelLoad {
-  FuelLoad copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      double? amount,
-      String? reference,
-      bool? full,
-      double? liters,
-      double? unitCost,
-      String? vehicleId,
-      String? documentId,
-      DateTime? chargeDate,
-      TimeSpan? chargeHour,
-      Vehicle? vehicle,
-      Document? document}) {
-    return FuelLoad(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        amount: amount ?? this.amount,
-        reference: reference ?? this.reference,
-        full: full ?? this.full,
-        liters: liters ?? this.liters,
-        unitCost: unitCost ?? this.unitCost,
-        vehicleId: vehicleId ?? this.vehicleId,
-        documentId: documentId ?? this.documentId,
-        chargeDate: chargeDate ?? this.chargeDate,
-        chargeHour: chargeHour ?? this.chargeHour,
-        vehicle: vehicle ?? this.vehicle,
-        document: document ?? this.document);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class FuelLoadDTO {
   FuelLoadDTO({
     this.id,
@@ -4414,8 +4025,6 @@ class FuelLoadDTO {
     this.full,
     this.documentId,
     this.vehicleId,
-    this.vehicle,
-    this.document,
   });
 
   factory FuelLoadDTO.fromJson(Map<String, dynamic> json) =>
@@ -4447,10 +4056,6 @@ class FuelLoadDTO {
   final int? documentId;
   @JsonKey(name: 'vehicleId')
   final int? vehicleId;
-  @JsonKey(name: 'vehicle')
-  final Vehicle? vehicle;
-  @JsonKey(name: 'document')
-  final DocumentDTO? document;
   static const fromJsonFactory = _$FuelLoadDTOFromJson;
   static const toJsonFactory = _$FuelLoadDTOToJson;
   Map<String, dynamic> toJson() => _$FuelLoadDTOToJson(this);
@@ -4494,13 +4099,7 @@ class FuelLoadDTO {
                     .equals(other.documentId, documentId)) &&
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
-                    .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicle, vehicle)) &&
-            (identical(other.document, document) ||
-                const DeepCollectionEquality()
-                    .equals(other.document, document)));
+                    .equals(other.vehicleId, vehicleId)));
   }
 
   @override
@@ -4518,8 +4117,6 @@ class FuelLoadDTO {
       const DeepCollectionEquality().hash(full) ^
       const DeepCollectionEquality().hash(documentId) ^
       const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(vehicle) ^
-      const DeepCollectionEquality().hash(document) ^
       runtimeType.hashCode;
 }
 
@@ -4537,9 +4134,7 @@ extension $FuelLoadDTOExtension on FuelLoadDTO {
       String? reference,
       bool? full,
       int? documentId,
-      int? vehicleId,
-      Vehicle? vehicle,
-      DocumentDTO? document}) {
+      int? vehicleId}) {
     return FuelLoadDTO(
         id: id ?? this.id,
         name: name ?? this.name,
@@ -4553,9 +4148,7 @@ extension $FuelLoadDTOExtension on FuelLoadDTO {
         reference: reference ?? this.reference,
         full: full ?? this.full,
         documentId: documentId ?? this.documentId,
-        vehicleId: vehicleId ?? this.vehicleId,
-        vehicle: vehicle ?? this.vehicle,
-        document: document ?? this.document);
+        vehicleId: vehicleId ?? this.vehicleId);
   }
 }
 
@@ -4642,7 +4235,6 @@ class FuelTypeDTO {
     this.name,
     this.code,
     this.description,
-    this.fuelLoads,
   });
 
   factory FuelTypeDTO.fromJson(Map<String, dynamic> json) =>
@@ -4656,8 +4248,6 @@ class FuelTypeDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'fuelLoads', defaultValue: <FuelLoadDTO>[])
-  final List<FuelLoadDTO>? fuelLoads;
   static const fromJsonFactory = _$FuelTypeDTOFromJson;
   static const toJsonFactory = _$FuelTypeDTOToJson;
   Map<String, dynamic> toJson() => _$FuelTypeDTOToJson(this);
@@ -4677,10 +4267,7 @@ class FuelTypeDTO {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.fuelLoads, fuelLoads) ||
-                const DeepCollectionEquality()
-                    .equals(other.fuelLoads, fuelLoads)));
+                    .equals(other.description, description)));
   }
 
   @override
@@ -4689,23 +4276,17 @@ class FuelTypeDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(fuelLoads) ^
       runtimeType.hashCode;
 }
 
 extension $FuelTypeDTOExtension on FuelTypeDTO {
   FuelTypeDTO copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      List<FuelLoadDTO>? fuelLoads}) {
+      {String? id, String? name, String? code, String? description}) {
     return FuelTypeDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
-        description: description ?? this.description,
-        fuelLoads: fuelLoads ?? this.fuelLoads);
+        description: description ?? this.description);
   }
 }
 
@@ -4793,7 +4374,6 @@ class FuelVendorDTO {
     this.code,
     this.description,
     this.externalId,
-    this.fuelLoads,
   });
 
   factory FuelVendorDTO.fromJson(Map<String, dynamic> json) =>
@@ -4809,8 +4389,6 @@ class FuelVendorDTO {
   final String? description;
   @JsonKey(name: 'externalId')
   final int? externalId;
-  @JsonKey(name: 'fuelLoads', defaultValue: <FuelLoadDTO>[])
-  final List<FuelLoadDTO>? fuelLoads;
   static const fromJsonFactory = _$FuelVendorDTOFromJson;
   static const toJsonFactory = _$FuelVendorDTOToJson;
   Map<String, dynamic> toJson() => _$FuelVendorDTOToJson(this);
@@ -4833,10 +4411,7 @@ class FuelVendorDTO {
                     .equals(other.description, description)) &&
             (identical(other.externalId, externalId) ||
                 const DeepCollectionEquality()
-                    .equals(other.externalId, externalId)) &&
-            (identical(other.fuelLoads, fuelLoads) ||
-                const DeepCollectionEquality()
-                    .equals(other.fuelLoads, fuelLoads)));
+                    .equals(other.externalId, externalId)));
   }
 
   @override
@@ -4846,7 +4421,6 @@ class FuelVendorDTO {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(externalId) ^
-      const DeepCollectionEquality().hash(fuelLoads) ^
       runtimeType.hashCode;
 }
 
@@ -4856,15 +4430,13 @@ extension $FuelVendorDTOExtension on FuelVendorDTO {
       String? name,
       String? code,
       String? description,
-      int? externalId,
-      List<FuelLoadDTO>? fuelLoads}) {
+      int? externalId}) {
     return FuelVendorDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
-        externalId: externalId ?? this.externalId,
-        fuelLoads: fuelLoads ?? this.fuelLoads);
+        externalId: externalId ?? this.externalId);
   }
 }
 
@@ -4952,7 +4524,6 @@ class ImageDTO {
     this.name,
     this.extension,
     this.vehicleId,
-    this.vehicle,
   });
 
   factory ImageDTO.fromJson(Map<String, dynamic> json) =>
@@ -4968,8 +4539,6 @@ class ImageDTO {
   final String? extension;
   @JsonKey(name: 'vehicleId')
   final String? vehicleId;
-  @JsonKey(name: 'vehicle')
-  final VehicleDTO? vehicle;
   static const fromJsonFactory = _$ImageDTOFromJson;
   static const toJsonFactory = _$ImageDTOToJson;
   Map<String, dynamic> toJson() => _$ImageDTOToJson(this);
@@ -4992,9 +4561,7 @@ class ImageDTO {
                     .equals(other.extension, extension)) &&
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
-                    .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality().equals(other.vehicle, vehicle)));
+                    .equals(other.vehicleId, vehicleId)));
   }
 
   @override
@@ -5004,7 +4571,6 @@ class ImageDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(extension) ^
       const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(vehicle) ^
       runtimeType.hashCode;
 }
 
@@ -5014,15 +4580,13 @@ extension $ImageDTOExtension on ImageDTO {
       String? path,
       String? name,
       String? extension,
-      String? vehicleId,
-      VehicleDTO? vehicle}) {
+      String? vehicleId}) {
     return ImageDTO(
         id: id ?? this.id,
         path: path ?? this.path,
         name: name ?? this.name,
         extension: extension ?? this.extension,
-        vehicleId: vehicleId ?? this.vehicleId,
-        vehicle: vehicle ?? this.vehicle);
+        vehicleId: vehicleId ?? this.vehicleId);
   }
 }
 
@@ -5110,7 +4674,6 @@ class IncidentDTO {
     this.code,
     this.description,
     this.vehicleId,
-    this.vehicle,
   });
 
   factory IncidentDTO.fromJson(Map<String, dynamic> json) =>
@@ -5126,8 +4689,6 @@ class IncidentDTO {
   final String? description;
   @JsonKey(name: 'vehicleId')
   final String? vehicleId;
-  @JsonKey(name: 'vehicle')
-  final VehicleDTO? vehicle;
   static const fromJsonFactory = _$IncidentDTOFromJson;
   static const toJsonFactory = _$IncidentDTOToJson;
   Map<String, dynamic> toJson() => _$IncidentDTOToJson(this);
@@ -5150,9 +4711,7 @@ class IncidentDTO {
                     .equals(other.description, description)) &&
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
-                    .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality().equals(other.vehicle, vehicle)));
+                    .equals(other.vehicleId, vehicleId)));
   }
 
   @override
@@ -5162,7 +4721,6 @@ class IncidentDTO {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(vehicle) ^
       runtimeType.hashCode;
 }
 
@@ -5172,15 +4730,13 @@ extension $IncidentDTOExtension on IncidentDTO {
       String? name,
       String? code,
       String? description,
-      String? vehicleId,
-      VehicleDTO? vehicle}) {
+      String? vehicleId}) {
     return IncidentDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
-        vehicleId: vehicleId ?? this.vehicleId,
-        vehicle: vehicle ?? this.vehicle);
+        vehicleId: vehicleId ?? this.vehicleId);
   }
 }
 
@@ -5266,9 +4822,7 @@ class IncisoDTO {
     this.id,
     this.name,
     this.vehicleId,
-    this.vehicle,
     this.policyId,
-    this.policy,
   });
 
   factory IncisoDTO.fromJson(Map<String, dynamic> json) =>
@@ -5280,12 +4834,8 @@ class IncisoDTO {
   final String? name;
   @JsonKey(name: 'vehicleId')
   final String? vehicleId;
-  @JsonKey(name: 'vehicle')
-  final VehicleDTO? vehicle;
   @JsonKey(name: 'policyId')
   final String? policyId;
-  @JsonKey(name: 'policy')
-  final PolicyDTO? policy;
   static const fromJsonFactory = _$IncisoDTOFromJson;
   static const toJsonFactory = _$IncisoDTOToJson;
   Map<String, dynamic> toJson() => _$IncisoDTOToJson(this);
@@ -5304,14 +4854,9 @@ class IncisoDTO {
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
                     .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicle, vehicle)) &&
             (identical(other.policyId, policyId) ||
                 const DeepCollectionEquality()
-                    .equals(other.policyId, policyId)) &&
-            (identical(other.policy, policy) ||
-                const DeepCollectionEquality().equals(other.policy, policy)));
+                    .equals(other.policyId, policyId)));
   }
 
   @override
@@ -5319,27 +4864,18 @@ class IncisoDTO {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(vehicle) ^
       const DeepCollectionEquality().hash(policyId) ^
-      const DeepCollectionEquality().hash(policy) ^
       runtimeType.hashCode;
 }
 
 extension $IncisoDTOExtension on IncisoDTO {
   IncisoDTO copyWith(
-      {String? id,
-      String? name,
-      String? vehicleId,
-      VehicleDTO? vehicle,
-      String? policyId,
-      PolicyDTO? policy}) {
+      {String? id, String? name, String? vehicleId, String? policyId}) {
     return IncisoDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         vehicleId: vehicleId ?? this.vehicleId,
-        vehicle: vehicle ?? this.vehicle,
-        policyId: policyId ?? this.policyId,
-        policy: policy ?? this.policy);
+        policyId: policyId ?? this.policyId);
   }
 }
 
@@ -5420,113 +4956,12 @@ extension $IncisoDTOPagedResultExtension on IncisoDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class InsuranceCompany {
-  InsuranceCompany({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.name,
-    this.code,
-    this.description,
-    this.policies,
-  });
-
-  factory InsuranceCompany.fromJson(Map<String, dynamic> json) =>
-      _$InsuranceCompanyFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'policies', defaultValue: <Policy>[])
-  final List<Policy>? policies;
-  static const fromJsonFactory = _$InsuranceCompanyFromJson;
-  static const toJsonFactory = _$InsuranceCompanyToJson;
-  Map<String, dynamic> toJson() => _$InsuranceCompanyToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is InsuranceCompany &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.policies, policies) ||
-                const DeepCollectionEquality()
-                    .equals(other.policies, policies)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(policies) ^
-      runtimeType.hashCode;
-}
-
-extension $InsuranceCompanyExtension on InsuranceCompany {
-  InsuranceCompany copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      String? name,
-      String? code,
-      String? description,
-      List<Policy>? policies}) {
-    return InsuranceCompany(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        name: name ?? this.name,
-        code: code ?? this.code,
-        description: description ?? this.description,
-        policies: policies ?? this.policies);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class InsuranceCompanyDTO {
   InsuranceCompanyDTO({
     this.id,
     this.name,
     this.code,
     this.description,
-    this.policies,
   });
 
   factory InsuranceCompanyDTO.fromJson(Map<String, dynamic> json) =>
@@ -5540,8 +4975,6 @@ class InsuranceCompanyDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'policies', defaultValue: <PolicyDTO>[])
-  final List<PolicyDTO>? policies;
   static const fromJsonFactory = _$InsuranceCompanyDTOFromJson;
   static const toJsonFactory = _$InsuranceCompanyDTOToJson;
   Map<String, dynamic> toJson() => _$InsuranceCompanyDTOToJson(this);
@@ -5561,10 +4994,7 @@ class InsuranceCompanyDTO {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.policies, policies) ||
-                const DeepCollectionEquality()
-                    .equals(other.policies, policies)));
+                    .equals(other.description, description)));
   }
 
   @override
@@ -5573,23 +5003,17 @@ class InsuranceCompanyDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(policies) ^
       runtimeType.hashCode;
 }
 
 extension $InsuranceCompanyDTOExtension on InsuranceCompanyDTO {
   InsuranceCompanyDTO copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      List<PolicyDTO>? policies}) {
+      {String? id, String? name, String? code, String? description}) {
     return InsuranceCompanyDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
-        description: description ?? this.description,
-        policies: policies ?? this.policies);
+        description: description ?? this.description);
   }
 }
 
@@ -5732,12 +5156,6 @@ class MaintenanceDTO {
     this.vendorId,
     this.vehicleId,
     this.documentId,
-    this.vendor,
-    this.document,
-    this.maintenanceGroup,
-    this.maintenanceType,
-    this.vehicle,
-    this.maintenanceParts,
   });
 
   factory MaintenanceDTO.fromJson(Map<String, dynamic> json) =>
@@ -5769,18 +5187,6 @@ class MaintenanceDTO {
   final String? vehicleId;
   @JsonKey(name: 'documentId')
   final String? documentId;
-  @JsonKey(name: 'vendor')
-  final VendorDTO? vendor;
-  @JsonKey(name: 'document')
-  final DocumentDTO? document;
-  @JsonKey(name: 'maintenanceGroup')
-  final MaintenanceGroupDTO? maintenanceGroup;
-  @JsonKey(name: 'maintenanceType')
-  final MaintenanceTypeDTO? maintenanceType;
-  @JsonKey(name: 'vehicle')
-  final VehicleDTO? vehicle;
-  @JsonKey(name: 'maintenanceParts', defaultValue: <MaintenancePartDTO>[])
-  final List<MaintenancePartDTO>? maintenanceParts;
   static const fromJsonFactory = _$MaintenanceDTOFromJson;
   static const toJsonFactory = _$MaintenanceDTOToJson;
   Map<String, dynamic> toJson() => _$MaintenanceDTOToJson(this);
@@ -5828,24 +5234,7 @@ class MaintenanceDTO {
                     .equals(other.vehicleId, vehicleId)) &&
             (identical(other.documentId, documentId) ||
                 const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)) &&
-            (identical(other.vendor, vendor) ||
-                const DeepCollectionEquality().equals(other.vendor, vendor)) &&
-            (identical(other.document, document) ||
-                const DeepCollectionEquality()
-                    .equals(other.document, document)) &&
-            (identical(other.maintenanceGroup, maintenanceGroup) ||
-                const DeepCollectionEquality()
-                    .equals(other.maintenanceGroup, maintenanceGroup)) &&
-            (identical(other.maintenanceType, maintenanceType) ||
-                const DeepCollectionEquality()
-                    .equals(other.maintenanceType, maintenanceType)) &&
-            (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicle, vehicle)) &&
-            (identical(other.maintenanceParts, maintenanceParts) ||
-                const DeepCollectionEquality()
-                    .equals(other.maintenanceParts, maintenanceParts)));
+                    .equals(other.documentId, documentId)));
   }
 
   @override
@@ -5863,12 +5252,6 @@ class MaintenanceDTO {
       const DeepCollectionEquality().hash(vendorId) ^
       const DeepCollectionEquality().hash(vehicleId) ^
       const DeepCollectionEquality().hash(documentId) ^
-      const DeepCollectionEquality().hash(vendor) ^
-      const DeepCollectionEquality().hash(document) ^
-      const DeepCollectionEquality().hash(maintenanceGroup) ^
-      const DeepCollectionEquality().hash(maintenanceType) ^
-      const DeepCollectionEquality().hash(vehicle) ^
-      const DeepCollectionEquality().hash(maintenanceParts) ^
       runtimeType.hashCode;
 }
 
@@ -5886,13 +5269,7 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
       String? maintenanceGroupId,
       String? vendorId,
       String? vehicleId,
-      String? documentId,
-      VendorDTO? vendor,
-      DocumentDTO? document,
-      MaintenanceGroupDTO? maintenanceGroup,
-      MaintenanceTypeDTO? maintenanceType,
-      VehicleDTO? vehicle,
-      List<MaintenancePartDTO>? maintenanceParts}) {
+      String? documentId}) {
     return MaintenanceDTO(
         id: id ?? this.id,
         name: name ?? this.name,
@@ -5906,13 +5283,7 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
         maintenanceGroupId: maintenanceGroupId ?? this.maintenanceGroupId,
         vendorId: vendorId ?? this.vendorId,
         vehicleId: vehicleId ?? this.vehicleId,
-        documentId: documentId ?? this.documentId,
-        vendor: vendor ?? this.vendor,
-        document: document ?? this.document,
-        maintenanceGroup: maintenanceGroup ?? this.maintenanceGroup,
-        maintenanceType: maintenanceType ?? this.maintenanceType,
-        vehicle: vehicle ?? this.vehicle,
-        maintenanceParts: maintenanceParts ?? this.maintenanceParts);
+        documentId: documentId ?? this.documentId);
   }
 }
 
@@ -5999,7 +5370,6 @@ class MaintenanceGroupDTO {
     this.name,
     this.code,
     this.description,
-    this.maintenances,
   });
 
   factory MaintenanceGroupDTO.fromJson(Map<String, dynamic> json) =>
@@ -6013,8 +5383,6 @@ class MaintenanceGroupDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'maintenances', defaultValue: <MaintenanceDTO>[])
-  final List<MaintenanceDTO>? maintenances;
   static const fromJsonFactory = _$MaintenanceGroupDTOFromJson;
   static const toJsonFactory = _$MaintenanceGroupDTOToJson;
   Map<String, dynamic> toJson() => _$MaintenanceGroupDTOToJson(this);
@@ -6034,10 +5402,7 @@ class MaintenanceGroupDTO {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.maintenances, maintenances) ||
-                const DeepCollectionEquality()
-                    .equals(other.maintenances, maintenances)));
+                    .equals(other.description, description)));
   }
 
   @override
@@ -6046,23 +5411,17 @@ class MaintenanceGroupDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(maintenances) ^
       runtimeType.hashCode;
 }
 
 extension $MaintenanceGroupDTOExtension on MaintenanceGroupDTO {
   MaintenanceGroupDTO copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      List<MaintenanceDTO>? maintenances}) {
+      {String? id, String? name, String? code, String? description}) {
     return MaintenanceGroupDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
-        description: description ?? this.description,
-        maintenances: maintenances ?? this.maintenances);
+        description: description ?? this.description);
   }
 }
 
@@ -6149,8 +5508,6 @@ class MaintenancePartDTO {
     this.id,
     this.maintenanceId,
     this.partId,
-    this.maintenance,
-    this.$part,
   });
 
   factory MaintenancePartDTO.fromJson(Map<String, dynamic> json) =>
@@ -6162,10 +5519,6 @@ class MaintenancePartDTO {
   final String? maintenanceId;
   @JsonKey(name: 'partId')
   final String? partId;
-  @JsonKey(name: 'maintenance')
-  final MaintenanceDTO? maintenance;
-  @JsonKey(name: 'part')
-  final PartDTO? $part;
   static const fromJsonFactory = _$MaintenancePartDTOFromJson;
   static const toJsonFactory = _$MaintenancePartDTOToJson;
   Map<String, dynamic> toJson() => _$MaintenancePartDTOToJson(this);
@@ -6183,12 +5536,7 @@ class MaintenancePartDTO {
                 const DeepCollectionEquality()
                     .equals(other.maintenanceId, maintenanceId)) &&
             (identical(other.partId, partId) ||
-                const DeepCollectionEquality().equals(other.partId, partId)) &&
-            (identical(other.maintenance, maintenance) ||
-                const DeepCollectionEquality()
-                    .equals(other.maintenance, maintenance)) &&
-            (identical(other.$part, $part) ||
-                const DeepCollectionEquality().equals(other.$part, $part)));
+                const DeepCollectionEquality().equals(other.partId, partId)));
   }
 
   @override
@@ -6196,24 +5544,16 @@ class MaintenancePartDTO {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(maintenanceId) ^
       const DeepCollectionEquality().hash(partId) ^
-      const DeepCollectionEquality().hash(maintenance) ^
-      const DeepCollectionEquality().hash($part) ^
       runtimeType.hashCode;
 }
 
 extension $MaintenancePartDTOExtension on MaintenancePartDTO {
   MaintenancePartDTO copyWith(
-      {String? id,
-      String? maintenanceId,
-      String? partId,
-      MaintenanceDTO? maintenance,
-      PartDTO? $part}) {
+      {String? id, String? maintenanceId, String? partId}) {
     return MaintenancePartDTO(
         id: id ?? this.id,
         maintenanceId: maintenanceId ?? this.maintenanceId,
-        partId: partId ?? this.partId,
-        maintenance: maintenance ?? this.maintenance,
-        $part: $part ?? this.$part);
+        partId: partId ?? this.partId);
   }
 }
 
@@ -6434,113 +5774,6 @@ extension $MaintenanceTypeDTOPagedResultExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class Model {
-  Model({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.name,
-    this.code,
-    this.description,
-    this.brandId,
-    this.brand,
-  });
-
-  factory Model.fromJson(Map<String, dynamic> json) => _$ModelFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'brandId')
-  final String? brandId;
-  @JsonKey(name: 'brand')
-  final Brand? brand;
-  static const fromJsonFactory = _$ModelFromJson;
-  static const toJsonFactory = _$ModelToJson;
-  Map<String, dynamic> toJson() => _$ModelToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Model &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.brandId, brandId) ||
-                const DeepCollectionEquality()
-                    .equals(other.brandId, brandId)) &&
-            (identical(other.brand, brand) ||
-                const DeepCollectionEquality().equals(other.brand, brand)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(brandId) ^
-      const DeepCollectionEquality().hash(brand) ^
-      runtimeType.hashCode;
-}
-
-extension $ModelExtension on Model {
-  Model copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      String? name,
-      String? code,
-      String? description,
-      String? brandId,
-      Brand? brand}) {
-    return Model(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        name: name ?? this.name,
-        code: code ?? this.code,
-        description: description ?? this.description,
-        brandId: brandId ?? this.brandId,
-        brand: brand ?? this.brand);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class ModelDTO {
   ModelDTO({
     this.id,
@@ -6548,7 +5781,6 @@ class ModelDTO {
     this.code,
     this.description,
     this.brandId,
-    this.brand,
   });
 
   factory ModelDTO.fromJson(Map<String, dynamic> json) =>
@@ -6564,8 +5796,6 @@ class ModelDTO {
   final String? description;
   @JsonKey(name: 'brandId')
   final int? brandId;
-  @JsonKey(name: 'brand')
-  final BrandDTO? brand;
   static const fromJsonFactory = _$ModelDTOFromJson;
   static const toJsonFactory = _$ModelDTOToJson;
   Map<String, dynamic> toJson() => _$ModelDTOToJson(this);
@@ -6587,10 +5817,7 @@ class ModelDTO {
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
             (identical(other.brandId, brandId) ||
-                const DeepCollectionEquality()
-                    .equals(other.brandId, brandId)) &&
-            (identical(other.brand, brand) ||
-                const DeepCollectionEquality().equals(other.brand, brand)));
+                const DeepCollectionEquality().equals(other.brandId, brandId)));
   }
 
   @override
@@ -6600,7 +5827,6 @@ class ModelDTO {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(brandId) ^
-      const DeepCollectionEquality().hash(brand) ^
       runtimeType.hashCode;
 }
 
@@ -6610,15 +5836,13 @@ extension $ModelDTOExtension on ModelDTO {
       String? name,
       String? code,
       String? description,
-      int? brandId,
-      BrandDTO? brand}) {
+      int? brandId}) {
     return ModelDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
-        brandId: brandId ?? this.brandId,
-        brand: brand ?? this.brand);
+        brandId: brandId ?? this.brandId);
   }
 }
 
@@ -6707,8 +5931,6 @@ class PartDTO {
     this.description,
     this.externalId,
     this.vendorId,
-    this.vendor,
-    this.maintenanceParts,
   });
 
   factory PartDTO.fromJson(Map<String, dynamic> json) =>
@@ -6726,10 +5948,6 @@ class PartDTO {
   final int? externalId;
   @JsonKey(name: 'vendorId')
   final String? vendorId;
-  @JsonKey(name: 'vendor')
-  final VendorDTO? vendor;
-  @JsonKey(name: 'maintenanceParts', defaultValue: <MaintenancePartDTO>[])
-  final List<MaintenancePartDTO>? maintenanceParts;
   static const fromJsonFactory = _$PartDTOFromJson;
   static const toJsonFactory = _$PartDTOToJson;
   Map<String, dynamic> toJson() => _$PartDTOToJson(this);
@@ -6755,12 +5973,7 @@ class PartDTO {
                     .equals(other.externalId, externalId)) &&
             (identical(other.vendorId, vendorId) ||
                 const DeepCollectionEquality()
-                    .equals(other.vendorId, vendorId)) &&
-            (identical(other.vendor, vendor) ||
-                const DeepCollectionEquality().equals(other.vendor, vendor)) &&
-            (identical(other.maintenanceParts, maintenanceParts) ||
-                const DeepCollectionEquality()
-                    .equals(other.maintenanceParts, maintenanceParts)));
+                    .equals(other.vendorId, vendorId)));
   }
 
   @override
@@ -6771,8 +5984,6 @@ class PartDTO {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(externalId) ^
       const DeepCollectionEquality().hash(vendorId) ^
-      const DeepCollectionEquality().hash(vendor) ^
-      const DeepCollectionEquality().hash(maintenanceParts) ^
       runtimeType.hashCode;
 }
 
@@ -6783,18 +5994,14 @@ extension $PartDTOExtension on PartDTO {
       String? code,
       String? description,
       int? externalId,
-      String? vendorId,
-      VendorDTO? vendor,
-      List<MaintenancePartDTO>? maintenanceParts}) {
+      String? vendorId}) {
     return PartDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
         externalId: externalId ?? this.externalId,
-        vendorId: vendorId ?? this.vendorId,
-        vendor: vendor ?? this.vendor,
-        maintenanceParts: maintenanceParts ?? this.maintenanceParts);
+        vendorId: vendorId ?? this.vendorId);
   }
 }
 
@@ -6875,186 +6082,6 @@ extension $PartDTOPagedResultExtension on PartDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Policy {
-  Policy({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.name,
-    this.code,
-    this.description,
-    this.startDate,
-    this.endDate,
-    this.quantityVehicles,
-    this.vehicles,
-    this.policyStatusId,
-    this.policyStatus,
-    this.policyPacketId,
-    this.policyPacket,
-    this.insuranceCompanyId,
-    this.insuranceCompany,
-  });
-
-  factory Policy.fromJson(Map<String, dynamic> json) => _$PolicyFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'startDate')
-  final DateTime? startDate;
-  @JsonKey(name: 'endDate')
-  final DateTime? endDate;
-  @JsonKey(name: 'quantityVehicles')
-  final int? quantityVehicles;
-  @JsonKey(name: 'vehicles', defaultValue: <Vehicle>[])
-  final List<Vehicle>? vehicles;
-  @JsonKey(name: 'policyStatusId')
-  final String? policyStatusId;
-  @JsonKey(name: 'policyStatus')
-  final PolicyStatus? policyStatus;
-  @JsonKey(name: 'policyPacketId')
-  final String? policyPacketId;
-  @JsonKey(name: 'policyPacket')
-  final PolicyPacket? policyPacket;
-  @JsonKey(name: 'insuranceCompanyId')
-  final String? insuranceCompanyId;
-  @JsonKey(name: 'insuranceCompany')
-  final InsuranceCompany? insuranceCompany;
-  static const fromJsonFactory = _$PolicyFromJson;
-  static const toJsonFactory = _$PolicyToJson;
-  Map<String, dynamic> toJson() => _$PolicyToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Policy &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.startDate, startDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.startDate, startDate)) &&
-            (identical(other.endDate, endDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.endDate, endDate)) &&
-            (identical(other.quantityVehicles, quantityVehicles) ||
-                const DeepCollectionEquality()
-                    .equals(other.quantityVehicles, quantityVehicles)) &&
-            (identical(other.vehicles, vehicles) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicles, vehicles)) &&
-            (identical(other.policyStatusId, policyStatusId) ||
-                const DeepCollectionEquality()
-                    .equals(other.policyStatusId, policyStatusId)) &&
-            (identical(other.policyStatus, policyStatus) ||
-                const DeepCollectionEquality()
-                    .equals(other.policyStatus, policyStatus)) &&
-            (identical(other.policyPacketId, policyPacketId) ||
-                const DeepCollectionEquality()
-                    .equals(other.policyPacketId, policyPacketId)) &&
-            (identical(other.policyPacket, policyPacket) ||
-                const DeepCollectionEquality()
-                    .equals(other.policyPacket, policyPacket)) &&
-            (identical(other.insuranceCompanyId, insuranceCompanyId) ||
-                const DeepCollectionEquality()
-                    .equals(other.insuranceCompanyId, insuranceCompanyId)) &&
-            (identical(other.insuranceCompany, insuranceCompany) ||
-                const DeepCollectionEquality()
-                    .equals(other.insuranceCompany, insuranceCompany)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(startDate) ^
-      const DeepCollectionEquality().hash(endDate) ^
-      const DeepCollectionEquality().hash(quantityVehicles) ^
-      const DeepCollectionEquality().hash(vehicles) ^
-      const DeepCollectionEquality().hash(policyStatusId) ^
-      const DeepCollectionEquality().hash(policyStatus) ^
-      const DeepCollectionEquality().hash(policyPacketId) ^
-      const DeepCollectionEquality().hash(policyPacket) ^
-      const DeepCollectionEquality().hash(insuranceCompanyId) ^
-      const DeepCollectionEquality().hash(insuranceCompany) ^
-      runtimeType.hashCode;
-}
-
-extension $PolicyExtension on Policy {
-  Policy copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      String? name,
-      String? code,
-      String? description,
-      DateTime? startDate,
-      DateTime? endDate,
-      int? quantityVehicles,
-      List<Vehicle>? vehicles,
-      String? policyStatusId,
-      PolicyStatus? policyStatus,
-      String? policyPacketId,
-      PolicyPacket? policyPacket,
-      String? insuranceCompanyId,
-      InsuranceCompany? insuranceCompany}) {
-    return Policy(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        name: name ?? this.name,
-        code: code ?? this.code,
-        description: description ?? this.description,
-        startDate: startDate ?? this.startDate,
-        endDate: endDate ?? this.endDate,
-        quantityVehicles: quantityVehicles ?? this.quantityVehicles,
-        vehicles: vehicles ?? this.vehicles,
-        policyStatusId: policyStatusId ?? this.policyStatusId,
-        policyStatus: policyStatus ?? this.policyStatus,
-        policyPacketId: policyPacketId ?? this.policyPacketId,
-        policyPacket: policyPacket ?? this.policyPacket,
-        insuranceCompanyId: insuranceCompanyId ?? this.insuranceCompanyId,
-        insuranceCompany: insuranceCompany ?? this.insuranceCompany);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class PolicyDTO {
   PolicyDTO({
     this.id,
@@ -7064,13 +6091,9 @@ class PolicyDTO {
     this.startDate,
     this.endDate,
     this.quantityVehicles,
-    this.vehicles,
     this.policyStatusId,
-    this.policyStatus,
     this.policyPacketId,
-    this.policyPacket,
     this.insuranceCompanyId,
-    this.insuranceCompany,
   });
 
   factory PolicyDTO.fromJson(Map<String, dynamic> json) =>
@@ -7090,20 +6113,12 @@ class PolicyDTO {
   final DateTime? endDate;
   @JsonKey(name: 'quantityVehicles')
   final int? quantityVehicles;
-  @JsonKey(name: 'vehicles', defaultValue: <VehicleDTO>[])
-  final List<VehicleDTO>? vehicles;
   @JsonKey(name: 'policyStatusId')
   final String? policyStatusId;
-  @JsonKey(name: 'policyStatus')
-  final PolicyStatusDTO? policyStatus;
   @JsonKey(name: 'policyPacketId')
   final String? policyPacketId;
-  @JsonKey(name: 'policyPacket')
-  final PolicyPacketDTO? policyPacket;
   @JsonKey(name: 'insuranceCompanyId')
   final String? insuranceCompanyId;
-  @JsonKey(name: 'insuranceCompany')
-  final InsuranceCompanyDTO? insuranceCompany;
   static const fromJsonFactory = _$PolicyDTOFromJson;
   static const toJsonFactory = _$PolicyDTOToJson;
   Map<String, dynamic> toJson() => _$PolicyDTOToJson(this);
@@ -7133,27 +6148,15 @@ class PolicyDTO {
             (identical(other.quantityVehicles, quantityVehicles) ||
                 const DeepCollectionEquality()
                     .equals(other.quantityVehicles, quantityVehicles)) &&
-            (identical(other.vehicles, vehicles) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicles, vehicles)) &&
             (identical(other.policyStatusId, policyStatusId) ||
                 const DeepCollectionEquality()
                     .equals(other.policyStatusId, policyStatusId)) &&
-            (identical(other.policyStatus, policyStatus) ||
-                const DeepCollectionEquality()
-                    .equals(other.policyStatus, policyStatus)) &&
             (identical(other.policyPacketId, policyPacketId) ||
                 const DeepCollectionEquality()
                     .equals(other.policyPacketId, policyPacketId)) &&
-            (identical(other.policyPacket, policyPacket) ||
-                const DeepCollectionEquality()
-                    .equals(other.policyPacket, policyPacket)) &&
             (identical(other.insuranceCompanyId, insuranceCompanyId) ||
                 const DeepCollectionEquality()
-                    .equals(other.insuranceCompanyId, insuranceCompanyId)) &&
-            (identical(other.insuranceCompany, insuranceCompany) ||
-                const DeepCollectionEquality()
-                    .equals(other.insuranceCompany, insuranceCompany)));
+                    .equals(other.insuranceCompanyId, insuranceCompanyId)));
   }
 
   @override
@@ -7165,13 +6168,9 @@ class PolicyDTO {
       const DeepCollectionEquality().hash(startDate) ^
       const DeepCollectionEquality().hash(endDate) ^
       const DeepCollectionEquality().hash(quantityVehicles) ^
-      const DeepCollectionEquality().hash(vehicles) ^
       const DeepCollectionEquality().hash(policyStatusId) ^
-      const DeepCollectionEquality().hash(policyStatus) ^
       const DeepCollectionEquality().hash(policyPacketId) ^
-      const DeepCollectionEquality().hash(policyPacket) ^
       const DeepCollectionEquality().hash(insuranceCompanyId) ^
-      const DeepCollectionEquality().hash(insuranceCompany) ^
       runtimeType.hashCode;
 }
 
@@ -7184,13 +6183,9 @@ extension $PolicyDTOExtension on PolicyDTO {
       DateTime? startDate,
       DateTime? endDate,
       int? quantityVehicles,
-      List<VehicleDTO>? vehicles,
       String? policyStatusId,
-      PolicyStatusDTO? policyStatus,
       String? policyPacketId,
-      PolicyPacketDTO? policyPacket,
-      String? insuranceCompanyId,
-      InsuranceCompanyDTO? insuranceCompany}) {
+      String? insuranceCompanyId}) {
     return PolicyDTO(
         id: id ?? this.id,
         name: name ?? this.name,
@@ -7199,13 +6194,9 @@ extension $PolicyDTOExtension on PolicyDTO {
         startDate: startDate ?? this.startDate,
         endDate: endDate ?? this.endDate,
         quantityVehicles: quantityVehicles ?? this.quantityVehicles,
-        vehicles: vehicles ?? this.vehicles,
         policyStatusId: policyStatusId ?? this.policyStatusId,
-        policyStatus: policyStatus ?? this.policyStatus,
         policyPacketId: policyPacketId ?? this.policyPacketId,
-        policyPacket: policyPacket ?? this.policyPacket,
-        insuranceCompanyId: insuranceCompanyId ?? this.insuranceCompanyId,
-        insuranceCompany: insuranceCompany ?? this.insuranceCompany);
+        insuranceCompanyId: insuranceCompanyId ?? this.insuranceCompanyId);
   }
 }
 
@@ -7286,113 +6277,12 @@ extension $PolicyDTOPagedResultExtension on PolicyDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class PolicyPacket {
-  PolicyPacket({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.name,
-    this.code,
-    this.description,
-    this.policies,
-  });
-
-  factory PolicyPacket.fromJson(Map<String, dynamic> json) =>
-      _$PolicyPacketFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'policies', defaultValue: <Policy>[])
-  final List<Policy>? policies;
-  static const fromJsonFactory = _$PolicyPacketFromJson;
-  static const toJsonFactory = _$PolicyPacketToJson;
-  Map<String, dynamic> toJson() => _$PolicyPacketToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is PolicyPacket &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.policies, policies) ||
-                const DeepCollectionEquality()
-                    .equals(other.policies, policies)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(policies) ^
-      runtimeType.hashCode;
-}
-
-extension $PolicyPacketExtension on PolicyPacket {
-  PolicyPacket copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      String? name,
-      String? code,
-      String? description,
-      List<Policy>? policies}) {
-    return PolicyPacket(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        name: name ?? this.name,
-        code: code ?? this.code,
-        description: description ?? this.description,
-        policies: policies ?? this.policies);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class PolicyPacketDTO {
   PolicyPacketDTO({
     this.id,
     this.name,
     this.code,
     this.description,
-    this.policies,
   });
 
   factory PolicyPacketDTO.fromJson(Map<String, dynamic> json) =>
@@ -7406,8 +6296,6 @@ class PolicyPacketDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'policies', defaultValue: <PolicyDTO>[])
-  final List<PolicyDTO>? policies;
   static const fromJsonFactory = _$PolicyPacketDTOFromJson;
   static const toJsonFactory = _$PolicyPacketDTOToJson;
   Map<String, dynamic> toJson() => _$PolicyPacketDTOToJson(this);
@@ -7427,10 +6315,7 @@ class PolicyPacketDTO {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.policies, policies) ||
-                const DeepCollectionEquality()
-                    .equals(other.policies, policies)));
+                    .equals(other.description, description)));
   }
 
   @override
@@ -7439,23 +6324,17 @@ class PolicyPacketDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(policies) ^
       runtimeType.hashCode;
 }
 
 extension $PolicyPacketDTOExtension on PolicyPacketDTO {
   PolicyPacketDTO copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      List<PolicyDTO>? policies}) {
+      {String? id, String? name, String? code, String? description}) {
     return PolicyPacketDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
-        description: description ?? this.description,
-        policies: policies ?? this.policies);
+        description: description ?? this.description);
   }
 }
 
@@ -7536,113 +6415,12 @@ extension $PolicyPacketDTOPagedResultExtension on PolicyPacketDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class PolicyStatus {
-  PolicyStatus({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.name,
-    this.code,
-    this.description,
-    this.policies,
-  });
-
-  factory PolicyStatus.fromJson(Map<String, dynamic> json) =>
-      _$PolicyStatusFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'policies', defaultValue: <Policy>[])
-  final List<Policy>? policies;
-  static const fromJsonFactory = _$PolicyStatusFromJson;
-  static const toJsonFactory = _$PolicyStatusToJson;
-  Map<String, dynamic> toJson() => _$PolicyStatusToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is PolicyStatus &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.policies, policies) ||
-                const DeepCollectionEquality()
-                    .equals(other.policies, policies)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(policies) ^
-      runtimeType.hashCode;
-}
-
-extension $PolicyStatusExtension on PolicyStatus {
-  PolicyStatus copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      String? name,
-      String? code,
-      String? description,
-      List<Policy>? policies}) {
-    return PolicyStatus(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        name: name ?? this.name,
-        code: code ?? this.code,
-        description: description ?? this.description,
-        policies: policies ?? this.policies);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class PolicyStatusDTO {
   PolicyStatusDTO({
     this.id,
     this.name,
     this.code,
     this.description,
-    this.policies,
   });
 
   factory PolicyStatusDTO.fromJson(Map<String, dynamic> json) =>
@@ -7656,8 +6434,6 @@ class PolicyStatusDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'policies', defaultValue: <PolicyDTO>[])
-  final List<PolicyDTO>? policies;
   static const fromJsonFactory = _$PolicyStatusDTOFromJson;
   static const toJsonFactory = _$PolicyStatusDTOToJson;
   Map<String, dynamic> toJson() => _$PolicyStatusDTOToJson(this);
@@ -7677,10 +6453,7 @@ class PolicyStatusDTO {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.policies, policies) ||
-                const DeepCollectionEquality()
-                    .equals(other.policies, policies)));
+                    .equals(other.description, description)));
   }
 
   @override
@@ -7689,23 +6462,17 @@ class PolicyStatusDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(policies) ^
       runtimeType.hashCode;
 }
 
 extension $PolicyStatusDTOExtension on PolicyStatusDTO {
   PolicyStatusDTO copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      List<PolicyDTO>? policies}) {
+      {String? id, String? name, String? code, String? description}) {
     return PolicyStatusDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
-        description: description ?? this.description,
-        policies: policies ?? this.policies);
+        description: description ?? this.description);
   }
 }
 
@@ -7867,11 +6634,8 @@ class ProjectDTO {
     this.description,
     this.externalId,
     this.packetId,
-    this.packet,
     this.documentId,
-    this.document,
     this.maintenanceId,
-    this.maintenance,
   });
 
   factory ProjectDTO.fromJson(Map<String, dynamic> json) =>
@@ -7889,16 +6653,10 @@ class ProjectDTO {
   final int? externalId;
   @JsonKey(name: 'packetId')
   final String? packetId;
-  @JsonKey(name: 'packet')
-  final PolicyDTO? packet;
   @JsonKey(name: 'documentId')
   final String? documentId;
-  @JsonKey(name: 'document')
-  final DocumentDTO? document;
   @JsonKey(name: 'maintenanceId')
   final String? maintenanceId;
-  @JsonKey(name: 'maintenance')
-  final MaintenanceDTO? maintenance;
   static const fromJsonFactory = _$ProjectDTOFromJson;
   static const toJsonFactory = _$ProjectDTOToJson;
   Map<String, dynamic> toJson() => _$ProjectDTOToJson(this);
@@ -7925,20 +6683,12 @@ class ProjectDTO {
             (identical(other.packetId, packetId) ||
                 const DeepCollectionEquality()
                     .equals(other.packetId, packetId)) &&
-            (identical(other.packet, packet) ||
-                const DeepCollectionEquality().equals(other.packet, packet)) &&
             (identical(other.documentId, documentId) ||
                 const DeepCollectionEquality()
                     .equals(other.documentId, documentId)) &&
-            (identical(other.document, document) ||
-                const DeepCollectionEquality()
-                    .equals(other.document, document)) &&
             (identical(other.maintenanceId, maintenanceId) ||
                 const DeepCollectionEquality()
-                    .equals(other.maintenanceId, maintenanceId)) &&
-            (identical(other.maintenance, maintenance) ||
-                const DeepCollectionEquality()
-                    .equals(other.maintenance, maintenance)));
+                    .equals(other.maintenanceId, maintenanceId)));
   }
 
   @override
@@ -7949,11 +6699,8 @@ class ProjectDTO {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(externalId) ^
       const DeepCollectionEquality().hash(packetId) ^
-      const DeepCollectionEquality().hash(packet) ^
       const DeepCollectionEquality().hash(documentId) ^
-      const DeepCollectionEquality().hash(document) ^
       const DeepCollectionEquality().hash(maintenanceId) ^
-      const DeepCollectionEquality().hash(maintenance) ^
       runtimeType.hashCode;
 }
 
@@ -7965,11 +6712,8 @@ extension $ProjectDTOExtension on ProjectDTO {
       String? description,
       int? externalId,
       String? packetId,
-      PolicyDTO? packet,
       String? documentId,
-      DocumentDTO? document,
-      String? maintenanceId,
-      MaintenanceDTO? maintenance}) {
+      String? maintenanceId}) {
     return ProjectDTO(
         id: id ?? this.id,
         name: name ?? this.name,
@@ -7977,11 +6721,8 @@ extension $ProjectDTOExtension on ProjectDTO {
         description: description ?? this.description,
         externalId: externalId ?? this.externalId,
         packetId: packetId ?? this.packetId,
-        packet: packet ?? this.packet,
         documentId: documentId ?? this.documentId,
-        document: document ?? this.document,
-        maintenanceId: maintenanceId ?? this.maintenanceId,
-        maintenance: maintenance ?? this.maintenance);
+        maintenanceId: maintenanceId ?? this.maintenanceId);
   }
 }
 
@@ -8124,124 +6865,6 @@ extension $ResetPasswordModelExtension on ResetPasswordModel {
         confirmPassword: confirmPassword ?? this.confirmPassword,
         email: email ?? this.email,
         token: token ?? this.token);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class Role {
-  Role({
-    this.id,
-    this.name,
-    this.normalizedName,
-    this.concurrencyStamp,
-    this.active,
-    this.createBy,
-    this.updateBy,
-    this.createDate,
-    this.dtUpdateDate,
-    this.userRoles,
-  });
-
-  factory Role.fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'normalizedName')
-  final String? normalizedName;
-  @JsonKey(name: 'concurrencyStamp')
-  final String? concurrencyStamp;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'createBy')
-  final String? createBy;
-  @JsonKey(name: 'updateBy')
-  final String? updateBy;
-  @JsonKey(name: 'createDate')
-  final DateTime? createDate;
-  @JsonKey(name: 'dtUpdateDate')
-  final DateTime? dtUpdateDate;
-  @JsonKey(name: 'userRoles', defaultValue: <UserRole>[])
-  final List<UserRole>? userRoles;
-  static const fromJsonFactory = _$RoleFromJson;
-  static const toJsonFactory = _$RoleToJson;
-  Map<String, dynamic> toJson() => _$RoleToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Role &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.normalizedName, normalizedName) ||
-                const DeepCollectionEquality()
-                    .equals(other.normalizedName, normalizedName)) &&
-            (identical(other.concurrencyStamp, concurrencyStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.concurrencyStamp, concurrencyStamp)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.createBy, createBy) ||
-                const DeepCollectionEquality()
-                    .equals(other.createBy, createBy)) &&
-            (identical(other.updateBy, updateBy) ||
-                const DeepCollectionEquality()
-                    .equals(other.updateBy, updateBy)) &&
-            (identical(other.createDate, createDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.createDate, createDate)) &&
-            (identical(other.dtUpdateDate, dtUpdateDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.dtUpdateDate, dtUpdateDate)) &&
-            (identical(other.userRoles, userRoles) ||
-                const DeepCollectionEquality()
-                    .equals(other.userRoles, userRoles)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(normalizedName) ^
-      const DeepCollectionEquality().hash(concurrencyStamp) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(createBy) ^
-      const DeepCollectionEquality().hash(updateBy) ^
-      const DeepCollectionEquality().hash(createDate) ^
-      const DeepCollectionEquality().hash(dtUpdateDate) ^
-      const DeepCollectionEquality().hash(userRoles) ^
-      runtimeType.hashCode;
-}
-
-extension $RoleExtension on Role {
-  Role copyWith(
-      {String? id,
-      String? name,
-      String? normalizedName,
-      String? concurrencyStamp,
-      bool? active,
-      String? createBy,
-      String? updateBy,
-      DateTime? createDate,
-      DateTime? dtUpdateDate,
-      List<UserRole>? userRoles}) {
-    return Role(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        normalizedName: normalizedName ?? this.normalizedName,
-        concurrencyStamp: concurrencyStamp ?? this.concurrencyStamp,
-        active: active ?? this.active,
-        createBy: createBy ?? this.createBy,
-        updateBy: updateBy ?? this.updateBy,
-        createDate: createDate ?? this.createDate,
-        dtUpdateDate: dtUpdateDate ?? this.dtUpdateDate,
-        userRoles: userRoles ?? this.userRoles);
   }
 }
 
@@ -8425,7 +7048,6 @@ class ServiceDTO {
     this.name,
     this.code,
     this.description,
-    this.vehicles,
   });
 
   factory ServiceDTO.fromJson(Map<String, dynamic> json) =>
@@ -8439,8 +7061,6 @@ class ServiceDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'vehicles', defaultValue: <VehicleDTO>[])
-  final List<VehicleDTO>? vehicles;
   static const fromJsonFactory = _$ServiceDTOFromJson;
   static const toJsonFactory = _$ServiceDTOToJson;
   Map<String, dynamic> toJson() => _$ServiceDTOToJson(this);
@@ -8460,10 +7080,7 @@ class ServiceDTO {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.vehicles, vehicles) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicles, vehicles)));
+                    .equals(other.description, description)));
   }
 
   @override
@@ -8472,23 +7089,17 @@ class ServiceDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(vehicles) ^
       runtimeType.hashCode;
 }
 
 extension $ServiceDTOExtension on ServiceDTO {
   ServiceDTO copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      List<VehicleDTO>? vehicles}) {
+      {String? id, String? name, String? code, String? description}) {
     return ServiceDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
-        description: description ?? this.description,
-        vehicles: vehicles ?? this.vehicles);
+        description: description ?? this.description);
   }
 }
 
@@ -8963,67 +7574,6 @@ extension $UserPutDTOExtension on UserPutDTO {
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserRole {
-  UserRole({
-    this.userId,
-    this.roleId,
-    this.user,
-    this.role,
-  });
-
-  factory UserRole.fromJson(Map<String, dynamic> json) =>
-      _$UserRoleFromJson(json);
-
-  @JsonKey(name: 'userId')
-  final String? userId;
-  @JsonKey(name: 'roleId')
-  final String? roleId;
-  @JsonKey(name: 'user')
-  final AppUsuario? user;
-  @JsonKey(name: 'role')
-  final Role? role;
-  static const fromJsonFactory = _$UserRoleFromJson;
-  static const toJsonFactory = _$UserRoleToJson;
-  Map<String, dynamic> toJson() => _$UserRoleToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UserRole &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.roleId, roleId) ||
-                const DeepCollectionEquality().equals(other.roleId, roleId)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(roleId) ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(role) ^
-      runtimeType.hashCode;
-}
-
-extension $UserRoleExtension on UserRole {
-  UserRole copyWith(
-      {String? userId, String? roleId, AppUsuario? user, Role? role}) {
-    return UserRole(
-        userId: userId ?? this.userId,
-        roleId: roleId ?? this.roleId,
-        user: user ?? this.user,
-        role: role ?? this.role);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class UserVehicleDTO {
   UserVehicleDTO({
     this.id,
@@ -9032,9 +7582,7 @@ class UserVehicleDTO {
     this.description,
     this.externalId,
     this.userId,
-    this.user,
     this.vehicleId,
-    this.vehicle,
   });
 
   factory UserVehicleDTO.fromJson(Map<String, dynamic> json) =>
@@ -9052,12 +7600,8 @@ class UserVehicleDTO {
   final String? externalId;
   @JsonKey(name: 'userId')
   final String? userId;
-  @JsonKey(name: 'user')
-  final AppUsuario? user;
   @JsonKey(name: 'vehicleId')
   final String? vehicleId;
-  @JsonKey(name: 'vehicle')
-  final Vehicle? vehicle;
   static const fromJsonFactory = _$UserVehicleDTOFromJson;
   static const toJsonFactory = _$UserVehicleDTOToJson;
   Map<String, dynamic> toJson() => _$UserVehicleDTOToJson(this);
@@ -9083,13 +7627,9 @@ class UserVehicleDTO {
                     .equals(other.externalId, externalId)) &&
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
-                    .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality().equals(other.vehicle, vehicle)));
+                    .equals(other.vehicleId, vehicleId)));
   }
 
   @override
@@ -9100,9 +7640,7 @@ class UserVehicleDTO {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(externalId) ^
       const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(vehicle) ^
       runtimeType.hashCode;
 }
 
@@ -9114,9 +7652,7 @@ extension $UserVehicleDTOExtension on UserVehicleDTO {
       String? description,
       String? externalId,
       String? userId,
-      AppUsuario? user,
-      String? vehicleId,
-      Vehicle? vehicle}) {
+      String? vehicleId}) {
     return UserVehicleDTO(
         id: id ?? this.id,
         name: name ?? this.name,
@@ -9124,9 +7660,7 @@ extension $UserVehicleDTOExtension on UserVehicleDTO {
         description: description ?? this.description,
         externalId: externalId ?? this.externalId,
         userId: userId ?? this.userId,
-        user: user ?? this.user,
-        vehicleId: vehicleId ?? this.vehicleId,
-        vehicle: vehicle ?? this.vehicle);
+        vehicleId: vehicleId ?? this.vehicleId);
   }
 }
 
@@ -9207,193 +7741,6 @@ extension $UserVehicleDTOPagedResultExtension on UserVehicleDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Vehicle {
-  Vehicle({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.drillRigId,
-    this.vin,
-    this.placas,
-    this.inciso,
-    this.economicNumber,
-    this.modelId,
-    this.model,
-    this.documentId,
-    this.document,
-    this.policyId,
-    this.policy,
-    this.vehicleTypeId,
-    this.vehicleType,
-    this.fuelLoads,
-  });
-
-  factory Vehicle.fromJson(Map<String, dynamic> json) =>
-      _$VehicleFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'drillRigId')
-  final int? drillRigId;
-  @JsonKey(name: 'vin')
-  final String? vin;
-  @JsonKey(name: 'placas')
-  final String? placas;
-  @JsonKey(name: 'inciso')
-  final String? inciso;
-  @JsonKey(name: 'economicNumber')
-  final String? economicNumber;
-  @JsonKey(name: 'modelId')
-  final String? modelId;
-  @JsonKey(name: 'model')
-  final Model? model;
-  @JsonKey(name: 'documentId')
-  final String? documentId;
-  @JsonKey(name: 'document')
-  final Document? document;
-  @JsonKey(name: 'policyId')
-  final String? policyId;
-  @JsonKey(name: 'policy')
-  final Policy? policy;
-  @JsonKey(name: 'vehicleTypeId')
-  final String? vehicleTypeId;
-  @JsonKey(name: 'vehicleType')
-  final VehicleType? vehicleType;
-  @JsonKey(name: 'fuelLoads', defaultValue: <FuelLoad>[])
-  final List<FuelLoad>? fuelLoads;
-  static const fromJsonFactory = _$VehicleFromJson;
-  static const toJsonFactory = _$VehicleToJson;
-  Map<String, dynamic> toJson() => _$VehicleToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Vehicle &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.drillRigId, drillRigId) ||
-                const DeepCollectionEquality()
-                    .equals(other.drillRigId, drillRigId)) &&
-            (identical(other.vin, vin) ||
-                const DeepCollectionEquality().equals(other.vin, vin)) &&
-            (identical(other.placas, placas) ||
-                const DeepCollectionEquality().equals(other.placas, placas)) &&
-            (identical(other.inciso, inciso) ||
-                const DeepCollectionEquality().equals(other.inciso, inciso)) &&
-            (identical(other.economicNumber, economicNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.economicNumber, economicNumber)) &&
-            (identical(other.modelId, modelId) ||
-                const DeepCollectionEquality()
-                    .equals(other.modelId, modelId)) &&
-            (identical(other.model, model) ||
-                const DeepCollectionEquality().equals(other.model, model)) &&
-            (identical(other.documentId, documentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)) &&
-            (identical(other.document, document) ||
-                const DeepCollectionEquality()
-                    .equals(other.document, document)) &&
-            (identical(other.policyId, policyId) ||
-                const DeepCollectionEquality()
-                    .equals(other.policyId, policyId)) &&
-            (identical(other.policy, policy) ||
-                const DeepCollectionEquality().equals(other.policy, policy)) &&
-            (identical(other.vehicleTypeId, vehicleTypeId) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicleTypeId, vehicleTypeId)) &&
-            (identical(other.vehicleType, vehicleType) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicleType, vehicleType)) &&
-            (identical(other.fuelLoads, fuelLoads) ||
-                const DeepCollectionEquality()
-                    .equals(other.fuelLoads, fuelLoads)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(drillRigId) ^
-      const DeepCollectionEquality().hash(vin) ^
-      const DeepCollectionEquality().hash(placas) ^
-      const DeepCollectionEquality().hash(inciso) ^
-      const DeepCollectionEquality().hash(economicNumber) ^
-      const DeepCollectionEquality().hash(modelId) ^
-      const DeepCollectionEquality().hash(model) ^
-      const DeepCollectionEquality().hash(documentId) ^
-      const DeepCollectionEquality().hash(document) ^
-      const DeepCollectionEquality().hash(policyId) ^
-      const DeepCollectionEquality().hash(policy) ^
-      const DeepCollectionEquality().hash(vehicleTypeId) ^
-      const DeepCollectionEquality().hash(vehicleType) ^
-      const DeepCollectionEquality().hash(fuelLoads) ^
-      runtimeType.hashCode;
-}
-
-extension $VehicleExtension on Vehicle {
-  Vehicle copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      int? drillRigId,
-      String? vin,
-      String? placas,
-      String? inciso,
-      String? economicNumber,
-      String? modelId,
-      Model? model,
-      String? documentId,
-      Document? document,
-      String? policyId,
-      Policy? policy,
-      String? vehicleTypeId,
-      VehicleType? vehicleType,
-      List<FuelLoad>? fuelLoads}) {
-    return Vehicle(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        drillRigId: drillRigId ?? this.drillRigId,
-        vin: vin ?? this.vin,
-        placas: placas ?? this.placas,
-        inciso: inciso ?? this.inciso,
-        economicNumber: economicNumber ?? this.economicNumber,
-        modelId: modelId ?? this.modelId,
-        model: model ?? this.model,
-        documentId: documentId ?? this.documentId,
-        document: document ?? this.document,
-        policyId: policyId ?? this.policyId,
-        policy: policy ?? this.policy,
-        vehicleTypeId: vehicleTypeId ?? this.vehicleTypeId,
-        vehicleType: vehicleType ?? this.vehicleType,
-        fuelLoads: fuelLoads ?? this.fuelLoads);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class VehicleDTO {
   VehicleDTO({
     this.id,
@@ -9406,13 +7753,11 @@ class VehicleDTO {
     this.inciso,
     this.economicNumber,
     this.modelId,
-    this.model,
     this.documentId,
-    this.document,
     this.policyId,
-    this.policy,
     this.vehicleTypeId,
-    this.vehicleType,
+    this.projectId,
+    this.companyId,
   });
 
   factory VehicleDTO.fromJson(Map<String, dynamic> json) =>
@@ -9435,23 +7780,19 @@ class VehicleDTO {
   @JsonKey(name: 'inciso')
   final String? inciso;
   @JsonKey(name: 'economicNumber')
-  final int? economicNumber;
+  final String? economicNumber;
   @JsonKey(name: 'modelId')
   final String? modelId;
-  @JsonKey(name: 'model')
-  final ModelDTO? model;
   @JsonKey(name: 'documentId')
   final String? documentId;
-  @JsonKey(name: 'document')
-  final DocumentDTO? document;
   @JsonKey(name: 'policyId')
   final String? policyId;
-  @JsonKey(name: 'policy')
-  final PolicyDTO? policy;
   @JsonKey(name: 'vehicleTypeId')
   final String? vehicleTypeId;
-  @JsonKey(name: 'vehicleType')
-  final VehicleTypeDTO? vehicleType;
+  @JsonKey(name: 'projectId')
+  final String? projectId;
+  @JsonKey(name: 'companyId')
+  final String? companyId;
   static const fromJsonFactory = _$VehicleDTOFromJson;
   static const toJsonFactory = _$VehicleDTOToJson;
   Map<String, dynamic> toJson() => _$VehicleDTOToJson(this);
@@ -9487,25 +7828,21 @@ class VehicleDTO {
             (identical(other.modelId, modelId) ||
                 const DeepCollectionEquality()
                     .equals(other.modelId, modelId)) &&
-            (identical(other.model, model) ||
-                const DeepCollectionEquality().equals(other.model, model)) &&
             (identical(other.documentId, documentId) ||
                 const DeepCollectionEquality()
                     .equals(other.documentId, documentId)) &&
-            (identical(other.document, document) ||
-                const DeepCollectionEquality()
-                    .equals(other.document, document)) &&
             (identical(other.policyId, policyId) ||
                 const DeepCollectionEquality()
                     .equals(other.policyId, policyId)) &&
-            (identical(other.policy, policy) ||
-                const DeepCollectionEquality().equals(other.policy, policy)) &&
             (identical(other.vehicleTypeId, vehicleTypeId) ||
                 const DeepCollectionEquality()
                     .equals(other.vehicleTypeId, vehicleTypeId)) &&
-            (identical(other.vehicleType, vehicleType) ||
+            (identical(other.projectId, projectId) ||
                 const DeepCollectionEquality()
-                    .equals(other.vehicleType, vehicleType)));
+                    .equals(other.projectId, projectId)) &&
+            (identical(other.companyId, companyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.companyId, companyId)));
   }
 
   @override
@@ -9520,13 +7857,11 @@ class VehicleDTO {
       const DeepCollectionEquality().hash(inciso) ^
       const DeepCollectionEquality().hash(economicNumber) ^
       const DeepCollectionEquality().hash(modelId) ^
-      const DeepCollectionEquality().hash(model) ^
       const DeepCollectionEquality().hash(documentId) ^
-      const DeepCollectionEquality().hash(document) ^
       const DeepCollectionEquality().hash(policyId) ^
-      const DeepCollectionEquality().hash(policy) ^
       const DeepCollectionEquality().hash(vehicleTypeId) ^
-      const DeepCollectionEquality().hash(vehicleType) ^
+      const DeepCollectionEquality().hash(projectId) ^
+      const DeepCollectionEquality().hash(companyId) ^
       runtimeType.hashCode;
 }
 
@@ -9540,15 +7875,13 @@ extension $VehicleDTOExtension on VehicleDTO {
       String? placas,
       int? drillRigId,
       String? inciso,
-      int? economicNumber,
+      String? economicNumber,
       String? modelId,
-      ModelDTO? model,
       String? documentId,
-      DocumentDTO? document,
       String? policyId,
-      PolicyDTO? policy,
       String? vehicleTypeId,
-      VehicleTypeDTO? vehicleType}) {
+      String? projectId,
+      String? companyId}) {
     return VehicleDTO(
         id: id ?? this.id,
         name: name ?? this.name,
@@ -9560,13 +7893,11 @@ extension $VehicleDTOExtension on VehicleDTO {
         inciso: inciso ?? this.inciso,
         economicNumber: economicNumber ?? this.economicNumber,
         modelId: modelId ?? this.modelId,
-        model: model ?? this.model,
         documentId: documentId ?? this.documentId,
-        document: document ?? this.document,
         policyId: policyId ?? this.policyId,
-        policy: policy ?? this.policy,
         vehicleTypeId: vehicleTypeId ?? this.vehicleTypeId,
-        vehicleType: vehicleType ?? this.vehicleType);
+        projectId: projectId ?? this.projectId,
+        companyId: companyId ?? this.companyId);
   }
 }
 
@@ -9647,40 +7978,40 @@ extension $VehicleDTOPagedResultExtension on VehicleDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class VehicleType {
-  VehicleType({
-    this.id,
-    this.active,
-    this.isActive,
-    this.excludeFromLog,
-    this.name,
-    this.code,
+class VehicleInboxDTO {
+  VehicleInboxDTO({
     this.description,
-    this.inUse,
+    this.economicNumber,
+    this.vin,
+    this.placas,
+    this.category,
+    this.vehicleTypeId,
+    this.projectName,
+    this.companyId,
   });
 
-  factory VehicleType.fromJson(Map<String, dynamic> json) =>
-      _$VehicleTypeFromJson(json);
+  factory VehicleInboxDTO.fromJson(Map<String, dynamic> json) =>
+      _$VehicleInboxDTOFromJson(json);
 
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'inUse')
-  final bool? inUse;
-  static const fromJsonFactory = _$VehicleTypeFromJson;
-  static const toJsonFactory = _$VehicleTypeToJson;
-  Map<String, dynamic> toJson() => _$VehicleTypeToJson(this);
+  @JsonKey(name: 'economicNumber')
+  final String? economicNumber;
+  @JsonKey(name: 'vin')
+  final String? vin;
+  @JsonKey(name: 'placas')
+  final String? placas;
+  @JsonKey(name: 'category')
+  final String? category;
+  @JsonKey(name: 'vehicleTypeId')
+  final String? vehicleTypeId;
+  @JsonKey(name: 'projectName')
+  final String? projectName;
+  @JsonKey(name: 'companyId')
+  final String? companyId;
+  static const fromJsonFactory = _$VehicleInboxDTOFromJson;
+  static const toJsonFactory = _$VehicleInboxDTOToJson;
+  Map<String, dynamic> toJson() => _$VehicleInboxDTOToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -9688,60 +8019,139 @@ class VehicleType {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is VehicleType &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
+        (other is VehicleInboxDTO &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
-            (identical(other.inUse, inUse) ||
-                const DeepCollectionEquality().equals(other.inUse, inUse)));
+            (identical(other.economicNumber, economicNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.economicNumber, economicNumber)) &&
+            (identical(other.vin, vin) ||
+                const DeepCollectionEquality().equals(other.vin, vin)) &&
+            (identical(other.placas, placas) ||
+                const DeepCollectionEquality().equals(other.placas, placas)) &&
+            (identical(other.category, category) ||
+                const DeepCollectionEquality()
+                    .equals(other.category, category)) &&
+            (identical(other.vehicleTypeId, vehicleTypeId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleTypeId, vehicleTypeId)) &&
+            (identical(other.projectName, projectName) ||
+                const DeepCollectionEquality()
+                    .equals(other.projectName, projectName)) &&
+            (identical(other.companyId, companyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.companyId, companyId)));
   }
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(inUse) ^
+      const DeepCollectionEquality().hash(economicNumber) ^
+      const DeepCollectionEquality().hash(vin) ^
+      const DeepCollectionEquality().hash(placas) ^
+      const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(vehicleTypeId) ^
+      const DeepCollectionEquality().hash(projectName) ^
+      const DeepCollectionEquality().hash(companyId) ^
       runtimeType.hashCode;
 }
 
-extension $VehicleTypeExtension on VehicleType {
-  VehicleType copyWith(
-      {String? id,
-      bool? active,
-      int? isActive,
-      bool? excludeFromLog,
-      String? name,
-      String? code,
-      String? description,
-      bool? inUse}) {
-    return VehicleType(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        name: name ?? this.name,
-        code: code ?? this.code,
+extension $VehicleInboxDTOExtension on VehicleInboxDTO {
+  VehicleInboxDTO copyWith(
+      {String? description,
+      String? economicNumber,
+      String? vin,
+      String? placas,
+      String? category,
+      String? vehicleTypeId,
+      String? projectName,
+      String? companyId}) {
+    return VehicleInboxDTO(
         description: description ?? this.description,
-        inUse: inUse ?? this.inUse);
+        economicNumber: economicNumber ?? this.economicNumber,
+        vin: vin ?? this.vin,
+        placas: placas ?? this.placas,
+        category: category ?? this.category,
+        vehicleTypeId: vehicleTypeId ?? this.vehicleTypeId,
+        projectName: projectName ?? this.projectName,
+        companyId: companyId ?? this.companyId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class VehicleInboxDTOPagedResult {
+  VehicleInboxDTOPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory VehicleInboxDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$VehicleInboxDTOPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <VehicleInboxDTO>[])
+  final List<VehicleInboxDTO>? items;
+  static const fromJsonFactory = _$VehicleInboxDTOPagedResultFromJson;
+  static const toJsonFactory = _$VehicleInboxDTOPagedResultToJson;
+  Map<String, dynamic> toJson() => _$VehicleInboxDTOPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VehicleInboxDTOPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $VehicleInboxDTOPagedResultExtension on VehicleInboxDTOPagedResult {
+  VehicleInboxDTOPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<VehicleInboxDTO>? items}) {
+    return VehicleInboxDTOPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
   }
 }
 
@@ -9901,8 +8311,6 @@ class VendorDTO {
     this.name,
     this.code,
     this.description,
-    this.maintenances,
-    this.parts,
   });
 
   factory VendorDTO.fromJson(Map<String, dynamic> json) =>
@@ -9916,10 +8324,6 @@ class VendorDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'maintenances', defaultValue: <MaintenanceDTO>[])
-  final List<MaintenanceDTO>? maintenances;
-  @JsonKey(name: 'parts', defaultValue: <PartDTO>[])
-  final List<PartDTO>? parts;
   static const fromJsonFactory = _$VendorDTOFromJson;
   static const toJsonFactory = _$VendorDTOToJson;
   Map<String, dynamic> toJson() => _$VendorDTOToJson(this);
@@ -9939,12 +8343,7 @@ class VendorDTO {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.maintenances, maintenances) ||
-                const DeepCollectionEquality()
-                    .equals(other.maintenances, maintenances)) &&
-            (identical(other.parts, parts) ||
-                const DeepCollectionEquality().equals(other.parts, parts)));
+                    .equals(other.description, description)));
   }
 
   @override
@@ -9953,26 +8352,17 @@ class VendorDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(maintenances) ^
-      const DeepCollectionEquality().hash(parts) ^
       runtimeType.hashCode;
 }
 
 extension $VendorDTOExtension on VendorDTO {
   VendorDTO copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      List<MaintenanceDTO>? maintenances,
-      List<PartDTO>? parts}) {
+      {String? id, String? name, String? code, String? description}) {
     return VendorDTO(
         id: id ?? this.id,
         name: name ?? this.name,
         code: code ?? this.code,
-        description: description ?? this.description,
-        maintenances: maintenances ?? this.maintenances,
-        parts: parts ?? this.parts);
+        description: description ?? this.description);
   }
 }
 
