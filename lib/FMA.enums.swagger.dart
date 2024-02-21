@@ -16,3 +16,17 @@ const $GenderEnumMap = {
   GenderEnum.femenino: 'Femenino',
   GenderEnum.otro: 'Otro'
 };
+
+enum SortOrderEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Ascending')
+  ascending,
+  @JsonValue('Descending')
+  descending
+}
+
+const $SortOrderEnumMap = {
+  SortOrderEnum.ascending: 'Ascending',
+  SortOrderEnum.descending: 'Descending'
+};

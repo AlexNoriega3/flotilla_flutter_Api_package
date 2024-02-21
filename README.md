@@ -14,7 +14,7 @@ and the Flutter guide for
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
-flutter pub run build_runner build 
+f pub run build_runner build 
 
 ## Features
 
