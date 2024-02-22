@@ -1943,6 +1943,15 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<String>> _apiVehicleSavePost(
+      {required VehiclePostDTO? body}) {
+    final $url = '/api/Vehicle/Save';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
   Future<Response<VehicleDTO>> _apiVehicleIdGet({required String? id}) {
     final $url = '/api/Vehicle/${id}';
     final $request = Request('GET', $url, client.baseUrl);

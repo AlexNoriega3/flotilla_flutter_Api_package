@@ -3350,6 +3350,17 @@ abstract class FMA extends ChopperService {
       @Query('PageSize') required int? pageSize});
 
   ///
+  Future<chopper.Response<String>> apiVehicleSavePost(
+      {required VehiclePostDTO? body}) {
+    return _apiVehicleSavePost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Vehicle/Save')
+  Future<chopper.Response<String>> _apiVehicleSavePost(
+      {@Body() required VehiclePostDTO? body});
+
+  ///
   ///@param id
   Future<chopper.Response<VehicleDTO>> apiVehicleIdGet({required String? id}) {
     generatedMapping.putIfAbsent(VehicleDTO, () => VehicleDTO.fromJsonFactory);
