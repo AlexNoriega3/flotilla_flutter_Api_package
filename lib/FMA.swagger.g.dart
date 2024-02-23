@@ -363,8 +363,8 @@ FuelLoadDTO _$FuelLoadDTOFromJson(Map<String, dynamic> json) => FuelLoadDTO(
       amount: (json['amount'] as num?)?.toDouble(),
       reference: json['reference'] as String?,
       full: json['full'] as bool?,
-      documentId: json['documentId'] as int?,
-      vehicleId: json['vehicleId'] as int?,
+      documentId: json['documentId'] as String?,
+      vehicleId: json['vehicleId'] as String?,
     );
 
 Map<String, dynamic> _$FuelLoadDTOToJson(FuelLoadDTO instance) =>
@@ -606,14 +606,12 @@ Map<String, dynamic> _$IncidentDTOPagedResultToJson(
 IncisoDTO _$IncisoDTOFromJson(Map<String, dynamic> json) => IncisoDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
-      vehicleId: json['vehicleId'] as String?,
       policyId: json['policyId'] as String?,
     );
 
 Map<String, dynamic> _$IncisoDTOToJson(IncisoDTO instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'vehicleId': instance.vehicleId,
       'policyId': instance.policyId,
     };
 
@@ -1080,7 +1078,7 @@ PolicyDTO _$PolicyDTOFromJson(Map<String, dynamic> json) => PolicyDTO(
           : DateTime.parse(json['endDate'] as String),
       quantityVehicles: json['quantityVehicles'] as int?,
       policyStatusId: json['policyStatusId'] as String?,
-      policyPacketId: json['policyPacketId'] as String?,
+      packagePolicyId: json['packagePolicyId'] as String?,
       insuranceCompanyId: json['insuranceCompanyId'] as String?,
     );
 
@@ -1093,7 +1091,7 @@ Map<String, dynamic> _$PolicyDTOToJson(PolicyDTO instance) => <String, dynamic>{
       'endDate': instance.endDate?.toIso8601String(),
       'quantityVehicles': instance.quantityVehicles,
       'policyStatusId': instance.policyStatusId,
-      'policyPacketId': instance.policyPacketId,
+      'packagePolicyId': instance.packagePolicyId,
       'insuranceCompanyId': instance.insuranceCompanyId,
     };
 
@@ -1112,45 +1110,6 @@ PolicyDTOPagedResult _$PolicyDTOPagedResultFromJson(
 
 Map<String, dynamic> _$PolicyDTOPagedResultToJson(
         PolicyDTOPagedResult instance) =>
-    <String, dynamic>{
-      'totalCount': instance.totalCount,
-      'pageNumber': instance.pageNumber,
-      'recordNumber': instance.recordNumber,
-      'totalPages': instance.totalPages,
-      'items': instance.items?.map((e) => e.toJson()).toList(),
-    };
-
-PolicyPacketDTO _$PolicyPacketDTOFromJson(Map<String, dynamic> json) =>
-    PolicyPacketDTO(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
-      description: json['description'] as String?,
-    );
-
-Map<String, dynamic> _$PolicyPacketDTOToJson(PolicyPacketDTO instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'code': instance.code,
-      'description': instance.description,
-    };
-
-PolicyPacketDTOPagedResult _$PolicyPacketDTOPagedResultFromJson(
-        Map<String, dynamic> json) =>
-    PolicyPacketDTOPagedResult(
-      totalCount: json['totalCount'] as int?,
-      pageNumber: json['pageNumber'] as int?,
-      recordNumber: json['recordNumber'] as int?,
-      totalPages: json['totalPages'] as int?,
-      items: (json['items'] as List<dynamic>?)
-              ?.map((e) => PolicyPacketDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$PolicyPacketDTOPagedResultToJson(
-        PolicyPacketDTOPagedResult instance) =>
     <String, dynamic>{
       'totalCount': instance.totalCount,
       'pageNumber': instance.pageNumber,
@@ -1222,9 +1181,6 @@ ProjectDTO _$ProjectDTOFromJson(Map<String, dynamic> json) => ProjectDTO(
       code: json['code'] as String?,
       description: json['description'] as String?,
       externalId: json['externalId'] as int?,
-      packetId: json['packetId'] as String?,
-      documentId: json['documentId'] as String?,
-      maintenanceId: json['maintenanceId'] as String?,
     );
 
 Map<String, dynamic> _$ProjectDTOToJson(ProjectDTO instance) =>
@@ -1234,9 +1190,6 @@ Map<String, dynamic> _$ProjectDTOToJson(ProjectDTO instance) =>
       'code': instance.code,
       'description': instance.description,
       'externalId': instance.externalId,
-      'packetId': instance.packetId,
-      'documentId': instance.documentId,
-      'maintenanceId': instance.maintenanceId,
     };
 
 ProjectDTOPagedResult _$ProjectDTOPagedResultFromJson(
@@ -1702,12 +1655,12 @@ VehiclePostDTO _$VehiclePostDTOFromJson(Map<String, dynamic> json) =>
     VehiclePostDTO(
       vin: json['vin'] as String,
       machineId: json['machineId'] as String,
-      economicNumber: json['economicNumber'] as String?,
+      economicNumber: json['economicNumber'] as String,
       assignedId: json['assignedId'] as String?,
       brandId: json['brandId'] as String?,
       modelId: json['modelId'] as String?,
       modelYear: json['modelYear'] as int?,
-      engineId: json['engineId'] as int?,
+      engineId: json['engineId'] as String?,
       placas: json['placas'] as String?,
       drillRigId: json['drillRigId'] as int?,
       policyId: json['policyId'] as String?,

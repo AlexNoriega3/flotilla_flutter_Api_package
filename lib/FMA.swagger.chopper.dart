@@ -1469,66 +1469,6 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<List<PolicyPacketDTO>>> _apiPolicyPacketGet() {
-    final $url = '/api/PolicyPacket';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<PolicyPacketDTO>, PolicyPacketDTO>($request);
-  }
-
-  @override
-  Future<Response<String>> _apiPolicyPacketPost(
-      {required PolicyPacketDTO? body}) {
-    final $url = '/api/PolicyPacket';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
-  Future<Response<PolicyPacketDTOPagedResult>> _apiPolicyPacketSearchGet(
-      {required int? page,
-      String? search,
-      String? orderByPropertyName,
-      String? sortOrder,
-      required int? pageSize}) {
-    final $url = '/api/PolicyPacket/Search';
-    final $params = <String, dynamic>{
-      'Page': page,
-      'Search': search,
-      'OrderByPropertyName': orderByPropertyName,
-      'SortOrder': sortOrder,
-      'PageSize': pageSize
-    };
-    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client
-        .send<PolicyPacketDTOPagedResult, PolicyPacketDTOPagedResult>($request);
-  }
-
-  @override
-  Future<Response<PolicyPacketDTO>> _apiPolicyPacketIdGet(
-      {required String? id}) {
-    final $url = '/api/PolicyPacket/${id}';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<PolicyPacketDTO, PolicyPacketDTO>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiPolicyPacketIdPut(
-      {required String? id, required PolicyPacketDTO? body}) {
-    final $url = '/api/PolicyPacket/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiPolicyPacketIdDelete({required String? id}) {
-    final $url = '/api/PolicyPacket/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
   Future<Response<List<PolicyStatusDTO>>> _apiPolicyStatusGet() {
     final $url = '/api/PolicyStatus';
     final $request = Request('GET', $url, client.baseUrl);

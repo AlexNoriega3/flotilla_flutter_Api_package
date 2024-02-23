@@ -7649,207 +7649,6 @@
         }
       }
     },
-    "/api/PolicyPacket": {
-      "get": {
-        "tags": [
-          "PolicyPacket"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PolicyPacketDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "PolicyPacket"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PolicyPacketDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/PolicyPacket/Search": {
-      "get": {
-        "tags": [
-          "PolicyPacket"
-        ],
-        "parameters": [
-          {
-            "name": "Page",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrderByPropertyName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SortOrder",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/SortOrderEnum"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PolicyPacketDTOPagedResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/PolicyPacket/{id}": {
-      "get": {
-        "tags": [
-          "PolicyPacket"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PolicyPacketDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "PolicyPacket"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PolicyPacketDTO"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "PolicyPacket"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/PolicyStatus": {
       "get": {
         "tags": [
@@ -9391,6 +9190,7 @@
             "multipart/form-data": {
               "schema": {
                 "required": [
+                  "EconomicNumber",
                   "MachineId",
                   "VIN"
                 ],
@@ -9425,8 +9225,7 @@
                     "format": "int32"
                   },
                   "EngineId": {
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "string"
                   },
                   "Placas": {
                     "maxLength": 20,
@@ -11537,12 +11336,12 @@
             "type": "boolean"
           },
           "documentId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "vehicleId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -11883,10 +11682,6 @@
             "nullable": true
           },
           "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "vehicleId": {
             "type": "string",
             "nullable": true
           },
@@ -12588,7 +12383,7 @@
             "type": "string",
             "nullable": true
           },
-          "policyPacketId": {
+          "packagePolicyId": {
             "type": "string",
             "nullable": true
           },
@@ -12622,63 +12417,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PolicyDTO"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PolicyPacketDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "maxLength": 150,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "maxLength": 30,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "maxLength": 500,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PolicyPacketDTOPagedResult": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "recordNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PolicyPacketDTO"
             },
             "nullable": true
           }
@@ -12797,18 +12535,6 @@
           "externalId": {
             "type": "integer",
             "format": "int32"
-          },
-          "packetId": {
-            "type": "string",
-            "nullable": true
-          },
-          "documentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "maintenanceId": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -13577,6 +13303,7 @@
       },
       "VehiclePostDTO": {
         "required": [
+          "economicNumber",
           "machineId",
           "vin"
         ],
@@ -13595,8 +13322,7 @@
           "economicNumber": {
             "maxLength": 100,
             "minLength": 0,
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "assignedId": {
             "type": "string",
@@ -13615,8 +13341,8 @@
             "format": "int32"
           },
           "engineId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "placas": {
             "maxLength": 20,
