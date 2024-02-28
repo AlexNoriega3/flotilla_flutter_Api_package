@@ -13054,8 +13054,8 @@
             "format": "int32"
           },
           "engineId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "policyId": {
             "type": "string",
@@ -13148,6 +13148,96 @@
         },
         "additionalProperties": false
       },
+      "VehicleFormDTO": {
+        "type": "object",
+        "properties": {
+          "assignedId": {
+            "type": "string",
+            "nullable": true
+          },
+          "brandId": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelId": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "engineId": {
+            "type": "string",
+            "nullable": true
+          },
+          "placas": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "drillRigId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "policyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "incisoId": {
+            "type": "string",
+            "nullable": true
+          },
+          "packagePolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "measureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuelMeasureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuelTypeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "photographs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
+          },
+          "bill": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
+          "pedimento": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
+          "vin": {
+            "type": "string",
+            "nullable": true
+          },
+          "machineId": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "VehicleInboxDTO": {
         "type": "object",
         "properties": {
@@ -13219,7 +13309,7 @@
         "type": "object",
         "properties": {
           "vehicle": {
-            "$ref": "#/components/schemas/VehiclePostDTO"
+            "$ref": "#/components/schemas/VehicleFormDTO"
           },
           "users": {
             "type": "array",
@@ -13292,6 +13382,13 @@
             "nullable": true
           },
           "fuelTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
+          },
+          "machines": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SelectDTO"

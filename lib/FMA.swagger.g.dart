@@ -1459,7 +1459,7 @@ VehicleDTO _$VehicleDTOFromJson(Map<String, dynamic> json) => VehicleDTO(
       brandId: json['brandId'] as String?,
       modelId: json['modelId'] as String?,
       modelYear: json['modelYear'] as int?,
-      engineId: json['engineId'] as int?,
+      engineId: json['engineId'] as String?,
       policyId: json['policyId'] as String?,
       incisoId: json['incisoId'] as String?,
       packagePolicyId: json['packagePolicyId'] as String?,
@@ -1536,6 +1536,55 @@ Map<String, dynamic> _$VehicleDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
+    VehicleFormDTO(
+      assignedId: json['assignedId'] as String?,
+      brandId: json['brandId'] as String?,
+      modelId: json['modelId'] as String?,
+      modelYear: json['modelYear'] as int?,
+      engineId: json['engineId'] as String?,
+      placas: json['placas'] as String?,
+      drillRigId: json['drillRigId'] as int?,
+      policyId: json['policyId'] as String?,
+      incisoId: json['incisoId'] as String?,
+      packagePolicyId: json['packagePolicyId'] as String?,
+      measureId: json['measureId'] as String?,
+      fuelMeasureId: json['fuelMeasureId'] as String?,
+      fuelTypeId: json['fuelTypeId'] as String?,
+      photographs: (json['photographs'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      bill: json['bill'] as String?,
+      pedimento: json['pedimento'] as String?,
+      vin: json['vin'] as String?,
+      machineId: json['machineId'] as String?,
+      economicNumber: json['economicNumber'] as String?,
+    );
+
+Map<String, dynamic> _$VehicleFormDTOToJson(VehicleFormDTO instance) =>
+    <String, dynamic>{
+      'assignedId': instance.assignedId,
+      'brandId': instance.brandId,
+      'modelId': instance.modelId,
+      'modelYear': instance.modelYear,
+      'engineId': instance.engineId,
+      'placas': instance.placas,
+      'drillRigId': instance.drillRigId,
+      'policyId': instance.policyId,
+      'incisoId': instance.incisoId,
+      'packagePolicyId': instance.packagePolicyId,
+      'measureId': instance.measureId,
+      'fuelMeasureId': instance.fuelMeasureId,
+      'fuelTypeId': instance.fuelTypeId,
+      'photographs': instance.photographs,
+      'bill': instance.bill,
+      'pedimento': instance.pedimento,
+      'vin': instance.vin,
+      'machineId': instance.machineId,
+      'economicNumber': instance.economicNumber,
+    };
+
 VehicleInboxDTO _$VehicleInboxDTOFromJson(Map<String, dynamic> json) =>
     VehicleInboxDTO(
       description: json['description'] as String?,
@@ -1587,7 +1636,7 @@ VehicleNewEditDTO _$VehicleNewEditDTOFromJson(Map<String, dynamic> json) =>
     VehicleNewEditDTO(
       vehicle: json['vehicle'] == null
           ? null
-          : VehiclePostDTO.fromJson(json['vehicle'] as Map<String, dynamic>),
+          : VehicleFormDTO.fromJson(json['vehicle'] as Map<String, dynamic>),
       users: (json['users'] as List<dynamic>?)
               ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -1632,6 +1681,10 @@ VehicleNewEditDTO _$VehicleNewEditDTOFromJson(Map<String, dynamic> json) =>
               ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      machines: (json['machines'] as List<dynamic>?)
+              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$VehicleNewEditDTOToJson(VehicleNewEditDTO instance) =>
@@ -1649,6 +1702,7 @@ Map<String, dynamic> _$VehicleNewEditDTOToJson(VehicleNewEditDTO instance) =>
       'measures': instance.measures?.map((e) => e.toJson()).toList(),
       'fuelMeasures': instance.fuelMeasures?.map((e) => e.toJson()).toList(),
       'fuelTypes': instance.fuelTypes?.map((e) => e.toJson()).toList(),
+      'machines': instance.machines?.map((e) => e.toJson()).toList(),
     };
 
 VehiclePostDTO _$VehiclePostDTOFromJson(Map<String, dynamic> json) =>
