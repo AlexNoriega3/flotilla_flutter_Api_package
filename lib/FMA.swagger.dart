@@ -9436,6 +9436,7 @@ class VehicleInboxDTO {
     this.vehicleTypeId,
     this.projectName,
     this.companyId,
+    this.id,
   });
 
   factory VehicleInboxDTO.fromJson(Map<String, dynamic> json) =>
@@ -9457,6 +9458,8 @@ class VehicleInboxDTO {
   final String? projectName;
   @JsonKey(name: 'companyId')
   final String? companyId;
+  @JsonKey(name: 'id')
+  final String? id;
   static const fromJsonFactory = _$VehicleInboxDTOFromJson;
   static const toJsonFactory = _$VehicleInboxDTOToJson;
   Map<String, dynamic> toJson() => _$VehicleInboxDTOToJson(this);
@@ -9489,7 +9492,9 @@ class VehicleInboxDTO {
                     .equals(other.projectName, projectName)) &&
             (identical(other.companyId, companyId) ||
                 const DeepCollectionEquality()
-                    .equals(other.companyId, companyId)));
+                    .equals(other.companyId, companyId)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
@@ -9502,6 +9507,7 @@ class VehicleInboxDTO {
       const DeepCollectionEquality().hash(vehicleTypeId) ^
       const DeepCollectionEquality().hash(projectName) ^
       const DeepCollectionEquality().hash(companyId) ^
+      const DeepCollectionEquality().hash(id) ^
       runtimeType.hashCode;
 }
 
@@ -9514,7 +9520,8 @@ extension $VehicleInboxDTOExtension on VehicleInboxDTO {
       String? category,
       String? vehicleTypeId,
       String? projectName,
-      String? companyId}) {
+      String? companyId,
+      String? id}) {
     return VehicleInboxDTO(
         description: description ?? this.description,
         economicNumber: economicNumber ?? this.economicNumber,
@@ -9523,7 +9530,8 @@ extension $VehicleInboxDTOExtension on VehicleInboxDTO {
         category: category ?? this.category,
         vehicleTypeId: vehicleTypeId ?? this.vehicleTypeId,
         projectName: projectName ?? this.projectName,
-        companyId: companyId ?? this.companyId);
+        companyId: companyId ?? this.companyId,
+        id: id ?? this.id);
   }
 }
 

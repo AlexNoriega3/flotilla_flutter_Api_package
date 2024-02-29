@@ -1595,6 +1595,7 @@ VehicleInboxDTO _$VehicleInboxDTOFromJson(Map<String, dynamic> json) =>
       vehicleTypeId: json['vehicleTypeId'] as String?,
       projectName: json['projectName'] as String?,
       companyId: json['companyId'] as String?,
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$VehicleInboxDTOToJson(VehicleInboxDTO instance) =>
@@ -1607,6 +1608,7 @@ Map<String, dynamic> _$VehicleInboxDTOToJson(VehicleInboxDTO instance) =>
       'vehicleTypeId': instance.vehicleTypeId,
       'projectName': instance.projectName,
       'companyId': instance.companyId,
+      'id': instance.id,
     };
 
 VehicleInboxDTOPagedResult _$VehicleInboxDTOPagedResultFromJson(
