@@ -1900,10 +1900,52 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<bool>> _apiVehicleIdPut(
-      {required String? id, required VehicleDTO? body}) {
+      {required String? id,
+      List<String>? photosToRemove,
+      required String? vin,
+      required String? machineId,
+      required String? economicNumber,
+      String? assignedId,
+      String? brandId,
+      String? modelId,
+      int? modelYear,
+      String? engineId,
+      String? placas,
+      int? drillRigId,
+      String? policyId,
+      String? incisoId,
+      String? packagePolicyId,
+      String? measureId,
+      String? fuelMeasureId,
+      String? fuelTypeId,
+      int? tankSize,
+      bool? active,
+      required List<int> partFile}) {
     final $url = '/api/Vehicle/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $params = <String, dynamic>{
+      'PhotosToRemove': photosToRemove,
+      'VIN': vin,
+      'MachineId': machineId,
+      'EconomicNumber': economicNumber,
+      'AssignedId': assignedId,
+      'BrandId': brandId,
+      'ModelId': modelId,
+      'ModelYear': modelYear,
+      'EngineId': engineId,
+      'Placas': placas,
+      'DrillRigId': drillRigId,
+      'PolicyId': policyId,
+      'IncisoId': incisoId,
+      'PackagePolicyId': packagePolicyId,
+      'MeasureId': measureId,
+      'FuelMeasureId': fuelMeasureId,
+      'FuelTypeId': fuelTypeId,
+      'TankSize': tankSize,
+      'Active': active
+    };
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request = Request('PUT', $url, client.baseUrl,
+        parts: $parts, multipart: true, parameters: $params);
     return client.send<bool, bool>($request);
   }
 
@@ -1920,6 +1962,31 @@ class _$FMA extends FMA {
     final $params = <String, dynamic>{'id': id};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<VehicleNewEditDTO, VehicleNewEditDTO>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiVehicleEditIdPut(
+      {required String? id, required VehiclePutDTO? body}) {
+    final $url = '/api/Vehicle/Edit/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiVehicleIdDrillRigDIdPut(
+      {required String? id, required String? dId}) {
+    final $url = '/api/Vehicle/${id}/DrillRig/${dId}';
+    final $request = Request('PUT', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiVehicleIdCompanyCIdPut(
+      {required String? id, required String? cId}) {
+    final $url = '/api/Vehicle/${id}/Company/${cId}';
+    final $request = Request('PUT', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
   }
 
   @override
