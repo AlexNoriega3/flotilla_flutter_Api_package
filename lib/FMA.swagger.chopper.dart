@@ -1892,10 +1892,10 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<VehicleDTO>> _apiVehicleIdGet({required String? id}) {
+  Future<Response<VehicleDetailDTO>> _apiVehicleIdGet({required String? id}) {
     final $url = '/api/Vehicle/${id}';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<VehicleDTO, VehicleDTO>($request);
+    return client.send<VehicleDetailDTO, VehicleDetailDTO>($request);
   }
 
   @override
@@ -1904,6 +1904,7 @@ class _$FMA extends FMA {
       List<String>? photosToRemove,
       required String? vin,
       required String? machineId,
+      required String? description,
       required String? economicNumber,
       String? assignedId,
       String? brandId,
@@ -1926,6 +1927,7 @@ class _$FMA extends FMA {
       'PhotosToRemove': photosToRemove,
       'VIN': vin,
       'MachineId': machineId,
+      'Description': description,
       'EconomicNumber': economicNumber,
       'AssignedId': assignedId,
       'BrandId': brandId,

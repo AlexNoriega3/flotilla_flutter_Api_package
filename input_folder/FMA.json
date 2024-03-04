@@ -9190,6 +9190,7 @@
             "multipart/form-data": {
               "schema": {
                 "required": [
+                  "Description",
                   "EconomicNumber",
                   "MachineId",
                   "VIN"
@@ -9203,6 +9204,11 @@
                   },
                   "MachineId": {
                     "maxLength": 250,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "Description": {
+                    "maxLength": 500,
                     "minLength": 0,
                     "type": "string"
                   },
@@ -9283,6 +9289,9 @@
                   "style": "form"
                 },
                 "MachineId": {
+                  "style": "form"
+                },
+                "Description": {
                   "style": "form"
                 },
                 "EconomicNumber": {
@@ -9904,82 +9913,82 @@
             "content": {
               "application/json;odata.metadata=minimal;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.metadata=minimal;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.metadata=minimal": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.metadata=full": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.metadata=none": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VehicleDTO"
+                  "$ref": "#/components/schemas/VehicleDetailDTO"
                 }
               }
             }
@@ -10025,6 +10034,16 @@
             "required": true,
             "schema": {
               "maxLength": 250,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
+            "name": "Description",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 500,
               "minLength": 0,
               "type": "string"
             }
@@ -11413,6 +11432,124 @@
         },
         "additionalProperties": false
       },
+      "AppUsuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleAbbreviation": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderEnum"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "parentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parent": {
+            "$ref": "#/components/schemas/AppUsuario"
+          },
+          "subordinates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppUsuario"
+            },
+            "nullable": true
+          },
+          "userRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AuthResponseDTO": {
         "type": "object",
         "properties": {
@@ -11454,6 +11591,43 @@
           },
           "active": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Brand": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -11515,6 +11689,43 @@
         },
         "additionalProperties": false
       },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CategoryDTO": {
         "type": "object",
         "properties": {
@@ -11566,6 +11777,50 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CategoryDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Company": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vehicle"
             },
             "nullable": true
           }
@@ -11690,6 +11945,39 @@
         },
         "additionalProperties": false
       },
+      "Document": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DocumentDTO": {
         "type": "object",
         "properties": {
@@ -11746,6 +12034,50 @@
           "image": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Engine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelId": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "$ref": "#/components/schemas/Model"
           }
         },
         "additionalProperties": false
@@ -11811,6 +12143,75 @@
         },
         "additionalProperties": false
       },
+      "FuelLoad": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "full": {
+            "type": "boolean"
+          },
+          "liters": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "odometer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "chargeDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "chargeHour": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "vehicle": {
+            "$ref": "#/components/schemas/Vehicle"
+          },
+          "document": {
+            "$ref": "#/components/schemas/Document"
+          }
+        },
+        "additionalProperties": false
+      },
       "FuelLoadDTO": {
         "type": "object",
         "properties": {
@@ -11846,6 +12247,10 @@
           "liters": {
             "type": "integer",
             "format": "int32"
+          },
+          "odometer": {
+            "type": "string",
+            "nullable": true
           },
           "unitCost": {
             "type": "number",
@@ -11902,6 +12307,43 @@
         },
         "additionalProperties": false
       },
+      "FuelMeasure": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "FuelMeasureDTO": {
         "type": "object",
         "properties": {
@@ -11953,6 +12395,50 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FuelMeasureDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FuelType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuelLoads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FuelLoad"
             },
             "nullable": true
           }
@@ -12085,6 +12571,50 @@
         ],
         "type": "string"
       },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "extension": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle": {
+            "$ref": "#/components/schemas/Vehicle"
+          }
+        },
+        "additionalProperties": false
+      },
       "ImageDTO": {
         "type": "object",
         "properties": {
@@ -12201,6 +12731,49 @@
         },
         "additionalProperties": false
       },
+      "Inciso": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vehicle"
+            },
+            "nullable": true
+          },
+          "policyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "policy": {
+            "$ref": "#/components/schemas/Policy"
+          }
+        },
+        "additionalProperties": false
+      },
       "IncisoDTO": {
         "type": "object",
         "properties": {
@@ -12242,6 +12815,50 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/IncisoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsuranceCompany": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "policies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Policy"
             },
             "nullable": true
           }
@@ -12321,6 +12938,47 @@
             "maxLength": 15,
             "minLength": 6,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Machine": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "drillRigId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -12633,6 +13291,43 @@
         },
         "additionalProperties": false
       },
+      "Measure": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "MeasureDTO": {
         "type": "object",
         "properties": {
@@ -12686,6 +13381,50 @@
               "$ref": "#/components/schemas/MeasureDTO"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Model": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "brandId": {
+            "type": "string",
+            "nullable": true
+          },
+          "brand": {
+            "$ref": "#/components/schemas/Brand"
           }
         },
         "additionalProperties": false
@@ -12746,6 +13485,43 @@
             "items": {
               "$ref": "#/components/schemas/ModelDTO"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PackagePolicy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -12873,6 +13649,90 @@
         },
         "additionalProperties": false
       },
+      "PerformanceDTO": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "date": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Policy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "quantityVehicles": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vehicle"
+            },
+            "nullable": true
+          },
+          "policyStatusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "policyStatus": {
+            "$ref": "#/components/schemas/PolicyStatus"
+          },
+          "insuranceCompanyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuranceCompany": {
+            "$ref": "#/components/schemas/InsuranceCompany"
+          }
+        },
+        "additionalProperties": false
+      },
       "PolicyDTO": {
         "type": "object",
         "properties": {
@@ -12948,6 +13808,50 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PolicyDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PolicyStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "policies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Policy"
             },
             "nullable": true
           }
@@ -13038,6 +13942,47 @@
         },
         "additionalProperties": { }
       },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "ProjectDTO": {
         "type": "object",
         "properties": {
@@ -13099,6 +14044,84 @@
         },
         "additionalProperties": false
       },
+      "Reminder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "frecuency": {
+            "type": "string",
+            "nullable": true
+          },
+          "reminderDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reminderTime": {
+            "$ref": "#/components/schemas/TimeSpan"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReminderDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "reminderDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResetPasswordModel": {
         "required": [
           "confirmPassword",
@@ -13123,6 +14146,55 @@
           "token": {
             "minLength": 1,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updateBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dtUpdateDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "userRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -13454,6 +14526,26 @@
         },
         "additionalProperties": false
       },
+      "UserRole": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/AppUsuario"
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
+          }
+        },
+        "additionalProperties": false
+      },
       "UserVehicleDTO": {
         "type": "object",
         "properties": {
@@ -13517,6 +14609,207 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserVehicleDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vehicle": {
+        "required": [
+          "machineId",
+          "vin"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "drillRigId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vin": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "placas": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelId": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "$ref": "#/components/schemas/Model"
+          },
+          "modelYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "billId": {
+            "type": "string",
+            "nullable": true
+          },
+          "bill": {
+            "$ref": "#/components/schemas/Document"
+          },
+          "pedimentoId": {
+            "type": "string",
+            "nullable": true
+          },
+          "pedimento": {
+            "$ref": "#/components/schemas/Document"
+          },
+          "policy": {
+            "$ref": "#/components/schemas/Policy"
+          },
+          "vehicleTypeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleType": {
+            "$ref": "#/components/schemas/VehicleType"
+          },
+          "fuelLoads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FuelLoad"
+            },
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "project": {
+            "$ref": "#/components/schemas/Project"
+          },
+          "companyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "company": {
+            "$ref": "#/components/schemas/Company"
+          },
+          "categoryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "machineId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "machine": {
+            "$ref": "#/components/schemas/Machine"
+          },
+          "assignedId": {
+            "type": "string",
+            "nullable": true
+          },
+          "assigned": {
+            "$ref": "#/components/schemas/AppUsuario"
+          },
+          "brand": {
+            "$ref": "#/components/schemas/Brand"
+          },
+          "brandId": {
+            "type": "string",
+            "nullable": true
+          },
+          "inciso": {
+            "$ref": "#/components/schemas/Inciso"
+          },
+          "incisoId": {
+            "type": "string",
+            "nullable": true
+          },
+          "packagePolicy": {
+            "$ref": "#/components/schemas/PackagePolicy"
+          },
+          "packagePolicyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tankSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "measure": {
+            "$ref": "#/components/schemas/Measure"
+          },
+          "measureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuelMeasure": {
+            "$ref": "#/components/schemas/FuelMeasure"
+          },
+          "fuelMeasureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuelType": {
+            "$ref": "#/components/schemas/FuelType"
+          },
+          "fuelTypeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "photographs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            },
+            "nullable": true
+          },
+          "engineId": {
+            "type": "string",
+            "nullable": true
+          },
+          "engine": {
+            "$ref": "#/components/schemas/Engine"
+          },
+          "reminders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reminder"
             },
             "nullable": true
           }
@@ -13679,9 +14972,110 @@
         },
         "additionalProperties": false
       },
-      "VehicleFormDTO": {
+      "VehicleDetailDTO": {
         "type": "object",
         "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "vin": {
+            "type": "string",
+            "nullable": true
+          },
+          "placas": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/VehicleStatusEnum"
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "machine": {
+            "type": "string",
+            "nullable": true
+          },
+          "project": {
+            "type": "string",
+            "nullable": true
+          },
+          "company": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignment": {
+            "type": "string",
+            "nullable": true
+          },
+          "performance": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PerformanceDTO"
+            },
+            "nullable": true
+          },
+          "statistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VehicleStatisticsDTO"
+            },
+            "nullable": true
+          },
+          "fuelLoads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FuelLoadDTO"
+            },
+            "nullable": true
+          },
+          "maintenances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaintenanceDTO"
+            },
+            "nullable": true
+          },
+          "photos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            },
+            "nullable": true
+          },
+          "bill": {
+            "$ref": "#/components/schemas/DocumentDTO"
+          },
+          "pedimento": {
+            "$ref": "#/components/schemas/DocumentDTO"
+          },
+          "reminders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReminderDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VehicleFormDTO": {
+        "required": [
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          },
           "assignedId": {
             "type": "string",
             "nullable": true
@@ -13955,6 +15349,7 @@
       },
       "VehiclePostDTO": {
         "required": [
+          "description",
           "economicNumber",
           "machineId",
           "vin"
@@ -13968,6 +15363,11 @@
           },
           "machineId": {
             "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 500,
             "minLength": 0,
             "type": "string"
           },
@@ -14060,6 +15460,7 @@
       },
       "VehiclePutDTO": {
         "required": [
+          "description",
           "economicNumber",
           "machineId",
           "vin"
@@ -14073,6 +15474,11 @@
           },
           "machineId": {
             "maxLength": 250,
+            "minLength": 0,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 500,
             "minLength": 0,
             "type": "string"
           },
@@ -14166,6 +15572,88 @@
               "type": "string"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VehicleStatisticsDTO": {
+        "type": "object",
+        "properties": {
+          "odometer": {
+            "type": "string",
+            "nullable": true
+          },
+          "performanceAverage": {
+            "type": "string",
+            "nullable": true
+          },
+          "costKMAverage": {
+            "type": "string",
+            "nullable": true
+          },
+          "costoLTAverage": {
+            "type": "string",
+            "nullable": true
+          },
+          "costTotalFuel": {
+            "type": "string",
+            "nullable": true
+          },
+          "costTotalMaintenance": {
+            "type": "string",
+            "nullable": true
+          },
+          "costAdditional": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VehicleStatusEnum": {
+        "enum": [
+          "Disponible",
+          "Deshabilitado",
+          "Mantenimiento"
+        ],
+        "type": "string"
+      },
+      "VehicleType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "excludeFromLog": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "inUse": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

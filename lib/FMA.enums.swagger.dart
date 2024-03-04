@@ -30,3 +30,20 @@ const $SortOrderEnumMap = {
   SortOrderEnum.ascending: 'Ascending',
   SortOrderEnum.descending: 'Descending'
 };
+
+enum VehicleStatusEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Disponible')
+  disponible,
+  @JsonValue('Deshabilitado')
+  deshabilitado,
+  @JsonValue('Mantenimiento')
+  mantenimiento
+}
+
+const $VehicleStatusEnumMap = {
+  VehicleStatusEnum.disponible: 'Disponible',
+  VehicleStatusEnum.deshabilitado: 'Deshabilitado',
+  VehicleStatusEnum.mantenimiento: 'Mantenimiento'
+};
