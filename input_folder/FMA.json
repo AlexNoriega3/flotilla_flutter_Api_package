@@ -300,6 +300,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -500,6 +507,13 @@
           "Category"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -702,6 +716,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -902,6 +923,13 @@
           "CostCenter"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -1104,6 +1132,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -1305,6 +1340,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -1505,6 +1547,13 @@
           "FuelLoad"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -1976,6 +2025,13 @@
           "FuelMeasure"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -2553,6 +2609,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -2753,6 +2816,13 @@
           "FuelVendor"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -2955,6 +3025,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -3155,6 +3232,13 @@
           "Incident"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -3357,6 +3441,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -3557,6 +3648,13 @@
           "InsuranceCompany"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -4028,6 +4126,13 @@
           "Machine"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -4605,6 +4710,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -4805,6 +4917,13 @@
           "MaintenanceGroup"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -5007,6 +5126,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -5207,6 +5333,13 @@
           "MaintenanceType"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -5678,6 +5811,13 @@
           "Measure"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -6255,6 +6395,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -6725,6 +6872,13 @@
           "PackagePolicy"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -7302,6 +7456,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -7502,6 +7663,13 @@
           "Policy"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -7704,6 +7872,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -7904,6 +8079,13 @@
           "Project"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -8106,6 +8288,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -8306,6 +8495,13 @@
           "Service"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -8512,6 +8708,13 @@
           "User"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -8893,6 +9096,13 @@
           "UserVehicle"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -9451,6 +9661,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -9585,6 +9802,13 @@
           "Vehicle"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -10967,6 +11191,13 @@
         ],
         "parameters": [
           {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -11167,6 +11398,13 @@
           "Vendor"
         ],
         "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -13745,6 +13983,10 @@
       "VehicleDetailDTO": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -13836,16 +14078,8 @@
         "additionalProperties": false
       },
       "VehicleFormDTO": {
-        "required": [
-          "description"
-        ],
         "type": "object",
         "properties": {
-          "description": {
-            "maxLength": 500,
-            "minLength": 0,
-            "type": "string"
-          },
           "assignedId": {
             "type": "string",
             "nullable": true
@@ -13923,6 +14157,10 @@
           "pedimentoFile": {
             "type": "string",
             "format": "binary",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           },
           "vin": {

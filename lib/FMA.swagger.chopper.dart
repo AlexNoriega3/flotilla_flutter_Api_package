@@ -87,13 +87,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<BrandDTOPagedResult>> _apiBrandSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Brand/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -144,13 +146,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<CategoryDTOPagedResult>> _apiCategorySearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Category/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -202,13 +206,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<CompanyDTOPagedResult>> _apiCompanySearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Company/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -259,13 +265,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<CostCenterDTOPagedResult>> _apiCostCenterSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/CostCenter/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -317,13 +325,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<DocumentDTOPagedResult>> _apiDocumentSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Document/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -375,13 +385,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<EngineDTOPagedResult>> _apiEngineSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Engine/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -432,13 +444,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<FuelLoadDTOPagedResult>> _apiFuelLoadSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/FuelLoad/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -491,13 +505,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<FuelMeasureDTOPagedResult>> _apiFuelMeasureSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/FuelMeasure/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -549,13 +565,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<FuelTypeDTOPagedResult>> _apiFuelTypeSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/FuelType/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -607,13 +625,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<FuelVendorDTOPagedResult>> _apiFuelVendorSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/FuelVendor/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -665,13 +685,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<ImageDTOPagedResult>> _apiImageSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Image/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -722,13 +744,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<IncidentDTOPagedResult>> _apiIncidentSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Incident/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -780,13 +804,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<IncisoDTOPagedResult>> _apiIncisoSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Inciso/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -840,13 +866,15 @@ class _$FMA extends FMA {
   @override
   Future<Response<InsuranceCompanyDTOPagedResult>>
       _apiInsuranceCompanySearchGet(
-          {required int? page,
+          {String? id,
+          required int? page,
           String? search,
           String? orderByPropertyName,
           String? sortOrder,
           required int? pageSize}) {
     final $url = '/api/InsuranceCompany/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -899,13 +927,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<MachineDTOPagedResult>> _apiMachineSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Machine/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -957,13 +987,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<MaintenanceDTOPagedResult>> _apiMaintenanceSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Maintenance/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1018,13 +1050,15 @@ class _$FMA extends FMA {
   @override
   Future<Response<MaintenanceGroupDTOPagedResult>>
       _apiMaintenanceGroupSearchGet(
-          {required int? page,
+          {String? id,
+          required int? page,
           String? search,
           String? orderByPropertyName,
           String? sortOrder,
           required int? pageSize}) {
     final $url = '/api/MaintenanceGroup/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1078,13 +1112,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<MaintenancePartDTOPagedResult>> _apiMaintenancePartSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/MaintenancePart/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1138,13 +1174,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<MaintenanceTypeDTOPagedResult>> _apiMaintenanceTypeSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/MaintenanceType/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1197,13 +1235,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<MeasureDTOPagedResult>> _apiMeasureSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Measure/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1254,13 +1294,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<ModelDTOPagedResult>> _apiModelSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Model/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1312,13 +1354,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<PackagePolicyDTOPagedResult>> _apiPackagePolicySearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/PackagePolicy/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1371,13 +1415,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<PartDTOPagedResult>> _apiPartSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Part/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1428,13 +1474,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<PolicyDTOPagedResult>> _apiPolicySearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Policy/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1486,13 +1534,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<PolicyStatusDTOPagedResult>> _apiPolicyStatusSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/PolicyStatus/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1545,13 +1595,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<ProjectDTOPagedResult>> _apiProjectSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Project/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1602,13 +1654,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<RoleDTOPagedResult>> _apiRoleSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Role/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1659,13 +1713,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<ServiceDTOPagedResult>> _apiServiceSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Service/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1716,13 +1772,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<AppUserDTOPagedResult>> _apiUserSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/User/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1786,13 +1844,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<UserVehicleDTOPagedResult>> _apiUserVehicleSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/UserVehicle/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1845,13 +1905,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<VehicleDTOPagedResult>> _apiVehicleSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Vehicle/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1864,13 +1926,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<VehicleInboxDTOPagedResult>> _apiVehicleInboxGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Vehicle/Inbox';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -2009,13 +2073,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<VehicleTypeDTOPagedResult>> _apiVehicleTypeSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/VehicleType/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -2067,13 +2133,15 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<VendorDTOPagedResult>> _apiVendorSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize}) {
     final $url = '/api/Vendor/Search';
     final $params = <String, dynamic>{
+      'Id': id,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,

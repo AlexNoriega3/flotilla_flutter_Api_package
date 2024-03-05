@@ -147,13 +147,15 @@ abstract class FMA extends ChopperService {
       {@Body() required BrandDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<BrandDTOPagedResult>> apiBrandSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -162,6 +164,7 @@ abstract class FMA extends ChopperService {
         BrandDTOPagedResult, () => BrandDTOPagedResult.fromJsonFactory);
 
     return _apiBrandSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -170,6 +173,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -177,7 +181,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Brand/Search')
   Future<chopper.Response<BrandDTOPagedResult>> _apiBrandSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -246,13 +251,15 @@ abstract class FMA extends ChopperService {
       {@Body() required CategoryDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<CategoryDTOPagedResult>> apiCategorySearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -261,6 +268,7 @@ abstract class FMA extends ChopperService {
         CategoryDTOPagedResult, () => CategoryDTOPagedResult.fromJsonFactory);
 
     return _apiCategorySearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -269,6 +277,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -276,7 +285,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Category/Search')
   Future<chopper.Response<CategoryDTOPagedResult>> _apiCategorySearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -345,13 +355,15 @@ abstract class FMA extends ChopperService {
       {@Body() required CompanyDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<CompanyDTOPagedResult>> apiCompanySearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -360,6 +372,7 @@ abstract class FMA extends ChopperService {
         CompanyDTOPagedResult, () => CompanyDTOPagedResult.fromJsonFactory);
 
     return _apiCompanySearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -368,6 +381,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -375,7 +389,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Company/Search')
   Future<chopper.Response<CompanyDTOPagedResult>> _apiCompanySearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -444,13 +459,15 @@ abstract class FMA extends ChopperService {
       {@Body() required CostCenterDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<CostCenterDTOPagedResult>> apiCostCenterSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -459,6 +476,7 @@ abstract class FMA extends ChopperService {
         () => CostCenterDTOPagedResult.fromJsonFactory);
 
     return _apiCostCenterSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -467,6 +485,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -474,7 +493,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/CostCenter/Search')
   Future<chopper.Response<CostCenterDTOPagedResult>> _apiCostCenterSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -545,13 +565,15 @@ abstract class FMA extends ChopperService {
       {@Body() required DocumentDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<DocumentDTOPagedResult>> apiDocumentSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -560,6 +582,7 @@ abstract class FMA extends ChopperService {
         DocumentDTOPagedResult, () => DocumentDTOPagedResult.fromJsonFactory);
 
     return _apiDocumentSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -568,6 +591,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -575,7 +599,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Document/Search')
   Future<chopper.Response<DocumentDTOPagedResult>> _apiDocumentSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -644,13 +669,15 @@ abstract class FMA extends ChopperService {
       {@Body() required EngineDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<EngineDTOPagedResult>> apiEngineSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -659,6 +686,7 @@ abstract class FMA extends ChopperService {
         EngineDTOPagedResult, () => EngineDTOPagedResult.fromJsonFactory);
 
     return _apiEngineSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -667,6 +695,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -674,7 +703,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Engine/Search')
   Future<chopper.Response<EngineDTOPagedResult>> _apiEngineSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -743,13 +773,15 @@ abstract class FMA extends ChopperService {
       {@Body() required FuelLoadDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<FuelLoadDTOPagedResult>> apiFuelLoadSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -758,6 +790,7 @@ abstract class FMA extends ChopperService {
         FuelLoadDTOPagedResult, () => FuelLoadDTOPagedResult.fromJsonFactory);
 
     return _apiFuelLoadSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -766,6 +799,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -773,7 +807,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/FuelLoad/Search')
   Future<chopper.Response<FuelLoadDTOPagedResult>> _apiFuelLoadSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -844,13 +879,15 @@ abstract class FMA extends ChopperService {
       {@Body() required FuelMeasureDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<FuelMeasureDTOPagedResult>> apiFuelMeasureSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -859,6 +896,7 @@ abstract class FMA extends ChopperService {
         () => FuelMeasureDTOPagedResult.fromJsonFactory);
 
     return _apiFuelMeasureSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -867,6 +905,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -874,7 +913,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/FuelMeasure/Search')
   Future<chopper.Response<FuelMeasureDTOPagedResult>> _apiFuelMeasureSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -945,13 +985,15 @@ abstract class FMA extends ChopperService {
       {@Body() required FuelTypeDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<FuelTypeDTOPagedResult>> apiFuelTypeSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -960,6 +1002,7 @@ abstract class FMA extends ChopperService {
         FuelTypeDTOPagedResult, () => FuelTypeDTOPagedResult.fromJsonFactory);
 
     return _apiFuelTypeSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -968,6 +1011,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -975,7 +1019,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/FuelType/Search')
   Future<chopper.Response<FuelTypeDTOPagedResult>> _apiFuelTypeSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1046,13 +1091,15 @@ abstract class FMA extends ChopperService {
       {@Body() required FuelVendorDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<FuelVendorDTOPagedResult>> apiFuelVendorSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1061,6 +1108,7 @@ abstract class FMA extends ChopperService {
         () => FuelVendorDTOPagedResult.fromJsonFactory);
 
     return _apiFuelVendorSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1069,6 +1117,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1076,7 +1125,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/FuelVendor/Search')
   Future<chopper.Response<FuelVendorDTOPagedResult>> _apiFuelVendorSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1145,13 +1195,15 @@ abstract class FMA extends ChopperService {
       {@Body() required ImageDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<ImageDTOPagedResult>> apiImageSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1160,6 +1212,7 @@ abstract class FMA extends ChopperService {
         ImageDTOPagedResult, () => ImageDTOPagedResult.fromJsonFactory);
 
     return _apiImageSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1168,6 +1221,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1175,7 +1229,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Image/Search')
   Future<chopper.Response<ImageDTOPagedResult>> _apiImageSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1244,13 +1299,15 @@ abstract class FMA extends ChopperService {
       {@Body() required IncidentDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<IncidentDTOPagedResult>> apiIncidentSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1259,6 +1316,7 @@ abstract class FMA extends ChopperService {
         IncidentDTOPagedResult, () => IncidentDTOPagedResult.fromJsonFactory);
 
     return _apiIncidentSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1267,6 +1325,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1274,7 +1333,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Incident/Search')
   Future<chopper.Response<IncidentDTOPagedResult>> _apiIncidentSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1343,13 +1403,15 @@ abstract class FMA extends ChopperService {
       {@Body() required IncisoDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<IncisoDTOPagedResult>> apiIncisoSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1358,6 +1420,7 @@ abstract class FMA extends ChopperService {
         IncisoDTOPagedResult, () => IncisoDTOPagedResult.fromJsonFactory);
 
     return _apiIncisoSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1366,6 +1429,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1373,7 +1437,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Inciso/Search')
   Future<chopper.Response<IncisoDTOPagedResult>> _apiIncisoSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1442,6 +1507,7 @@ abstract class FMA extends ChopperService {
       {@Body() required InsuranceCompanyDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1449,7 +1515,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<InsuranceCompanyDTOPagedResult>>
       apiInsuranceCompanySearchGet(
-          {required int? page,
+          {String? id,
+          required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -1458,6 +1525,7 @@ abstract class FMA extends ChopperService {
         () => InsuranceCompanyDTOPagedResult.fromJsonFactory);
 
     return _apiInsuranceCompanySearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1466,6 +1534,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1474,7 +1543,8 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/InsuranceCompany/Search')
   Future<chopper.Response<InsuranceCompanyDTOPagedResult>>
       _apiInsuranceCompanySearchGet(
-          {@Query('Page') required int? page,
+          {@Query('Id') String? id,
+          @Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -1545,13 +1615,15 @@ abstract class FMA extends ChopperService {
       {@Body() required MachineDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<MachineDTOPagedResult>> apiMachineSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1560,6 +1632,7 @@ abstract class FMA extends ChopperService {
         MachineDTOPagedResult, () => MachineDTOPagedResult.fromJsonFactory);
 
     return _apiMachineSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1568,6 +1641,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1575,7 +1649,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Machine/Search')
   Future<chopper.Response<MachineDTOPagedResult>> _apiMachineSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1644,13 +1719,15 @@ abstract class FMA extends ChopperService {
       {@Body() required MaintenanceDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<MaintenanceDTOPagedResult>> apiMaintenanceSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1659,6 +1736,7 @@ abstract class FMA extends ChopperService {
         () => MaintenanceDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenanceSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1667,6 +1745,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1674,7 +1753,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Maintenance/Search')
   Future<chopper.Response<MaintenanceDTOPagedResult>> _apiMaintenanceSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1745,6 +1825,7 @@ abstract class FMA extends ChopperService {
       {@Body() required MaintenanceGroupDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1752,7 +1833,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<MaintenanceGroupDTOPagedResult>>
       apiMaintenanceGroupSearchGet(
-          {required int? page,
+          {String? id,
+          required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -1761,6 +1843,7 @@ abstract class FMA extends ChopperService {
         () => MaintenanceGroupDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenanceGroupSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1769,6 +1852,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1777,7 +1861,8 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/MaintenanceGroup/Search')
   Future<chopper.Response<MaintenanceGroupDTOPagedResult>>
       _apiMaintenanceGroupSearchGet(
-          {@Query('Page') required int? page,
+          {@Query('Id') String? id,
+          @Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -1850,6 +1935,7 @@ abstract class FMA extends ChopperService {
       {@Body() required MaintenancePartDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1857,7 +1943,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<MaintenancePartDTOPagedResult>>
       apiMaintenancePartSearchGet(
-          {required int? page,
+          {String? id,
+          required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -1866,6 +1953,7 @@ abstract class FMA extends ChopperService {
         () => MaintenancePartDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenancePartSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1874,6 +1962,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1882,7 +1971,8 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/MaintenancePart/Search')
   Future<chopper.Response<MaintenancePartDTOPagedResult>>
       _apiMaintenancePartSearchGet(
-          {@Query('Page') required int? page,
+          {@Query('Id') String? id,
+          @Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -1955,6 +2045,7 @@ abstract class FMA extends ChopperService {
       {@Body() required MaintenanceTypeDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1962,7 +2053,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<MaintenanceTypeDTOPagedResult>>
       apiMaintenanceTypeSearchGet(
-          {required int? page,
+          {String? id,
+          required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -1971,6 +2063,7 @@ abstract class FMA extends ChopperService {
         () => MaintenanceTypeDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenanceTypeSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1979,6 +2072,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1987,7 +2081,8 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/MaintenanceType/Search')
   Future<chopper.Response<MaintenanceTypeDTOPagedResult>>
       _apiMaintenanceTypeSearchGet(
-          {@Query('Page') required int? page,
+          {@Query('Id') String? id,
+          @Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -2058,13 +2153,15 @@ abstract class FMA extends ChopperService {
       {@Body() required MeasureDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<MeasureDTOPagedResult>> apiMeasureSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2073,6 +2170,7 @@ abstract class FMA extends ChopperService {
         MeasureDTOPagedResult, () => MeasureDTOPagedResult.fromJsonFactory);
 
     return _apiMeasureSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2081,6 +2179,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2088,7 +2187,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Measure/Search')
   Future<chopper.Response<MeasureDTOPagedResult>> _apiMeasureSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2155,13 +2255,15 @@ abstract class FMA extends ChopperService {
       {@Body() required ModelDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<ModelDTOPagedResult>> apiModelSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2170,6 +2272,7 @@ abstract class FMA extends ChopperService {
         ModelDTOPagedResult, () => ModelDTOPagedResult.fromJsonFactory);
 
     return _apiModelSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2178,6 +2281,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2185,7 +2289,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Model/Search')
   Future<chopper.Response<ModelDTOPagedResult>> _apiModelSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2254,6 +2359,7 @@ abstract class FMA extends ChopperService {
       {@Body() required PackagePolicyDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2261,7 +2367,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<PackagePolicyDTOPagedResult>>
       apiPackagePolicySearchGet(
-          {required int? page,
+          {String? id,
+          required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -2270,6 +2377,7 @@ abstract class FMA extends ChopperService {
         () => PackagePolicyDTOPagedResult.fromJsonFactory);
 
     return _apiPackagePolicySearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2278,6 +2386,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2286,7 +2395,8 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/PackagePolicy/Search')
   Future<chopper.Response<PackagePolicyDTOPagedResult>>
       _apiPackagePolicySearchGet(
-          {@Query('Page') required int? page,
+          {@Query('Id') String? id,
+          @Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -2357,13 +2467,15 @@ abstract class FMA extends ChopperService {
       {@Body() required PartDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<PartDTOPagedResult>> apiPartSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2372,6 +2484,7 @@ abstract class FMA extends ChopperService {
         PartDTOPagedResult, () => PartDTOPagedResult.fromJsonFactory);
 
     return _apiPartSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2380,6 +2493,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2387,7 +2501,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Part/Search')
   Future<chopper.Response<PartDTOPagedResult>> _apiPartSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2454,13 +2569,15 @@ abstract class FMA extends ChopperService {
       {@Body() required PolicyDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<PolicyDTOPagedResult>> apiPolicySearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2469,6 +2586,7 @@ abstract class FMA extends ChopperService {
         PolicyDTOPagedResult, () => PolicyDTOPagedResult.fromJsonFactory);
 
     return _apiPolicySearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2477,6 +2595,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2484,7 +2603,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Policy/Search')
   Future<chopper.Response<PolicyDTOPagedResult>> _apiPolicySearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2553,13 +2673,15 @@ abstract class FMA extends ChopperService {
       {@Body() required PolicyStatusDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<PolicyStatusDTOPagedResult>> apiPolicyStatusSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2568,6 +2690,7 @@ abstract class FMA extends ChopperService {
         () => PolicyStatusDTOPagedResult.fromJsonFactory);
 
     return _apiPolicyStatusSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2576,6 +2699,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2584,7 +2708,8 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/PolicyStatus/Search')
   Future<chopper.Response<PolicyStatusDTOPagedResult>>
       _apiPolicyStatusSearchGet(
-          {@Query('Page') required int? page,
+          {@Query('Id') String? id,
+          @Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -2655,13 +2780,15 @@ abstract class FMA extends ChopperService {
       {@Body() required ProjectDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<ProjectDTOPagedResult>> apiProjectSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2670,6 +2797,7 @@ abstract class FMA extends ChopperService {
         ProjectDTOPagedResult, () => ProjectDTOPagedResult.fromJsonFactory);
 
     return _apiProjectSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2678,6 +2806,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2685,7 +2814,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Project/Search')
   Future<chopper.Response<ProjectDTOPagedResult>> _apiProjectSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2752,13 +2882,15 @@ abstract class FMA extends ChopperService {
       {@Body() required RoleDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<RoleDTOPagedResult>> apiRoleSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2767,6 +2899,7 @@ abstract class FMA extends ChopperService {
         RoleDTOPagedResult, () => RoleDTOPagedResult.fromJsonFactory);
 
     return _apiRoleSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2775,6 +2908,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2782,7 +2916,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Role/Search')
   Future<chopper.Response<RoleDTOPagedResult>> _apiRoleSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2849,13 +2984,15 @@ abstract class FMA extends ChopperService {
       {@Body() required ServiceDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<ServiceDTOPagedResult>> apiServiceSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2864,6 +3001,7 @@ abstract class FMA extends ChopperService {
         ServiceDTOPagedResult, () => ServiceDTOPagedResult.fromJsonFactory);
 
     return _apiServiceSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2872,6 +3010,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2879,7 +3018,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Service/Search')
   Future<chopper.Response<ServiceDTOPagedResult>> _apiServiceSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2946,13 +3086,15 @@ abstract class FMA extends ChopperService {
       {@Body() required UserPostDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<AppUserDTOPagedResult>> apiUserSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2961,6 +3103,7 @@ abstract class FMA extends ChopperService {
         AppUserDTOPagedResult, () => AppUserDTOPagedResult.fromJsonFactory);
 
     return _apiUserSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2969,6 +3112,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2976,7 +3120,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/User/Search')
   Future<chopper.Response<AppUserDTOPagedResult>> _apiUserSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3071,13 +3216,15 @@ abstract class FMA extends ChopperService {
       {@Body() required UserVehicleDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<UserVehicleDTOPagedResult>> apiUserVehicleSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3086,6 +3233,7 @@ abstract class FMA extends ChopperService {
         () => UserVehicleDTOPagedResult.fromJsonFactory);
 
     return _apiUserVehicleSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3094,6 +3242,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3101,7 +3250,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/UserVehicle/Search')
   Future<chopper.Response<UserVehicleDTOPagedResult>> _apiUserVehicleSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3172,13 +3322,15 @@ abstract class FMA extends ChopperService {
       {@PartFile() required List<int> partFile});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<VehicleDTOPagedResult>> apiVehicleSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3187,6 +3339,7 @@ abstract class FMA extends ChopperService {
         VehicleDTOPagedResult, () => VehicleDTOPagedResult.fromJsonFactory);
 
     return _apiVehicleSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3195,6 +3348,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3202,20 +3356,23 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Vehicle/Search')
   Future<chopper.Response<VehicleDTOPagedResult>> _apiVehicleSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
       @Query('PageSize') required int? pageSize});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<VehicleInboxDTOPagedResult>> apiVehicleInboxGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3224,6 +3381,7 @@ abstract class FMA extends ChopperService {
         () => VehicleInboxDTOPagedResult.fromJsonFactory);
 
     return _apiVehicleInboxGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3232,6 +3390,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3239,7 +3398,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Vehicle/Inbox')
   Future<chopper.Response<VehicleInboxDTOPagedResult>> _apiVehicleInboxGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3485,13 +3645,15 @@ abstract class FMA extends ChopperService {
       {@Body() required VehicleTypeDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<VehicleTypeDTOPagedResult>> apiVehicleTypeSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3500,6 +3662,7 @@ abstract class FMA extends ChopperService {
         () => VehicleTypeDTOPagedResult.fromJsonFactory);
 
     return _apiVehicleTypeSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3508,6 +3671,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3515,7 +3679,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/VehicleType/Search')
   Future<chopper.Response<VehicleTypeDTOPagedResult>> _apiVehicleTypeSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3584,13 +3749,15 @@ abstract class FMA extends ChopperService {
       {@Body() required VendorDTO? body});
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<VendorDTOPagedResult>> apiVendorSearchGet(
-      {required int? page,
+      {String? id,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3599,6 +3766,7 @@ abstract class FMA extends ChopperService {
         VendorDTOPagedResult, () => VendorDTOPagedResult.fromJsonFactory);
 
     return _apiVendorSearchGet(
+        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3607,6 +3775,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3614,7 +3783,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Vendor/Search')
   Future<chopper.Response<VendorDTOPagedResult>> _apiVendorSearchGet(
-      {@Query('Page') required int? page,
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -9517,6 +9687,7 @@ extension $VehicleDTOPagedResultExtension on VehicleDTOPagedResult {
 @JsonSerializable(explicitToJson: true)
 class VehicleDetailDTO {
   VehicleDetailDTO({
+    this.id,
     this.description,
     this.economicNumber,
     this.vin,
@@ -9540,6 +9711,8 @@ class VehicleDetailDTO {
   factory VehicleDetailDTO.fromJson(Map<String, dynamic> json) =>
       _$VehicleDetailDTOFromJson(json);
 
+  @JsonKey(name: 'id')
+  final String? id;
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'economicNumber')
@@ -9590,6 +9763,8 @@ class VehicleDetailDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is VehicleDetailDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
@@ -9643,6 +9818,7 @@ class VehicleDetailDTO {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(economicNumber) ^
       const DeepCollectionEquality().hash(vin) ^
@@ -9666,7 +9842,8 @@ class VehicleDetailDTO {
 
 extension $VehicleDetailDTOExtension on VehicleDetailDTO {
   VehicleDetailDTO copyWith(
-      {String? description,
+      {String? id,
+      String? description,
       String? economicNumber,
       String? vin,
       String? placas,
@@ -9685,6 +9862,7 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
       DocumentDTO? pedimento,
       List<ReminderDTO>? reminders}) {
     return VehicleDetailDTO(
+        id: id ?? this.id,
         description: description ?? this.description,
         economicNumber: economicNumber ?? this.economicNumber,
         vin: vin ?? this.vin,
@@ -9709,7 +9887,6 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
 @JsonSerializable(explicitToJson: true)
 class VehicleFormDTO {
   VehicleFormDTO({
-    required this.description,
     this.assignedId,
     this.brandId,
     this.modelId,
@@ -9728,6 +9905,7 @@ class VehicleFormDTO {
     this.photographsFiles,
     this.billFile,
     this.pedimentoFile,
+    this.description,
     this.vin,
     this.machineId,
     this.economicNumber,
@@ -9736,8 +9914,6 @@ class VehicleFormDTO {
   factory VehicleFormDTO.fromJson(Map<String, dynamic> json) =>
       _$VehicleFormDTOFromJson(json);
 
-  @JsonKey(name: 'description')
-  final String description;
   @JsonKey(name: 'assignedId')
   final String? assignedId;
   @JsonKey(name: 'brandId')
@@ -9774,6 +9950,8 @@ class VehicleFormDTO {
   final String? billFile;
   @JsonKey(name: 'pedimentoFile')
   final String? pedimentoFile;
+  @JsonKey(name: 'description')
+  final String? description;
   @JsonKey(name: 'vin')
   final String? vin;
   @JsonKey(name: 'machineId')
@@ -9791,9 +9969,6 @@ class VehicleFormDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is VehicleFormDTO &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
             (identical(other.assignedId, assignedId) ||
                 const DeepCollectionEquality()
                     .equals(other.assignedId, assignedId)) &&
@@ -9846,6 +10021,9 @@ class VehicleFormDTO {
             (identical(other.pedimentoFile, pedimentoFile) ||
                 const DeepCollectionEquality()
                     .equals(other.pedimentoFile, pedimentoFile)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
             (identical(other.vin, vin) ||
                 const DeepCollectionEquality().equals(other.vin, vin)) &&
             (identical(other.machineId, machineId) ||
@@ -9858,7 +10036,6 @@ class VehicleFormDTO {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(assignedId) ^
       const DeepCollectionEquality().hash(brandId) ^
       const DeepCollectionEquality().hash(modelId) ^
@@ -9877,6 +10054,7 @@ class VehicleFormDTO {
       const DeepCollectionEquality().hash(photographsFiles) ^
       const DeepCollectionEquality().hash(billFile) ^
       const DeepCollectionEquality().hash(pedimentoFile) ^
+      const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(vin) ^
       const DeepCollectionEquality().hash(machineId) ^
       const DeepCollectionEquality().hash(economicNumber) ^
@@ -9885,8 +10063,7 @@ class VehicleFormDTO {
 
 extension $VehicleFormDTOExtension on VehicleFormDTO {
   VehicleFormDTO copyWith(
-      {String? description,
-      String? assignedId,
+      {String? assignedId,
       String? brandId,
       String? modelId,
       int? modelYear,
@@ -9904,11 +10081,11 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
       List<String>? photographsFiles,
       String? billFile,
       String? pedimentoFile,
+      String? description,
       String? vin,
       String? machineId,
       String? economicNumber}) {
     return VehicleFormDTO(
-        description: description ?? this.description,
         assignedId: assignedId ?? this.assignedId,
         brandId: brandId ?? this.brandId,
         modelId: modelId ?? this.modelId,
@@ -9927,6 +10104,7 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
         photographsFiles: photographsFiles ?? this.photographsFiles,
         billFile: billFile ?? this.billFile,
         pedimentoFile: pedimentoFile ?? this.pedimentoFile,
+        description: description ?? this.description,
         vin: vin ?? this.vin,
         machineId: machineId ?? this.machineId,
         economicNumber: economicNumber ?? this.economicNumber);

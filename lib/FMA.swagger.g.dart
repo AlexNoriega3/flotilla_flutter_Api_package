@@ -1571,6 +1571,7 @@ Map<String, dynamic> _$VehicleDTOPagedResultToJson(
 
 VehicleDetailDTO _$VehicleDetailDTOFromJson(Map<String, dynamic> json) =>
     VehicleDetailDTO(
+      id: json['id'] as String?,
       description: json['description'] as String?,
       economicNumber: json['economicNumber'] as String?,
       vin: json['vin'] as String?,
@@ -1616,6 +1617,7 @@ VehicleDetailDTO _$VehicleDetailDTOFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$VehicleDetailDTOToJson(VehicleDetailDTO instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'description': instance.description,
       'economicNumber': instance.economicNumber,
       'vin': instance.vin,
@@ -1638,7 +1640,6 @@ Map<String, dynamic> _$VehicleDetailDTOToJson(VehicleDetailDTO instance) =>
 
 VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
     VehicleFormDTO(
-      description: json['description'] as String,
       assignedId: json['assignedId'] as String?,
       brandId: json['brandId'] as String?,
       modelId: json['modelId'] as String?,
@@ -1660,6 +1661,7 @@ VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
           [],
       billFile: json['billFile'] as String?,
       pedimentoFile: json['pedimentoFile'] as String?,
+      description: json['description'] as String?,
       vin: json['vin'] as String?,
       machineId: json['machineId'] as String?,
       economicNumber: json['economicNumber'] as String?,
@@ -1667,7 +1669,6 @@ VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$VehicleFormDTOToJson(VehicleFormDTO instance) =>
     <String, dynamic>{
-      'description': instance.description,
       'assignedId': instance.assignedId,
       'brandId': instance.brandId,
       'modelId': instance.modelId,
@@ -1686,6 +1687,7 @@ Map<String, dynamic> _$VehicleFormDTOToJson(VehicleFormDTO instance) =>
       'photographsFiles': instance.photographsFiles,
       'billFile': instance.billFile,
       'pedimentoFile': instance.pedimentoFile,
+      'description': instance.description,
       'vin': instance.vin,
       'machineId': instance.machineId,
       'economicNumber': instance.economicNumber,
