@@ -300,13 +300,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -507,13 +500,6 @@
           "Category"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -716,13 +702,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -923,13 +902,6 @@
           "CostCenter"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -1132,13 +1104,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -1340,13 +1305,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -1547,13 +1505,6 @@
           "FuelLoad"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -2025,13 +1976,6 @@
           "FuelMeasure"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -2609,13 +2553,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -2816,13 +2753,6 @@
           "FuelVendor"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -3025,13 +2955,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -3232,13 +3155,6 @@
           "Incident"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -3441,13 +3357,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -3648,13 +3557,6 @@
           "InsuranceCompany"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -4126,13 +4028,6 @@
           "Machine"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -4655,6 +4550,110 @@
         }
       }
     },
+    "/api/Machine/DrillRigProject/{id}": {
+      "get": {
+        "tags": [
+          "Machine"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Maintenance": {
       "get": {
         "tags": [
@@ -4709,13 +4708,6 @@
           "Maintenance"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -4918,13 +4910,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -5126,13 +5111,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -5333,13 +5311,6 @@
           "MaintenanceType"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -5811,13 +5782,6 @@
           "Measure"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -6395,13 +6359,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -6872,13 +6829,6 @@
           "PackagePolicy"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -7456,13 +7406,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -7663,13 +7606,6 @@
           "Policy"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -7872,13 +7808,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -8080,13 +8009,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -8233,6 +8155,214 @@
         }
       }
     },
+    "/api/Reminder": {
+      "get": {
+        "tags": [
+          "Reminder"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReminderPostDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Reminder"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReminderPostDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Reminder/Search": {
+      "get": {
+        "tags": [
+          "Reminder"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderByPropertyName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SortOrderEnum"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReminderDTOPagedResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Reminder/{id}": {
+      "get": {
+        "tags": [
+          "Reminder"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReminderPostDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Reminder"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReminderPostDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Reminder"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Role": {
       "get": {
         "tags": [
@@ -8287,13 +8417,6 @@
           "Role"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -8495,13 +8618,6 @@
           "Service"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -8708,13 +8824,6 @@
           "User"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -9096,13 +9205,6 @@
           "UserVehicle"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -9661,13 +9763,6 @@
         ],
         "parameters": [
           {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "Page",
             "in": "query",
             "required": true,
@@ -9802,13 +9897,6 @@
           "Vehicle"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -11136,6 +11224,110 @@
         }
       }
     },
+    "/api/Vehicle/{Id}/Active": {
+      "put": {
+        "tags": [
+          "Vehicle"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/VehicleType": {
       "get": {
         "tags": [
@@ -11190,13 +11382,6 @@
           "VehicleType"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -11398,13 +11583,6 @@
           "Vendor"
         ],
         "parameters": [
-          {
-            "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "Page",
             "in": "query",
@@ -13148,6 +13326,15 @@
         },
         "additionalProperties": false
       },
+      "PeriodEnum": {
+        "enum": [
+          "Day",
+          "Week",
+          "Month",
+          "Year"
+        ],
+        "type": "string"
+      },
       "PolicyDTO": {
         "type": "object",
         "properties": {
@@ -13396,6 +13583,87 @@
           "vehicle": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReminderDTOPagedResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recordNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReminderDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReminderPostDTO": {
+        "required": [
+          "serviceId",
+          "vehicleId"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "frecuency": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "measureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "frecuencyPeriod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "period": {
+            "$ref": "#/components/schemas/PeriodEnum"
+          },
+          "kmBeforeReminder": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeBefore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "periodToReminder": {
+            "$ref": "#/components/schemas/PeriodEnum"
+          },
+          "serviceId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleId": {
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -14041,20 +14309,12 @@
             "nullable": true
           },
           "fuelLoads": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FuelLoadDTO"
-            },
-            "nullable": true
+            "$ref": "#/components/schemas/FuelLoadDTOPagedResult"
           },
-          "maintenances": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MaintenanceDTO"
-            },
-            "nullable": true
+          "listMaintenances": {
+            "$ref": "#/components/schemas/MaintenanceDTOPagedResult"
           },
-          "photos": {
+          "photographs": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ImageDTO"
@@ -14067,12 +14327,8 @@
           "pedimento": {
             "$ref": "#/components/schemas/DocumentDTO"
           },
-          "reminders": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ReminderDTO"
-            },
-            "nullable": true
+          "listReminders": {
+            "$ref": "#/components/schemas/ReminderDTOPagedResult"
           }
         },
         "additionalProperties": false
@@ -14181,7 +14437,15 @@
       "VehicleInboxDTO": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
           "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignedTo": {
             "type": "string",
             "nullable": true
           },
@@ -14201,19 +14465,15 @@
             "type": "string",
             "nullable": true
           },
-          "vehicleTypeId": {
-            "type": "string",
-            "nullable": true
-          },
           "projectName": {
             "type": "string",
             "nullable": true
           },
-          "companyId": {
+          "machineId": {
             "type": "string",
             "nullable": true
           },
-          "id": {
+          "companyId": {
             "type": "string",
             "nullable": true
           }

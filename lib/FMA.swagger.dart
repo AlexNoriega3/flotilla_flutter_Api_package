@@ -147,15 +147,13 @@ abstract class FMA extends ChopperService {
       {@Body() required BrandDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<BrandDTOPagedResult>> apiBrandSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -164,7 +162,6 @@ abstract class FMA extends ChopperService {
         BrandDTOPagedResult, () => BrandDTOPagedResult.fromJsonFactory);
 
     return _apiBrandSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -173,7 +170,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -181,8 +177,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Brand/Search')
   Future<chopper.Response<BrandDTOPagedResult>> _apiBrandSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -251,15 +246,13 @@ abstract class FMA extends ChopperService {
       {@Body() required CategoryDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<CategoryDTOPagedResult>> apiCategorySearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -268,7 +261,6 @@ abstract class FMA extends ChopperService {
         CategoryDTOPagedResult, () => CategoryDTOPagedResult.fromJsonFactory);
 
     return _apiCategorySearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -277,7 +269,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -285,8 +276,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Category/Search')
   Future<chopper.Response<CategoryDTOPagedResult>> _apiCategorySearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -355,15 +345,13 @@ abstract class FMA extends ChopperService {
       {@Body() required CompanyDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<CompanyDTOPagedResult>> apiCompanySearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -372,7 +360,6 @@ abstract class FMA extends ChopperService {
         CompanyDTOPagedResult, () => CompanyDTOPagedResult.fromJsonFactory);
 
     return _apiCompanySearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -381,7 +368,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -389,8 +375,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Company/Search')
   Future<chopper.Response<CompanyDTOPagedResult>> _apiCompanySearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -459,15 +444,13 @@ abstract class FMA extends ChopperService {
       {@Body() required CostCenterDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<CostCenterDTOPagedResult>> apiCostCenterSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -476,7 +459,6 @@ abstract class FMA extends ChopperService {
         () => CostCenterDTOPagedResult.fromJsonFactory);
 
     return _apiCostCenterSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -485,7 +467,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -493,8 +474,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/CostCenter/Search')
   Future<chopper.Response<CostCenterDTOPagedResult>> _apiCostCenterSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -565,15 +545,13 @@ abstract class FMA extends ChopperService {
       {@Body() required DocumentDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<DocumentDTOPagedResult>> apiDocumentSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -582,7 +560,6 @@ abstract class FMA extends ChopperService {
         DocumentDTOPagedResult, () => DocumentDTOPagedResult.fromJsonFactory);
 
     return _apiDocumentSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -591,7 +568,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -599,8 +575,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Document/Search')
   Future<chopper.Response<DocumentDTOPagedResult>> _apiDocumentSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -669,15 +644,13 @@ abstract class FMA extends ChopperService {
       {@Body() required EngineDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<EngineDTOPagedResult>> apiEngineSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -686,7 +659,6 @@ abstract class FMA extends ChopperService {
         EngineDTOPagedResult, () => EngineDTOPagedResult.fromJsonFactory);
 
     return _apiEngineSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -695,7 +667,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -703,8 +674,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Engine/Search')
   Future<chopper.Response<EngineDTOPagedResult>> _apiEngineSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -773,15 +743,13 @@ abstract class FMA extends ChopperService {
       {@Body() required FuelLoadDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<FuelLoadDTOPagedResult>> apiFuelLoadSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -790,7 +758,6 @@ abstract class FMA extends ChopperService {
         FuelLoadDTOPagedResult, () => FuelLoadDTOPagedResult.fromJsonFactory);
 
     return _apiFuelLoadSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -799,7 +766,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -807,8 +773,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/FuelLoad/Search')
   Future<chopper.Response<FuelLoadDTOPagedResult>> _apiFuelLoadSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -879,15 +844,13 @@ abstract class FMA extends ChopperService {
       {@Body() required FuelMeasureDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<FuelMeasureDTOPagedResult>> apiFuelMeasureSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -896,7 +859,6 @@ abstract class FMA extends ChopperService {
         () => FuelMeasureDTOPagedResult.fromJsonFactory);
 
     return _apiFuelMeasureSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -905,7 +867,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -913,8 +874,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/FuelMeasure/Search')
   Future<chopper.Response<FuelMeasureDTOPagedResult>> _apiFuelMeasureSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -985,15 +945,13 @@ abstract class FMA extends ChopperService {
       {@Body() required FuelTypeDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<FuelTypeDTOPagedResult>> apiFuelTypeSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1002,7 +960,6 @@ abstract class FMA extends ChopperService {
         FuelTypeDTOPagedResult, () => FuelTypeDTOPagedResult.fromJsonFactory);
 
     return _apiFuelTypeSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1011,7 +968,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1019,8 +975,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/FuelType/Search')
   Future<chopper.Response<FuelTypeDTOPagedResult>> _apiFuelTypeSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1091,15 +1046,13 @@ abstract class FMA extends ChopperService {
       {@Body() required FuelVendorDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<FuelVendorDTOPagedResult>> apiFuelVendorSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1108,7 +1061,6 @@ abstract class FMA extends ChopperService {
         () => FuelVendorDTOPagedResult.fromJsonFactory);
 
     return _apiFuelVendorSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1117,7 +1069,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1125,8 +1076,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/FuelVendor/Search')
   Future<chopper.Response<FuelVendorDTOPagedResult>> _apiFuelVendorSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1195,15 +1145,13 @@ abstract class FMA extends ChopperService {
       {@Body() required ImageDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<ImageDTOPagedResult>> apiImageSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1212,7 +1160,6 @@ abstract class FMA extends ChopperService {
         ImageDTOPagedResult, () => ImageDTOPagedResult.fromJsonFactory);
 
     return _apiImageSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1221,7 +1168,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1229,8 +1175,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Image/Search')
   Future<chopper.Response<ImageDTOPagedResult>> _apiImageSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1299,15 +1244,13 @@ abstract class FMA extends ChopperService {
       {@Body() required IncidentDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<IncidentDTOPagedResult>> apiIncidentSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1316,7 +1259,6 @@ abstract class FMA extends ChopperService {
         IncidentDTOPagedResult, () => IncidentDTOPagedResult.fromJsonFactory);
 
     return _apiIncidentSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1325,7 +1267,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1333,8 +1274,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Incident/Search')
   Future<chopper.Response<IncidentDTOPagedResult>> _apiIncidentSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1403,15 +1343,13 @@ abstract class FMA extends ChopperService {
       {@Body() required IncisoDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<IncisoDTOPagedResult>> apiIncisoSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1420,7 +1358,6 @@ abstract class FMA extends ChopperService {
         IncisoDTOPagedResult, () => IncisoDTOPagedResult.fromJsonFactory);
 
     return _apiIncisoSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1429,7 +1366,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1437,8 +1373,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Inciso/Search')
   Future<chopper.Response<IncisoDTOPagedResult>> _apiIncisoSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1507,7 +1442,6 @@ abstract class FMA extends ChopperService {
       {@Body() required InsuranceCompanyDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1515,8 +1449,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<InsuranceCompanyDTOPagedResult>>
       apiInsuranceCompanySearchGet(
-          {String? id,
-          required int? page,
+          {required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -1525,7 +1458,6 @@ abstract class FMA extends ChopperService {
         () => InsuranceCompanyDTOPagedResult.fromJsonFactory);
 
     return _apiInsuranceCompanySearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1534,7 +1466,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1543,8 +1474,7 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/InsuranceCompany/Search')
   Future<chopper.Response<InsuranceCompanyDTOPagedResult>>
       _apiInsuranceCompanySearchGet(
-          {@Query('Id') String? id,
-          @Query('Page') required int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -1615,15 +1545,13 @@ abstract class FMA extends ChopperService {
       {@Body() required MachineDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<MachineDTOPagedResult>> apiMachineSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1632,7 +1560,6 @@ abstract class FMA extends ChopperService {
         MachineDTOPagedResult, () => MachineDTOPagedResult.fromJsonFactory);
 
     return _apiMachineSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1641,7 +1568,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1649,8 +1575,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Machine/Search')
   Future<chopper.Response<MachineDTOPagedResult>> _apiMachineSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1696,6 +1621,19 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  ///@param id
+  Future<chopper.Response<String>> apiMachineDrillRigProjectIdGet(
+      {required String? id}) {
+    return _apiMachineDrillRigProjectIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Machine/DrillRigProject/{id}')
+  Future<chopper.Response<String>> _apiMachineDrillRigProjectIdGet(
+      {@Path('id') required String? id});
+
+  ///
   Future<chopper.Response<List<MaintenanceDTO>>> apiMaintenanceGet() {
     generatedMapping.putIfAbsent(
         MaintenanceDTO, () => MaintenanceDTO.fromJsonFactory);
@@ -1719,15 +1657,13 @@ abstract class FMA extends ChopperService {
       {@Body() required MaintenanceDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<MaintenanceDTOPagedResult>> apiMaintenanceSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -1736,7 +1672,6 @@ abstract class FMA extends ChopperService {
         () => MaintenanceDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenanceSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1745,7 +1680,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1753,8 +1687,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Maintenance/Search')
   Future<chopper.Response<MaintenanceDTOPagedResult>> _apiMaintenanceSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -1825,7 +1758,6 @@ abstract class FMA extends ChopperService {
       {@Body() required MaintenanceGroupDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1833,8 +1765,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<MaintenanceGroupDTOPagedResult>>
       apiMaintenanceGroupSearchGet(
-          {String? id,
-          required int? page,
+          {required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -1843,7 +1774,6 @@ abstract class FMA extends ChopperService {
         () => MaintenanceGroupDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenanceGroupSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1852,7 +1782,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1861,8 +1790,7 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/MaintenanceGroup/Search')
   Future<chopper.Response<MaintenanceGroupDTOPagedResult>>
       _apiMaintenanceGroupSearchGet(
-          {@Query('Id') String? id,
-          @Query('Page') required int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -1935,7 +1863,6 @@ abstract class FMA extends ChopperService {
       {@Body() required MaintenancePartDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1943,8 +1870,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<MaintenancePartDTOPagedResult>>
       apiMaintenancePartSearchGet(
-          {String? id,
-          required int? page,
+          {required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -1953,7 +1879,6 @@ abstract class FMA extends ChopperService {
         () => MaintenancePartDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenancePartSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -1962,7 +1887,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -1971,8 +1895,7 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/MaintenancePart/Search')
   Future<chopper.Response<MaintenancePartDTOPagedResult>>
       _apiMaintenancePartSearchGet(
-          {@Query('Id') String? id,
-          @Query('Page') required int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -2045,7 +1968,6 @@ abstract class FMA extends ChopperService {
       {@Body() required MaintenanceTypeDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2053,8 +1975,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<MaintenanceTypeDTOPagedResult>>
       apiMaintenanceTypeSearchGet(
-          {String? id,
-          required int? page,
+          {required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -2063,7 +1984,6 @@ abstract class FMA extends ChopperService {
         () => MaintenanceTypeDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenanceTypeSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2072,7 +1992,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2081,8 +2000,7 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/MaintenanceType/Search')
   Future<chopper.Response<MaintenanceTypeDTOPagedResult>>
       _apiMaintenanceTypeSearchGet(
-          {@Query('Id') String? id,
-          @Query('Page') required int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -2153,15 +2071,13 @@ abstract class FMA extends ChopperService {
       {@Body() required MeasureDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<MeasureDTOPagedResult>> apiMeasureSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2170,7 +2086,6 @@ abstract class FMA extends ChopperService {
         MeasureDTOPagedResult, () => MeasureDTOPagedResult.fromJsonFactory);
 
     return _apiMeasureSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2179,7 +2094,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2187,8 +2101,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Measure/Search')
   Future<chopper.Response<MeasureDTOPagedResult>> _apiMeasureSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2255,15 +2168,13 @@ abstract class FMA extends ChopperService {
       {@Body() required ModelDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<ModelDTOPagedResult>> apiModelSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2272,7 +2183,6 @@ abstract class FMA extends ChopperService {
         ModelDTOPagedResult, () => ModelDTOPagedResult.fromJsonFactory);
 
     return _apiModelSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2281,7 +2191,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2289,8 +2198,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Model/Search')
   Future<chopper.Response<ModelDTOPagedResult>> _apiModelSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2359,7 +2267,6 @@ abstract class FMA extends ChopperService {
       {@Body() required PackagePolicyDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2367,8 +2274,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   Future<chopper.Response<PackagePolicyDTOPagedResult>>
       apiPackagePolicySearchGet(
-          {String? id,
-          required int? page,
+          {required int? page,
           String? search,
           String? orderByPropertyName,
           enums.SortOrderEnum? sortOrder,
@@ -2377,7 +2283,6 @@ abstract class FMA extends ChopperService {
         () => PackagePolicyDTOPagedResult.fromJsonFactory);
 
     return _apiPackagePolicySearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2386,7 +2291,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2395,8 +2299,7 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/PackagePolicy/Search')
   Future<chopper.Response<PackagePolicyDTOPagedResult>>
       _apiPackagePolicySearchGet(
-          {@Query('Id') String? id,
-          @Query('Page') required int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -2467,15 +2370,13 @@ abstract class FMA extends ChopperService {
       {@Body() required PartDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<PartDTOPagedResult>> apiPartSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2484,7 +2385,6 @@ abstract class FMA extends ChopperService {
         PartDTOPagedResult, () => PartDTOPagedResult.fromJsonFactory);
 
     return _apiPartSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2493,7 +2393,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2501,8 +2400,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Part/Search')
   Future<chopper.Response<PartDTOPagedResult>> _apiPartSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2569,15 +2467,13 @@ abstract class FMA extends ChopperService {
       {@Body() required PolicyDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<PolicyDTOPagedResult>> apiPolicySearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2586,7 +2482,6 @@ abstract class FMA extends ChopperService {
         PolicyDTOPagedResult, () => PolicyDTOPagedResult.fromJsonFactory);
 
     return _apiPolicySearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2595,7 +2490,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2603,8 +2497,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Policy/Search')
   Future<chopper.Response<PolicyDTOPagedResult>> _apiPolicySearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2673,15 +2566,13 @@ abstract class FMA extends ChopperService {
       {@Body() required PolicyStatusDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<PolicyStatusDTOPagedResult>> apiPolicyStatusSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2690,7 +2581,6 @@ abstract class FMA extends ChopperService {
         () => PolicyStatusDTOPagedResult.fromJsonFactory);
 
     return _apiPolicyStatusSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2699,7 +2589,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2708,8 +2597,7 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/PolicyStatus/Search')
   Future<chopper.Response<PolicyStatusDTOPagedResult>>
       _apiPolicyStatusSearchGet(
-          {@Query('Id') String? id,
-          @Query('Page') required int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('OrderByPropertyName') String? orderByPropertyName,
           @Query('SortOrder') String? sortOrder,
@@ -2780,15 +2668,13 @@ abstract class FMA extends ChopperService {
       {@Body() required ProjectDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<ProjectDTOPagedResult>> apiProjectSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2797,7 +2683,6 @@ abstract class FMA extends ChopperService {
         ProjectDTOPagedResult, () => ProjectDTOPagedResult.fromJsonFactory);
 
     return _apiProjectSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2806,7 +2691,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2814,8 +2698,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Project/Search')
   Future<chopper.Response<ProjectDTOPagedResult>> _apiProjectSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2861,6 +2744,113 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  Future<chopper.Response<List<ReminderPostDTO>>> apiReminderGet() {
+    generatedMapping.putIfAbsent(
+        ReminderPostDTO, () => ReminderPostDTO.fromJsonFactory);
+
+    return _apiReminderGet();
+  }
+
+  ///
+  @Get(path: '/api/Reminder')
+  Future<chopper.Response<List<ReminderPostDTO>>> _apiReminderGet();
+
+  ///
+  Future<chopper.Response<String>> apiReminderPost(
+      {required ReminderPostDTO? body}) {
+    return _apiReminderPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Reminder')
+  Future<chopper.Response<String>> _apiReminderPost(
+      {@Body() required ReminderPostDTO? body});
+
+  ///
+  ///@param Id
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  Future<chopper.Response<ReminderDTOPagedResult>> apiReminderSearchGet(
+      {String? id,
+      required int? page,
+      String? search,
+      String? orderByPropertyName,
+      enums.SortOrderEnum? sortOrder,
+      required int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        ReminderDTOPagedResult, () => ReminderDTOPagedResult.fromJsonFactory);
+
+    return _apiReminderSearchGet(
+        id: id,
+        page: page,
+        search: search,
+        orderByPropertyName: orderByPropertyName,
+        sortOrder: enums.$SortOrderEnumMap[sortOrder]?.toString(),
+        pageSize: pageSize);
+  }
+
+  ///
+  ///@param Id
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  @Get(path: '/api/Reminder/Search')
+  Future<chopper.Response<ReminderDTOPagedResult>> _apiReminderSearchGet(
+      {@Query('Id') String? id,
+      @Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('OrderByPropertyName') String? orderByPropertyName,
+      @Query('SortOrder') String? sortOrder,
+      @Query('PageSize') required int? pageSize});
+
+  ///
+  ///@param id
+  Future<chopper.Response<ReminderPostDTO>> apiReminderIdGet(
+      {required String? id}) {
+    generatedMapping.putIfAbsent(
+        ReminderPostDTO, () => ReminderPostDTO.fromJsonFactory);
+
+    return _apiReminderIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Reminder/{id}')
+  Future<chopper.Response<ReminderPostDTO>> _apiReminderIdGet(
+      {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiReminderIdPut(
+      {required String? id, required ReminderPostDTO? body}) {
+    return _apiReminderIdPut(id: id, body: body);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/Reminder/{id}')
+  Future<chopper.Response<bool>> _apiReminderIdPut(
+      {@Path('id') required String? id,
+      @Body() required ReminderPostDTO? body});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiReminderIdDelete({required String? id}) {
+    return _apiReminderIdDelete(id: id);
+  }
+
+  ///
+  ///@param id
+  @Delete(path: '/api/Reminder/{id}')
+  Future<chopper.Response<bool>> _apiReminderIdDelete(
+      {@Path('id') required String? id});
+
+  ///
   Future<chopper.Response<List<RoleDTO>>> apiRoleGet() {
     generatedMapping.putIfAbsent(RoleDTO, () => RoleDTO.fromJsonFactory);
 
@@ -2882,15 +2872,13 @@ abstract class FMA extends ChopperService {
       {@Body() required RoleDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<RoleDTOPagedResult>> apiRoleSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -2899,7 +2887,6 @@ abstract class FMA extends ChopperService {
         RoleDTOPagedResult, () => RoleDTOPagedResult.fromJsonFactory);
 
     return _apiRoleSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -2908,7 +2895,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -2916,8 +2902,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Role/Search')
   Future<chopper.Response<RoleDTOPagedResult>> _apiRoleSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -2984,15 +2969,13 @@ abstract class FMA extends ChopperService {
       {@Body() required ServiceDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<ServiceDTOPagedResult>> apiServiceSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3001,7 +2984,6 @@ abstract class FMA extends ChopperService {
         ServiceDTOPagedResult, () => ServiceDTOPagedResult.fromJsonFactory);
 
     return _apiServiceSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3010,7 +2992,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3018,8 +2999,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Service/Search')
   Future<chopper.Response<ServiceDTOPagedResult>> _apiServiceSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3086,15 +3066,13 @@ abstract class FMA extends ChopperService {
       {@Body() required UserPostDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<AppUserDTOPagedResult>> apiUserSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3103,7 +3081,6 @@ abstract class FMA extends ChopperService {
         AppUserDTOPagedResult, () => AppUserDTOPagedResult.fromJsonFactory);
 
     return _apiUserSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3112,7 +3089,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3120,8 +3096,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/User/Search')
   Future<chopper.Response<AppUserDTOPagedResult>> _apiUserSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3216,15 +3191,13 @@ abstract class FMA extends ChopperService {
       {@Body() required UserVehicleDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<UserVehicleDTOPagedResult>> apiUserVehicleSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3233,7 +3206,6 @@ abstract class FMA extends ChopperService {
         () => UserVehicleDTOPagedResult.fromJsonFactory);
 
     return _apiUserVehicleSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3242,7 +3214,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3250,8 +3221,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/UserVehicle/Search')
   Future<chopper.Response<UserVehicleDTOPagedResult>> _apiUserVehicleSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3322,15 +3292,13 @@ abstract class FMA extends ChopperService {
       {@PartFile() required List<int> partFile});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<VehicleDTOPagedResult>> apiVehicleSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3339,7 +3307,6 @@ abstract class FMA extends ChopperService {
         VehicleDTOPagedResult, () => VehicleDTOPagedResult.fromJsonFactory);
 
     return _apiVehicleSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3348,7 +3315,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3356,23 +3322,20 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Vehicle/Search')
   Future<chopper.Response<VehicleDTOPagedResult>> _apiVehicleSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
       @Query('PageSize') required int? pageSize});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<VehicleInboxDTOPagedResult>> apiVehicleInboxGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3381,7 +3344,6 @@ abstract class FMA extends ChopperService {
         () => VehicleInboxDTOPagedResult.fromJsonFactory);
 
     return _apiVehicleInboxGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3390,7 +3352,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3398,8 +3359,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Vehicle/Inbox')
   Future<chopper.Response<VehicleInboxDTOPagedResult>> _apiVehicleInboxGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3622,6 +3582,18 @@ abstract class FMA extends ChopperService {
       {@Path('Id') required String? id, @Path('CId') required String? cId});
 
   ///
+  ///@param Id
+  Future<chopper.Response<bool>> apiVehicleIdActivePut({required String? id}) {
+    return _apiVehicleIdActivePut(id: id);
+  }
+
+  ///
+  ///@param Id
+  @Put(path: '/api/Vehicle/{Id}/Active', optionalBody: true)
+  Future<chopper.Response<bool>> _apiVehicleIdActivePut(
+      {@Path('Id') required String? id});
+
+  ///
   Future<chopper.Response<List<VehicleTypeDTO>>> apiVehicleTypeGet() {
     generatedMapping.putIfAbsent(
         VehicleTypeDTO, () => VehicleTypeDTO.fromJsonFactory);
@@ -3645,15 +3617,13 @@ abstract class FMA extends ChopperService {
       {@Body() required VehicleTypeDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<VehicleTypeDTOPagedResult>> apiVehicleTypeSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3662,7 +3632,6 @@ abstract class FMA extends ChopperService {
         () => VehicleTypeDTOPagedResult.fromJsonFactory);
 
     return _apiVehicleTypeSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3671,7 +3640,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3679,8 +3647,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/VehicleType/Search')
   Future<chopper.Response<VehicleTypeDTOPagedResult>> _apiVehicleTypeSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3749,15 +3716,13 @@ abstract class FMA extends ChopperService {
       {@Body() required VendorDTO? body});
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
   Future<chopper.Response<VendorDTOPagedResult>> apiVendorSearchGet(
-      {String? id,
-      required int? page,
+      {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -3766,7 +3731,6 @@ abstract class FMA extends ChopperService {
         VendorDTOPagedResult, () => VendorDTOPagedResult.fromJsonFactory);
 
     return _apiVendorSearchGet(
-        id: id,
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -3775,7 +3739,6 @@ abstract class FMA extends ChopperService {
   }
 
   ///
-  ///@param Id
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -3783,8 +3746,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Vendor/Search')
   Future<chopper.Response<VendorDTOPagedResult>> _apiVendorSearchGet(
-      {@Query('Id') String? id,
-      @Query('Page') required int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -8414,6 +8376,214 @@ extension $ReminderDTOExtension on ReminderDTO {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ReminderDTOPagedResult {
+  ReminderDTOPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory ReminderDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ReminderDTOPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <ReminderDTO>[])
+  final List<ReminderDTO>? items;
+  static const fromJsonFactory = _$ReminderDTOPagedResultFromJson;
+  static const toJsonFactory = _$ReminderDTOPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ReminderDTOPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ReminderDTOPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $ReminderDTOPagedResultExtension on ReminderDTOPagedResult {
+  ReminderDTOPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<ReminderDTO>? items}) {
+    return ReminderDTOPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ReminderPostDTO {
+  ReminderPostDTO({
+    this.title,
+    this.frecuency,
+    this.measureId,
+    this.frecuencyPeriod,
+    this.period,
+    this.kmBeforeReminder,
+    this.timeBefore,
+    this.periodToReminder,
+    required this.serviceId,
+    this.userId,
+    required this.vehicleId,
+  });
+
+  factory ReminderPostDTO.fromJson(Map<String, dynamic> json) =>
+      _$ReminderPostDTOFromJson(json);
+
+  @JsonKey(name: 'title')
+  final String? title;
+  @JsonKey(name: 'frecuency')
+  final int? frecuency;
+  @JsonKey(name: 'measureId')
+  final String? measureId;
+  @JsonKey(name: 'frecuencyPeriod')
+  final int? frecuencyPeriod;
+  @JsonKey(
+      name: 'period', toJson: periodEnumToJson, fromJson: periodEnumFromJson)
+  final enums.PeriodEnum? period;
+  @JsonKey(name: 'kmBeforeReminder')
+  final String? kmBeforeReminder;
+  @JsonKey(name: 'timeBefore')
+  final int? timeBefore;
+  @JsonKey(
+      name: 'periodToReminder',
+      toJson: periodEnumToJson,
+      fromJson: periodEnumFromJson)
+  final enums.PeriodEnum? periodToReminder;
+  @JsonKey(name: 'serviceId')
+  final String serviceId;
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'vehicleId')
+  final String vehicleId;
+  static const fromJsonFactory = _$ReminderPostDTOFromJson;
+  static const toJsonFactory = _$ReminderPostDTOToJson;
+  Map<String, dynamic> toJson() => _$ReminderPostDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ReminderPostDTO &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.frecuency, frecuency) ||
+                const DeepCollectionEquality()
+                    .equals(other.frecuency, frecuency)) &&
+            (identical(other.measureId, measureId) ||
+                const DeepCollectionEquality()
+                    .equals(other.measureId, measureId)) &&
+            (identical(other.frecuencyPeriod, frecuencyPeriod) ||
+                const DeepCollectionEquality()
+                    .equals(other.frecuencyPeriod, frecuencyPeriod)) &&
+            (identical(other.period, period) ||
+                const DeepCollectionEquality().equals(other.period, period)) &&
+            (identical(other.kmBeforeReminder, kmBeforeReminder) ||
+                const DeepCollectionEquality()
+                    .equals(other.kmBeforeReminder, kmBeforeReminder)) &&
+            (identical(other.timeBefore, timeBefore) ||
+                const DeepCollectionEquality()
+                    .equals(other.timeBefore, timeBefore)) &&
+            (identical(other.periodToReminder, periodToReminder) ||
+                const DeepCollectionEquality()
+                    .equals(other.periodToReminder, periodToReminder)) &&
+            (identical(other.serviceId, serviceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceId, serviceId)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.vehicleId, vehicleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleId, vehicleId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(frecuency) ^
+      const DeepCollectionEquality().hash(measureId) ^
+      const DeepCollectionEquality().hash(frecuencyPeriod) ^
+      const DeepCollectionEquality().hash(period) ^
+      const DeepCollectionEquality().hash(kmBeforeReminder) ^
+      const DeepCollectionEquality().hash(timeBefore) ^
+      const DeepCollectionEquality().hash(periodToReminder) ^
+      const DeepCollectionEquality().hash(serviceId) ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(vehicleId) ^
+      runtimeType.hashCode;
+}
+
+extension $ReminderPostDTOExtension on ReminderPostDTO {
+  ReminderPostDTO copyWith(
+      {String? title,
+      int? frecuency,
+      String? measureId,
+      int? frecuencyPeriod,
+      enums.PeriodEnum? period,
+      String? kmBeforeReminder,
+      int? timeBefore,
+      enums.PeriodEnum? periodToReminder,
+      String? serviceId,
+      String? userId,
+      String? vehicleId}) {
+    return ReminderPostDTO(
+        title: title ?? this.title,
+        frecuency: frecuency ?? this.frecuency,
+        measureId: measureId ?? this.measureId,
+        frecuencyPeriod: frecuencyPeriod ?? this.frecuencyPeriod,
+        period: period ?? this.period,
+        kmBeforeReminder: kmBeforeReminder ?? this.kmBeforeReminder,
+        timeBefore: timeBefore ?? this.timeBefore,
+        periodToReminder: periodToReminder ?? this.periodToReminder,
+        serviceId: serviceId ?? this.serviceId,
+        userId: userId ?? this.userId,
+        vehicleId: vehicleId ?? this.vehicleId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ResetPasswordModel {
   ResetPasswordModel({
     required this.password,
@@ -9701,11 +9871,11 @@ class VehicleDetailDTO {
     this.performance,
     this.statistics,
     this.fuelLoads,
-    this.maintenances,
-    this.photos,
+    this.listMaintenances,
+    this.photographs,
     this.bill,
     this.pedimento,
-    this.reminders,
+    this.listReminders,
   });
 
   factory VehicleDetailDTO.fromJson(Map<String, dynamic> json) =>
@@ -9740,18 +9910,18 @@ class VehicleDetailDTO {
   final List<PerformanceDTO>? performance;
   @JsonKey(name: 'statistics', defaultValue: <VehicleStatisticsDTO>[])
   final List<VehicleStatisticsDTO>? statistics;
-  @JsonKey(name: 'fuelLoads', defaultValue: <FuelLoadDTO>[])
-  final List<FuelLoadDTO>? fuelLoads;
-  @JsonKey(name: 'maintenances', defaultValue: <MaintenanceDTO>[])
-  final List<MaintenanceDTO>? maintenances;
-  @JsonKey(name: 'photos', defaultValue: <ImageDTO>[])
-  final List<ImageDTO>? photos;
+  @JsonKey(name: 'fuelLoads')
+  final FuelLoadDTOPagedResult? fuelLoads;
+  @JsonKey(name: 'listMaintenances')
+  final MaintenanceDTOPagedResult? listMaintenances;
+  @JsonKey(name: 'photographs', defaultValue: <ImageDTO>[])
+  final List<ImageDTO>? photographs;
   @JsonKey(name: 'bill')
   final DocumentDTO? bill;
   @JsonKey(name: 'pedimento')
   final DocumentDTO? pedimento;
-  @JsonKey(name: 'reminders', defaultValue: <ReminderDTO>[])
-  final List<ReminderDTO>? reminders;
+  @JsonKey(name: 'listReminders')
+  final ReminderDTOPagedResult? listReminders;
   static const fromJsonFactory = _$VehicleDetailDTOFromJson;
   static const toJsonFactory = _$VehicleDetailDTOToJson;
   Map<String, dynamic> toJson() => _$VehicleDetailDTOToJson(this);
@@ -9801,19 +9971,20 @@ class VehicleDetailDTO {
             (identical(other.fuelLoads, fuelLoads) ||
                 const DeepCollectionEquality()
                     .equals(other.fuelLoads, fuelLoads)) &&
-            (identical(other.maintenances, maintenances) ||
+            (identical(other.listMaintenances, listMaintenances) ||
                 const DeepCollectionEquality()
-                    .equals(other.maintenances, maintenances)) &&
-            (identical(other.photos, photos) ||
-                const DeepCollectionEquality().equals(other.photos, photos)) &&
+                    .equals(other.listMaintenances, listMaintenances)) &&
+            (identical(other.photographs, photographs) ||
+                const DeepCollectionEquality()
+                    .equals(other.photographs, photographs)) &&
             (identical(other.bill, bill) ||
                 const DeepCollectionEquality().equals(other.bill, bill)) &&
             (identical(other.pedimento, pedimento) ||
                 const DeepCollectionEquality()
                     .equals(other.pedimento, pedimento)) &&
-            (identical(other.reminders, reminders) ||
+            (identical(other.listReminders, listReminders) ||
                 const DeepCollectionEquality()
-                    .equals(other.reminders, reminders)));
+                    .equals(other.listReminders, listReminders)));
   }
 
   @override
@@ -9832,11 +10003,11 @@ class VehicleDetailDTO {
       const DeepCollectionEquality().hash(performance) ^
       const DeepCollectionEquality().hash(statistics) ^
       const DeepCollectionEquality().hash(fuelLoads) ^
-      const DeepCollectionEquality().hash(maintenances) ^
-      const DeepCollectionEquality().hash(photos) ^
+      const DeepCollectionEquality().hash(listMaintenances) ^
+      const DeepCollectionEquality().hash(photographs) ^
       const DeepCollectionEquality().hash(bill) ^
       const DeepCollectionEquality().hash(pedimento) ^
-      const DeepCollectionEquality().hash(reminders) ^
+      const DeepCollectionEquality().hash(listReminders) ^
       runtimeType.hashCode;
 }
 
@@ -9855,12 +10026,12 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
       String? assignment,
       List<PerformanceDTO>? performance,
       List<VehicleStatisticsDTO>? statistics,
-      List<FuelLoadDTO>? fuelLoads,
-      List<MaintenanceDTO>? maintenances,
-      List<ImageDTO>? photos,
+      FuelLoadDTOPagedResult? fuelLoads,
+      MaintenanceDTOPagedResult? listMaintenances,
+      List<ImageDTO>? photographs,
       DocumentDTO? bill,
       DocumentDTO? pedimento,
-      List<ReminderDTO>? reminders}) {
+      ReminderDTOPagedResult? listReminders}) {
     return VehicleDetailDTO(
         id: id ?? this.id,
         description: description ?? this.description,
@@ -9876,11 +10047,11 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
         performance: performance ?? this.performance,
         statistics: statistics ?? this.statistics,
         fuelLoads: fuelLoads ?? this.fuelLoads,
-        maintenances: maintenances ?? this.maintenances,
-        photos: photos ?? this.photos,
+        listMaintenances: listMaintenances ?? this.listMaintenances,
+        photographs: photographs ?? this.photographs,
         bill: bill ?? this.bill,
         pedimento: pedimento ?? this.pedimento,
-        reminders: reminders ?? this.reminders);
+        listReminders: listReminders ?? this.listReminders);
   }
 }
 
@@ -10114,22 +10285,27 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
 @JsonSerializable(explicitToJson: true)
 class VehicleInboxDTO {
   VehicleInboxDTO({
+    this.id,
     this.description,
+    this.assignedTo,
     this.economicNumber,
     this.vin,
     this.placas,
     this.category,
-    this.vehicleTypeId,
     this.projectName,
+    this.machineId,
     this.companyId,
-    this.id,
   });
 
   factory VehicleInboxDTO.fromJson(Map<String, dynamic> json) =>
       _$VehicleInboxDTOFromJson(json);
 
+  @JsonKey(name: 'id')
+  final String? id;
   @JsonKey(name: 'description')
   final String? description;
+  @JsonKey(name: 'assignedTo')
+  final String? assignedTo;
   @JsonKey(name: 'economicNumber')
   final String? economicNumber;
   @JsonKey(name: 'vin')
@@ -10138,14 +10314,12 @@ class VehicleInboxDTO {
   final String? placas;
   @JsonKey(name: 'category')
   final String? category;
-  @JsonKey(name: 'vehicleTypeId')
-  final String? vehicleTypeId;
   @JsonKey(name: 'projectName')
   final String? projectName;
+  @JsonKey(name: 'machineId')
+  final String? machineId;
   @JsonKey(name: 'companyId')
   final String? companyId;
-  @JsonKey(name: 'id')
-  final String? id;
   static const fromJsonFactory = _$VehicleInboxDTOFromJson;
   static const toJsonFactory = _$VehicleInboxDTOToJson;
   Map<String, dynamic> toJson() => _$VehicleInboxDTOToJson(this);
@@ -10157,9 +10331,14 @@ class VehicleInboxDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is VehicleInboxDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
+            (identical(other.assignedTo, assignedTo) ||
+                const DeepCollectionEquality()
+                    .equals(other.assignedTo, assignedTo)) &&
             (identical(other.economicNumber, economicNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.economicNumber, economicNumber)) &&
@@ -10170,54 +10349,55 @@ class VehicleInboxDTO {
             (identical(other.category, category) ||
                 const DeepCollectionEquality()
                     .equals(other.category, category)) &&
-            (identical(other.vehicleTypeId, vehicleTypeId) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicleTypeId, vehicleTypeId)) &&
             (identical(other.projectName, projectName) ||
                 const DeepCollectionEquality()
                     .equals(other.projectName, projectName)) &&
+            (identical(other.machineId, machineId) ||
+                const DeepCollectionEquality()
+                    .equals(other.machineId, machineId)) &&
             (identical(other.companyId, companyId) ||
                 const DeepCollectionEquality()
-                    .equals(other.companyId, companyId)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+                    .equals(other.companyId, companyId)));
   }
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(assignedTo) ^
       const DeepCollectionEquality().hash(economicNumber) ^
       const DeepCollectionEquality().hash(vin) ^
       const DeepCollectionEquality().hash(placas) ^
       const DeepCollectionEquality().hash(category) ^
-      const DeepCollectionEquality().hash(vehicleTypeId) ^
       const DeepCollectionEquality().hash(projectName) ^
+      const DeepCollectionEquality().hash(machineId) ^
       const DeepCollectionEquality().hash(companyId) ^
-      const DeepCollectionEquality().hash(id) ^
       runtimeType.hashCode;
 }
 
 extension $VehicleInboxDTOExtension on VehicleInboxDTO {
   VehicleInboxDTO copyWith(
-      {String? description,
+      {String? id,
+      String? description,
+      String? assignedTo,
       String? economicNumber,
       String? vin,
       String? placas,
       String? category,
-      String? vehicleTypeId,
       String? projectName,
-      String? companyId,
-      String? id}) {
+      String? machineId,
+      String? companyId}) {
     return VehicleInboxDTO(
+        id: id ?? this.id,
         description: description ?? this.description,
+        assignedTo: assignedTo ?? this.assignedTo,
         economicNumber: economicNumber ?? this.economicNumber,
         vin: vin ?? this.vin,
         placas: placas ?? this.placas,
         category: category ?? this.category,
-        vehicleTypeId: vehicleTypeId ?? this.vehicleTypeId,
         projectName: projectName ?? this.projectName,
-        companyId: companyId ?? this.companyId,
-        id: id ?? this.id);
+        machineId: machineId ?? this.machineId,
+        companyId: companyId ?? this.companyId);
   }
 }
 
@@ -11359,6 +11539,54 @@ List<enums.GenderEnum> genderEnumListFromJson(
   }
 
   return genderEnum.map((e) => genderEnumFromJson(e.toString())).toList();
+}
+
+String? periodEnumToJson(enums.PeriodEnum? periodEnum) {
+  return enums.$PeriodEnumMap[periodEnum];
+}
+
+enums.PeriodEnum periodEnumFromJson(
+  Object? periodEnum, [
+  enums.PeriodEnum? defaultValue,
+]) {
+  if (periodEnum is String) {
+    return enums.$PeriodEnumMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == periodEnum.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.PeriodEnum.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  final parsedResult = defaultValue == null
+      ? null
+      : enums.$PeriodEnumMap.entries
+          .firstWhereOrNull((element) => element.value == defaultValue)
+          ?.key;
+
+  return parsedResult ??
+      defaultValue ??
+      enums.PeriodEnum.swaggerGeneratedUnknown;
+}
+
+List<String> periodEnumListToJson(List<enums.PeriodEnum>? periodEnum) {
+  if (periodEnum == null) {
+    return [];
+  }
+
+  return periodEnum.map((e) => enums.$PeriodEnumMap[e]!).toList();
+}
+
+List<enums.PeriodEnum> periodEnumListFromJson(
+  List? periodEnum, [
+  List<enums.PeriodEnum>? defaultValue,
+]) {
+  if (periodEnum == null) {
+    return defaultValue ?? [];
+  }
+
+  return periodEnum.map((e) => periodEnumFromJson(e.toString())).toList();
 }
 
 String? sortOrderEnumToJson(enums.SortOrderEnum? sortOrderEnum) {

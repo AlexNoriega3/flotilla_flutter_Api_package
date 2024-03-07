@@ -17,6 +17,26 @@ const $GenderEnumMap = {
   GenderEnum.otro: 'Otro'
 };
 
+enum PeriodEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Day')
+  day,
+  @JsonValue('Week')
+  week,
+  @JsonValue('Month')
+  month,
+  @JsonValue('Year')
+  year
+}
+
+const $PeriodEnumMap = {
+  PeriodEnum.day: 'Day',
+  PeriodEnum.week: 'Week',
+  PeriodEnum.month: 'Month',
+  PeriodEnum.year: 'Year'
+};
+
 enum SortOrderEnum {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,

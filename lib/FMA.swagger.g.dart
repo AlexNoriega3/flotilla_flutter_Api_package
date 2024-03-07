@@ -1248,6 +1248,59 @@ Map<String, dynamic> _$ReminderDTOToJson(ReminderDTO instance) =>
       'vehicle': instance.vehicle,
     };
 
+ReminderDTOPagedResult _$ReminderDTOPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ReminderDTOPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ReminderDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ReminderDTOPagedResultToJson(
+        ReminderDTOPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+ReminderPostDTO _$ReminderPostDTOFromJson(Map<String, dynamic> json) =>
+    ReminderPostDTO(
+      title: json['title'] as String?,
+      frecuency: json['frecuency'] as int?,
+      measureId: json['measureId'] as String?,
+      frecuencyPeriod: json['frecuencyPeriod'] as int?,
+      period: periodEnumFromJson(json['period']),
+      kmBeforeReminder: json['kmBeforeReminder'] as String?,
+      timeBefore: json['timeBefore'] as int?,
+      periodToReminder: periodEnumFromJson(json['periodToReminder']),
+      serviceId: json['serviceId'] as String,
+      userId: json['userId'] as String?,
+      vehicleId: json['vehicleId'] as String,
+    );
+
+Map<String, dynamic> _$ReminderPostDTOToJson(ReminderPostDTO instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'frecuency': instance.frecuency,
+      'measureId': instance.measureId,
+      'frecuencyPeriod': instance.frecuencyPeriod,
+      'period': periodEnumToJson(instance.period),
+      'kmBeforeReminder': instance.kmBeforeReminder,
+      'timeBefore': instance.timeBefore,
+      'periodToReminder': periodEnumToJson(instance.periodToReminder),
+      'serviceId': instance.serviceId,
+      'userId': instance.userId,
+      'vehicleId': instance.vehicleId,
+    };
+
 ResetPasswordModel _$ResetPasswordModelFromJson(Map<String, dynamic> json) =>
     ResetPasswordModel(
       password: json['password'] as String,
@@ -1591,15 +1644,15 @@ VehicleDetailDTO _$VehicleDetailDTOFromJson(Map<String, dynamic> json) =>
                   VehicleStatisticsDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      fuelLoads: (json['fuelLoads'] as List<dynamic>?)
-              ?.map((e) => FuelLoadDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      maintenances: (json['maintenances'] as List<dynamic>?)
-              ?.map((e) => MaintenanceDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      photos: (json['photos'] as List<dynamic>?)
+      fuelLoads: json['fuelLoads'] == null
+          ? null
+          : FuelLoadDTOPagedResult.fromJson(
+              json['fuelLoads'] as Map<String, dynamic>),
+      listMaintenances: json['listMaintenances'] == null
+          ? null
+          : MaintenanceDTOPagedResult.fromJson(
+              json['listMaintenances'] as Map<String, dynamic>),
+      photographs: (json['photographs'] as List<dynamic>?)
               ?.map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
@@ -1609,10 +1662,10 @@ VehicleDetailDTO _$VehicleDetailDTOFromJson(Map<String, dynamic> json) =>
       pedimento: json['pedimento'] == null
           ? null
           : DocumentDTO.fromJson(json['pedimento'] as Map<String, dynamic>),
-      reminders: (json['reminders'] as List<dynamic>?)
-              ?.map((e) => ReminderDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
+      listReminders: json['listReminders'] == null
+          ? null
+          : ReminderDTOPagedResult.fromJson(
+              json['listReminders'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$VehicleDetailDTOToJson(VehicleDetailDTO instance) =>
@@ -1630,12 +1683,12 @@ Map<String, dynamic> _$VehicleDetailDTOToJson(VehicleDetailDTO instance) =>
       'assignment': instance.assignment,
       'performance': instance.performance?.map((e) => e.toJson()).toList(),
       'statistics': instance.statistics?.map((e) => e.toJson()).toList(),
-      'fuelLoads': instance.fuelLoads?.map((e) => e.toJson()).toList(),
-      'maintenances': instance.maintenances?.map((e) => e.toJson()).toList(),
-      'photos': instance.photos?.map((e) => e.toJson()).toList(),
+      'fuelLoads': instance.fuelLoads?.toJson(),
+      'listMaintenances': instance.listMaintenances?.toJson(),
+      'photographs': instance.photographs?.map((e) => e.toJson()).toList(),
       'bill': instance.bill?.toJson(),
       'pedimento': instance.pedimento?.toJson(),
-      'reminders': instance.reminders?.map((e) => e.toJson()).toList(),
+      'listReminders': instance.listReminders?.toJson(),
     };
 
 VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
@@ -1695,28 +1748,30 @@ Map<String, dynamic> _$VehicleFormDTOToJson(VehicleFormDTO instance) =>
 
 VehicleInboxDTO _$VehicleInboxDTOFromJson(Map<String, dynamic> json) =>
     VehicleInboxDTO(
+      id: json['id'] as String?,
       description: json['description'] as String?,
+      assignedTo: json['assignedTo'] as String?,
       economicNumber: json['economicNumber'] as String?,
       vin: json['vin'] as String?,
       placas: json['placas'] as String?,
       category: json['category'] as String?,
-      vehicleTypeId: json['vehicleTypeId'] as String?,
       projectName: json['projectName'] as String?,
+      machineId: json['machineId'] as String?,
       companyId: json['companyId'] as String?,
-      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$VehicleInboxDTOToJson(VehicleInboxDTO instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'description': instance.description,
+      'assignedTo': instance.assignedTo,
       'economicNumber': instance.economicNumber,
       'vin': instance.vin,
       'placas': instance.placas,
       'category': instance.category,
-      'vehicleTypeId': instance.vehicleTypeId,
       'projectName': instance.projectName,
+      'machineId': instance.machineId,
       'companyId': instance.companyId,
-      'id': instance.id,
     };
 
 VehicleInboxDTOPagedResult _$VehicleInboxDTOPagedResultFromJson(
