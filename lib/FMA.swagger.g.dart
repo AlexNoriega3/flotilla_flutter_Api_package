@@ -1708,6 +1708,8 @@ VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
       measureId: json['measureId'] as String?,
       fuelMeasureId: json['fuelMeasureId'] as String?,
       fuelTypeId: json['fuelTypeId'] as String?,
+      companyId: json['companyId'] as String?,
+      categoryId: json['categoryId'] as String?,
       tankSize: json['tankSize'] as int?,
       active: json['active'] as bool?,
       photographsFiles: (json['photographsFiles'] as List<dynamic>?)
@@ -1737,6 +1739,8 @@ Map<String, dynamic> _$VehicleFormDTOToJson(VehicleFormDTO instance) =>
       'measureId': instance.measureId,
       'fuelMeasureId': instance.fuelMeasureId,
       'fuelTypeId': instance.fuelTypeId,
+      'companyId': instance.companyId,
+      'categoryId': instance.categoryId,
       'tankSize': instance.tankSize,
       'active': instance.active,
       'photographsFiles': instance.photographsFiles,
@@ -1751,6 +1755,7 @@ Map<String, dynamic> _$VehicleFormDTOToJson(VehicleFormDTO instance) =>
 VehicleInboxDTO _$VehicleInboxDTOFromJson(Map<String, dynamic> json) =>
     VehicleInboxDTO(
       id: json['id'] as String?,
+      image: json['image'] as String?,
       description: json['description'] as String?,
       assignedTo: json['assignedTo'] as String?,
       economicNumber: json['economicNumber'] as String?,
@@ -1765,6 +1770,7 @@ VehicleInboxDTO _$VehicleInboxDTOFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$VehicleInboxDTOToJson(VehicleInboxDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'image': instance.image,
       'description': instance.description,
       'assignedTo': instance.assignedTo,
       'economicNumber': instance.economicNumber,
@@ -1852,6 +1858,10 @@ VehicleNewEditDTO _$VehicleNewEditDTOFromJson(Map<String, dynamic> json) =>
               ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      companies: (json['companies'] as List<dynamic>?)
+              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       photos: (json['photos'] as List<dynamic>?)
               ?.map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -1880,6 +1890,7 @@ Map<String, dynamic> _$VehicleNewEditDTOToJson(VehicleNewEditDTO instance) =>
       'fuelMeasures': instance.fuelMeasures?.map((e) => e.toJson()).toList(),
       'fuelTypes': instance.fuelTypes?.map((e) => e.toJson()).toList(),
       'machines': instance.machines?.map((e) => e.toJson()).toList(),
+      'companies': instance.companies?.map((e) => e.toJson()).toList(),
       'photos': instance.photos?.map((e) => e.toJson()).toList(),
       'bill': instance.bill?.toJson(),
       'pedimento': instance.pedimento?.toJson(),
@@ -1904,6 +1915,8 @@ VehiclePostDTO _$VehiclePostDTOFromJson(Map<String, dynamic> json) =>
       measureId: json['measureId'] as String?,
       fuelMeasureId: json['fuelMeasureId'] as String?,
       fuelTypeId: json['fuelTypeId'] as String?,
+      companyId: json['companyId'] as String?,
+      categoryId: json['categoryId'] as String?,
       tankSize: json['tankSize'] as int?,
       active: json['active'] as bool?,
       photographsFiles: (json['photographsFiles'] as List<dynamic>?)
@@ -1933,6 +1946,8 @@ Map<String, dynamic> _$VehiclePostDTOToJson(VehiclePostDTO instance) =>
       'measureId': instance.measureId,
       'fuelMeasureId': instance.fuelMeasureId,
       'fuelTypeId': instance.fuelTypeId,
+      'companyId': instance.companyId,
+      'categoryId': instance.categoryId,
       'tankSize': instance.tankSize,
       'active': instance.active,
       'photographsFiles': instance.photographsFiles,
@@ -1959,6 +1974,8 @@ VehiclePutDTO _$VehiclePutDTOFromJson(Map<String, dynamic> json) =>
       measureId: json['measureId'] as String?,
       fuelMeasureId: json['fuelMeasureId'] as String?,
       fuelTypeId: json['fuelTypeId'] as String?,
+      companyId: json['companyId'] as String?,
+      categoryId: json['categoryId'] as String?,
       tankSize: json['tankSize'] as int?,
       active: json['active'] as bool?,
       photographsFiles: (json['photographsFiles'] as List<dynamic>?)
@@ -1992,6 +2009,8 @@ Map<String, dynamic> _$VehiclePutDTOToJson(VehiclePutDTO instance) =>
       'measureId': instance.measureId,
       'fuelMeasureId': instance.fuelMeasureId,
       'fuelTypeId': instance.fuelTypeId,
+      'companyId': instance.companyId,
+      'categoryId': instance.categoryId,
       'tankSize': instance.tankSize,
       'active': instance.active,
       'photographsFiles': instance.photographsFiles,

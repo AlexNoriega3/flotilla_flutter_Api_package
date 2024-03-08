@@ -1936,14 +1936,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Vehicle/Inbox';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -1987,6 +1989,8 @@ class _$FMA extends FMA {
       String? measureId,
       String? fuelMeasureId,
       String? fuelTypeId,
+      String? companyId,
+      String? categoryId,
       int? tankSize,
       bool? active,
       required List<int> partFile}) {
@@ -2010,6 +2014,8 @@ class _$FMA extends FMA {
       'MeasureId': measureId,
       'FuelMeasureId': fuelMeasureId,
       'FuelTypeId': fuelTypeId,
+      'CompanyId': companyId,
+      'CategoryId': categoryId,
       'TankSize': tankSize,
       'Active': active
     };

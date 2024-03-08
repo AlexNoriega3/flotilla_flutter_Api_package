@@ -9572,6 +9572,12 @@
                   "FuelTypeId": {
                     "type": "string"
                   },
+                  "CompanyId": {
+                    "type": "string"
+                  },
+                  "CategoryId": {
+                    "type": "string"
+                  },
                   "TankSize": {
                     "type": "integer",
                     "format": "int32"
@@ -9646,6 +9652,12 @@
                   "style": "form"
                 },
                 "FuelTypeId": {
+                  "style": "form"
+                },
+                "CompanyId": {
+                  "style": "form"
+                },
+                "CategoryId": {
                   "style": "form"
                 },
                 "TankSize": {
@@ -9934,6 +9946,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
             }
           }
         ],
@@ -10460,6 +10480,20 @@
           },
           {
             "name": "FuelTypeId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CompanyId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CategoryId",
             "in": "query",
             "schema": {
               "type": "string"
@@ -14393,6 +14427,14 @@
             "type": "string",
             "nullable": true
           },
+          "companyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryId": {
+            "type": "string",
+            "nullable": true
+          },
           "tankSize": {
             "type": "integer",
             "format": "int32"
@@ -14441,6 +14483,10 @@
         "type": "object",
         "properties": {
           "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
             "type": "string",
             "nullable": true
           },
@@ -14602,6 +14648,13 @@
             },
             "nullable": true
           },
+          "companies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
+          },
           "photos": {
             "type": "array",
             "items": {
@@ -14698,6 +14751,14 @@
             "nullable": true
           },
           "fuelTypeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryId": {
             "type": "string",
             "nullable": true
           },
@@ -14809,6 +14870,14 @@
             "nullable": true
           },
           "fuelTypeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryId": {
             "type": "string",
             "nullable": true
           },

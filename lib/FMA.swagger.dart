@@ -3334,12 +3334,14 @@ abstract class FMA extends ChopperService {
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
+  ///@param active
   Future<chopper.Response<VehicleInboxDTOPagedResult>> apiVehicleInboxGet(
       {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     generatedMapping.putIfAbsent(VehicleInboxDTOPagedResult,
         () => VehicleInboxDTOPagedResult.fromJsonFactory);
 
@@ -3348,7 +3350,8 @@ abstract class FMA extends ChopperService {
         search: search,
         orderByPropertyName: orderByPropertyName,
         sortOrder: enums.$SortOrderEnumMap[sortOrder]?.toString(),
-        pageSize: pageSize);
+        pageSize: pageSize,
+        active: active);
   }
 
   ///
@@ -3357,13 +3360,15 @@ abstract class FMA extends ChopperService {
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
+  ///@param active
   @Get(path: '/api/Vehicle/Inbox')
   Future<chopper.Response<VehicleInboxDTOPagedResult>> _apiVehicleInboxGet(
       {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
-      @Query('PageSize') required int? pageSize});
+      @Query('PageSize') required int? pageSize,
+      @Query('active') bool? active});
 
   ///
   Future<chopper.Response<String>> apiVehicleSavePost(
@@ -3412,6 +3417,8 @@ abstract class FMA extends ChopperService {
   ///@param MeasureId
   ///@param FuelMeasureId
   ///@param FuelTypeId
+  ///@param CompanyId
+  ///@param CategoryId
   ///@param TankSize
   ///@param Active
   Future<chopper.Response<bool>> apiVehicleIdPut(
@@ -3434,6 +3441,8 @@ abstract class FMA extends ChopperService {
       String? measureId,
       String? fuelMeasureId,
       String? fuelTypeId,
+      String? companyId,
+      String? categoryId,
       int? tankSize,
       bool? active,
       required List<int> partFile}) {
@@ -3457,6 +3466,8 @@ abstract class FMA extends ChopperService {
         measureId: measureId,
         fuelMeasureId: fuelMeasureId,
         fuelTypeId: fuelTypeId,
+        companyId: companyId,
+        categoryId: categoryId,
         tankSize: tankSize,
         active: active,
         partFile: partFile);
@@ -3482,6 +3493,8 @@ abstract class FMA extends ChopperService {
   ///@param MeasureId
   ///@param FuelMeasureId
   ///@param FuelTypeId
+  ///@param CompanyId
+  ///@param CategoryId
   ///@param TankSize
   ///@param Active
   @Put(path: '/api/Vehicle/{id}')
@@ -3506,6 +3519,8 @@ abstract class FMA extends ChopperService {
       @Query('MeasureId') String? measureId,
       @Query('FuelMeasureId') String? fuelMeasureId,
       @Query('FuelTypeId') String? fuelTypeId,
+      @Query('CompanyId') String? companyId,
+      @Query('CategoryId') String? categoryId,
       @Query('TankSize') int? tankSize,
       @Query('Active') bool? active,
       @PartFile() required List<int> partFile});
@@ -10079,6 +10094,8 @@ class VehicleFormDTO {
     this.measureId,
     this.fuelMeasureId,
     this.fuelTypeId,
+    this.companyId,
+    this.categoryId,
     this.tankSize,
     this.active,
     this.photographsFiles,
@@ -10119,6 +10136,10 @@ class VehicleFormDTO {
   final String? fuelMeasureId;
   @JsonKey(name: 'fuelTypeId')
   final String? fuelTypeId;
+  @JsonKey(name: 'companyId')
+  final String? companyId;
+  @JsonKey(name: 'categoryId')
+  final String? categoryId;
   @JsonKey(name: 'tankSize')
   final int? tankSize;
   @JsonKey(name: 'active')
@@ -10186,6 +10207,12 @@ class VehicleFormDTO {
             (identical(other.fuelTypeId, fuelTypeId) ||
                 const DeepCollectionEquality()
                     .equals(other.fuelTypeId, fuelTypeId)) &&
+            (identical(other.companyId, companyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.companyId, companyId)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
             (identical(other.tankSize, tankSize) ||
                 const DeepCollectionEquality()
                     .equals(other.tankSize, tankSize)) &&
@@ -10208,9 +10235,7 @@ class VehicleFormDTO {
             (identical(other.machineId, machineId) ||
                 const DeepCollectionEquality()
                     .equals(other.machineId, machineId)) &&
-            (identical(other.economicNumber, economicNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.economicNumber, economicNumber)));
+            (identical(other.economicNumber, economicNumber) || const DeepCollectionEquality().equals(other.economicNumber, economicNumber)));
   }
 
   @override
@@ -10228,6 +10253,8 @@ class VehicleFormDTO {
       const DeepCollectionEquality().hash(measureId) ^
       const DeepCollectionEquality().hash(fuelMeasureId) ^
       const DeepCollectionEquality().hash(fuelTypeId) ^
+      const DeepCollectionEquality().hash(companyId) ^
+      const DeepCollectionEquality().hash(categoryId) ^
       const DeepCollectionEquality().hash(tankSize) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(photographsFiles) ^
@@ -10255,6 +10282,8 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
       String? measureId,
       String? fuelMeasureId,
       String? fuelTypeId,
+      String? companyId,
+      String? categoryId,
       int? tankSize,
       bool? active,
       List<String>? photographsFiles,
@@ -10278,6 +10307,8 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
         measureId: measureId ?? this.measureId,
         fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
         fuelTypeId: fuelTypeId ?? this.fuelTypeId,
+        companyId: companyId ?? this.companyId,
+        categoryId: categoryId ?? this.categoryId,
         tankSize: tankSize ?? this.tankSize,
         active: active ?? this.active,
         photographsFiles: photographsFiles ?? this.photographsFiles,
@@ -10294,6 +10325,7 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
 class VehicleInboxDTO {
   VehicleInboxDTO({
     this.id,
+    this.image,
     this.description,
     this.assignedTo,
     this.economicNumber,
@@ -10310,6 +10342,8 @@ class VehicleInboxDTO {
 
   @JsonKey(name: 'id')
   final String? id;
+  @JsonKey(name: 'image')
+  final String? image;
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'assignedTo')
@@ -10341,6 +10375,8 @@ class VehicleInboxDTO {
         (other is VehicleInboxDTO &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
@@ -10371,6 +10407,7 @@ class VehicleInboxDTO {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(image) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(assignedTo) ^
       const DeepCollectionEquality().hash(economicNumber) ^
@@ -10386,6 +10423,7 @@ class VehicleInboxDTO {
 extension $VehicleInboxDTOExtension on VehicleInboxDTO {
   VehicleInboxDTO copyWith(
       {String? id,
+      String? image,
       String? description,
       String? assignedTo,
       String? economicNumber,
@@ -10397,6 +10435,7 @@ extension $VehicleInboxDTOExtension on VehicleInboxDTO {
       String? companyId}) {
     return VehicleInboxDTO(
         id: id ?? this.id,
+        image: image ?? this.image,
         description: description ?? this.description,
         assignedTo: assignedTo ?? this.assignedTo,
         economicNumber: economicNumber ?? this.economicNumber,
@@ -10501,6 +10540,7 @@ class VehicleNewEditDTO {
     this.fuelMeasures,
     this.fuelTypes,
     this.machines,
+    this.companies,
     this.photos,
     this.bill,
     this.pedimento,
@@ -10535,6 +10575,8 @@ class VehicleNewEditDTO {
   final List<SelectDTO>? fuelTypes;
   @JsonKey(name: 'machines', defaultValue: <SelectDTO>[])
   final List<SelectDTO>? machines;
+  @JsonKey(name: 'companies', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? companies;
   @JsonKey(name: 'photos', defaultValue: <ImageDTO>[])
   final List<ImageDTO>? photos;
   @JsonKey(name: 'bill')
@@ -10588,6 +10630,9 @@ class VehicleNewEditDTO {
             (identical(other.machines, machines) ||
                 const DeepCollectionEquality()
                     .equals(other.machines, machines)) &&
+            (identical(other.companies, companies) ||
+                const DeepCollectionEquality()
+                    .equals(other.companies, companies)) &&
             (identical(other.photos, photos) ||
                 const DeepCollectionEquality().equals(other.photos, photos)) &&
             (identical(other.bill, bill) ||
@@ -10612,6 +10657,7 @@ class VehicleNewEditDTO {
       const DeepCollectionEquality().hash(fuelMeasures) ^
       const DeepCollectionEquality().hash(fuelTypes) ^
       const DeepCollectionEquality().hash(machines) ^
+      const DeepCollectionEquality().hash(companies) ^
       const DeepCollectionEquality().hash(photos) ^
       const DeepCollectionEquality().hash(bill) ^
       const DeepCollectionEquality().hash(pedimento) ^
@@ -10633,6 +10679,7 @@ extension $VehicleNewEditDTOExtension on VehicleNewEditDTO {
       List<SelectDTO>? fuelMeasures,
       List<SelectDTO>? fuelTypes,
       List<SelectDTO>? machines,
+      List<SelectDTO>? companies,
       List<ImageDTO>? photos,
       DocumentDTO? bill,
       DocumentDTO? pedimento}) {
@@ -10650,6 +10697,7 @@ extension $VehicleNewEditDTOExtension on VehicleNewEditDTO {
         fuelMeasures: fuelMeasures ?? this.fuelMeasures,
         fuelTypes: fuelTypes ?? this.fuelTypes,
         machines: machines ?? this.machines,
+        companies: companies ?? this.companies,
         photos: photos ?? this.photos,
         bill: bill ?? this.bill,
         pedimento: pedimento ?? this.pedimento);
@@ -10676,6 +10724,8 @@ class VehiclePostDTO {
     this.measureId,
     this.fuelMeasureId,
     this.fuelTypeId,
+    this.companyId,
+    this.categoryId,
     this.tankSize,
     this.active,
     this.photographsFiles,
@@ -10720,6 +10770,10 @@ class VehiclePostDTO {
   final String? fuelMeasureId;
   @JsonKey(name: 'fuelTypeId')
   final String? fuelTypeId;
+  @JsonKey(name: 'companyId')
+  final String? companyId;
+  @JsonKey(name: 'categoryId')
+  final String? categoryId;
   @JsonKey(name: 'tankSize')
   final int? tankSize;
   @JsonKey(name: 'active')
@@ -10790,6 +10844,12 @@ class VehiclePostDTO {
             (identical(other.fuelTypeId, fuelTypeId) ||
                 const DeepCollectionEquality()
                     .equals(other.fuelTypeId, fuelTypeId)) &&
+            (identical(other.companyId, companyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.companyId, companyId)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
             (identical(other.tankSize, tankSize) ||
                 const DeepCollectionEquality()
                     .equals(other.tankSize, tankSize)) &&
@@ -10801,9 +10861,7 @@ class VehiclePostDTO {
             (identical(other.billFile, billFile) ||
                 const DeepCollectionEquality()
                     .equals(other.billFile, billFile)) &&
-            (identical(other.pedimentoFile, pedimentoFile) ||
-                const DeepCollectionEquality()
-                    .equals(other.pedimentoFile, pedimentoFile)));
+            (identical(other.pedimentoFile, pedimentoFile) || const DeepCollectionEquality().equals(other.pedimentoFile, pedimentoFile)));
   }
 
   @override
@@ -10825,6 +10883,8 @@ class VehiclePostDTO {
       const DeepCollectionEquality().hash(measureId) ^
       const DeepCollectionEquality().hash(fuelMeasureId) ^
       const DeepCollectionEquality().hash(fuelTypeId) ^
+      const DeepCollectionEquality().hash(companyId) ^
+      const DeepCollectionEquality().hash(categoryId) ^
       const DeepCollectionEquality().hash(tankSize) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(photographsFiles) ^
@@ -10852,6 +10912,8 @@ extension $VehiclePostDTOExtension on VehiclePostDTO {
       String? measureId,
       String? fuelMeasureId,
       String? fuelTypeId,
+      String? companyId,
+      String? categoryId,
       int? tankSize,
       bool? active,
       List<String>? photographsFiles,
@@ -10875,6 +10937,8 @@ extension $VehiclePostDTOExtension on VehiclePostDTO {
         measureId: measureId ?? this.measureId,
         fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
         fuelTypeId: fuelTypeId ?? this.fuelTypeId,
+        companyId: companyId ?? this.companyId,
+        categoryId: categoryId ?? this.categoryId,
         tankSize: tankSize ?? this.tankSize,
         active: active ?? this.active,
         photographsFiles: photographsFiles ?? this.photographsFiles,
@@ -10903,6 +10967,8 @@ class VehiclePutDTO {
     this.measureId,
     this.fuelMeasureId,
     this.fuelTypeId,
+    this.companyId,
+    this.categoryId,
     this.tankSize,
     this.active,
     this.photographsFiles,
@@ -10948,6 +11014,10 @@ class VehiclePutDTO {
   final String? fuelMeasureId;
   @JsonKey(name: 'fuelTypeId')
   final String? fuelTypeId;
+  @JsonKey(name: 'companyId')
+  final String? companyId;
+  @JsonKey(name: 'categoryId')
+  final String? categoryId;
   @JsonKey(name: 'tankSize')
   final int? tankSize;
   @JsonKey(name: 'active')
@@ -11020,6 +11090,12 @@ class VehiclePutDTO {
             (identical(other.fuelTypeId, fuelTypeId) ||
                 const DeepCollectionEquality()
                     .equals(other.fuelTypeId, fuelTypeId)) &&
+            (identical(other.companyId, companyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.companyId, companyId)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
             (identical(other.tankSize, tankSize) ||
                 const DeepCollectionEquality()
                     .equals(other.tankSize, tankSize)) &&
@@ -11031,12 +11107,8 @@ class VehiclePutDTO {
             (identical(other.billFile, billFile) ||
                 const DeepCollectionEquality()
                     .equals(other.billFile, billFile)) &&
-            (identical(other.pedimentoFile, pedimentoFile) ||
-                const DeepCollectionEquality()
-                    .equals(other.pedimentoFile, pedimentoFile)) &&
-            (identical(other.photosToRemove, photosToRemove) ||
-                const DeepCollectionEquality()
-                    .equals(other.photosToRemove, photosToRemove)));
+            (identical(other.pedimentoFile, pedimentoFile) || const DeepCollectionEquality().equals(other.pedimentoFile, pedimentoFile)) &&
+            (identical(other.photosToRemove, photosToRemove) || const DeepCollectionEquality().equals(other.photosToRemove, photosToRemove)));
   }
 
   @override
@@ -11058,6 +11130,8 @@ class VehiclePutDTO {
       const DeepCollectionEquality().hash(measureId) ^
       const DeepCollectionEquality().hash(fuelMeasureId) ^
       const DeepCollectionEquality().hash(fuelTypeId) ^
+      const DeepCollectionEquality().hash(companyId) ^
+      const DeepCollectionEquality().hash(categoryId) ^
       const DeepCollectionEquality().hash(tankSize) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(photographsFiles) ^
@@ -11086,6 +11160,8 @@ extension $VehiclePutDTOExtension on VehiclePutDTO {
       String? measureId,
       String? fuelMeasureId,
       String? fuelTypeId,
+      String? companyId,
+      String? categoryId,
       int? tankSize,
       bool? active,
       List<String>? photographsFiles,
@@ -11110,6 +11186,8 @@ extension $VehiclePutDTOExtension on VehiclePutDTO {
         measureId: measureId ?? this.measureId,
         fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
         fuelTypeId: fuelTypeId ?? this.fuelTypeId,
+        companyId: companyId ?? this.companyId,
+        categoryId: categoryId ?? this.categoryId,
         tankSize: tankSize ?? this.tankSize,
         active: active ?? this.active,
         photographsFiles: photographsFiles ?? this.photographsFiles,
