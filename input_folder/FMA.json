@@ -14329,6 +14329,9 @@
           },
           "listReminders": {
             "$ref": "#/components/schemas/ReminderDTOPagedResult"
+          },
+          "active": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -14847,6 +14850,14 @@
       "VehicleStatisticsDTO": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "nullable": true
+          },
           "odometer": {
             "type": "string",
             "nullable": true
@@ -14859,7 +14870,7 @@
             "type": "string",
             "nullable": true
           },
-          "costoLTAverage": {
+          "costLTAverage": {
             "type": "string",
             "nullable": true
           },
@@ -14882,7 +14893,8 @@
         "enum": [
           "Disponible",
           "Deshabilitado",
-          "Mantenimiento"
+          "Mantenimiento",
+          "Asignado"
         ],
         "type": "string"
       },

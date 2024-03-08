@@ -59,11 +59,14 @@ enum VehicleStatusEnum {
   @JsonValue('Deshabilitado')
   deshabilitado,
   @JsonValue('Mantenimiento')
-  mantenimiento
+  mantenimiento,
+  @JsonValue('Asignado')
+  asignado
 }
 
 const $VehicleStatusEnumMap = {
   VehicleStatusEnum.disponible: 'Disponible',
   VehicleStatusEnum.deshabilitado: 'Deshabilitado',
-  VehicleStatusEnum.mantenimiento: 'Mantenimiento'
+  VehicleStatusEnum.mantenimiento: 'Mantenimiento',
+  VehicleStatusEnum.asignado: 'Asignado'
 };

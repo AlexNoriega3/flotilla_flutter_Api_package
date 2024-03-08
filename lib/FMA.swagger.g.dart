@@ -1666,6 +1666,7 @@ VehicleDetailDTO _$VehicleDetailDTOFromJson(Map<String, dynamic> json) =>
           ? null
           : ReminderDTOPagedResult.fromJson(
               json['listReminders'] as Map<String, dynamic>),
+      active: json['active'] as bool?,
     );
 
 Map<String, dynamic> _$VehicleDetailDTOToJson(VehicleDetailDTO instance) =>
@@ -1689,6 +1690,7 @@ Map<String, dynamic> _$VehicleDetailDTOToJson(VehicleDetailDTO instance) =>
       'bill': instance.bill?.toJson(),
       'pedimento': instance.pedimento?.toJson(),
       'listReminders': instance.listReminders?.toJson(),
+      'active': instance.active,
     };
 
 VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
@@ -2001,10 +2003,12 @@ Map<String, dynamic> _$VehiclePutDTOToJson(VehiclePutDTO instance) =>
 VehicleStatisticsDTO _$VehicleStatisticsDTOFromJson(
         Map<String, dynamic> json) =>
     VehicleStatisticsDTO(
+      id: json['id'] as String?,
+      date: json['date'] as String?,
       odometer: json['odometer'] as String?,
       performanceAverage: json['performanceAverage'] as String?,
       costKMAverage: json['costKMAverage'] as String?,
-      costoLTAverage: json['costoLTAverage'] as String?,
+      costLTAverage: json['costLTAverage'] as String?,
       costTotalFuel: json['costTotalFuel'] as String?,
       costTotalMaintenance: json['costTotalMaintenance'] as String?,
       costAdditional: json['costAdditional'] as String?,
@@ -2013,10 +2017,12 @@ VehicleStatisticsDTO _$VehicleStatisticsDTOFromJson(
 Map<String, dynamic> _$VehicleStatisticsDTOToJson(
         VehicleStatisticsDTO instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'date': instance.date,
       'odometer': instance.odometer,
       'performanceAverage': instance.performanceAverage,
       'costKMAverage': instance.costKMAverage,
-      'costoLTAverage': instance.costoLTAverage,
+      'costLTAverage': instance.costLTAverage,
       'costTotalFuel': instance.costTotalFuel,
       'costTotalMaintenance': instance.costTotalMaintenance,
       'costAdditional': instance.costAdditional,

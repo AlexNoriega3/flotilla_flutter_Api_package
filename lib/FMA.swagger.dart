@@ -9876,6 +9876,7 @@ class VehicleDetailDTO {
     this.bill,
     this.pedimento,
     this.listReminders,
+    this.active,
   });
 
   factory VehicleDetailDTO.fromJson(Map<String, dynamic> json) =>
@@ -9922,6 +9923,8 @@ class VehicleDetailDTO {
   final DocumentDTO? pedimento;
   @JsonKey(name: 'listReminders')
   final ReminderDTOPagedResult? listReminders;
+  @JsonKey(name: 'active')
+  final bool? active;
   static const fromJsonFactory = _$VehicleDetailDTOFromJson;
   static const toJsonFactory = _$VehicleDetailDTOToJson;
   Map<String, dynamic> toJson() => _$VehicleDetailDTOToJson(this);
@@ -9984,7 +9987,9 @@ class VehicleDetailDTO {
                     .equals(other.pedimento, pedimento)) &&
             (identical(other.listReminders, listReminders) ||
                 const DeepCollectionEquality()
-                    .equals(other.listReminders, listReminders)));
+                    .equals(other.listReminders, listReminders)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)));
   }
 
   @override
@@ -10008,6 +10013,7 @@ class VehicleDetailDTO {
       const DeepCollectionEquality().hash(bill) ^
       const DeepCollectionEquality().hash(pedimento) ^
       const DeepCollectionEquality().hash(listReminders) ^
+      const DeepCollectionEquality().hash(active) ^
       runtimeType.hashCode;
 }
 
@@ -10031,7 +10037,8 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
       List<ImageDTO>? photographs,
       DocumentDTO? bill,
       DocumentDTO? pedimento,
-      ReminderDTOPagedResult? listReminders}) {
+      ReminderDTOPagedResult? listReminders,
+      bool? active}) {
     return VehicleDetailDTO(
         id: id ?? this.id,
         description: description ?? this.description,
@@ -10051,7 +10058,8 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
         photographs: photographs ?? this.photographs,
         bill: bill ?? this.bill,
         pedimento: pedimento ?? this.pedimento,
-        listReminders: listReminders ?? this.listReminders);
+        listReminders: listReminders ?? this.listReminders,
+        active: active ?? this.active);
   }
 }
 
@@ -11114,10 +11122,12 @@ extension $VehiclePutDTOExtension on VehiclePutDTO {
 @JsonSerializable(explicitToJson: true)
 class VehicleStatisticsDTO {
   VehicleStatisticsDTO({
+    this.id,
+    this.date,
     this.odometer,
     this.performanceAverage,
     this.costKMAverage,
-    this.costoLTAverage,
+    this.costLTAverage,
     this.costTotalFuel,
     this.costTotalMaintenance,
     this.costAdditional,
@@ -11126,14 +11136,18 @@ class VehicleStatisticsDTO {
   factory VehicleStatisticsDTO.fromJson(Map<String, dynamic> json) =>
       _$VehicleStatisticsDTOFromJson(json);
 
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'date')
+  final String? date;
   @JsonKey(name: 'odometer')
   final String? odometer;
   @JsonKey(name: 'performanceAverage')
   final String? performanceAverage;
   @JsonKey(name: 'costKMAverage')
   final String? costKMAverage;
-  @JsonKey(name: 'costoLTAverage')
-  final String? costoLTAverage;
+  @JsonKey(name: 'costLTAverage')
+  final String? costLTAverage;
   @JsonKey(name: 'costTotalFuel')
   final String? costTotalFuel;
   @JsonKey(name: 'costTotalMaintenance')
@@ -11151,6 +11165,10 @@ class VehicleStatisticsDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is VehicleStatisticsDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.date, date) ||
+                const DeepCollectionEquality().equals(other.date, date)) &&
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
@@ -11160,9 +11178,9 @@ class VehicleStatisticsDTO {
             (identical(other.costKMAverage, costKMAverage) ||
                 const DeepCollectionEquality()
                     .equals(other.costKMAverage, costKMAverage)) &&
-            (identical(other.costoLTAverage, costoLTAverage) ||
+            (identical(other.costLTAverage, costLTAverage) ||
                 const DeepCollectionEquality()
-                    .equals(other.costoLTAverage, costoLTAverage)) &&
+                    .equals(other.costLTAverage, costLTAverage)) &&
             (identical(other.costTotalFuel, costTotalFuel) ||
                 const DeepCollectionEquality()
                     .equals(other.costTotalFuel, costTotalFuel)) &&
@@ -11176,10 +11194,12 @@ class VehicleStatisticsDTO {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(date) ^
       const DeepCollectionEquality().hash(odometer) ^
       const DeepCollectionEquality().hash(performanceAverage) ^
       const DeepCollectionEquality().hash(costKMAverage) ^
-      const DeepCollectionEquality().hash(costoLTAverage) ^
+      const DeepCollectionEquality().hash(costLTAverage) ^
       const DeepCollectionEquality().hash(costTotalFuel) ^
       const DeepCollectionEquality().hash(costTotalMaintenance) ^
       const DeepCollectionEquality().hash(costAdditional) ^
@@ -11188,18 +11208,22 @@ class VehicleStatisticsDTO {
 
 extension $VehicleStatisticsDTOExtension on VehicleStatisticsDTO {
   VehicleStatisticsDTO copyWith(
-      {String? odometer,
+      {String? id,
+      String? date,
+      String? odometer,
       String? performanceAverage,
       String? costKMAverage,
-      String? costoLTAverage,
+      String? costLTAverage,
       String? costTotalFuel,
       String? costTotalMaintenance,
       String? costAdditional}) {
     return VehicleStatisticsDTO(
+        id: id ?? this.id,
+        date: date ?? this.date,
         odometer: odometer ?? this.odometer,
         performanceAverage: performanceAverage ?? this.performanceAverage,
         costKMAverage: costKMAverage ?? this.costKMAverage,
-        costoLTAverage: costoLTAverage ?? this.costoLTAverage,
+        costLTAverage: costLTAverage ?? this.costLTAverage,
         costTotalFuel: costTotalFuel ?? this.costTotalFuel,
         costTotalMaintenance: costTotalMaintenance ?? this.costTotalMaintenance,
         costAdditional: costAdditional ?? this.costAdditional);
