@@ -2073,6 +2073,14 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<dynamic>> _apiVehicleDownloadGet({List<String>? vehicles}) {
+    final $url = '/api/Vehicle/Download';
+    final $params = <String, dynamic>{'vehicles': vehicles};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<List<VehicleTypeDTO>>> _apiVehicleTypeGet() {
     final $url = '/api/VehicleType';
     final $request = Request('GET', $url, client.baseUrl);

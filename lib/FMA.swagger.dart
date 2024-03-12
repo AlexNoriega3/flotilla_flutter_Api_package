@@ -3609,6 +3609,18 @@ abstract class FMA extends ChopperService {
       {@Path('Id') required String? id});
 
   ///
+  ///@param vehicles
+  Future<chopper.Response> apiVehicleDownloadGet({List<String>? vehicles}) {
+    return _apiVehicleDownloadGet(vehicles: vehicles);
+  }
+
+  ///
+  ///@param vehicles
+  @Get(path: '/api/Vehicle/Download')
+  Future<chopper.Response> _apiVehicleDownloadGet(
+      {@Query('vehicles') List<String>? vehicles});
+
+  ///
   Future<chopper.Response<List<VehicleTypeDTO>>> apiVehicleTypeGet() {
     generatedMapping.putIfAbsent(
         VehicleTypeDTO, () => VehicleTypeDTO.fromJsonFactory);
@@ -10105,6 +10117,9 @@ class VehicleFormDTO {
     this.vin,
     this.machineId,
     this.economicNumber,
+    this.photographs,
+    this.bill,
+    this.pedimento,
   });
 
   factory VehicleFormDTO.fromJson(Map<String, dynamic> json) =>
@@ -10158,6 +10173,12 @@ class VehicleFormDTO {
   final String? machineId;
   @JsonKey(name: 'economicNumber')
   final String? economicNumber;
+  @JsonKey(name: 'photographs', defaultValue: <ImageDTO>[])
+  final List<ImageDTO>? photographs;
+  @JsonKey(name: 'bill')
+  final DocumentDTO? bill;
+  @JsonKey(name: 'pedimento')
+  final DocumentDTO? pedimento;
   static const fromJsonFactory = _$VehicleFormDTOFromJson;
   static const toJsonFactory = _$VehicleFormDTOToJson;
   Map<String, dynamic> toJson() => _$VehicleFormDTOToJson(this);
@@ -10235,7 +10256,10 @@ class VehicleFormDTO {
             (identical(other.machineId, machineId) ||
                 const DeepCollectionEquality()
                     .equals(other.machineId, machineId)) &&
-            (identical(other.economicNumber, economicNumber) || const DeepCollectionEquality().equals(other.economicNumber, economicNumber)));
+            (identical(other.economicNumber, economicNumber) || const DeepCollectionEquality().equals(other.economicNumber, economicNumber)) &&
+            (identical(other.photographs, photographs) || const DeepCollectionEquality().equals(other.photographs, photographs)) &&
+            (identical(other.bill, bill) || const DeepCollectionEquality().equals(other.bill, bill)) &&
+            (identical(other.pedimento, pedimento) || const DeepCollectionEquality().equals(other.pedimento, pedimento)));
   }
 
   @override
@@ -10264,6 +10288,9 @@ class VehicleFormDTO {
       const DeepCollectionEquality().hash(vin) ^
       const DeepCollectionEquality().hash(machineId) ^
       const DeepCollectionEquality().hash(economicNumber) ^
+      const DeepCollectionEquality().hash(photographs) ^
+      const DeepCollectionEquality().hash(bill) ^
+      const DeepCollectionEquality().hash(pedimento) ^
       runtimeType.hashCode;
 }
 
@@ -10292,7 +10319,10 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
       String? description,
       String? vin,
       String? machineId,
-      String? economicNumber}) {
+      String? economicNumber,
+      List<ImageDTO>? photographs,
+      DocumentDTO? bill,
+      DocumentDTO? pedimento}) {
     return VehicleFormDTO(
         assignedId: assignedId ?? this.assignedId,
         brandId: brandId ?? this.brandId,
@@ -10317,7 +10347,10 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
         description: description ?? this.description,
         vin: vin ?? this.vin,
         machineId: machineId ?? this.machineId,
-        economicNumber: economicNumber ?? this.economicNumber);
+        economicNumber: economicNumber ?? this.economicNumber,
+        photographs: photographs ?? this.photographs,
+        bill: bill ?? this.bill,
+        pedimento: pedimento ?? this.pedimento);
   }
 }
 
@@ -10541,9 +10574,6 @@ class VehicleNewEditDTO {
     this.fuelTypes,
     this.machines,
     this.companies,
-    this.photos,
-    this.bill,
-    this.pedimento,
   });
 
   factory VehicleNewEditDTO.fromJson(Map<String, dynamic> json) =>
@@ -10577,12 +10607,6 @@ class VehicleNewEditDTO {
   final List<SelectDTO>? machines;
   @JsonKey(name: 'companies', defaultValue: <SelectDTO>[])
   final List<SelectDTO>? companies;
-  @JsonKey(name: 'photos', defaultValue: <ImageDTO>[])
-  final List<ImageDTO>? photos;
-  @JsonKey(name: 'bill')
-  final DocumentDTO? bill;
-  @JsonKey(name: 'pedimento')
-  final DocumentDTO? pedimento;
   static const fromJsonFactory = _$VehicleNewEditDTOFromJson;
   static const toJsonFactory = _$VehicleNewEditDTOToJson;
   Map<String, dynamic> toJson() => _$VehicleNewEditDTOToJson(this);
@@ -10632,14 +10656,7 @@ class VehicleNewEditDTO {
                     .equals(other.machines, machines)) &&
             (identical(other.companies, companies) ||
                 const DeepCollectionEquality()
-                    .equals(other.companies, companies)) &&
-            (identical(other.photos, photos) ||
-                const DeepCollectionEquality().equals(other.photos, photos)) &&
-            (identical(other.bill, bill) ||
-                const DeepCollectionEquality().equals(other.bill, bill)) &&
-            (identical(other.pedimento, pedimento) ||
-                const DeepCollectionEquality()
-                    .equals(other.pedimento, pedimento)));
+                    .equals(other.companies, companies)));
   }
 
   @override
@@ -10658,9 +10675,6 @@ class VehicleNewEditDTO {
       const DeepCollectionEquality().hash(fuelTypes) ^
       const DeepCollectionEquality().hash(machines) ^
       const DeepCollectionEquality().hash(companies) ^
-      const DeepCollectionEquality().hash(photos) ^
-      const DeepCollectionEquality().hash(bill) ^
-      const DeepCollectionEquality().hash(pedimento) ^
       runtimeType.hashCode;
 }
 
@@ -10679,10 +10693,7 @@ extension $VehicleNewEditDTOExtension on VehicleNewEditDTO {
       List<SelectDTO>? fuelMeasures,
       List<SelectDTO>? fuelTypes,
       List<SelectDTO>? machines,
-      List<SelectDTO>? companies,
-      List<ImageDTO>? photos,
-      DocumentDTO? bill,
-      DocumentDTO? pedimento}) {
+      List<SelectDTO>? companies}) {
     return VehicleNewEditDTO(
         vehicle: vehicle ?? this.vehicle,
         users: users ?? this.users,
@@ -10697,10 +10708,7 @@ extension $VehicleNewEditDTOExtension on VehicleNewEditDTO {
         fuelMeasures: fuelMeasures ?? this.fuelMeasures,
         fuelTypes: fuelTypes ?? this.fuelTypes,
         machines: machines ?? this.machines,
-        companies: companies ?? this.companies,
-        photos: photos ?? this.photos,
-        bill: bill ?? this.bill,
-        pedimento: pedimento ?? this.pedimento);
+        companies: companies ?? this.companies);
   }
 }
 

@@ -11362,6 +11362,30 @@
         }
       }
     },
+    "/api/Vehicle/Download": {
+      "get": {
+        "tags": [
+          "Vehicle"
+        ],
+        "parameters": [
+          {
+            "name": "vehicles",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/VehicleType": {
       "get": {
         "tags": [
@@ -14475,6 +14499,19 @@
           "economicNumber": {
             "type": "string",
             "nullable": true
+          },
+          "photographs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageDTO"
+            },
+            "nullable": true
+          },
+          "bill": {
+            "$ref": "#/components/schemas/DocumentDTO"
+          },
+          "pedimento": {
+            "$ref": "#/components/schemas/DocumentDTO"
           }
         },
         "additionalProperties": false
@@ -14654,19 +14691,6 @@
               "$ref": "#/components/schemas/SelectDTO"
             },
             "nullable": true
-          },
-          "photos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ImageDTO"
-            },
-            "nullable": true
-          },
-          "bill": {
-            "$ref": "#/components/schemas/DocumentDTO"
-          },
-          "pedimento": {
-            "$ref": "#/components/schemas/DocumentDTO"
           }
         },
         "additionalProperties": false
