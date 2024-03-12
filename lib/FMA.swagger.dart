@@ -748,14 +748,14 @@ abstract class FMA extends ChopperService {
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
-  Future<chopper.Response<FuelLoadDTOPagedResult>> apiFuelLoadSearchGet(
+  Future<chopper.Response<FuelLoadDetailDTOPagedResult>> apiFuelLoadSearchGet(
       {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
       required int? pageSize}) {
-    generatedMapping.putIfAbsent(
-        FuelLoadDTOPagedResult, () => FuelLoadDTOPagedResult.fromJsonFactory);
+    generatedMapping.putIfAbsent(FuelLoadDetailDTOPagedResult,
+        () => FuelLoadDetailDTOPagedResult.fromJsonFactory);
 
     return _apiFuelLoadSearchGet(
         page: page,
@@ -772,7 +772,7 @@ abstract class FMA extends ChopperService {
   ///@param SortOrder
   ///@param PageSize
   @Get(path: '/api/FuelLoad/Search')
-  Future<chopper.Response<FuelLoadDTOPagedResult>> _apiFuelLoadSearchGet(
+  Future<chopper.Response<FuelLoadDetailDTOPagedResult>> _apiFuelLoadSearchGet(
       {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
@@ -1662,14 +1662,15 @@ abstract class FMA extends ChopperService {
   ///@param OrderByPropertyName
   ///@param SortOrder
   ///@param PageSize
-  Future<chopper.Response<MaintenanceDTOPagedResult>> apiMaintenanceSearchGet(
-      {required int? page,
-      String? search,
-      String? orderByPropertyName,
-      enums.SortOrderEnum? sortOrder,
-      required int? pageSize}) {
-    generatedMapping.putIfAbsent(MaintenanceDTOPagedResult,
-        () => MaintenanceDTOPagedResult.fromJsonFactory);
+  Future<chopper.Response<MaintenanceDetailDTOPagedResult>>
+      apiMaintenanceSearchGet(
+          {required int? page,
+          String? search,
+          String? orderByPropertyName,
+          enums.SortOrderEnum? sortOrder,
+          required int? pageSize}) {
+    generatedMapping.putIfAbsent(MaintenanceDetailDTOPagedResult,
+        () => MaintenanceDetailDTOPagedResult.fromJsonFactory);
 
     return _apiMaintenanceSearchGet(
         page: page,
@@ -1686,12 +1687,13 @@ abstract class FMA extends ChopperService {
   ///@param SortOrder
   ///@param PageSize
   @Get(path: '/api/Maintenance/Search')
-  Future<chopper.Response<MaintenanceDTOPagedResult>> _apiMaintenanceSearchGet(
-      {@Query('Page') required int? page,
-      @Query('Search') String? search,
-      @Query('OrderByPropertyName') String? orderByPropertyName,
-      @Query('SortOrder') String? sortOrder,
-      @Query('PageSize') required int? pageSize});
+  Future<chopper.Response<MaintenanceDetailDTOPagedResult>>
+      _apiMaintenanceSearchGet(
+          {@Query('Page') required int? page,
+          @Query('Search') String? search,
+          @Query('OrderByPropertyName') String? orderByPropertyName,
+          @Query('SortOrder') String? sortOrder,
+          @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -5245,8 +5247,75 @@ extension $FuelLoadDTOExtension on FuelLoadDTO {
 }
 
 @JsonSerializable(explicitToJson: true)
-class FuelLoadDTOPagedResult {
-  FuelLoadDTOPagedResult({
+class FuelLoadDetailDTO {
+  FuelLoadDetailDTO({
+    this.id,
+    this.ecoNumber,
+    this.chargeDate,
+    this.totalAmount,
+  });
+
+  factory FuelLoadDetailDTO.fromJson(Map<String, dynamic> json) =>
+      _$FuelLoadDetailDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'ecoNumber')
+  final String? ecoNumber;
+  @JsonKey(name: 'chargeDate')
+  final String? chargeDate;
+  @JsonKey(name: 'totalAmount')
+  final String? totalAmount;
+  static const fromJsonFactory = _$FuelLoadDetailDTOFromJson;
+  static const toJsonFactory = _$FuelLoadDetailDTOToJson;
+  Map<String, dynamic> toJson() => _$FuelLoadDetailDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is FuelLoadDetailDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.ecoNumber, ecoNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.ecoNumber, ecoNumber)) &&
+            (identical(other.chargeDate, chargeDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.chargeDate, chargeDate)) &&
+            (identical(other.totalAmount, totalAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalAmount, totalAmount)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(ecoNumber) ^
+      const DeepCollectionEquality().hash(chargeDate) ^
+      const DeepCollectionEquality().hash(totalAmount) ^
+      runtimeType.hashCode;
+}
+
+extension $FuelLoadDetailDTOExtension on FuelLoadDetailDTO {
+  FuelLoadDetailDTO copyWith(
+      {String? id,
+      String? ecoNumber,
+      String? chargeDate,
+      String? totalAmount}) {
+    return FuelLoadDetailDTO(
+        id: id ?? this.id,
+        ecoNumber: ecoNumber ?? this.ecoNumber,
+        chargeDate: chargeDate ?? this.chargeDate,
+        totalAmount: totalAmount ?? this.totalAmount);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class FuelLoadDetailDTOPagedResult {
+  FuelLoadDetailDTOPagedResult({
     this.totalCount,
     this.pageNumber,
     this.recordNumber,
@@ -5254,8 +5323,8 @@ class FuelLoadDTOPagedResult {
     this.items,
   });
 
-  factory FuelLoadDTOPagedResult.fromJson(Map<String, dynamic> json) =>
-      _$FuelLoadDTOPagedResultFromJson(json);
+  factory FuelLoadDetailDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$FuelLoadDetailDTOPagedResultFromJson(json);
 
   @JsonKey(name: 'totalCount')
   final int? totalCount;
@@ -5265,11 +5334,11 @@ class FuelLoadDTOPagedResult {
   final int? recordNumber;
   @JsonKey(name: 'totalPages')
   final int? totalPages;
-  @JsonKey(name: 'items', defaultValue: <FuelLoadDTO>[])
-  final List<FuelLoadDTO>? items;
-  static const fromJsonFactory = _$FuelLoadDTOPagedResultFromJson;
-  static const toJsonFactory = _$FuelLoadDTOPagedResultToJson;
-  Map<String, dynamic> toJson() => _$FuelLoadDTOPagedResultToJson(this);
+  @JsonKey(name: 'items', defaultValue: <FuelLoadDetailDTO>[])
+  final List<FuelLoadDetailDTO>? items;
+  static const fromJsonFactory = _$FuelLoadDetailDTOPagedResultFromJson;
+  static const toJsonFactory = _$FuelLoadDetailDTOPagedResultToJson;
+  Map<String, dynamic> toJson() => _$FuelLoadDetailDTOPagedResultToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -5277,7 +5346,7 @@ class FuelLoadDTOPagedResult {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FuelLoadDTOPagedResult &&
+        (other is FuelLoadDetailDTOPagedResult &&
             (identical(other.totalCount, totalCount) ||
                 const DeepCollectionEquality()
                     .equals(other.totalCount, totalCount)) &&
@@ -5304,14 +5373,15 @@ class FuelLoadDTOPagedResult {
       runtimeType.hashCode;
 }
 
-extension $FuelLoadDTOPagedResultExtension on FuelLoadDTOPagedResult {
-  FuelLoadDTOPagedResult copyWith(
+extension $FuelLoadDetailDTOPagedResultExtension
+    on FuelLoadDetailDTOPagedResult {
+  FuelLoadDetailDTOPagedResult copyWith(
       {int? totalCount,
       int? pageNumber,
       int? recordNumber,
       int? totalPages,
-      List<FuelLoadDTO>? items}) {
-    return FuelLoadDTOPagedResult(
+      List<FuelLoadDetailDTO>? items}) {
+    return FuelLoadDetailDTOPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,
@@ -6659,8 +6729,71 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
 }
 
 @JsonSerializable(explicitToJson: true)
-class MaintenanceDTOPagedResult {
-  MaintenanceDTOPagedResult({
+class MaintenanceDetailDTO {
+  MaintenanceDetailDTO({
+    this.id,
+    this.vehicle,
+    this.comments,
+    this.period,
+  });
+
+  factory MaintenanceDetailDTO.fromJson(Map<String, dynamic> json) =>
+      _$MaintenanceDetailDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'vehicle')
+  final String? vehicle;
+  @JsonKey(name: 'comments')
+  final String? comments;
+  @JsonKey(name: 'period')
+  final String? period;
+  static const fromJsonFactory = _$MaintenanceDetailDTOFromJson;
+  static const toJsonFactory = _$MaintenanceDetailDTOToJson;
+  Map<String, dynamic> toJson() => _$MaintenanceDetailDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MaintenanceDetailDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.vehicle, vehicle) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicle, vehicle)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
+            (identical(other.period, period) ||
+                const DeepCollectionEquality().equals(other.period, period)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(vehicle) ^
+      const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(period) ^
+      runtimeType.hashCode;
+}
+
+extension $MaintenanceDetailDTOExtension on MaintenanceDetailDTO {
+  MaintenanceDetailDTO copyWith(
+      {String? id, String? vehicle, String? comments, String? period}) {
+    return MaintenanceDetailDTO(
+        id: id ?? this.id,
+        vehicle: vehicle ?? this.vehicle,
+        comments: comments ?? this.comments,
+        period: period ?? this.period);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class MaintenanceDetailDTOPagedResult {
+  MaintenanceDetailDTOPagedResult({
     this.totalCount,
     this.pageNumber,
     this.recordNumber,
@@ -6668,8 +6801,8 @@ class MaintenanceDTOPagedResult {
     this.items,
   });
 
-  factory MaintenanceDTOPagedResult.fromJson(Map<String, dynamic> json) =>
-      _$MaintenanceDTOPagedResultFromJson(json);
+  factory MaintenanceDetailDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$MaintenanceDetailDTOPagedResultFromJson(json);
 
   @JsonKey(name: 'totalCount')
   final int? totalCount;
@@ -6679,11 +6812,12 @@ class MaintenanceDTOPagedResult {
   final int? recordNumber;
   @JsonKey(name: 'totalPages')
   final int? totalPages;
-  @JsonKey(name: 'items', defaultValue: <MaintenanceDTO>[])
-  final List<MaintenanceDTO>? items;
-  static const fromJsonFactory = _$MaintenanceDTOPagedResultFromJson;
-  static const toJsonFactory = _$MaintenanceDTOPagedResultToJson;
-  Map<String, dynamic> toJson() => _$MaintenanceDTOPagedResultToJson(this);
+  @JsonKey(name: 'items', defaultValue: <MaintenanceDetailDTO>[])
+  final List<MaintenanceDetailDTO>? items;
+  static const fromJsonFactory = _$MaintenanceDetailDTOPagedResultFromJson;
+  static const toJsonFactory = _$MaintenanceDetailDTOPagedResultToJson;
+  Map<String, dynamic> toJson() =>
+      _$MaintenanceDetailDTOPagedResultToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -6691,7 +6825,7 @@ class MaintenanceDTOPagedResult {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MaintenanceDTOPagedResult &&
+        (other is MaintenanceDetailDTOPagedResult &&
             (identical(other.totalCount, totalCount) ||
                 const DeepCollectionEquality()
                     .equals(other.totalCount, totalCount)) &&
@@ -6718,14 +6852,15 @@ class MaintenanceDTOPagedResult {
       runtimeType.hashCode;
 }
 
-extension $MaintenanceDTOPagedResultExtension on MaintenanceDTOPagedResult {
-  MaintenanceDTOPagedResult copyWith(
+extension $MaintenanceDetailDTOPagedResultExtension
+    on MaintenanceDetailDTOPagedResult {
+  MaintenanceDetailDTOPagedResult copyWith(
       {int? totalCount,
       int? pageNumber,
       int? recordNumber,
       int? totalPages,
-      List<MaintenanceDTO>? items}) {
-    return MaintenanceDTOPagedResult(
+      List<MaintenanceDetailDTO>? items}) {
+    return MaintenanceDetailDTOPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,
@@ -9939,9 +10074,9 @@ class VehicleDetailDTO {
   @JsonKey(name: 'statistics', defaultValue: <VehicleStatisticsDTO>[])
   final List<VehicleStatisticsDTO>? statistics;
   @JsonKey(name: 'fuelLoads')
-  final FuelLoadDTOPagedResult? fuelLoads;
+  final FuelLoadDetailDTOPagedResult? fuelLoads;
   @JsonKey(name: 'listMaintenances')
-  final MaintenanceDTOPagedResult? listMaintenances;
+  final MaintenanceDetailDTOPagedResult? listMaintenances;
   @JsonKey(name: 'photographs', defaultValue: <ImageDTO>[])
   final List<ImageDTO>? photographs;
   @JsonKey(name: 'bill')
@@ -10059,8 +10194,8 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
       String? assignment,
       List<PerformanceDTO>? performance,
       List<VehicleStatisticsDTO>? statistics,
-      FuelLoadDTOPagedResult? fuelLoads,
-      MaintenanceDTOPagedResult? listMaintenances,
+      FuelLoadDetailDTOPagedResult? fuelLoads,
+      MaintenanceDetailDTOPagedResult? listMaintenances,
       List<ImageDTO>? photographs,
       DocumentDTO? bill,
       DocumentDTO? pedimento,

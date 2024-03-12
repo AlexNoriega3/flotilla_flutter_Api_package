@@ -431,7 +431,7 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<FuelLoadDTOPagedResult>> _apiFuelLoadSearchGet(
+  Future<Response<FuelLoadDetailDTOPagedResult>> _apiFuelLoadSearchGet(
       {required int? page,
       String? search,
       String? orderByPropertyName,
@@ -446,8 +446,8 @@ class _$FMA extends FMA {
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client
-        .send<FuelLoadDTOPagedResult, FuelLoadDTOPagedResult>($request);
+    return client.send<FuelLoadDetailDTOPagedResult,
+        FuelLoadDetailDTOPagedResult>($request);
   }
 
   @override
@@ -964,7 +964,7 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<MaintenanceDTOPagedResult>> _apiMaintenanceSearchGet(
+  Future<Response<MaintenanceDetailDTOPagedResult>> _apiMaintenanceSearchGet(
       {required int? page,
       String? search,
       String? orderByPropertyName,
@@ -979,8 +979,8 @@ class _$FMA extends FMA {
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client
-        .send<MaintenanceDTOPagedResult, MaintenanceDTOPagedResult>($request);
+    return client.send<MaintenanceDetailDTOPagedResult,
+        MaintenanceDetailDTOPagedResult>($request);
   }
 
   @override
