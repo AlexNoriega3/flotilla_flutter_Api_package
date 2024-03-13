@@ -917,34 +917,11 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<MachineDTO>> _apiMachineIdGet({required String? id}) {
-    final $url = '/api/Machine/${id}';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<MachineDTO, MachineDTO>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiMachineIdPut(
-      {required String? id, required MachineDTO? body}) {
-    final $url = '/api/Machine/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiMachineIdDelete({required String? id}) {
-    final $url = '/api/Machine/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<String>> _apiMachineDrillRigProjectIdGet(
+  Future<Response<ProjectCompanyDTO>> _apiMachineDrillRigProjectIdGet(
       {required String? id}) {
     final $url = '/api/Machine/DrillRigProject/${id}';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<String, String>($request);
+    return client.send<ProjectCompanyDTO, ProjectCompanyDTO>($request);
   }
 
   @override
@@ -2050,19 +2027,11 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<bool>> _apiVehicleIdDrillRigDIdPut(
+  Future<Response<ProjectCompanyDTO>> _apiVehicleIdDrillRigDIdPut(
       {required String? id, required String? dId}) {
     final $url = '/api/Vehicle/${id}/DrillRig/${dId}';
     final $request = Request('PUT', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiVehicleIdCompanyCIdPut(
-      {required String? id, required String? cId}) {
-    final $url = '/api/Vehicle/${id}/Company/${cId}';
-    final $request = Request('PUT', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
+    return client.send<ProjectCompanyDTO, ProjectCompanyDTO>($request);
   }
 
   @override

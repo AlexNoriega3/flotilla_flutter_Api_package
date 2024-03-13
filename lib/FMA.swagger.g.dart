@@ -1227,6 +1227,18 @@ Map<String, dynamic> _$ProblemDetailsToJson(ProblemDetails instance) =>
       'instance': instance.instance,
     };
 
+ProjectCompanyDTO _$ProjectCompanyDTOFromJson(Map<String, dynamic> json) =>
+    ProjectCompanyDTO(
+      project: json['project'] as String?,
+      company: json['company'] as String?,
+    );
+
+Map<String, dynamic> _$ProjectCompanyDTOToJson(ProjectCompanyDTO instance) =>
+    <String, dynamic>{
+      'project': instance.project,
+      'company': instance.company,
+    };
+
 ProjectDTO _$ProjectDTOFromJson(Map<String, dynamic> json) => ProjectDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,

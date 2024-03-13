@@ -1581,56 +1581,20 @@ abstract class FMA extends ChopperService {
       @Query('SortOrder') String? sortOrder,
       @Query('PageSize') required int? pageSize});
 
-  ///
-  ///@param id
-  Future<chopper.Response<MachineDTO>> apiMachineIdGet({required String? id}) {
-    generatedMapping.putIfAbsent(MachineDTO, () => MachineDTO.fromJsonFactory);
-
-    return _apiMachineIdGet(id: id);
-  }
-
-  ///
-  ///@param id
-  @Get(path: '/api/Machine/{id}')
-  Future<chopper.Response<MachineDTO>> _apiMachineIdGet(
-      {@Path('id') required String? id});
-
-  ///
-  ///@param id
-  Future<chopper.Response<bool>> apiMachineIdPut(
-      {required String? id, required MachineDTO? body}) {
-    return _apiMachineIdPut(id: id, body: body);
-  }
-
-  ///
-  ///@param id
-  @Put(path: '/api/Machine/{id}')
-  Future<chopper.Response<bool>> _apiMachineIdPut(
-      {@Path('id') required String? id, @Body() required MachineDTO? body});
-
-  ///
-  ///@param id
-  Future<chopper.Response<bool>> apiMachineIdDelete({required String? id}) {
-    return _apiMachineIdDelete(id: id);
-  }
-
-  ///
-  ///@param id
-  @Delete(path: '/api/Machine/{id}')
-  Future<chopper.Response<bool>> _apiMachineIdDelete(
-      {@Path('id') required String? id});
-
-  ///
-  ///@param id
-  Future<chopper.Response<String>> apiMachineDrillRigProjectIdGet(
+  ///Retrieves the drill rig project and company for a specific machine.
+  ///@param id The ID of the machine.
+  Future<chopper.Response<ProjectCompanyDTO>> apiMachineDrillRigProjectIdGet(
       {required String? id}) {
+    generatedMapping.putIfAbsent(
+        ProjectCompanyDTO, () => ProjectCompanyDTO.fromJsonFactory);
+
     return _apiMachineDrillRigProjectIdGet(id: id);
   }
 
-  ///
-  ///@param id
+  ///Retrieves the drill rig project and company for a specific machine.
+  ///@param id The ID of the machine.
   @Get(path: '/api/Machine/DrillRigProject/{id}')
-  Future<chopper.Response<String>> _apiMachineDrillRigProjectIdGet(
+  Future<chopper.Response<ProjectCompanyDTO>> _apiMachineDrillRigProjectIdGet(
       {@Path('id') required String? id});
 
   ///
@@ -3571,8 +3535,11 @@ abstract class FMA extends ChopperService {
   ///
   ///@param Id
   ///@param DId
-  Future<chopper.Response<bool>> apiVehicleIdDrillRigDIdPut(
+  Future<chopper.Response<ProjectCompanyDTO>> apiVehicleIdDrillRigDIdPut(
       {required String? id, required String? dId}) {
+    generatedMapping.putIfAbsent(
+        ProjectCompanyDTO, () => ProjectCompanyDTO.fromJsonFactory);
+
     return _apiVehicleIdDrillRigDIdPut(id: id, dId: dId);
   }
 
@@ -3580,23 +3547,8 @@ abstract class FMA extends ChopperService {
   ///@param Id
   ///@param DId
   @Put(path: '/api/Vehicle/{Id}/DrillRig/{DId}', optionalBody: true)
-  Future<chopper.Response<bool>> _apiVehicleIdDrillRigDIdPut(
+  Future<chopper.Response<ProjectCompanyDTO>> _apiVehicleIdDrillRigDIdPut(
       {@Path('Id') required String? id, @Path('DId') required String? dId});
-
-  ///
-  ///@param Id
-  ///@param CId
-  Future<chopper.Response<bool>> apiVehicleIdCompanyCIdPut(
-      {required String? id, required String? cId}) {
-    return _apiVehicleIdCompanyCIdPut(id: id, cId: cId);
-  }
-
-  ///
-  ///@param Id
-  ///@param CId
-  @Put(path: '/api/Vehicle/{Id}/Company/{CId}', optionalBody: true)
-  Future<chopper.Response<bool>> _apiVehicleIdCompanyCIdPut(
-      {@Path('Id') required String? id, @Path('CId') required String? cId});
 
   ///
   ///@param Id
@@ -8310,6 +8262,52 @@ extension $ProblemDetailsExtension on ProblemDetails {
         status: status ?? this.status,
         detail: detail ?? this.detail,
         instance: instance ?? this.instance);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ProjectCompanyDTO {
+  ProjectCompanyDTO({
+    this.project,
+    this.company,
+  });
+
+  factory ProjectCompanyDTO.fromJson(Map<String, dynamic> json) =>
+      _$ProjectCompanyDTOFromJson(json);
+
+  @JsonKey(name: 'project')
+  final String? project;
+  @JsonKey(name: 'company')
+  final String? company;
+  static const fromJsonFactory = _$ProjectCompanyDTOFromJson;
+  static const toJsonFactory = _$ProjectCompanyDTOToJson;
+  Map<String, dynamic> toJson() => _$ProjectCompanyDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProjectCompanyDTO &&
+            (identical(other.project, project) ||
+                const DeepCollectionEquality()
+                    .equals(other.project, project)) &&
+            (identical(other.company, company) ||
+                const DeepCollectionEquality().equals(other.company, company)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(project) ^
+      const DeepCollectionEquality().hash(company) ^
+      runtimeType.hashCode;
+}
+
+extension $ProjectCompanyDTOExtension on ProjectCompanyDTO {
+  ProjectCompanyDTO copyWith({String? project, String? company}) {
+    return ProjectCompanyDTO(
+        project: project ?? this.project, company: company ?? this.company);
   }
 }
 
