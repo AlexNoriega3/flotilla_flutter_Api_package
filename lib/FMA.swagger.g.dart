@@ -1824,8 +1824,9 @@ VehicleInboxDTO _$VehicleInboxDTOFromJson(Map<String, dynamic> json) =>
       placas: json['placas'] as String?,
       category: json['category'] as String?,
       projectName: json['projectName'] as String?,
+      machineName: json['machineName'] as String?,
       machineId: json['machineId'] as String?,
-      companyId: json['companyId'] as String?,
+      companyName: json['companyName'] as String?,
     );
 
 Map<String, dynamic> _$VehicleInboxDTOToJson(VehicleInboxDTO instance) =>
@@ -1839,8 +1840,9 @@ Map<String, dynamic> _$VehicleInboxDTOToJson(VehicleInboxDTO instance) =>
       'placas': instance.placas,
       'category': instance.category,
       'projectName': instance.projectName,
+      'machineName': instance.machineName,
       'machineId': instance.machineId,
-      'companyId': instance.companyId,
+      'companyName': instance.companyName,
     };
 
 VehicleInboxDTOPagedResult _$VehicleInboxDTOPagedResultFromJson(

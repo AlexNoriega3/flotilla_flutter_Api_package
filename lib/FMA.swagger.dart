@@ -3564,15 +3564,22 @@ abstract class FMA extends ChopperService {
 
   ///
   ///@param vehicles
-  Future<chopper.Response> apiVehicleDownloadGet({List<String>? vehicles}) {
-    return _apiVehicleDownloadGet(vehicles: vehicles);
+  ///@param all
+  ///@param active
+  Future<chopper.Response> apiVehicleDownloadGet(
+      {List<String>? vehicles, bool? all, bool? active}) {
+    return _apiVehicleDownloadGet(vehicles: vehicles, all: all, active: active);
   }
 
   ///
   ///@param vehicles
+  ///@param all
+  ///@param active
   @Get(path: '/api/Vehicle/Download')
   Future<chopper.Response> _apiVehicleDownloadGet(
-      {@Query('vehicles') List<String>? vehicles});
+      {@Query('vehicles') List<String>? vehicles,
+      @Query('all') bool? all,
+      @Query('active') bool? active});
 
   ///
   Future<chopper.Response<List<VehicleTypeDTO>>> apiVehicleTypeGet() {
@@ -10499,8 +10506,9 @@ class VehicleInboxDTO {
     this.placas,
     this.category,
     this.projectName,
+    this.machineName,
     this.machineId,
-    this.companyId,
+    this.companyName,
   });
 
   factory VehicleInboxDTO.fromJson(Map<String, dynamic> json) =>
@@ -10524,10 +10532,12 @@ class VehicleInboxDTO {
   final String? category;
   @JsonKey(name: 'projectName')
   final String? projectName;
+  @JsonKey(name: 'machineName')
+  final String? machineName;
   @JsonKey(name: 'machineId')
   final String? machineId;
-  @JsonKey(name: 'companyId')
-  final String? companyId;
+  @JsonKey(name: 'companyName')
+  final String? companyName;
   static const fromJsonFactory = _$VehicleInboxDTOFromJson;
   static const toJsonFactory = _$VehicleInboxDTOToJson;
   Map<String, dynamic> toJson() => _$VehicleInboxDTOToJson(this);
@@ -10562,12 +10572,15 @@ class VehicleInboxDTO {
             (identical(other.projectName, projectName) ||
                 const DeepCollectionEquality()
                     .equals(other.projectName, projectName)) &&
+            (identical(other.machineName, machineName) ||
+                const DeepCollectionEquality()
+                    .equals(other.machineName, machineName)) &&
             (identical(other.machineId, machineId) ||
                 const DeepCollectionEquality()
                     .equals(other.machineId, machineId)) &&
-            (identical(other.companyId, companyId) ||
+            (identical(other.companyName, companyName) ||
                 const DeepCollectionEquality()
-                    .equals(other.companyId, companyId)));
+                    .equals(other.companyName, companyName)));
   }
 
   @override
@@ -10581,8 +10594,9 @@ class VehicleInboxDTO {
       const DeepCollectionEquality().hash(placas) ^
       const DeepCollectionEquality().hash(category) ^
       const DeepCollectionEquality().hash(projectName) ^
+      const DeepCollectionEquality().hash(machineName) ^
       const DeepCollectionEquality().hash(machineId) ^
-      const DeepCollectionEquality().hash(companyId) ^
+      const DeepCollectionEquality().hash(companyName) ^
       runtimeType.hashCode;
 }
 
@@ -10597,8 +10611,9 @@ extension $VehicleInboxDTOExtension on VehicleInboxDTO {
       String? placas,
       String? category,
       String? projectName,
+      String? machineName,
       String? machineId,
-      String? companyId}) {
+      String? companyName}) {
     return VehicleInboxDTO(
         id: id ?? this.id,
         image: image ?? this.image,
@@ -10609,8 +10624,9 @@ extension $VehicleInboxDTOExtension on VehicleInboxDTO {
         placas: placas ?? this.placas,
         category: category ?? this.category,
         projectName: projectName ?? this.projectName,
+        machineName: machineName ?? this.machineName,
         machineId: machineId ?? this.machineId,
-        companyId: companyId ?? this.companyId);
+        companyName: companyName ?? this.companyName);
   }
 }
 

@@ -9561,8 +9561,7 @@
             "name": "active",
             "in": "query",
             "schema": {
-              "type": "boolean",
-              "default": true
+              "type": "boolean"
             }
           }
         ],
@@ -10873,6 +10872,20 @@
               "items": {
                 "type": "string"
               }
+            }
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
@@ -14110,11 +14123,15 @@
             "type": "string",
             "nullable": true
           },
+          "machineName": {
+            "type": "string",
+            "nullable": true
+          },
           "machineId": {
             "type": "string",
             "nullable": true
           },
-          "companyId": {
+          "companyName": {
             "type": "string",
             "nullable": true
           }
