@@ -823,7 +823,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   ///@param Active
   Future<chopper.Response<FuelLoadDetailDTOPagedResult>>
-      apiFuelLoadFinForVehicleGet(
+      apiFuelLoadFindForVehicleGet(
           {String? id,
           required int? page,
           String? search,
@@ -834,7 +834,7 @@ abstract class FMA extends ChopperService {
     generatedMapping.putIfAbsent(FuelLoadDetailDTOPagedResult,
         () => FuelLoadDetailDTOPagedResult.fromJsonFactory);
 
-    return _apiFuelLoadFinForVehicleGet(
+    return _apiFuelLoadFindForVehicleGet(
         id: id,
         page: page,
         search: search,
@@ -852,9 +852,9 @@ abstract class FMA extends ChopperService {
   ///@param SortOrder
   ///@param PageSize
   ///@param Active
-  @Get(path: '/api/FuelLoad/FinForVehicle')
+  @Get(path: '/api/FuelLoad/FindForVehicle')
   Future<chopper.Response<FuelLoadDetailDTOPagedResult>>
-      _apiFuelLoadFinForVehicleGet(
+      _apiFuelLoadFindForVehicleGet(
           {@Query('Id') String? id,
           @Query('Page') required int? page,
           @Query('Search') String? search,
@@ -1828,6 +1828,55 @@ abstract class FMA extends ChopperService {
   @Delete(path: '/api/Maintenance/{id}')
   Future<chopper.Response<bool>> _apiMaintenanceIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  ///@param Id
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  Future<chopper.Response<MaintenanceDetailDTOPagedResult>>
+      apiMaintenanceFindForVehicleGet(
+          {String? id,
+          required int? page,
+          String? search,
+          String? orderByPropertyName,
+          enums.SortOrderEnum? sortOrder,
+          required int? pageSize,
+          bool? active}) {
+    generatedMapping.putIfAbsent(MaintenanceDetailDTOPagedResult,
+        () => MaintenanceDetailDTOPagedResult.fromJsonFactory);
+
+    return _apiMaintenanceFindForVehicleGet(
+        id: id,
+        page: page,
+        search: search,
+        orderByPropertyName: orderByPropertyName,
+        sortOrder: enums.$SortOrderEnumMap[sortOrder]?.toString(),
+        pageSize: pageSize,
+        active: active);
+  }
+
+  ///
+  ///@param Id
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  @Get(path: '/api/Maintenance/FindForVehicle')
+  Future<chopper.Response<MaintenanceDetailDTOPagedResult>>
+      _apiMaintenanceFindForVehicleGet(
+          {@Query('Id') String? id,
+          @Query('Page') required int? page,
+          @Query('Search') String? search,
+          @Query('OrderByPropertyName') String? orderByPropertyName,
+          @Query('SortOrder') String? sortOrder,
+          @Query('PageSize') required int? pageSize,
+          @Query('Active') bool? active});
 
   ///
   Future<chopper.Response<List<MaintenanceGroupDTO>>> apiMaintenanceGroupGet() {

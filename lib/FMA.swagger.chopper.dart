@@ -465,7 +465,7 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<FuelLoadDetailDTOPagedResult>> _apiFuelLoadFinForVehicleGet(
+  Future<Response<FuelLoadDetailDTOPagedResult>> _apiFuelLoadFindForVehicleGet(
       {String? id,
       required int? page,
       String? search,
@@ -473,7 +473,7 @@ class _$FMA extends FMA {
       String? sortOrder,
       required int? pageSize,
       bool? active}) {
-    final $url = '/api/FuelLoad/FinForVehicle';
+    final $url = '/api/FuelLoad/FindForVehicle';
     final $params = <String, dynamic>{
       'Id': id,
       'Page': page,
@@ -1037,6 +1037,31 @@ class _$FMA extends FMA {
     final $url = '/api/Maintenance/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<MaintenanceDetailDTOPagedResult>>
+      _apiMaintenanceFindForVehicleGet(
+          {String? id,
+          required int? page,
+          String? search,
+          String? orderByPropertyName,
+          String? sortOrder,
+          required int? pageSize,
+          bool? active}) {
+    final $url = '/api/Maintenance/FindForVehicle';
+    final $params = <String, dynamic>{
+      'Id': id,
+      'Page': page,
+      'Search': search,
+      'OrderByPropertyName': orderByPropertyName,
+      'SortOrder': sortOrder,
+      'PageSize': pageSize,
+      'Active': active
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<MaintenanceDetailDTOPagedResult,
+        MaintenanceDetailDTOPagedResult>($request);
   }
 
   @override
