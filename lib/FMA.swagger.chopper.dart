@@ -91,14 +91,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Brand/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<BrandDTOPagedResult, BrandDTOPagedResult>($request);
@@ -148,14 +150,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Category/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -206,14 +210,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Company/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<CompanyDTOPagedResult, CompanyDTOPagedResult>($request);
@@ -263,14 +269,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/CostCenter/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -321,14 +329,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Document/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -379,14 +389,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Engine/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<EngineDTOPagedResult, EngineDTOPagedResult>($request);
@@ -436,14 +448,40 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/FuelLoad/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<FuelLoadDetailDTOPagedResult,
+        FuelLoadDetailDTOPagedResult>($request);
+  }
+
+  @override
+  Future<Response<FuelLoadDetailDTOPagedResult>> _apiFuelLoadFinForVehicleGet(
+      {String? id,
+      required int? page,
+      String? search,
+      String? orderByPropertyName,
+      String? sortOrder,
+      required int? pageSize,
+      bool? active}) {
+    final $url = '/api/FuelLoad/FinForVehicle';
+    final $params = <String, dynamic>{
+      'Id': id,
+      'Page': page,
+      'Search': search,
+      'OrderByPropertyName': orderByPropertyName,
+      'SortOrder': sortOrder,
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<FuelLoadDetailDTOPagedResult,
@@ -495,14 +533,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/FuelMeasure/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -553,14 +593,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/FuelType/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -611,14 +653,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/FuelVendor/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -669,14 +713,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Image/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<ImageDTOPagedResult, ImageDTOPagedResult>($request);
@@ -726,14 +772,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Incident/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -784,14 +832,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Inciso/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<IncisoDTOPagedResult, IncisoDTOPagedResult>($request);
@@ -844,14 +894,16 @@ class _$FMA extends FMA {
           String? search,
           String? orderByPropertyName,
           String? sortOrder,
-          required int? pageSize}) {
+          required int? pageSize,
+          bool? active}) {
     final $url = '/api/InsuranceCompany/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<InsuranceCompanyDTOPagedResult,
@@ -903,14 +955,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Machine/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<MachineDTOPagedResult, MachineDTOPagedResult>($request);
@@ -946,14 +1000,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Maintenance/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<MaintenanceDetailDTOPagedResult,
@@ -1007,14 +1063,16 @@ class _$FMA extends FMA {
           String? search,
           String? orderByPropertyName,
           String? sortOrder,
-          required int? pageSize}) {
+          required int? pageSize,
+          bool? active}) {
     final $url = '/api/MaintenanceGroup/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<MaintenanceGroupDTOPagedResult,
@@ -1067,14 +1125,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/MaintenancePart/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<MaintenancePartDTOPagedResult,
@@ -1127,14 +1187,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/MaintenanceType/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<MaintenanceTypeDTOPagedResult,
@@ -1186,14 +1248,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Measure/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<MeasureDTOPagedResult, MeasureDTOPagedResult>($request);
@@ -1243,14 +1307,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Model/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<ModelDTOPagedResult, ModelDTOPagedResult>($request);
@@ -1301,14 +1367,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/PackagePolicy/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<PackagePolicyDTOPagedResult,
@@ -1360,14 +1428,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Part/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<PartDTOPagedResult, PartDTOPagedResult>($request);
@@ -1417,14 +1487,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Policy/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<PolicyDTOPagedResult, PolicyDTOPagedResult>($request);
@@ -1475,14 +1547,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/PolicyStatus/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -1534,14 +1608,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Project/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<ProjectDTOPagedResult, ProjectDTOPagedResult>($request);
@@ -1592,7 +1668,8 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Reminder/Search';
     final $params = <String, dynamic>{
       'Id': id,
@@ -1600,7 +1677,8 @@ class _$FMA extends FMA {
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -1651,14 +1729,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Role/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<RoleDTOPagedResult, RoleDTOPagedResult>($request);
@@ -1708,14 +1788,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Service/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<ServiceDTOPagedResult, ServiceDTOPagedResult>($request);
@@ -1765,14 +1847,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/User/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<AppUserDTOPagedResult, AppUserDTOPagedResult>($request);
@@ -1835,14 +1919,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/UserVehicle/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -1894,14 +1980,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Vehicle/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<VehicleDTOPagedResult, VehicleDTOPagedResult>($request);
@@ -1922,7 +2010,7 @@ class _$FMA extends FMA {
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
       'PageSize': pageSize,
-      'active': active
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -2076,14 +2164,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/VehicleType/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -2134,14 +2224,16 @@ class _$FMA extends FMA {
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
-      required int? pageSize}) {
+      required int? pageSize,
+      bool? active}) {
     final $url = '/api/Vendor/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
-      'PageSize': pageSize
+      'PageSize': pageSize,
+      'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<VendorDTOPagedResult, VendorDTOPagedResult>($request);
