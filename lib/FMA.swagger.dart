@@ -8743,6 +8743,7 @@ class ReminderDTO {
     this.reminderDate,
     this.code,
     this.serviceName,
+    this.title,
     this.vehicle,
   });
 
@@ -8757,6 +8758,8 @@ class ReminderDTO {
   final String? code;
   @JsonKey(name: 'serviceName')
   final String? serviceName;
+  @JsonKey(name: 'title')
+  final String? title;
   @JsonKey(name: 'vehicle')
   final String? vehicle;
   static const fromJsonFactory = _$ReminderDTOFromJson;
@@ -8780,6 +8783,8 @@ class ReminderDTO {
             (identical(other.serviceName, serviceName) ||
                 const DeepCollectionEquality()
                     .equals(other.serviceName, serviceName)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.vehicle, vehicle) ||
                 const DeepCollectionEquality().equals(other.vehicle, vehicle)));
   }
@@ -8790,6 +8795,7 @@ class ReminderDTO {
       const DeepCollectionEquality().hash(reminderDate) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(serviceName) ^
+      const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(vehicle) ^
       runtimeType.hashCode;
 }
@@ -8800,12 +8806,14 @@ extension $ReminderDTOExtension on ReminderDTO {
       String? reminderDate,
       String? code,
       String? serviceName,
+      String? title,
       String? vehicle}) {
     return ReminderDTO(
         id: id ?? this.id,
         reminderDate: reminderDate ?? this.reminderDate,
         code: code ?? this.code,
         serviceName: serviceName ?? this.serviceName,
+        title: title ?? this.title,
         vehicle: vehicle ?? this.vehicle);
   }
 }
@@ -10344,8 +10352,8 @@ class VehicleDetailDTO {
   final String? assignment;
   @JsonKey(name: 'performance', defaultValue: <PerformanceDTO>[])
   final List<PerformanceDTO>? performance;
-  @JsonKey(name: 'statistics', defaultValue: <VehicleStatisticsDTO>[])
-  final List<VehicleStatisticsDTO>? statistics;
+  @JsonKey(name: 'statistics')
+  final VehicleStatisticsDTO? statistics;
   @JsonKey(name: 'fuelLoads')
   final FuelLoadDetailDTOPagedResult? fuelLoads;
   @JsonKey(name: 'listMaintenances')
@@ -10466,7 +10474,7 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
       String? company,
       String? assignment,
       List<PerformanceDTO>? performance,
-      List<VehicleStatisticsDTO>? statistics,
+      VehicleStatisticsDTO? statistics,
       FuelLoadDetailDTOPagedResult? fuelLoads,
       MaintenanceDetailDTOPagedResult? listMaintenances,
       List<ImageDTO>? photographs,

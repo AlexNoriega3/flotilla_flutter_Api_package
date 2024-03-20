@@ -1284,6 +1284,7 @@ ReminderDTO _$ReminderDTOFromJson(Map<String, dynamic> json) => ReminderDTO(
       reminderDate: json['reminderDate'] as String?,
       code: json['code'] as String?,
       serviceName: json['serviceName'] as String?,
+      title: json['title'] as String?,
       vehicle: json['vehicle'] as String?,
     );
 
@@ -1293,6 +1294,7 @@ Map<String, dynamic> _$ReminderDTOToJson(ReminderDTO instance) =>
       'reminderDate': instance.reminderDate,
       'code': instance.code,
       'serviceName': instance.serviceName,
+      'title': instance.title,
       'vehicle': instance.vehicle,
     };
 
@@ -1687,11 +1689,10 @@ VehicleDetailDTO _$VehicleDetailDTOFromJson(Map<String, dynamic> json) =>
               ?.map((e) => PerformanceDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      statistics: (json['statistics'] as List<dynamic>?)
-              ?.map((e) =>
-                  VehicleStatisticsDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
+      statistics: json['statistics'] == null
+          ? null
+          : VehicleStatisticsDTO.fromJson(
+              json['statistics'] as Map<String, dynamic>),
       fuelLoads: json['fuelLoads'] == null
           ? null
           : FuelLoadDetailDTOPagedResult.fromJson(
@@ -1731,7 +1732,7 @@ Map<String, dynamic> _$VehicleDetailDTOToJson(VehicleDetailDTO instance) =>
       'company': instance.company,
       'assignment': instance.assignment,
       'performance': instance.performance?.map((e) => e.toJson()).toList(),
-      'statistics': instance.statistics?.map((e) => e.toJson()).toList(),
+      'statistics': instance.statistics?.toJson(),
       'fuelLoads': instance.fuelLoads?.toJson(),
       'listMaintenances': instance.listMaintenances?.toJson(),
       'photographs': instance.photographs?.map((e) => e.toJson()).toList(),
