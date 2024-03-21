@@ -905,6 +905,20 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  Future<chopper.Response<PerformanceFilterDTO>> apiFuelLoadStatisticsPost(
+      {required StatisticsFilterDTO? body}) {
+    generatedMapping.putIfAbsent(
+        PerformanceFilterDTO, () => PerformanceFilterDTO.fromJsonFactory);
+
+    return _apiFuelLoadStatisticsPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/FuelLoad/Statistics')
+  Future<chopper.Response<PerformanceFilterDTO>> _apiFuelLoadStatisticsPost(
+      {@Body() required StatisticsFilterDTO? body});
+
+  ///
   Future<chopper.Response<List<FuelMeasureDTO>>> apiFuelMeasureGet() {
     generatedMapping.putIfAbsent(
         FuelMeasureDTO, () => FuelMeasureDTO.fromJsonFactory);
@@ -8135,6 +8149,55 @@ extension $PerformanceDTOExtension on PerformanceDTO {
 }
 
 @JsonSerializable(explicitToJson: true)
+class PerformanceFilterDTO {
+  PerformanceFilterDTO({
+    this.performance,
+    this.statistics,
+  });
+
+  factory PerformanceFilterDTO.fromJson(Map<String, dynamic> json) =>
+      _$PerformanceFilterDTOFromJson(json);
+
+  @JsonKey(name: 'performance', defaultValue: <PerformanceDTO>[])
+  final List<PerformanceDTO>? performance;
+  @JsonKey(name: 'statistics')
+  final VehicleStatisticsDTO? statistics;
+  static const fromJsonFactory = _$PerformanceFilterDTOFromJson;
+  static const toJsonFactory = _$PerformanceFilterDTOToJson;
+  Map<String, dynamic> toJson() => _$PerformanceFilterDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PerformanceFilterDTO &&
+            (identical(other.performance, performance) ||
+                const DeepCollectionEquality()
+                    .equals(other.performance, performance)) &&
+            (identical(other.statistics, statistics) ||
+                const DeepCollectionEquality()
+                    .equals(other.statistics, statistics)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(performance) ^
+      const DeepCollectionEquality().hash(statistics) ^
+      runtimeType.hashCode;
+}
+
+extension $PerformanceFilterDTOExtension on PerformanceFilterDTO {
+  PerformanceFilterDTO copyWith(
+      {List<PerformanceDTO>? performance, VehicleStatisticsDTO? statistics}) {
+    return PerformanceFilterDTO(
+        performance: performance ?? this.performance,
+        statistics: statistics ?? this.statistics);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class PolicyDTO {
   PolicyDTO({
     this.id,
@@ -9400,6 +9463,62 @@ extension $ServiceDTOPagedResultExtension on ServiceDTOPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class StatisticsFilterDTO {
+  StatisticsFilterDTO({
+    required this.vehicleId,
+    required this.dateStart,
+    this.dateEnd,
+  });
+
+  factory StatisticsFilterDTO.fromJson(Map<String, dynamic> json) =>
+      _$StatisticsFilterDTOFromJson(json);
+
+  @JsonKey(name: 'vehicleId')
+  final String vehicleId;
+  @JsonKey(name: 'dateStart')
+  final String dateStart;
+  @JsonKey(name: 'dateEnd')
+  final String? dateEnd;
+  static const fromJsonFactory = _$StatisticsFilterDTOFromJson;
+  static const toJsonFactory = _$StatisticsFilterDTOToJson;
+  Map<String, dynamic> toJson() => _$StatisticsFilterDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is StatisticsFilterDTO &&
+            (identical(other.vehicleId, vehicleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleId, vehicleId)) &&
+            (identical(other.dateStart, dateStart) ||
+                const DeepCollectionEquality()
+                    .equals(other.dateStart, dateStart)) &&
+            (identical(other.dateEnd, dateEnd) ||
+                const DeepCollectionEquality().equals(other.dateEnd, dateEnd)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(vehicleId) ^
+      const DeepCollectionEquality().hash(dateStart) ^
+      const DeepCollectionEquality().hash(dateEnd) ^
+      runtimeType.hashCode;
+}
+
+extension $StatisticsFilterDTOExtension on StatisticsFilterDTO {
+  StatisticsFilterDTO copyWith(
+      {String? vehicleId, String? dateStart, String? dateEnd}) {
+    return StatisticsFilterDTO(
+        vehicleId: vehicleId ?? this.vehicleId,
+        dateStart: dateStart ?? this.dateStart,
+        dateEnd: dateEnd ?? this.dateEnd);
   }
 }
 

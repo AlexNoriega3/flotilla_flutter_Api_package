@@ -1775,6 +1775,34 @@
         }
       }
     },
+    "/api/FuelLoad/Statistics": {
+      "post": {
+        "tags": [
+          "FuelLoad"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatisticsFilterDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PerformanceFilterDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/FuelMeasure": {
       "get": {
         "tags": [
@@ -13324,6 +13352,22 @@
         },
         "additionalProperties": false
       },
+      "PerformanceFilterDTO": {
+        "type": "object",
+        "properties": {
+          "performance": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PerformanceDTO"
+            },
+            "nullable": true
+          },
+          "statistics": {
+            "$ref": "#/components/schemas/VehicleStatisticsDTO"
+          }
+        },
+        "additionalProperties": false
+      },
       "PeriodEnum": {
         "enum": [
           "Day",
@@ -13835,6 +13879,30 @@
           "Descending"
         ],
         "type": "string"
+      },
+      "StatisticsFilterDTO": {
+        "required": [
+          "dateStart",
+          "vehicleId"
+        ],
+        "type": "object",
+        "properties": {
+          "vehicleId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "dateStart": {
+            "minLength": 1,
+            "pattern": "\\d{4}-\\d{2}-\\d{2}",
+            "type": "string"
+          },
+          "dateEnd": {
+            "pattern": "\\d{4}-\\d{2}-\\d{2}",
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "TimeSpan": {
         "type": "object",

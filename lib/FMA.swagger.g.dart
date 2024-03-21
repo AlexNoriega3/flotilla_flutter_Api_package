@@ -1117,6 +1117,26 @@ Map<String, dynamic> _$PerformanceDTOToJson(PerformanceDTO instance) =>
       'date': instance.date,
     };
 
+PerformanceFilterDTO _$PerformanceFilterDTOFromJson(
+        Map<String, dynamic> json) =>
+    PerformanceFilterDTO(
+      performance: (json['performance'] as List<dynamic>?)
+              ?.map((e) => PerformanceDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      statistics: json['statistics'] == null
+          ? null
+          : VehicleStatisticsDTO.fromJson(
+              json['statistics'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$PerformanceFilterDTOToJson(
+        PerformanceFilterDTO instance) =>
+    <String, dynamic>{
+      'performance': instance.performance?.map((e) => e.toJson()).toList(),
+      'statistics': instance.statistics?.toJson(),
+    };
+
 PolicyDTO _$PolicyDTOFromJson(Map<String, dynamic> json) => PolicyDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
@@ -1446,6 +1466,21 @@ Map<String, dynamic> _$ServiceDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+StatisticsFilterDTO _$StatisticsFilterDTOFromJson(Map<String, dynamic> json) =>
+    StatisticsFilterDTO(
+      vehicleId: json['vehicleId'] as String,
+      dateStart: json['dateStart'] as String,
+      dateEnd: json['dateEnd'] as String?,
+    );
+
+Map<String, dynamic> _$StatisticsFilterDTOToJson(
+        StatisticsFilterDTO instance) =>
+    <String, dynamic>{
+      'vehicleId': instance.vehicleId,
+      'dateStart': instance.dateStart,
+      'dateEnd': instance.dateEnd,
     };
 
 TimeSpan _$TimeSpanFromJson(Map<String, dynamic> json) => TimeSpan(

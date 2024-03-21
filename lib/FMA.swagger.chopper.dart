@@ -512,6 +512,15 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<PerformanceFilterDTO>> _apiFuelLoadStatisticsPost(
+      {required StatisticsFilterDTO? body}) {
+    final $url = '/api/FuelLoad/Statistics';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<PerformanceFilterDTO, PerformanceFilterDTO>($request);
+  }
+
+  @override
   Future<Response<List<FuelMeasureDTO>>> _apiFuelMeasureGet() {
     final $url = '/api/FuelMeasure';
     final $request = Request('GET', $url, client.baseUrl);
