@@ -1,5 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
 
+enum CategoryTypeEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Vehicle')
+  vehicle,
+  @JsonValue('Active')
+  active
+}
+
+const $CategoryTypeEnumMap = {
+  CategoryTypeEnum.vehicle: 'Vehicle',
+  CategoryTypeEnum.active: 'Active'
+};
+
 enum GenderEnum {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,

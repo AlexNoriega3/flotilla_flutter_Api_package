@@ -869,214 +869,6 @@
         }
       }
     },
-    "/api/CostCenter": {
-      "get": {
-        "tags": [
-          "CostCenter"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CostCenterDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "CostCenter"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CostCenterDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/CostCenter/Search": {
-      "get": {
-        "tags": [
-          "CostCenter"
-        ],
-        "parameters": [
-          {
-            "name": "Page",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrderByPropertyName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SortOrder",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/SortOrderEnum"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Active",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CostCenterDTOPagedResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/CostCenter/{id}": {
-      "get": {
-        "tags": [
-          "CostCenter"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CostCenterDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "CostCenter"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CostCenterDTO"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "CostCenter"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Document": {
       "get": {
         "tags": [
@@ -11296,214 +11088,6 @@
         }
       }
     },
-    "/api/VehicleType": {
-      "get": {
-        "tags": [
-          "VehicleType"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/VehicleTypeDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "VehicleType"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VehicleTypeDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/VehicleType/Search": {
-      "get": {
-        "tags": [
-          "VehicleType"
-        ],
-        "parameters": [
-          {
-            "name": "Page",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrderByPropertyName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SortOrder",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/SortOrderEnum"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Active",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleTypeDTOPagedResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/VehicleType/{id}": {
-      "get": {
-        "tags": [
-          "VehicleType"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleTypeDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "VehicleType"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VehicleTypeDTO"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "VehicleType"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Vendor": {
       "get": {
         "tags": [
@@ -11882,6 +11466,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -11939,6 +11526,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -11956,6 +11546,9 @@
             "minLength": 0,
             "type": "string",
             "nullable": true
+          },
+          "categoryType": {
+            "$ref": "#/components/schemas/CategoryTypeEnum"
           }
         },
         "additionalProperties": false
@@ -11989,12 +11582,22 @@
         },
         "additionalProperties": false
       },
+      "CategoryTypeEnum": {
+        "enum": [
+          "Vehicle",
+          "Active"
+        ],
+        "type": "string"
+      },
       "CompanyDTO": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -12046,73 +11649,15 @@
         },
         "additionalProperties": false
       },
-      "CostCenterDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "maxLength": 150,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "maxLength": 30,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "maxLength": 500,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "externalId": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CostCenterDTOPagedResult": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "recordNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CostCenterDTO"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "DocumentDTO": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "path": {
             "type": "string",
@@ -12174,6 +11719,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -12234,6 +11782,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -12352,6 +11903,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -12409,6 +11963,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -12465,6 +12022,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -12535,6 +12095,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "path": {
             "type": "string",
             "nullable": true
@@ -12589,6 +12152,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -12651,6 +12217,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "type": "string",
             "nullable": true
@@ -12697,6 +12266,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -12775,6 +12347,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -12835,6 +12410,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "type": "string",
@@ -12944,6 +12522,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -13001,6 +12582,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "maintenanceId": {
             "type": "string",
             "nullable": true
@@ -13047,6 +12631,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -13105,6 +12692,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -13161,6 +12751,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -13223,6 +12816,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -13279,6 +12875,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -13384,6 +12983,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -13464,6 +13066,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -13562,6 +13167,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -13822,6 +13430,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -14114,6 +13725,9 @@
             "type": "string",
             "nullable": true
           },
+          "active": {
+            "type": "boolean"
+          },
           "name": {
             "maxLength": 150,
             "minLength": 0,
@@ -14186,6 +13800,9 @@
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,
@@ -14289,10 +13906,6 @@
             "format": "int32"
           },
           "documentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "vehicleTypeId": {
             "type": "string",
             "nullable": true
           },
@@ -15017,72 +14630,15 @@
         ],
         "type": "string"
       },
-      "VehicleTypeDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "maxLength": 150,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "maxLength": 30,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "maxLength": 500,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "inUse": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "VehicleTypeDTOPagedResult": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "recordNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/VehicleTypeDTO"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "VendorDTO": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "name": {
             "maxLength": 150,

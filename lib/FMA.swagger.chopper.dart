@@ -249,66 +249,6 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<List<CostCenterDTO>>> _apiCostCenterGet() {
-    final $url = '/api/CostCenter';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<CostCenterDTO>, CostCenterDTO>($request);
-  }
-
-  @override
-  Future<Response<String>> _apiCostCenterPost({required CostCenterDTO? body}) {
-    final $url = '/api/CostCenter';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
-  Future<Response<CostCenterDTOPagedResult>> _apiCostCenterSearchGet(
-      {required int? page,
-      String? search,
-      String? orderByPropertyName,
-      String? sortOrder,
-      required int? pageSize,
-      bool? active}) {
-    final $url = '/api/CostCenter/Search';
-    final $params = <String, dynamic>{
-      'Page': page,
-      'Search': search,
-      'OrderByPropertyName': orderByPropertyName,
-      'SortOrder': sortOrder,
-      'PageSize': pageSize,
-      'Active': active
-    };
-    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client
-        .send<CostCenterDTOPagedResult, CostCenterDTOPagedResult>($request);
-  }
-
-  @override
-  Future<Response<CostCenterDTO>> _apiCostCenterIdGet({required String? id}) {
-    final $url = '/api/CostCenter/${id}';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<CostCenterDTO, CostCenterDTO>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiCostCenterIdPut(
-      {required String? id, required CostCenterDTO? body}) {
-    final $url = '/api/CostCenter/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiCostCenterIdDelete({required String? id}) {
-    final $url = '/api/CostCenter/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
   Future<Response<List<DocumentDTO>>> _apiDocumentGet() {
     final $url = '/api/Document';
     final $request = Request('GET', $url, client.baseUrl);
@@ -2174,67 +2114,6 @@ class _$FMA extends FMA {
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
-  }
-
-  @override
-  Future<Response<List<VehicleTypeDTO>>> _apiVehicleTypeGet() {
-    final $url = '/api/VehicleType';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<VehicleTypeDTO>, VehicleTypeDTO>($request);
-  }
-
-  @override
-  Future<Response<String>> _apiVehicleTypePost(
-      {required VehicleTypeDTO? body}) {
-    final $url = '/api/VehicleType';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
-  Future<Response<VehicleTypeDTOPagedResult>> _apiVehicleTypeSearchGet(
-      {required int? page,
-      String? search,
-      String? orderByPropertyName,
-      String? sortOrder,
-      required int? pageSize,
-      bool? active}) {
-    final $url = '/api/VehicleType/Search';
-    final $params = <String, dynamic>{
-      'Page': page,
-      'Search': search,
-      'OrderByPropertyName': orderByPropertyName,
-      'SortOrder': sortOrder,
-      'PageSize': pageSize,
-      'Active': active
-    };
-    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client
-        .send<VehicleTypeDTOPagedResult, VehicleTypeDTOPagedResult>($request);
-  }
-
-  @override
-  Future<Response<VehicleTypeDTO>> _apiVehicleTypeIdGet({required String? id}) {
-    final $url = '/api/VehicleType/${id}';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<VehicleTypeDTO, VehicleTypeDTO>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiVehicleTypeIdPut(
-      {required String? id, required VehicleTypeDTO? body}) {
-    final $url = '/api/VehicleType/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiVehicleTypeIdDelete({required String? id}) {
-    final $url = '/api/VehicleType/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
   }
 
   @override
