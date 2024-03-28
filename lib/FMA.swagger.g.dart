@@ -145,6 +145,20 @@ Map<String, dynamic> _$BrandDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+CatalogsRegistersDTO _$CatalogsRegistersDTOFromJson(
+        Map<String, dynamic> json) =>
+    CatalogsRegistersDTO(
+      catalog: catalogsEnumFromJson(json['catalog']),
+      total: json['total'] as int?,
+    );
+
+Map<String, dynamic> _$CatalogsRegistersDTOToJson(
+        CatalogsRegistersDTO instance) =>
+    <String, dynamic>{
+      'catalog': catalogsEnumToJson(instance.catalog),
+      'total': instance.total,
+    };
+
 CategoryDTO _$CategoryDTOFromJson(Map<String, dynamic> json) => CategoryDTO(
       id: json['id'] as String?,
       active: json['active'] as bool?,

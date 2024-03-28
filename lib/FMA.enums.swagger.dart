@@ -1,5 +1,52 @@
 import 'package:json_annotation/json_annotation.dart';
 
+enum CatalogsEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('VehicleCategories')
+  vehiclecategories,
+  @JsonValue('FuelTypes')
+  fueltypes,
+  @JsonValue('Servies')
+  servies,
+  @JsonValue('Machines')
+  machines,
+  @JsonValue('Projects')
+  projects,
+  @JsonValue('MaintenanceGroups')
+  maintenancegroups,
+  @JsonValue('Engines')
+  engines,
+  @JsonValue('Models')
+  models,
+  @JsonValue('Brands')
+  brands,
+  @JsonValue('Companies')
+  companies,
+  @JsonValue('FuelMeasures')
+  fuelmeasures,
+  @JsonValue('Measures')
+  measures,
+  @JsonValue('ActiveCategories')
+  activecategories
+}
+
+const $CatalogsEnumMap = {
+  CatalogsEnum.vehiclecategories: 'VehicleCategories',
+  CatalogsEnum.fueltypes: 'FuelTypes',
+  CatalogsEnum.servies: 'Servies',
+  CatalogsEnum.machines: 'Machines',
+  CatalogsEnum.projects: 'Projects',
+  CatalogsEnum.maintenancegroups: 'MaintenanceGroups',
+  CatalogsEnum.engines: 'Engines',
+  CatalogsEnum.models: 'Models',
+  CatalogsEnum.brands: 'Brands',
+  CatalogsEnum.companies: 'Companies',
+  CatalogsEnum.fuelmeasures: 'FuelMeasures',
+  CatalogsEnum.measures: 'Measures',
+  CatalogsEnum.activecategories: 'ActiveCategories'
+};
+
 enum CategoryTypeEnum {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,

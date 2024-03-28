@@ -146,7 +146,8 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<CategoryDTOPagedResult>> _apiCategorySearchGet(
-      {required int? page,
+      {String? categoryType,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
@@ -154,6 +155,7 @@ class _$FMA extends FMA {
       bool? active}) {
     final $url = '/api/Category/Search';
     final $params = <String, dynamic>{
+      'CategoryType': categoryType,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -1798,6 +1800,15 @@ class _$FMA extends FMA {
     final $url = '/api/Service/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<List<CatalogsRegistersDTO>>>
+      _apiSystemCatalogsRegistersGet() {
+    final $url = '/api/System/CatalogsRegisters';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client
+        .send<List<CatalogsRegistersDTO>, CatalogsRegistersDTO>($request);
   }
 
   @override

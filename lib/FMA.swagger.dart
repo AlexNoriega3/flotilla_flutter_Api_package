@@ -251,6 +251,7 @@ abstract class FMA extends ChopperService {
       {@Body() required CategoryDTO? body});
 
   ///
+  ///@param CategoryType
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -258,7 +259,8 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   ///@param Active
   Future<chopper.Response<CategoryDTOPagedResult>> apiCategorySearchGet(
-      {required int? page,
+      {enums.CategoryTypeEnum? categoryType,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
@@ -268,6 +270,7 @@ abstract class FMA extends ChopperService {
         CategoryDTOPagedResult, () => CategoryDTOPagedResult.fromJsonFactory);
 
     return _apiCategorySearchGet(
+        categoryType: enums.$CategoryTypeEnumMap[categoryType]?.toString(),
         page: page,
         search: search,
         orderByPropertyName: orderByPropertyName,
@@ -277,6 +280,7 @@ abstract class FMA extends ChopperService {
   }
 
   ///
+  ///@param CategoryType
   ///@param Page
   ///@param Search
   ///@param OrderByPropertyName
@@ -285,7 +289,8 @@ abstract class FMA extends ChopperService {
   ///@param Active
   @Get(path: '/api/Category/Search')
   Future<chopper.Response<CategoryDTOPagedResult>> _apiCategorySearchGet(
-      {@Query('Page') required int? page,
+      {@Query('CategoryType') String? categoryType,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
@@ -3162,6 +3167,20 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  Future<chopper.Response<List<CatalogsRegistersDTO>>>
+      apiSystemCatalogsRegistersGet() {
+    generatedMapping.putIfAbsent(
+        CatalogsRegistersDTO, () => CatalogsRegistersDTO.fromJsonFactory);
+
+    return _apiSystemCatalogsRegistersGet();
+  }
+
+  ///
+  @Get(path: '/api/System/CatalogsRegisters')
+  Future<chopper.Response<List<CatalogsRegistersDTO>>>
+      _apiSystemCatalogsRegistersGet();
+
+  ///
   Future<chopper.Response<List<AppUserDTO>>> apiUserGet() {
     generatedMapping.putIfAbsent(AppUserDTO, () => AppUserDTO.fromJsonFactory);
 
@@ -4381,6 +4400,55 @@ extension $BrandDTOPagedResultExtension on BrandDTOPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CatalogsRegistersDTO {
+  CatalogsRegistersDTO({
+    this.catalog,
+    this.total,
+  });
+
+  factory CatalogsRegistersDTO.fromJson(Map<String, dynamic> json) =>
+      _$CatalogsRegistersDTOFromJson(json);
+
+  @JsonKey(
+      name: 'catalog',
+      toJson: catalogsEnumToJson,
+      fromJson: catalogsEnumFromJson)
+  final enums.CatalogsEnum? catalog;
+  @JsonKey(name: 'total')
+  final int? total;
+  static const fromJsonFactory = _$CatalogsRegistersDTOFromJson;
+  static const toJsonFactory = _$CatalogsRegistersDTOToJson;
+  Map<String, dynamic> toJson() => _$CatalogsRegistersDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CatalogsRegistersDTO &&
+            (identical(other.catalog, catalog) ||
+                const DeepCollectionEquality()
+                    .equals(other.catalog, catalog)) &&
+            (identical(other.total, total) ||
+                const DeepCollectionEquality().equals(other.total, total)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(catalog) ^
+      const DeepCollectionEquality().hash(total) ^
+      runtimeType.hashCode;
+}
+
+extension $CatalogsRegistersDTOExtension on CatalogsRegistersDTO {
+  CatalogsRegistersDTO copyWith({enums.CatalogsEnum? catalog, int? total}) {
+    return CatalogsRegistersDTO(
+        catalog: catalog ?? this.catalog, total: total ?? this.total);
   }
 }
 
@@ -11908,6 +11976,54 @@ extension $VendorDTOPagedResultExtension on VendorDTOPagedResult {
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
   }
+}
+
+String? catalogsEnumToJson(enums.CatalogsEnum? catalogsEnum) {
+  return enums.$CatalogsEnumMap[catalogsEnum];
+}
+
+enums.CatalogsEnum catalogsEnumFromJson(
+  Object? catalogsEnum, [
+  enums.CatalogsEnum? defaultValue,
+]) {
+  if (catalogsEnum is String) {
+    return enums.$CatalogsEnumMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == catalogsEnum.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.CatalogsEnum.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  final parsedResult = defaultValue == null
+      ? null
+      : enums.$CatalogsEnumMap.entries
+          .firstWhereOrNull((element) => element.value == defaultValue)
+          ?.key;
+
+  return parsedResult ??
+      defaultValue ??
+      enums.CatalogsEnum.swaggerGeneratedUnknown;
+}
+
+List<String> catalogsEnumListToJson(List<enums.CatalogsEnum>? catalogsEnum) {
+  if (catalogsEnum == null) {
+    return [];
+  }
+
+  return catalogsEnum.map((e) => enums.$CatalogsEnumMap[e]!).toList();
+}
+
+List<enums.CatalogsEnum> catalogsEnumListFromJson(
+  List? catalogsEnum, [
+  List<enums.CatalogsEnum>? defaultValue,
+]) {
+  if (catalogsEnum == null) {
+    return defaultValue ?? [];
+  }
+
+  return catalogsEnum.map((e) => catalogsEnumFromJson(e.toString())).toList();
 }
 
 String? categoryTypeEnumToJson(enums.CategoryTypeEnum? categoryTypeEnum) {
