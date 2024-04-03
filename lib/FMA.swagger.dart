@@ -662,14 +662,14 @@ abstract class FMA extends ChopperService {
 
   ///
   Future<chopper.Response<String>> apiFuelLoadPost(
-      {required FuelLoadDTO? body}) {
+      {required FuelLoadPostDTO? body}) {
     return _apiFuelLoadPost(body: body);
   }
 
   ///
   @Post(path: '/api/FuelLoad')
   Future<chopper.Response<String>> _apiFuelLoadPost(
-      {@Body() required FuelLoadDTO? body});
+      {@Body() required FuelLoadPostDTO? body});
 
   ///
   ///@param Page
@@ -780,16 +780,102 @@ abstract class FMA extends ChopperService {
 
   ///
   ///@param id
+  ///@param ImagesToRemove
+  ///@param VehicleId
+  ///@param ChargeDate
+  ///@param ChargeHour
+  ///@param Reference
+  ///@param Full
+  ///@param ResetTank
+  ///@param ProviderId
+  ///@param Liters
+  ///@param FuelMeasureId
+  ///@param UserDriverId
+  ///@param Amount
+  ///@param UnitCost
+  ///@param Odometer
+  ///@param OdometerMeasurementId
+  ///@param Summary
   Future<chopper.Response<bool>> apiFuelLoadIdPut(
-      {required String? id, required FuelLoadDTO? body}) {
-    return _apiFuelLoadIdPut(id: id, body: body);
+      {required String? id,
+      List<String>? imagesToRemove,
+      required String? vehicleId,
+      required String? chargeDate,
+      required TimeSpan? chargeHour,
+      String? reference,
+      bool? full,
+      bool? resetTank,
+      int? providerId,
+      required num? liters,
+      String? fuelMeasureId,
+      String? userDriverId,
+      required num? amount,
+      num? unitCost,
+      required num? odometer,
+      String? odometerMeasurementId,
+      bool? summary,
+      required ApiFuelLoadIdPut$RequestBody? body}) {
+    generatedMapping.putIfAbsent(TimeSpan, () => TimeSpan.fromJsonFactory);
+
+    return _apiFuelLoadIdPut(
+        id: id,
+        imagesToRemove: imagesToRemove,
+        vehicleId: vehicleId,
+        chargeDate: chargeDate,
+        chargeHour: chargeHour,
+        reference: reference,
+        full: full,
+        resetTank: resetTank,
+        providerId: providerId,
+        liters: liters,
+        fuelMeasureId: fuelMeasureId,
+        userDriverId: userDriverId,
+        amount: amount,
+        unitCost: unitCost,
+        odometer: odometer,
+        odometerMeasurementId: odometerMeasurementId,
+        summary: summary,
+        body: body);
   }
 
   ///
   ///@param id
+  ///@param ImagesToRemove
+  ///@param VehicleId
+  ///@param ChargeDate
+  ///@param ChargeHour
+  ///@param Reference
+  ///@param Full
+  ///@param ResetTank
+  ///@param ProviderId
+  ///@param Liters
+  ///@param FuelMeasureId
+  ///@param UserDriverId
+  ///@param Amount
+  ///@param UnitCost
+  ///@param Odometer
+  ///@param OdometerMeasurementId
+  ///@param Summary
   @Put(path: '/api/FuelLoad/{id}')
   Future<chopper.Response<bool>> _apiFuelLoadIdPut(
-      {@Path('id') required String? id, @Body() required FuelLoadDTO? body});
+      {@Path('id') required String? id,
+      @Query('ImagesToRemove') List<String>? imagesToRemove,
+      @Query('VehicleId') required String? vehicleId,
+      @Query('ChargeDate') required String? chargeDate,
+      @Query('ChargeHour') required TimeSpan? chargeHour,
+      @Query('Reference') String? reference,
+      @Query('Full') bool? full,
+      @Query('ResetTank') bool? resetTank,
+      @Query('ProviderId') int? providerId,
+      @Query('Liters') required num? liters,
+      @Query('FuelMeasureId') String? fuelMeasureId,
+      @Query('UserDriverId') String? userDriverId,
+      @Query('Amount') required num? amount,
+      @Query('UnitCost') num? unitCost,
+      @Query('Odometer') required num? odometer,
+      @Query('OdometerMeasurementId') String? odometerMeasurementId,
+      @Query('Summary') bool? summary,
+      @Body() required ApiFuelLoadIdPut$RequestBody? body});
 
   ///
   ///@param id
@@ -816,6 +902,22 @@ abstract class FMA extends ChopperService {
   @Post(path: '/api/FuelLoad/Statistics')
   Future<chopper.Response<PerformanceFilterDTO>> _apiFuelLoadStatisticsPost(
       {@Body() required StatisticsFilterDTO? body});
+
+  ///
+  ///@param id
+  Future<chopper.Response<FuelLoadNewEditDTO>> apiFuelLoadGetFormGet(
+      {String? id}) {
+    generatedMapping.putIfAbsent(
+        FuelLoadNewEditDTO, () => FuelLoadNewEditDTO.fromJsonFactory);
+
+    return _apiFuelLoadGetFormGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/FuelLoad/GetForm')
+  Future<chopper.Response<FuelLoadNewEditDTO>> _apiFuelLoadGetFormGet(
+      {@Query('id') String? id});
 
   ///
   Future<chopper.Response<List<FuelMeasureDTO>>> apiFuelMeasureGet() {
@@ -5407,6 +5509,480 @@ extension $FuelLoadDetailDTOPagedResultExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class FuelLoadFormDTO {
+  FuelLoadFormDTO({
+    required this.chargeDate,
+    required this.chargeHour,
+    this.reference,
+    this.full,
+    this.resetTank,
+    this.imageFiles,
+    this.providerId,
+    this.fuelMeasureId,
+    this.userDriverId,
+    this.unitCost,
+    this.odometerMeasurementId,
+    this.summary,
+    this.vehicleId,
+    this.liters,
+    this.amount,
+    this.odometer,
+    this.images,
+  });
+
+  factory FuelLoadFormDTO.fromJson(Map<String, dynamic> json) =>
+      _$FuelLoadFormDTOFromJson(json);
+
+  @JsonKey(name: 'chargeDate')
+  final String? chargeDate;
+  @JsonKey(name: 'chargeHour')
+  final String? chargeHour;
+  @JsonKey(name: 'reference')
+  final String? reference;
+  @JsonKey(name: 'full')
+  final bool? full;
+  @JsonKey(name: 'resetTank')
+  final bool? resetTank;
+  @JsonKey(name: 'imageFiles', defaultValue: <String>[])
+  final List<String>? imageFiles;
+  @JsonKey(name: 'providerId')
+  final int? providerId;
+  @JsonKey(name: 'fuelMeasureId')
+  final String? fuelMeasureId;
+  @JsonKey(name: 'userDriverId')
+  final String? userDriverId;
+  @JsonKey(name: 'unitCost')
+  final double? unitCost;
+  @JsonKey(name: 'odometerMeasurementId')
+  final String? odometerMeasurementId;
+  @JsonKey(name: 'summary')
+  final bool? summary;
+  @JsonKey(name: 'vehicleId')
+  final String? vehicleId;
+  @JsonKey(name: 'liters')
+  final double? liters;
+  @JsonKey(name: 'amount')
+  final double? amount;
+  @JsonKey(name: 'odometer')
+  final double? odometer;
+  @JsonKey(name: 'images', defaultValue: <ImageDTO>[])
+  final List<ImageDTO>? images;
+  static const fromJsonFactory = _$FuelLoadFormDTOFromJson;
+  static const toJsonFactory = _$FuelLoadFormDTOToJson;
+  Map<String, dynamic> toJson() => _$FuelLoadFormDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is FuelLoadFormDTO &&
+            (identical(other.chargeDate, chargeDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.chargeDate, chargeDate)) &&
+            (identical(other.chargeHour, chargeHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.chargeHour, chargeHour)) &&
+            (identical(other.reference, reference) ||
+                const DeepCollectionEquality()
+                    .equals(other.reference, reference)) &&
+            (identical(other.full, full) ||
+                const DeepCollectionEquality().equals(other.full, full)) &&
+            (identical(other.resetTank, resetTank) ||
+                const DeepCollectionEquality()
+                    .equals(other.resetTank, resetTank)) &&
+            (identical(other.imageFiles, imageFiles) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageFiles, imageFiles)) &&
+            (identical(other.providerId, providerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.providerId, providerId)) &&
+            (identical(other.fuelMeasureId, fuelMeasureId) ||
+                const DeepCollectionEquality()
+                    .equals(other.fuelMeasureId, fuelMeasureId)) &&
+            (identical(other.userDriverId, userDriverId) ||
+                const DeepCollectionEquality()
+                    .equals(other.userDriverId, userDriverId)) &&
+            (identical(other.unitCost, unitCost) ||
+                const DeepCollectionEquality()
+                    .equals(other.unitCost, unitCost)) &&
+            (identical(other.odometerMeasurementId, odometerMeasurementId) ||
+                const DeepCollectionEquality().equals(
+                    other.odometerMeasurementId, odometerMeasurementId)) &&
+            (identical(other.summary, summary) ||
+                const DeepCollectionEquality()
+                    .equals(other.summary, summary)) &&
+            (identical(other.vehicleId, vehicleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleId, vehicleId)) &&
+            (identical(other.liters, liters) ||
+                const DeepCollectionEquality().equals(other.liters, liters)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.odometer, odometer) ||
+                const DeepCollectionEquality()
+                    .equals(other.odometer, odometer)) &&
+            (identical(other.images, images) ||
+                const DeepCollectionEquality().equals(other.images, images)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(chargeDate) ^
+      const DeepCollectionEquality().hash(chargeHour) ^
+      const DeepCollectionEquality().hash(reference) ^
+      const DeepCollectionEquality().hash(full) ^
+      const DeepCollectionEquality().hash(resetTank) ^
+      const DeepCollectionEquality().hash(imageFiles) ^
+      const DeepCollectionEquality().hash(providerId) ^
+      const DeepCollectionEquality().hash(fuelMeasureId) ^
+      const DeepCollectionEquality().hash(userDriverId) ^
+      const DeepCollectionEquality().hash(unitCost) ^
+      const DeepCollectionEquality().hash(odometerMeasurementId) ^
+      const DeepCollectionEquality().hash(summary) ^
+      const DeepCollectionEquality().hash(vehicleId) ^
+      const DeepCollectionEquality().hash(liters) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(images) ^
+      runtimeType.hashCode;
+}
+
+extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
+  FuelLoadFormDTO copyWith(
+      {String? chargeDate,
+      String? chargeHour,
+      String? reference,
+      bool? full,
+      bool? resetTank,
+      List<String>? imageFiles,
+      int? providerId,
+      String? fuelMeasureId,
+      String? userDriverId,
+      double? unitCost,
+      String? odometerMeasurementId,
+      bool? summary,
+      String? vehicleId,
+      double? liters,
+      double? amount,
+      double? odometer,
+      List<ImageDTO>? images}) {
+    return FuelLoadFormDTO(
+        chargeDate: chargeDate ?? this.chargeDate,
+        chargeHour: chargeHour ?? this.chargeHour,
+        reference: reference ?? this.reference,
+        full: full ?? this.full,
+        resetTank: resetTank ?? this.resetTank,
+        imageFiles: imageFiles ?? this.imageFiles,
+        providerId: providerId ?? this.providerId,
+        fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
+        userDriverId: userDriverId ?? this.userDriverId,
+        unitCost: unitCost ?? this.unitCost,
+        odometerMeasurementId:
+            odometerMeasurementId ?? this.odometerMeasurementId,
+        summary: summary ?? this.summary,
+        vehicleId: vehicleId ?? this.vehicleId,
+        liters: liters ?? this.liters,
+        amount: amount ?? this.amount,
+        odometer: odometer ?? this.odometer,
+        images: images ?? this.images);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class FuelLoadNewEditDTO {
+  FuelLoadNewEditDTO({
+    this.vehicles,
+    this.vin,
+    this.placas,
+    this.economicNumber,
+    this.fuelTypeId,
+    this.fuelTypes,
+    this.fuelLoad,
+    this.providers,
+    this.fuelMeasures,
+    this.drivers,
+  });
+
+  factory FuelLoadNewEditDTO.fromJson(Map<String, dynamic> json) =>
+      _$FuelLoadNewEditDTOFromJson(json);
+
+  @JsonKey(name: 'vehicles', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? vehicles;
+  @JsonKey(name: 'vin')
+  final String? vin;
+  @JsonKey(name: 'placas')
+  final String? placas;
+  @JsonKey(name: 'economicNumber')
+  final String? economicNumber;
+  @JsonKey(name: 'fuelTypeId')
+  final String? fuelTypeId;
+  @JsonKey(name: 'fuelTypes', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? fuelTypes;
+  @JsonKey(name: 'fuelLoad')
+  final FuelLoadFormDTO? fuelLoad;
+  @JsonKey(name: 'providers', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? providers;
+  @JsonKey(name: 'fuelMeasures', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? fuelMeasures;
+  @JsonKey(name: 'drivers', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? drivers;
+  static const fromJsonFactory = _$FuelLoadNewEditDTOFromJson;
+  static const toJsonFactory = _$FuelLoadNewEditDTOToJson;
+  Map<String, dynamic> toJson() => _$FuelLoadNewEditDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is FuelLoadNewEditDTO &&
+            (identical(other.vehicles, vehicles) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicles, vehicles)) &&
+            (identical(other.vin, vin) ||
+                const DeepCollectionEquality().equals(other.vin, vin)) &&
+            (identical(other.placas, placas) ||
+                const DeepCollectionEquality().equals(other.placas, placas)) &&
+            (identical(other.economicNumber, economicNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.economicNumber, economicNumber)) &&
+            (identical(other.fuelTypeId, fuelTypeId) ||
+                const DeepCollectionEquality()
+                    .equals(other.fuelTypeId, fuelTypeId)) &&
+            (identical(other.fuelTypes, fuelTypes) ||
+                const DeepCollectionEquality()
+                    .equals(other.fuelTypes, fuelTypes)) &&
+            (identical(other.fuelLoad, fuelLoad) ||
+                const DeepCollectionEquality()
+                    .equals(other.fuelLoad, fuelLoad)) &&
+            (identical(other.providers, providers) ||
+                const DeepCollectionEquality()
+                    .equals(other.providers, providers)) &&
+            (identical(other.fuelMeasures, fuelMeasures) ||
+                const DeepCollectionEquality()
+                    .equals(other.fuelMeasures, fuelMeasures)) &&
+            (identical(other.drivers, drivers) ||
+                const DeepCollectionEquality().equals(other.drivers, drivers)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(vehicles) ^
+      const DeepCollectionEquality().hash(vin) ^
+      const DeepCollectionEquality().hash(placas) ^
+      const DeepCollectionEquality().hash(economicNumber) ^
+      const DeepCollectionEquality().hash(fuelTypeId) ^
+      const DeepCollectionEquality().hash(fuelTypes) ^
+      const DeepCollectionEquality().hash(fuelLoad) ^
+      const DeepCollectionEquality().hash(providers) ^
+      const DeepCollectionEquality().hash(fuelMeasures) ^
+      const DeepCollectionEquality().hash(drivers) ^
+      runtimeType.hashCode;
+}
+
+extension $FuelLoadNewEditDTOExtension on FuelLoadNewEditDTO {
+  FuelLoadNewEditDTO copyWith(
+      {List<SelectDTO>? vehicles,
+      String? vin,
+      String? placas,
+      String? economicNumber,
+      String? fuelTypeId,
+      List<SelectDTO>? fuelTypes,
+      FuelLoadFormDTO? fuelLoad,
+      List<SelectDTO>? providers,
+      List<SelectDTO>? fuelMeasures,
+      List<SelectDTO>? drivers}) {
+    return FuelLoadNewEditDTO(
+        vehicles: vehicles ?? this.vehicles,
+        vin: vin ?? this.vin,
+        placas: placas ?? this.placas,
+        economicNumber: economicNumber ?? this.economicNumber,
+        fuelTypeId: fuelTypeId ?? this.fuelTypeId,
+        fuelTypes: fuelTypes ?? this.fuelTypes,
+        fuelLoad: fuelLoad ?? this.fuelLoad,
+        providers: providers ?? this.providers,
+        fuelMeasures: fuelMeasures ?? this.fuelMeasures,
+        drivers: drivers ?? this.drivers);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class FuelLoadPostDTO {
+  FuelLoadPostDTO({
+    required this.vehicleId,
+    required this.chargeDate,
+    required this.chargeHour,
+    this.reference,
+    this.full,
+    this.resetTank,
+    this.imageFiles,
+    this.providerId,
+    required this.liters,
+    this.fuelMeasureId,
+    this.userDriverId,
+    required this.amount,
+    this.unitCost,
+    required this.odometer,
+    this.odometerMeasurementId,
+    this.summary,
+  });
+
+  factory FuelLoadPostDTO.fromJson(Map<String, dynamic> json) =>
+      _$FuelLoadPostDTOFromJson(json);
+
+  @JsonKey(name: 'vehicleId')
+  final String vehicleId;
+  @JsonKey(name: 'chargeDate')
+  final DateTime chargeDate;
+  @JsonKey(name: 'chargeHour')
+  final TimeSpan chargeHour;
+  @JsonKey(name: 'reference')
+  final String? reference;
+  @JsonKey(name: 'full')
+  final bool? full;
+  @JsonKey(name: 'resetTank')
+  final bool? resetTank;
+  @JsonKey(name: 'imageFiles', defaultValue: <String>[])
+  final List<String>? imageFiles;
+  @JsonKey(name: 'providerId')
+  final int? providerId;
+  @JsonKey(name: 'liters')
+  final double liters;
+  @JsonKey(name: 'fuelMeasureId')
+  final String? fuelMeasureId;
+  @JsonKey(name: 'userDriverId')
+  final String? userDriverId;
+  @JsonKey(name: 'amount')
+  final double amount;
+  @JsonKey(name: 'unitCost')
+  final double? unitCost;
+  @JsonKey(name: 'odometer')
+  final double odometer;
+  @JsonKey(name: 'odometerMeasurementId')
+  final String? odometerMeasurementId;
+  @JsonKey(name: 'summary')
+  final bool? summary;
+  static const fromJsonFactory = _$FuelLoadPostDTOFromJson;
+  static const toJsonFactory = _$FuelLoadPostDTOToJson;
+  Map<String, dynamic> toJson() => _$FuelLoadPostDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is FuelLoadPostDTO &&
+            (identical(other.vehicleId, vehicleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleId, vehicleId)) &&
+            (identical(other.chargeDate, chargeDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.chargeDate, chargeDate)) &&
+            (identical(other.chargeHour, chargeHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.chargeHour, chargeHour)) &&
+            (identical(other.reference, reference) ||
+                const DeepCollectionEquality()
+                    .equals(other.reference, reference)) &&
+            (identical(other.full, full) ||
+                const DeepCollectionEquality().equals(other.full, full)) &&
+            (identical(other.resetTank, resetTank) ||
+                const DeepCollectionEquality()
+                    .equals(other.resetTank, resetTank)) &&
+            (identical(other.imageFiles, imageFiles) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageFiles, imageFiles)) &&
+            (identical(other.providerId, providerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.providerId, providerId)) &&
+            (identical(other.liters, liters) ||
+                const DeepCollectionEquality().equals(other.liters, liters)) &&
+            (identical(other.fuelMeasureId, fuelMeasureId) ||
+                const DeepCollectionEquality()
+                    .equals(other.fuelMeasureId, fuelMeasureId)) &&
+            (identical(other.userDriverId, userDriverId) ||
+                const DeepCollectionEquality()
+                    .equals(other.userDriverId, userDriverId)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.unitCost, unitCost) ||
+                const DeepCollectionEquality()
+                    .equals(other.unitCost, unitCost)) &&
+            (identical(other.odometer, odometer) ||
+                const DeepCollectionEquality()
+                    .equals(other.odometer, odometer)) &&
+            (identical(other.odometerMeasurementId, odometerMeasurementId) ||
+                const DeepCollectionEquality().equals(
+                    other.odometerMeasurementId, odometerMeasurementId)) &&
+            (identical(other.summary, summary) ||
+                const DeepCollectionEquality().equals(other.summary, summary)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(vehicleId) ^
+      const DeepCollectionEquality().hash(chargeDate) ^
+      const DeepCollectionEquality().hash(chargeHour) ^
+      const DeepCollectionEquality().hash(reference) ^
+      const DeepCollectionEquality().hash(full) ^
+      const DeepCollectionEquality().hash(resetTank) ^
+      const DeepCollectionEquality().hash(imageFiles) ^
+      const DeepCollectionEquality().hash(providerId) ^
+      const DeepCollectionEquality().hash(liters) ^
+      const DeepCollectionEquality().hash(fuelMeasureId) ^
+      const DeepCollectionEquality().hash(userDriverId) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(unitCost) ^
+      const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(odometerMeasurementId) ^
+      const DeepCollectionEquality().hash(summary) ^
+      runtimeType.hashCode;
+}
+
+extension $FuelLoadPostDTOExtension on FuelLoadPostDTO {
+  FuelLoadPostDTO copyWith(
+      {String? vehicleId,
+      DateTime? chargeDate,
+      TimeSpan? chargeHour,
+      String? reference,
+      bool? full,
+      bool? resetTank,
+      List<String>? imageFiles,
+      int? providerId,
+      double? liters,
+      String? fuelMeasureId,
+      String? userDriverId,
+      double? amount,
+      double? unitCost,
+      double? odometer,
+      String? odometerMeasurementId,
+      bool? summary}) {
+    return FuelLoadPostDTO(
+        vehicleId: vehicleId ?? this.vehicleId,
+        chargeDate: chargeDate ?? this.chargeDate,
+        chargeHour: chargeHour ?? this.chargeHour,
+        reference: reference ?? this.reference,
+        full: full ?? this.full,
+        resetTank: resetTank ?? this.resetTank,
+        imageFiles: imageFiles ?? this.imageFiles,
+        providerId: providerId ?? this.providerId,
+        liters: liters ?? this.liters,
+        fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
+        userDriverId: userDriverId ?? this.userDriverId,
+        amount: amount ?? this.amount,
+        unitCost: unitCost ?? this.unitCost,
+        odometer: odometer ?? this.odometer,
+        odometerMeasurementId:
+            odometerMeasurementId ?? this.odometerMeasurementId,
+        summary: summary ?? this.summary);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class FuelMeasureDTO {
   FuelMeasureDTO({
     this.id,
@@ -6521,6 +7097,7 @@ class MachineDTO {
     this.code,
     this.description,
     this.drillRigId,
+    this.projectId,
   });
 
   factory MachineDTO.fromJson(Map<String, dynamic> json) =>
@@ -6538,6 +7115,8 @@ class MachineDTO {
   final String? description;
   @JsonKey(name: 'drillRigId')
   final int? drillRigId;
+  @JsonKey(name: 'projectId')
+  final String? projectId;
   static const fromJsonFactory = _$MachineDTOFromJson;
   static const toJsonFactory = _$MachineDTOToJson;
   Map<String, dynamic> toJson() => _$MachineDTOToJson(this);
@@ -6562,7 +7141,10 @@ class MachineDTO {
                     .equals(other.description, description)) &&
             (identical(other.drillRigId, drillRigId) ||
                 const DeepCollectionEquality()
-                    .equals(other.drillRigId, drillRigId)));
+                    .equals(other.drillRigId, drillRigId)) &&
+            (identical(other.projectId, projectId) ||
+                const DeepCollectionEquality()
+                    .equals(other.projectId, projectId)));
   }
 
   @override
@@ -6573,6 +7155,7 @@ class MachineDTO {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(drillRigId) ^
+      const DeepCollectionEquality().hash(projectId) ^
       runtimeType.hashCode;
 }
 
@@ -6583,14 +7166,16 @@ extension $MachineDTOExtension on MachineDTO {
       String? name,
       String? code,
       String? description,
-      int? drillRigId}) {
+      int? drillRigId,
+      String? projectId}) {
     return MachineDTO(
         id: id ?? this.id,
         active: active ?? this.active,
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
-        drillRigId: drillRigId ?? this.drillRigId);
+        drillRigId: drillRigId ?? this.drillRigId,
+        projectId: projectId ?? this.projectId);
   }
 }
 
@@ -8600,6 +9185,7 @@ class ProjectDTO {
     this.code,
     this.description,
     this.externalId,
+    this.companyId,
   });
 
   factory ProjectDTO.fromJson(Map<String, dynamic> json) =>
@@ -8617,6 +9203,8 @@ class ProjectDTO {
   final String? description;
   @JsonKey(name: 'externalId')
   final int? externalId;
+  @JsonKey(name: 'companyId')
+  final String? companyId;
   static const fromJsonFactory = _$ProjectDTOFromJson;
   static const toJsonFactory = _$ProjectDTOToJson;
   Map<String, dynamic> toJson() => _$ProjectDTOToJson(this);
@@ -8641,7 +9229,10 @@ class ProjectDTO {
                     .equals(other.description, description)) &&
             (identical(other.externalId, externalId) ||
                 const DeepCollectionEquality()
-                    .equals(other.externalId, externalId)));
+                    .equals(other.externalId, externalId)) &&
+            (identical(other.companyId, companyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.companyId, companyId)));
   }
 
   @override
@@ -8652,6 +9243,7 @@ class ProjectDTO {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(externalId) ^
+      const DeepCollectionEquality().hash(companyId) ^
       runtimeType.hashCode;
 }
 
@@ -8662,14 +9254,16 @@ extension $ProjectDTOExtension on ProjectDTO {
       String? name,
       String? code,
       String? description,
-      int? externalId}) {
+      int? externalId,
+      String? companyId}) {
     return ProjectDTO(
         id: id ?? this.id,
         active: active ?? this.active,
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
-        externalId: externalId ?? this.externalId);
+        externalId: externalId ?? this.externalId,
+        companyId: companyId ?? this.companyId);
   }
 }
 
@@ -9430,7 +10024,7 @@ extension $ServiceDTOPagedResultExtension on ServiceDTOPagedResult {
 @JsonSerializable(explicitToJson: true)
 class StatisticsFilterDTO {
   StatisticsFilterDTO({
-    required this.vehicleId,
+    this.vehicleId,
     required this.dateStart,
     this.dateEnd,
   });
@@ -9439,7 +10033,7 @@ class StatisticsFilterDTO {
       _$StatisticsFilterDTOFromJson(json);
 
   @JsonKey(name: 'vehicleId')
-  final String vehicleId;
+  final String? vehicleId;
   @JsonKey(name: 'dateStart')
   final String dateStart;
   @JsonKey(name: 'dateEnd')
@@ -12270,6 +12864,46 @@ List<enums.VehicleStatusEnum> vehicleStatusEnumListFromJson(
   return vehicleStatusEnum
       .map((e) => vehicleStatusEnumFromJson(e.toString()))
       .toList();
+}
+
+@JsonSerializable(explicitToJson: true)
+class ApiFuelLoadIdPut$RequestBody {
+  ApiFuelLoadIdPut$RequestBody({
+    this.imageFiles,
+  });
+
+  factory ApiFuelLoadIdPut$RequestBody.fromJson(Map<String, dynamic> json) =>
+      _$ApiFuelLoadIdPut$RequestBodyFromJson(json);
+
+  @JsonKey(name: 'ImageFiles', defaultValue: <String>[])
+  final List<String>? imageFiles;
+  static const fromJsonFactory = _$ApiFuelLoadIdPut$RequestBodyFromJson;
+  static const toJsonFactory = _$ApiFuelLoadIdPut$RequestBodyToJson;
+  Map<String, dynamic> toJson() => _$ApiFuelLoadIdPut$RequestBodyToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ApiFuelLoadIdPut$RequestBody &&
+            (identical(other.imageFiles, imageFiles) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageFiles, imageFiles)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(imageFiles) ^ runtimeType.hashCode;
+}
+
+extension $ApiFuelLoadIdPut$RequestBodyExtension
+    on ApiFuelLoadIdPut$RequestBody {
+  ApiFuelLoadIdPut$RequestBody copyWith({List<String>? imageFiles}) {
+    return ApiFuelLoadIdPut$RequestBody(
+        imageFiles: imageFiles ?? this.imageFiles);
+  }
 }
 
 @JsonSerializable(explicitToJson: true)

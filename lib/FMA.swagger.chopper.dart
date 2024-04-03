@@ -377,7 +377,7 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiFuelLoadPost({required FuelLoadDTO? body}) {
+  Future<Response<String>> _apiFuelLoadPost({required FuelLoadPostDTO? body}) {
     final $url = '/api/FuelLoad';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -439,10 +439,46 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<bool>> _apiFuelLoadIdPut(
-      {required String? id, required FuelLoadDTO? body}) {
+      {required String? id,
+      List<String>? imagesToRemove,
+      required String? vehicleId,
+      required String? chargeDate,
+      required TimeSpan? chargeHour,
+      String? reference,
+      bool? full,
+      bool? resetTank,
+      int? providerId,
+      required num? liters,
+      String? fuelMeasureId,
+      String? userDriverId,
+      required num? amount,
+      num? unitCost,
+      required num? odometer,
+      String? odometerMeasurementId,
+      bool? summary,
+      required ApiFuelLoadIdPut$RequestBody? body}) {
     final $url = '/api/FuelLoad/${id}';
+    final $params = <String, dynamic>{
+      'ImagesToRemove': imagesToRemove,
+      'VehicleId': vehicleId,
+      'ChargeDate': chargeDate,
+      'ChargeHour': chargeHour,
+      'Reference': reference,
+      'Full': full,
+      'ResetTank': resetTank,
+      'ProviderId': providerId,
+      'Liters': liters,
+      'FuelMeasureId': fuelMeasureId,
+      'UserDriverId': userDriverId,
+      'Amount': amount,
+      'UnitCost': unitCost,
+      'Odometer': odometer,
+      'OdometerMeasurementId': odometerMeasurementId,
+      'Summary': summary
+    };
     final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $request =
+        Request('PUT', $url, client.baseUrl, body: $body, parameters: $params);
     return client.send<bool, bool>($request);
   }
 
@@ -460,6 +496,14 @@ class _$FMA extends FMA {
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<PerformanceFilterDTO, PerformanceFilterDTO>($request);
+  }
+
+  @override
+  Future<Response<FuelLoadNewEditDTO>> _apiFuelLoadGetFormGet({String? id}) {
+    final $url = '/api/FuelLoad/GetForm';
+    final $params = <String, dynamic>{'id': id};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<FuelLoadNewEditDTO, FuelLoadNewEditDTO>($request);
   }
 
   @override

@@ -1321,7 +1321,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FuelLoadDTO"
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
               }
             }
           }
@@ -1521,17 +1521,164 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "ImagesToRemove",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "VehicleId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ChargeDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "pattern": "\\d{4}-\\d{2}-\\d{2}",
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "ChargeHour",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TimeSpan"
+            }
+          },
+          {
+            "name": "Reference",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Full",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ResetTank",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ProviderId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Liters",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 0,
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "FuelMeasureId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UserDriverId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Amount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "minimum": 0,
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "UnitCost",
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "Odometer",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maximum": 999999,
+              "minimum": 100000,
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "OdometerMeasurementId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Summary",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FuelLoadDTO"
+                "type": "object",
+                "properties": {
+                  "ImageFiles": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "ImageFiles": {
+                  "style": "form"
+                }
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -1595,6 +1742,34 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PerformanceFilterDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FuelLoad/GetForm": {
+      "get": {
+        "tags": [
+          "FuelLoad"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuelLoadNewEditDTO"
                 }
               }
             }
@@ -11956,6 +12131,234 @@
         },
         "additionalProperties": false
       },
+      "FuelLoadFormDTO": {
+        "required": [
+          "chargeDate",
+          "chargeHour"
+        ],
+        "type": "object",
+        "properties": {
+          "chargeDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "chargeHour": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "full": {
+            "type": "boolean"
+          },
+          "resetTank": {
+            "type": "boolean"
+          },
+          "imageFiles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
+          },
+          "providerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fuelMeasureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userDriverId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitCost": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "odometerMeasurementId": {
+            "type": "string",
+            "nullable": true
+          },
+          "summary": {
+            "type": "boolean"
+          },
+          "vehicleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "liters": {
+            "type": "number",
+            "format": "double"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "odometer": {
+            "type": "number",
+            "format": "double"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FuelLoadNewEditDTO": {
+        "type": "object",
+        "properties": {
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
+          },
+          "vin": {
+            "type": "string",
+            "nullable": true
+          },
+          "placas": {
+            "type": "string",
+            "nullable": true
+          },
+          "economicNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuelTypeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuelTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
+          },
+          "fuelLoad": {
+            "$ref": "#/components/schemas/FuelLoadFormDTO"
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
+          },
+          "fuelMeasures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
+          },
+          "drivers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FuelLoadPostDTO": {
+        "required": [
+          "amount",
+          "chargeDate",
+          "chargeHour",
+          "liters",
+          "odometer",
+          "vehicleId"
+        ],
+        "type": "object",
+        "properties": {
+          "vehicleId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "chargeDate": {
+            "pattern": "\\d{4}-\\d{2}-\\d{2}",
+            "type": "string",
+            "format": "date-time"
+          },
+          "chargeHour": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "full": {
+            "type": "boolean"
+          },
+          "resetTank": {
+            "type": "boolean"
+          },
+          "imageFiles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
+          },
+          "providerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "liters": {
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "fuelMeasureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userDriverId": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "unitCost": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "odometer": {
+            "maximum": 999999,
+            "minimum": 100000,
+            "type": "number",
+            "format": "double"
+          },
+          "odometerMeasurementId": {
+            "type": "string",
+            "nullable": true
+          },
+          "summary": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "FuelMeasureDTO": {
         "type": "object",
         "properties": {
@@ -12431,6 +12834,10 @@
           "drillRigId": {
             "type": "integer",
             "format": "int32"
+          },
+          "projectId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -13252,6 +13659,10 @@
           "externalId": {
             "type": "integer",
             "format": "int32"
+          },
+          "companyId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -13553,14 +13964,13 @@
       },
       "StatisticsFilterDTO": {
         "required": [
-          "dateStart",
-          "vehicleId"
+          "dateStart"
         ],
         "type": "object",
         "properties": {
           "vehicleId": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dateStart": {
             "minLength": 1,
