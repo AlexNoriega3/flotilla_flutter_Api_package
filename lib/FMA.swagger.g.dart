@@ -415,8 +415,6 @@ Map<String, dynamic> _$FuelLoadDetailDTOPagedResultToJson(
 
 FuelLoadFormDTO _$FuelLoadFormDTOFromJson(Map<String, dynamic> json) =>
     FuelLoadFormDTO(
-      chargeDate: json['chargeDate'] as String?,
-      chargeHour: json['chargeHour'] as String?,
       reference: json['reference'] as String?,
       full: json['full'] as bool?,
       resetTank: json['resetTank'] as bool?,
@@ -428,12 +426,14 @@ FuelLoadFormDTO _$FuelLoadFormDTOFromJson(Map<String, dynamic> json) =>
       fuelMeasureId: json['fuelMeasureId'] as String?,
       userDriverId: json['userDriverId'] as String?,
       unitCost: (json['unitCost'] as num?)?.toDouble(),
-      odometerMeasurementId: json['odometerMeasurementId'] as String?,
       summary: json['summary'] as bool?,
       vehicleId: json['vehicleId'] as String?,
+      chargeDate: json['chargeDate'] as String?,
+      chargeHour: json['chargeHour'] as String?,
       liters: (json['liters'] as num?)?.toDouble(),
       amount: (json['amount'] as num?)?.toDouble(),
-      odometer: (json['odometer'] as num?)?.toDouble(),
+      odometer: json['odometer'] as int?,
+      odometerMeasurementId: json['odometerMeasurementId'] as String?,
       images: (json['images'] as List<dynamic>?)
               ?.map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -442,8 +442,6 @@ FuelLoadFormDTO _$FuelLoadFormDTOFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$FuelLoadFormDTOToJson(FuelLoadFormDTO instance) =>
     <String, dynamic>{
-      'chargeDate': instance.chargeDate,
-      'chargeHour': instance.chargeHour,
       'reference': instance.reference,
       'full': instance.full,
       'resetTank': instance.resetTank,
@@ -452,12 +450,14 @@ Map<String, dynamic> _$FuelLoadFormDTOToJson(FuelLoadFormDTO instance) =>
       'fuelMeasureId': instance.fuelMeasureId,
       'userDriverId': instance.userDriverId,
       'unitCost': instance.unitCost,
-      'odometerMeasurementId': instance.odometerMeasurementId,
       'summary': instance.summary,
       'vehicleId': instance.vehicleId,
+      'chargeDate': instance.chargeDate,
+      'chargeHour': instance.chargeHour,
       'liters': instance.liters,
       'amount': instance.amount,
       'odometer': instance.odometer,
+      'odometerMeasurementId': instance.odometerMeasurementId,
       'images': instance.images?.map((e) => e.toJson()).toList(),
     };
 
@@ -509,8 +509,8 @@ Map<String, dynamic> _$FuelLoadNewEditDTOToJson(FuelLoadNewEditDTO instance) =>
 FuelLoadPostDTO _$FuelLoadPostDTOFromJson(Map<String, dynamic> json) =>
     FuelLoadPostDTO(
       vehicleId: json['vehicleId'] as String,
-      chargeDate: DateTime.parse(json['chargeDate'] as String),
-      chargeHour: TimeSpan.fromJson(json['chargeHour'] as Map<String, dynamic>),
+      chargeDate: json['chargeDate'] as String,
+      chargeHour: json['chargeHour'] as String,
       reference: json['reference'] as String?,
       full: json['full'] as bool?,
       resetTank: json['resetTank'] as bool?,
@@ -524,16 +524,16 @@ FuelLoadPostDTO _$FuelLoadPostDTOFromJson(Map<String, dynamic> json) =>
       userDriverId: json['userDriverId'] as String?,
       amount: (json['amount'] as num).toDouble(),
       unitCost: (json['unitCost'] as num?)?.toDouble(),
-      odometer: (json['odometer'] as num).toDouble(),
-      odometerMeasurementId: json['odometerMeasurementId'] as String?,
+      odometer: json['odometer'] as int,
+      odometerMeasurementId: json['odometerMeasurementId'] as String,
       summary: json['summary'] as bool?,
     );
 
 Map<String, dynamic> _$FuelLoadPostDTOToJson(FuelLoadPostDTO instance) =>
     <String, dynamic>{
       'vehicleId': instance.vehicleId,
-      'chargeDate': instance.chargeDate.toIso8601String(),
-      'chargeHour': instance.chargeHour.toJson(),
+      'chargeDate': instance.chargeDate,
+      'chargeHour': instance.chargeHour,
       'reference': instance.reference,
       'full': instance.full,
       'resetTank': instance.resetTank,
@@ -2339,6 +2339,51 @@ Map<String, dynamic> _$VendorDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+ApiFuelLoadSavePost$RequestBody _$ApiFuelLoadSavePost$RequestBodyFromJson(
+        Map<String, dynamic> json) =>
+    ApiFuelLoadSavePost$RequestBody(
+      vehicleId: json['VehicleId'] as String,
+      chargeDate: json['ChargeDate'] as String,
+      chargeHour: json['ChargeHour'] as String,
+      reference: json['Reference'] as String?,
+      full: json['Full'] as bool?,
+      resetTank: json['ResetTank'] as bool?,
+      imageFiles: (json['ImageFiles'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      providerId: json['ProviderId'] as int?,
+      liters: (json['Liters'] as num).toDouble(),
+      fuelMeasureId: json['FuelMeasureId'] as String?,
+      userDriverId: json['UserDriverId'] as String?,
+      amount: (json['Amount'] as num).toDouble(),
+      unitCost: (json['UnitCost'] as num?)?.toDouble(),
+      odometer: json['Odometer'] as int,
+      odometerMeasurementId: json['OdometerMeasurementId'] as String,
+      summary: json['Summary'] as bool?,
+    );
+
+Map<String, dynamic> _$ApiFuelLoadSavePost$RequestBodyToJson(
+        ApiFuelLoadSavePost$RequestBody instance) =>
+    <String, dynamic>{
+      'VehicleId': instance.vehicleId,
+      'ChargeDate': instance.chargeDate,
+      'ChargeHour': instance.chargeHour,
+      'Reference': instance.reference,
+      'Full': instance.full,
+      'ResetTank': instance.resetTank,
+      'ImageFiles': instance.imageFiles,
+      'ProviderId': instance.providerId,
+      'Liters': instance.liters,
+      'FuelMeasureId': instance.fuelMeasureId,
+      'UserDriverId': instance.userDriverId,
+      'Amount': instance.amount,
+      'UnitCost': instance.unitCost,
+      'Odometer': instance.odometer,
+      'OdometerMeasurementId': instance.odometerMeasurementId,
+      'Summary': instance.summary,
     };
 
 ApiFuelLoadIdPut$RequestBody _$ApiFuelLoadIdPut$RequestBodyFromJson(

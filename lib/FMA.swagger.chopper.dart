@@ -431,6 +431,15 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<String>> _apiFuelLoadSavePost(
+      {required ApiFuelLoadSavePost$RequestBody? body}) {
+    final $url = '/api/FuelLoad/Save';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
   Future<Response<FuelLoadDTO>> _apiFuelLoadIdGet({required String? id}) {
     final $url = '/api/FuelLoad/${id}';
     final $request = Request('GET', $url, client.baseUrl);
@@ -443,7 +452,7 @@ class _$FMA extends FMA {
       List<String>? imagesToRemove,
       required String? vehicleId,
       required String? chargeDate,
-      required TimeSpan? chargeHour,
+      required String? chargeHour,
       String? reference,
       bool? full,
       bool? resetTank,
@@ -453,8 +462,8 @@ class _$FMA extends FMA {
       String? userDriverId,
       required num? amount,
       num? unitCost,
-      required num? odometer,
-      String? odometerMeasurementId,
+      required int? odometer,
+      required String? odometerMeasurementId,
       bool? summary,
       required ApiFuelLoadIdPut$RequestBody? body}) {
     final $url = '/api/FuelLoad/${id}';
