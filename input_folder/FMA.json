@@ -1954,6 +1954,184 @@
         }
       }
     },
+    "/api/FuelLoad/Save": {
+      "post": {
+        "tags": [
+          "FuelLoad"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuelLoadPostDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/FuelLoad/{id}": {
       "get": {
         "tags": [
@@ -13192,6 +13370,95 @@
               "$ref": "#/components/schemas/SelectDTO"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FuelLoadPostDTO": {
+        "required": [
+          "amount",
+          "chargeDate",
+          "chargeHour",
+          "liters",
+          "odometer",
+          "odometerMeasurementId",
+          "vehicleId"
+        ],
+        "type": "object",
+        "properties": {
+          "vehicleId": {
+            "maxLength": 255,
+            "minLength": 6,
+            "type": "string"
+          },
+          "chargeDate": {
+            "minLength": 1,
+            "pattern": "\\d{4}-\\d{2}-\\d{2}",
+            "type": "string"
+          },
+          "chargeHour": {
+            "minLength": 1,
+            "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+            "type": "string"
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "full": {
+            "type": "boolean"
+          },
+          "resetTank": {
+            "type": "boolean"
+          },
+          "imageFiles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
+          },
+          "providerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "liters": {
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "fuelMeasureId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userDriverId": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          },
+          "unitCost": {
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          },
+          "odometer": {
+            "maximum": 999999,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "odometerMeasurementId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "summary": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

@@ -506,6 +506,49 @@ Map<String, dynamic> _$FuelLoadNewEditDTOToJson(FuelLoadNewEditDTO instance) =>
       'drivers': instance.drivers?.map((e) => e.toJson()).toList(),
     };
 
+FuelLoadPostDTO _$FuelLoadPostDTOFromJson(Map<String, dynamic> json) =>
+    FuelLoadPostDTO(
+      vehicleId: json['vehicleId'] as String,
+      chargeDate: json['chargeDate'] as String,
+      chargeHour: json['chargeHour'] as String,
+      reference: json['reference'] as String?,
+      full: json['full'] as bool?,
+      resetTank: json['resetTank'] as bool?,
+      imageFiles: (json['imageFiles'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      providerId: json['providerId'] as int?,
+      liters: (json['liters'] as num).toDouble(),
+      fuelMeasureId: json['fuelMeasureId'] as String?,
+      userDriverId: json['userDriverId'] as String?,
+      amount: (json['amount'] as num).toDouble(),
+      unitCost: (json['unitCost'] as num?)?.toDouble(),
+      odometer: json['odometer'] as int,
+      odometerMeasurementId: json['odometerMeasurementId'] as String,
+      summary: json['summary'] as bool?,
+    );
+
+Map<String, dynamic> _$FuelLoadPostDTOToJson(FuelLoadPostDTO instance) =>
+    <String, dynamic>{
+      'vehicleId': instance.vehicleId,
+      'chargeDate': instance.chargeDate,
+      'chargeHour': instance.chargeHour,
+      'reference': instance.reference,
+      'full': instance.full,
+      'resetTank': instance.resetTank,
+      'imageFiles': instance.imageFiles,
+      'providerId': instance.providerId,
+      'liters': instance.liters,
+      'fuelMeasureId': instance.fuelMeasureId,
+      'userDriverId': instance.userDriverId,
+      'amount': instance.amount,
+      'unitCost': instance.unitCost,
+      'odometer': instance.odometer,
+      'odometerMeasurementId': instance.odometerMeasurementId,
+      'summary': instance.summary,
+    };
+
 FuelMeasureDTO _$FuelMeasureDTOFromJson(Map<String, dynamic> json) =>
     FuelMeasureDTO(
       id: json['id'] as String?,
