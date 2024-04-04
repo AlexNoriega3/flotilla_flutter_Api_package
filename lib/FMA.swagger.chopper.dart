@@ -377,10 +377,11 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiFuelLoadPost({required FuelLoadPostDTO? body}) {
+  Future<Response<String>> _apiFuelLoadPost({required List<int> partFile}) {
     final $url = '/api/FuelLoad';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<String, String>($request);
   }
 
@@ -431,15 +432,6 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiFuelLoadSavePost(
-      {required ApiFuelLoadSavePost$RequestBody? body}) {
-    final $url = '/api/FuelLoad/Save';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
   Future<Response<FuelLoadDTO>> _apiFuelLoadIdGet({required String? id}) {
     final $url = '/api/FuelLoad/${id}';
     final $request = Request('GET', $url, client.baseUrl);
@@ -465,7 +457,7 @@ class _$FMA extends FMA {
       required int? odometer,
       required String? odometerMeasurementId,
       bool? summary,
-      required ApiFuelLoadIdPut$RequestBody? body}) {
+      required List<int> partFile}) {
     final $url = '/api/FuelLoad/${id}';
     final $params = <String, dynamic>{
       'ImagesToRemove': imagesToRemove,
@@ -485,9 +477,9 @@ class _$FMA extends FMA {
       'OdometerMeasurementId': odometerMeasurementId,
       'Summary': summary
     };
-    final $body = body;
-    final $request =
-        Request('PUT', $url, client.baseUrl, body: $body, parameters: $params);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request = Request('PUT', $url, client.baseUrl,
+        parts: $parts, multipart: true, parameters: $params);
     return client.send<bool, bool>($request);
   }
 
