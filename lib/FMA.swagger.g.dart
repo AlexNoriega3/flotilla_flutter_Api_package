@@ -332,6 +332,27 @@ Map<String, dynamic> _$EngineDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+FuelLoadBillsInfoDTO _$FuelLoadBillsInfoDTOFromJson(
+        Map<String, dynamic> json) =>
+    FuelLoadBillsInfoDTO(
+      bills: (json['bills'] as List<dynamic>?)
+              ?.map((e) => PerformanceDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      fuelLoads: (json['fuelLoads'] as List<dynamic>?)
+              ?.map(
+                  (e) => FuelLoadDetailDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$FuelLoadBillsInfoDTOToJson(
+        FuelLoadBillsInfoDTO instance) =>
+    <String, dynamic>{
+      'bills': instance.bills?.map((e) => e.toJson()).toList(),
+      'fuelLoads': instance.fuelLoads?.map((e) => e.toJson()).toList(),
+    };
+
 FuelLoadDTO _$FuelLoadDTOFromJson(Map<String, dynamic> json) => FuelLoadDTO(
       id: json['id'] as String?,
       active: json['active'] as bool?,

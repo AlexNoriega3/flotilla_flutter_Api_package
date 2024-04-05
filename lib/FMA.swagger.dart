@@ -931,6 +931,20 @@ abstract class FMA extends ChopperService {
       {@Query('id') String? id});
 
   ///
+  Future<chopper.Response<FuelLoadBillsInfoDTO>> apiFuelLoadFuelLoadBillsPost(
+      {required StatisticsFilterDTO? body}) {
+    generatedMapping.putIfAbsent(
+        FuelLoadBillsInfoDTO, () => FuelLoadBillsInfoDTO.fromJsonFactory);
+
+    return _apiFuelLoadFuelLoadBillsPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/FuelLoad/FuelLoadBills')
+  Future<chopper.Response<FuelLoadBillsInfoDTO>> _apiFuelLoadFuelLoadBillsPost(
+      {@Body() required StatisticsFilterDTO? body});
+
+  ///
   Future<chopper.Response<List<FuelMeasureDTO>>> apiFuelMeasureGet() {
     generatedMapping.putIfAbsent(
         FuelMeasureDTO, () => FuelMeasureDTO.fromJsonFactory);
@@ -5212,6 +5226,53 @@ extension $EngineDTOPagedResultExtension on EngineDTOPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class FuelLoadBillsInfoDTO {
+  FuelLoadBillsInfoDTO({
+    this.bills,
+    this.fuelLoads,
+  });
+
+  factory FuelLoadBillsInfoDTO.fromJson(Map<String, dynamic> json) =>
+      _$FuelLoadBillsInfoDTOFromJson(json);
+
+  @JsonKey(name: 'bills', defaultValue: <PerformanceDTO>[])
+  final List<PerformanceDTO>? bills;
+  @JsonKey(name: 'fuelLoads', defaultValue: <FuelLoadDetailDTO>[])
+  final List<FuelLoadDetailDTO>? fuelLoads;
+  static const fromJsonFactory = _$FuelLoadBillsInfoDTOFromJson;
+  static const toJsonFactory = _$FuelLoadBillsInfoDTOToJson;
+  Map<String, dynamic> toJson() => _$FuelLoadBillsInfoDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is FuelLoadBillsInfoDTO &&
+            (identical(other.bills, bills) ||
+                const DeepCollectionEquality().equals(other.bills, bills)) &&
+            (identical(other.fuelLoads, fuelLoads) ||
+                const DeepCollectionEquality()
+                    .equals(other.fuelLoads, fuelLoads)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bills) ^
+      const DeepCollectionEquality().hash(fuelLoads) ^
+      runtimeType.hashCode;
+}
+
+extension $FuelLoadBillsInfoDTOExtension on FuelLoadBillsInfoDTO {
+  FuelLoadBillsInfoDTO copyWith(
+      {List<PerformanceDTO>? bills, List<FuelLoadDetailDTO>? fuelLoads}) {
+    return FuelLoadBillsInfoDTO(
+        bills: bills ?? this.bills, fuelLoads: fuelLoads ?? this.fuelLoads);
   }
 }
 
