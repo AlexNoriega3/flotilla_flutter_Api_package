@@ -1019,6 +1019,26 @@ abstract class FMA extends ChopperService {
       {@Body() required StatisticsFilterDTO? body});
 
   ///
+  ///@param VehicleId
+  ///@param DateStart
+  ///@param DateEnd
+  Future<chopper.Response> apiFuelLoadDownloadGet(
+      {String? vehicleId, required String? dateStart, String? dateEnd}) {
+    return _apiFuelLoadDownloadGet(
+        vehicleId: vehicleId, dateStart: dateStart, dateEnd: dateEnd);
+  }
+
+  ///
+  ///@param VehicleId
+  ///@param DateStart
+  ///@param DateEnd
+  @Get(path: '/api/FuelLoad/Download')
+  Future<chopper.Response> _apiFuelLoadDownloadGet(
+      {@Query('VehicleId') String? vehicleId,
+      @Query('DateStart') required String? dateStart,
+      @Query('DateEnd') String? dateEnd});
+
+  ///
   Future<chopper.Response<List<FuelMeasureDTO>>> apiFuelMeasureGet() {
     generatedMapping.putIfAbsent(
         FuelMeasureDTO, () => FuelMeasureDTO.fromJsonFactory);

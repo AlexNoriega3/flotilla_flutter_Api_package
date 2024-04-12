@@ -565,6 +565,19 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<dynamic>> _apiFuelLoadDownloadGet(
+      {String? vehicleId, required String? dateStart, String? dateEnd}) {
+    final $url = '/api/FuelLoad/Download';
+    final $params = <String, dynamic>{
+      'VehicleId': vehicleId,
+      'DateStart': dateStart,
+      'DateEnd': dateEnd
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<List<FuelMeasureDTO>>> _apiFuelMeasureGet() {
     final $url = '/api/FuelMeasure';
     final $request = Request('GET', $url, client.baseUrl);
