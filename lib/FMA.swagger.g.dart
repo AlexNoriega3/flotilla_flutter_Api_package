@@ -339,18 +339,17 @@ FuelLoadBillsInfoDTO _$FuelLoadBillsInfoDTOFromJson(
               ?.map((e) => PerformanceDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      fuelLoads: (json['fuelLoads'] as List<dynamic>?)
-              ?.map(
-                  (e) => FuelLoadDetailDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
+      fuelLoads: json['fuelLoads'] == null
+          ? null
+          : FuelLoadDetailDTOPagedResult.fromJson(
+              json['fuelLoads'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FuelLoadBillsInfoDTOToJson(
         FuelLoadBillsInfoDTO instance) =>
     <String, dynamic>{
       'bills': instance.bills?.map((e) => e.toJson()).toList(),
-      'fuelLoads': instance.fuelLoads?.map((e) => e.toJson()).toList(),
+      'fuelLoads': instance.fuelLoads?.toJson(),
     };
 
 FuelLoadDTO _$FuelLoadDTOFromJson(Map<String, dynamic> json) => FuelLoadDTO(
@@ -2249,70 +2248,6 @@ Map<String, dynamic> _$VehiclePostDTOToJson(VehiclePostDTO instance) =>
       'photographsFiles': instance.photographsFiles,
       'billFile': instance.billFile,
       'pedimentoFile': instance.pedimentoFile,
-    };
-
-VehiclePutDTO _$VehiclePutDTOFromJson(Map<String, dynamic> json) =>
-    VehiclePutDTO(
-      vin: json['vin'] as String,
-      machineId: json['machineId'] as String,
-      description: json['description'] as String,
-      economicNumber: json['economicNumber'] as String,
-      assignedId: json['assignedId'] as String?,
-      brandId: json['brandId'] as String?,
-      modelId: json['modelId'] as String?,
-      modelYear: json['modelYear'] as int?,
-      engineId: json['engineId'] as String?,
-      placas: json['placas'] as String?,
-      drillRigId: json['drillRigId'] as int?,
-      policyId: json['policyId'] as String?,
-      incisoId: json['incisoId'] as String?,
-      packagePolicyId: json['packagePolicyId'] as String?,
-      measureId: json['measureId'] as String?,
-      fuelMeasureId: json['fuelMeasureId'] as String?,
-      fuelTypeId: json['fuelTypeId'] as String?,
-      companyId: json['companyId'] as String?,
-      categoryId: json['categoryId'] as String?,
-      tankSize: json['tankSize'] as int?,
-      active: json['active'] as bool?,
-      photographsFiles: (json['photographsFiles'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      billFile: json['billFile'] as String?,
-      pedimentoFile: json['pedimentoFile'] as String?,
-      photosToRemove: (json['photosToRemove'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$VehiclePutDTOToJson(VehiclePutDTO instance) =>
-    <String, dynamic>{
-      'vin': instance.vin,
-      'machineId': instance.machineId,
-      'description': instance.description,
-      'economicNumber': instance.economicNumber,
-      'assignedId': instance.assignedId,
-      'brandId': instance.brandId,
-      'modelId': instance.modelId,
-      'modelYear': instance.modelYear,
-      'engineId': instance.engineId,
-      'placas': instance.placas,
-      'drillRigId': instance.drillRigId,
-      'policyId': instance.policyId,
-      'incisoId': instance.incisoId,
-      'packagePolicyId': instance.packagePolicyId,
-      'measureId': instance.measureId,
-      'fuelMeasureId': instance.fuelMeasureId,
-      'fuelTypeId': instance.fuelTypeId,
-      'companyId': instance.companyId,
-      'categoryId': instance.categoryId,
-      'tankSize': instance.tankSize,
-      'active': instance.active,
-      'photographsFiles': instance.photographsFiles,
-      'billFile': instance.billFile,
-      'pedimentoFile': instance.pedimentoFile,
-      'photosToRemove': instance.photosToRemove,
     };
 
 VehicleStatisticsDTO _$VehicleStatisticsDTOFromJson(

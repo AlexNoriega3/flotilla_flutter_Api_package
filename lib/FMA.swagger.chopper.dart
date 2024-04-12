@@ -432,6 +432,35 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<FuelLoadDetailDTOPagedResult>>
+      _apiFuelLoadFindForVehicleAndDateGet(
+          {String? vehicleId,
+          required String? dateStart,
+          String? dateEnd,
+          required int? page,
+          String? search,
+          String? orderByPropertyName,
+          String? sortOrder,
+          required int? pageSize,
+          bool? active}) {
+    final $url = '/api/FuelLoad/FindForVehicleAndDate';
+    final $params = <String, dynamic>{
+      'VehicleId': vehicleId,
+      'DateStart': dateStart,
+      'DateEnd': dateEnd,
+      'Page': page,
+      'Search': search,
+      'OrderByPropertyName': orderByPropertyName,
+      'SortOrder': sortOrder,
+      'PageSize': pageSize,
+      'Active': active
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<FuelLoadDetailDTOPagedResult,
+        FuelLoadDetailDTOPagedResult>($request);
+  }
+
+  @override
   Future<Response<String>> _apiFuelLoadSavePost(
       {required FuelLoadPostDTO? body}) {
     final $url = '/api/FuelLoad/Save';
@@ -496,6 +525,16 @@ class _$FMA extends FMA {
   Future<Response<bool>> _apiFuelLoadIdDelete({required String? id}) {
     final $url = '/api/FuelLoad/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiFuelLoadEditIdPut(
+      {required String? id, required List<int> partFile}) {
+    final $url = '/api/FuelLoad/Edit/${id}';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<bool, bool>($request);
   }
 
@@ -2155,10 +2194,11 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<bool>> _apiVehicleEditIdPut(
-      {required String? id, required VehiclePutDTO? body}) {
+      {required String? id, required List<int> partFile}) {
     final $url = '/api/Vehicle/Edit/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<bool, bool>($request);
   }
 

@@ -764,6 +764,65 @@ abstract class FMA extends ChopperService {
           @Query('Active') bool? active});
 
   ///
+  ///@param VehicleId
+  ///@param DateStart
+  ///@param DateEnd
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  Future<chopper.Response<FuelLoadDetailDTOPagedResult>>
+      apiFuelLoadFindForVehicleAndDateGet(
+          {String? vehicleId,
+          required String? dateStart,
+          String? dateEnd,
+          required int? page,
+          String? search,
+          String? orderByPropertyName,
+          enums.SortOrderEnum? sortOrder,
+          required int? pageSize,
+          bool? active}) {
+    generatedMapping.putIfAbsent(FuelLoadDetailDTOPagedResult,
+        () => FuelLoadDetailDTOPagedResult.fromJsonFactory);
+
+    return _apiFuelLoadFindForVehicleAndDateGet(
+        vehicleId: vehicleId,
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        page: page,
+        search: search,
+        orderByPropertyName: orderByPropertyName,
+        sortOrder: enums.$SortOrderEnumMap[sortOrder]?.toString(),
+        pageSize: pageSize,
+        active: active);
+  }
+
+  ///
+  ///@param VehicleId
+  ///@param DateStart
+  ///@param DateEnd
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  @Get(path: '/api/FuelLoad/FindForVehicleAndDate')
+  Future<chopper.Response<FuelLoadDetailDTOPagedResult>>
+      _apiFuelLoadFindForVehicleAndDateGet(
+          {@Query('VehicleId') String? vehicleId,
+          @Query('DateStart') required String? dateStart,
+          @Query('DateEnd') String? dateEnd,
+          @Query('Page') required int? page,
+          @Query('Search') String? search,
+          @Query('OrderByPropertyName') String? orderByPropertyName,
+          @Query('SortOrder') String? sortOrder,
+          @Query('PageSize') required int? pageSize,
+          @Query('Active') bool? active});
+
+  ///
   Future<chopper.Response<String>> apiFuelLoadSavePost(
       {required FuelLoadPostDTO? body}) {
     return _apiFuelLoadSavePost(body: body);
@@ -899,6 +958,21 @@ abstract class FMA extends ChopperService {
   @Delete(path: '/api/FuelLoad/{id}')
   Future<chopper.Response<bool>> _apiFuelLoadIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiFuelLoadEditIdPut(
+      {required String? id, required List<int> partFile}) {
+    return _apiFuelLoadEditIdPut(id: id, partFile: partFile);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/FuelLoad/Edit/{id}')
+  @Multipart()
+  Future<chopper.Response<bool>> _apiFuelLoadEditIdPut(
+      {@Path('id') required String? id,
+      @PartFile() required List<int> partFile});
 
   ///
   Future<chopper.Response<PerformanceFilterDTO>> apiFuelLoadStatisticsPost(
@@ -3834,15 +3908,17 @@ abstract class FMA extends ChopperService {
   ///
   ///@param id
   Future<chopper.Response<bool>> apiVehicleEditIdPut(
-      {required String? id, required VehiclePutDTO? body}) {
-    return _apiVehicleEditIdPut(id: id, body: body);
+      {required String? id, required List<int> partFile}) {
+    return _apiVehicleEditIdPut(id: id, partFile: partFile);
   }
 
   ///
   ///@param id
   @Put(path: '/api/Vehicle/Edit/{id}')
+  @Multipart()
   Future<chopper.Response<bool>> _apiVehicleEditIdPut(
-      {@Path('id') required String? id, @Body() required VehiclePutDTO? body});
+      {@Path('id') required String? id,
+      @PartFile() required List<int> partFile});
 
   ///
   ///@param Id
@@ -5241,8 +5317,8 @@ class FuelLoadBillsInfoDTO {
 
   @JsonKey(name: 'bills', defaultValue: <PerformanceDTO>[])
   final List<PerformanceDTO>? bills;
-  @JsonKey(name: 'fuelLoads', defaultValue: <FuelLoadDetailDTO>[])
-  final List<FuelLoadDetailDTO>? fuelLoads;
+  @JsonKey(name: 'fuelLoads')
+  final FuelLoadDetailDTOPagedResult? fuelLoads;
   static const fromJsonFactory = _$FuelLoadBillsInfoDTOFromJson;
   static const toJsonFactory = _$FuelLoadBillsInfoDTOToJson;
   Map<String, dynamic> toJson() => _$FuelLoadBillsInfoDTOToJson(this);
@@ -5270,7 +5346,7 @@ class FuelLoadBillsInfoDTO {
 
 extension $FuelLoadBillsInfoDTOExtension on FuelLoadBillsInfoDTO {
   FuelLoadBillsInfoDTO copyWith(
-      {List<PerformanceDTO>? bills, List<FuelLoadDetailDTO>? fuelLoads}) {
+      {List<PerformanceDTO>? bills, FuelLoadDetailDTOPagedResult? fuelLoads}) {
     return FuelLoadBillsInfoDTO(
         bills: bills ?? this.bills, fuelLoads: fuelLoads ?? this.fuelLoads);
   }
@@ -12213,256 +12289,6 @@ extension $VehiclePostDTOExtension on VehiclePostDTO {
         photographsFiles: photographsFiles ?? this.photographsFiles,
         billFile: billFile ?? this.billFile,
         pedimentoFile: pedimentoFile ?? this.pedimentoFile);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class VehiclePutDTO {
-  VehiclePutDTO({
-    required this.vin,
-    required this.machineId,
-    required this.description,
-    required this.economicNumber,
-    this.assignedId,
-    this.brandId,
-    this.modelId,
-    this.modelYear,
-    this.engineId,
-    this.placas,
-    this.drillRigId,
-    this.policyId,
-    this.incisoId,
-    this.packagePolicyId,
-    this.measureId,
-    this.fuelMeasureId,
-    this.fuelTypeId,
-    this.companyId,
-    this.categoryId,
-    this.tankSize,
-    this.active,
-    this.photographsFiles,
-    this.billFile,
-    this.pedimentoFile,
-    this.photosToRemove,
-  });
-
-  factory VehiclePutDTO.fromJson(Map<String, dynamic> json) =>
-      _$VehiclePutDTOFromJson(json);
-
-  @JsonKey(name: 'vin')
-  final String vin;
-  @JsonKey(name: 'machineId')
-  final String machineId;
-  @JsonKey(name: 'description')
-  final String description;
-  @JsonKey(name: 'economicNumber')
-  final String economicNumber;
-  @JsonKey(name: 'assignedId')
-  final String? assignedId;
-  @JsonKey(name: 'brandId')
-  final String? brandId;
-  @JsonKey(name: 'modelId')
-  final String? modelId;
-  @JsonKey(name: 'modelYear')
-  final int? modelYear;
-  @JsonKey(name: 'engineId')
-  final String? engineId;
-  @JsonKey(name: 'placas')
-  final String? placas;
-  @JsonKey(name: 'drillRigId')
-  final int? drillRigId;
-  @JsonKey(name: 'policyId')
-  final String? policyId;
-  @JsonKey(name: 'incisoId')
-  final String? incisoId;
-  @JsonKey(name: 'packagePolicyId')
-  final String? packagePolicyId;
-  @JsonKey(name: 'measureId')
-  final String? measureId;
-  @JsonKey(name: 'fuelMeasureId')
-  final String? fuelMeasureId;
-  @JsonKey(name: 'fuelTypeId')
-  final String? fuelTypeId;
-  @JsonKey(name: 'companyId')
-  final String? companyId;
-  @JsonKey(name: 'categoryId')
-  final String? categoryId;
-  @JsonKey(name: 'tankSize')
-  final int? tankSize;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'photographsFiles', defaultValue: <String>[])
-  final List<String>? photographsFiles;
-  @JsonKey(name: 'billFile')
-  final String? billFile;
-  @JsonKey(name: 'pedimentoFile')
-  final String? pedimentoFile;
-  @JsonKey(name: 'photosToRemove', defaultValue: <String>[])
-  final List<String>? photosToRemove;
-  static const fromJsonFactory = _$VehiclePutDTOFromJson;
-  static const toJsonFactory = _$VehiclePutDTOToJson;
-  Map<String, dynamic> toJson() => _$VehiclePutDTOToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is VehiclePutDTO &&
-            (identical(other.vin, vin) ||
-                const DeepCollectionEquality().equals(other.vin, vin)) &&
-            (identical(other.machineId, machineId) ||
-                const DeepCollectionEquality()
-                    .equals(other.machineId, machineId)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.economicNumber, economicNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.economicNumber, economicNumber)) &&
-            (identical(other.assignedId, assignedId) ||
-                const DeepCollectionEquality()
-                    .equals(other.assignedId, assignedId)) &&
-            (identical(other.brandId, brandId) ||
-                const DeepCollectionEquality()
-                    .equals(other.brandId, brandId)) &&
-            (identical(other.modelId, modelId) ||
-                const DeepCollectionEquality()
-                    .equals(other.modelId, modelId)) &&
-            (identical(other.modelYear, modelYear) ||
-                const DeepCollectionEquality()
-                    .equals(other.modelYear, modelYear)) &&
-            (identical(other.engineId, engineId) ||
-                const DeepCollectionEquality()
-                    .equals(other.engineId, engineId)) &&
-            (identical(other.placas, placas) ||
-                const DeepCollectionEquality().equals(other.placas, placas)) &&
-            (identical(other.drillRigId, drillRigId) ||
-                const DeepCollectionEquality()
-                    .equals(other.drillRigId, drillRigId)) &&
-            (identical(other.policyId, policyId) ||
-                const DeepCollectionEquality()
-                    .equals(other.policyId, policyId)) &&
-            (identical(other.incisoId, incisoId) ||
-                const DeepCollectionEquality()
-                    .equals(other.incisoId, incisoId)) &&
-            (identical(other.packagePolicyId, packagePolicyId) ||
-                const DeepCollectionEquality()
-                    .equals(other.packagePolicyId, packagePolicyId)) &&
-            (identical(other.measureId, measureId) ||
-                const DeepCollectionEquality()
-                    .equals(other.measureId, measureId)) &&
-            (identical(other.fuelMeasureId, fuelMeasureId) ||
-                const DeepCollectionEquality()
-                    .equals(other.fuelMeasureId, fuelMeasureId)) &&
-            (identical(other.fuelTypeId, fuelTypeId) ||
-                const DeepCollectionEquality()
-                    .equals(other.fuelTypeId, fuelTypeId)) &&
-            (identical(other.companyId, companyId) ||
-                const DeepCollectionEquality()
-                    .equals(other.companyId, companyId)) &&
-            (identical(other.categoryId, categoryId) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryId, categoryId)) &&
-            (identical(other.tankSize, tankSize) ||
-                const DeepCollectionEquality()
-                    .equals(other.tankSize, tankSize)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.photographsFiles, photographsFiles) ||
-                const DeepCollectionEquality()
-                    .equals(other.photographsFiles, photographsFiles)) &&
-            (identical(other.billFile, billFile) ||
-                const DeepCollectionEquality()
-                    .equals(other.billFile, billFile)) &&
-            (identical(other.pedimentoFile, pedimentoFile) || const DeepCollectionEquality().equals(other.pedimentoFile, pedimentoFile)) &&
-            (identical(other.photosToRemove, photosToRemove) || const DeepCollectionEquality().equals(other.photosToRemove, photosToRemove)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(vin) ^
-      const DeepCollectionEquality().hash(machineId) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(economicNumber) ^
-      const DeepCollectionEquality().hash(assignedId) ^
-      const DeepCollectionEquality().hash(brandId) ^
-      const DeepCollectionEquality().hash(modelId) ^
-      const DeepCollectionEquality().hash(modelYear) ^
-      const DeepCollectionEquality().hash(engineId) ^
-      const DeepCollectionEquality().hash(placas) ^
-      const DeepCollectionEquality().hash(drillRigId) ^
-      const DeepCollectionEquality().hash(policyId) ^
-      const DeepCollectionEquality().hash(incisoId) ^
-      const DeepCollectionEquality().hash(packagePolicyId) ^
-      const DeepCollectionEquality().hash(measureId) ^
-      const DeepCollectionEquality().hash(fuelMeasureId) ^
-      const DeepCollectionEquality().hash(fuelTypeId) ^
-      const DeepCollectionEquality().hash(companyId) ^
-      const DeepCollectionEquality().hash(categoryId) ^
-      const DeepCollectionEquality().hash(tankSize) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(photographsFiles) ^
-      const DeepCollectionEquality().hash(billFile) ^
-      const DeepCollectionEquality().hash(pedimentoFile) ^
-      const DeepCollectionEquality().hash(photosToRemove) ^
-      runtimeType.hashCode;
-}
-
-extension $VehiclePutDTOExtension on VehiclePutDTO {
-  VehiclePutDTO copyWith(
-      {String? vin,
-      String? machineId,
-      String? description,
-      String? economicNumber,
-      String? assignedId,
-      String? brandId,
-      String? modelId,
-      int? modelYear,
-      String? engineId,
-      String? placas,
-      int? drillRigId,
-      String? policyId,
-      String? incisoId,
-      String? packagePolicyId,
-      String? measureId,
-      String? fuelMeasureId,
-      String? fuelTypeId,
-      String? companyId,
-      String? categoryId,
-      int? tankSize,
-      bool? active,
-      List<String>? photographsFiles,
-      String? billFile,
-      String? pedimentoFile,
-      List<String>? photosToRemove}) {
-    return VehiclePutDTO(
-        vin: vin ?? this.vin,
-        machineId: machineId ?? this.machineId,
-        description: description ?? this.description,
-        economicNumber: economicNumber ?? this.economicNumber,
-        assignedId: assignedId ?? this.assignedId,
-        brandId: brandId ?? this.brandId,
-        modelId: modelId ?? this.modelId,
-        modelYear: modelYear ?? this.modelYear,
-        engineId: engineId ?? this.engineId,
-        placas: placas ?? this.placas,
-        drillRigId: drillRigId ?? this.drillRigId,
-        policyId: policyId ?? this.policyId,
-        incisoId: incisoId ?? this.incisoId,
-        packagePolicyId: packagePolicyId ?? this.packagePolicyId,
-        measureId: measureId ?? this.measureId,
-        fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
-        fuelTypeId: fuelTypeId ?? this.fuelTypeId,
-        companyId: companyId ?? this.companyId,
-        categoryId: categoryId ?? this.categoryId,
-        tankSize: tankSize ?? this.tankSize,
-        active: active ?? this.active,
-        photographsFiles: photographsFiles ?? this.photographsFiles,
-        billFile: billFile ?? this.billFile,
-        pedimentoFile: pedimentoFile ?? this.pedimentoFile,
-        photosToRemove: photosToRemove ?? this.photosToRemove);
   }
 }
 
