@@ -1131,6 +1131,15 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<MaintenanceNewEditDTO>> _apiMaintenanceGetFormGet(
+      {String? id}) {
+    final $url = '/api/Maintenance/GetForm';
+    final $params = <String, dynamic>{'id': id};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<MaintenanceNewEditDTO, MaintenanceNewEditDTO>($request);
+  }
+
+  @override
   Future<Response<List<MaintenanceGroupDTO>>> _apiMaintenanceGroupGet() {
     final $url = '/api/MaintenanceGroup';
     final $request = Request('GET', $url, client.baseUrl);

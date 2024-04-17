@@ -6462,6 +6462,34 @@
   }
   }
   },
+  "/api/Maintenance/GetForm": {
+  "get": {
+  "tags": [
+  "Maintenance"
+  ],
+  "parameters": [
+  {
+  "name": "id",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  }
+  ],
+  "responses": {
+  "200": {
+  "description": "Success",
+  "content": {
+  "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  }
+  }
+  }
+  }
+  }
+  },
   "/api/MaintenanceGroup": {
   "get": {
   "tags": [
@@ -13954,6 +13982,10 @@
   "type": "string",
   "nullable": true
   },
+  "odometer": {
+  "type": "string",
+  "nullable": true
+  },
   "totalAmount": {
   "type": "string",
   "nullable": true
@@ -14841,6 +14873,77 @@
   },
   "additionalProperties": false
   },
+  "MaintenanceFormDTO": {
+  "type": "object",
+  "properties": {
+  "id": {
+  "type": "string",
+  "nullable": true
+  },
+  "active": {
+  "type": "boolean"
+  },
+  "name": {
+  "type": "string",
+  "nullable": true
+  },
+  "startDate": {
+  "type": "string",
+  "nullable": true
+  },
+  "finishDate": {
+  "type": "string",
+  "nullable": true
+  },
+  "startHour": {
+  "type": "string",
+  "nullable": true
+  },
+  "finishHour": {
+  "type": "string",
+  "nullable": true
+  },
+  "comments": {
+  "type": "string",
+  "nullable": true
+  },
+  "odometer": {
+  "type": "string",
+  "nullable": true
+  },
+  "maintenanceTypeId": {
+  "type": "string",
+  "nullable": true
+  },
+  "maintenanceGroupId": {
+  "type": "string",
+  "nullable": true
+  },
+  "vendorId": {
+  "type": "string",
+  "nullable": true
+  },
+  "documentId": {
+  "type": "string",
+  "nullable": true
+  },
+  "vehicleId": {
+  "type": "string",
+  "nullable": true
+  },
+  "images": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/ImageDTO"
+  },
+  "nullable": true
+  },
+  "document": {
+  "$ref": "#/components/schemas/DocumentDTO"
+  }
+  },
+  "additionalProperties": false
+  },
   "MaintenanceGroupDTO": {
   "type": "object",
   "properties": {
@@ -14895,6 +14998,58 @@
   "type": "array",
   "items": {
   "$ref": "#/components/schemas/MaintenanceGroupDTO"
+  },
+  "nullable": true
+  }
+  },
+  "additionalProperties": false
+  },
+  "MaintenanceNewEditDTO": {
+  "type": "object",
+  "properties": {
+  "odometer": {
+  "type": "string",
+  "nullable": true
+  },
+  "maintenanceId": {
+  "type": "string",
+  "nullable": true
+  },
+  "maintenance": {
+  "$ref": "#/components/schemas/MaintenanceFormDTO"
+  },
+  "services": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/SelectDTO"
+  },
+  "nullable": true
+  },
+  "maintenanceGroups": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/SelectDTO"
+  },
+  "nullable": true
+  },
+  "vehicles": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/SelectVehicleDTO"
+  },
+  "nullable": true
+  },
+  "maintenanceTypes": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/SelectDTO"
+  },
+  "nullable": true
+  },
+  "providers": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/SelectDTO"
   },
   "nullable": true
   }
