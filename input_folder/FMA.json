@@ -6462,6 +6462,97 @@
   }
   }
   },
+  "/api/Maintenance/FindForVehicleAndDate": {
+  "get": {
+  "tags": [
+  "Maintenance"
+  ],
+  "parameters": [
+  {
+  "name": "VehicleId",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "DateStart",
+  "in": "query",
+  "required": true,
+  "schema": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  }
+  },
+  {
+  "name": "DateEnd",
+  "in": "query",
+  "schema": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  }
+  },
+  {
+  "name": "Page",
+  "in": "query",
+  "required": true,
+  "schema": {
+  "type": "integer",
+  "format": "int32"
+  }
+  },
+  {
+  "name": "Search",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "OrderByPropertyName",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "SortOrder",
+  "in": "query",
+  "schema": {
+  "$ref": "#/components/schemas/SortOrderEnum"
+  }
+  },
+  {
+  "name": "PageSize",
+  "in": "query",
+  "required": true,
+  "schema": {
+  "type": "integer",
+  "format": "int32"
+  }
+  },
+  {
+  "name": "Active",
+  "in": "query",
+  "schema": {
+  "type": "boolean"
+  }
+  }
+  ],
+  "responses": {
+  "200": {
+  "description": "Success",
+  "content": {
+  "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  }
+  }
+  }
+  }
+  }
+  },
   "/api/Maintenance/GetForm": {
   "get": {
   "tags": [
@@ -6483,6 +6574,34 @@
   "application/json": {
   "schema": {
   "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  }
+  }
+  }
+  }
+  }
+  },
+  "/api/Maintenance/MaintenanceBills": {
+  "post": {
+  "tags": [
+  "Maintenance"
+  ],
+  "requestBody": {
+  "content": {
+  "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/StatisticsFilterDTO"
+  }
+  }
+  }
+  },
+  "responses": {
+  "200": {
+  "description": "Success",
+  "content": {
+  "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
   }
   }
   }
@@ -14758,6 +14877,22 @@
   "$ref": "#/components/schemas/MachineDTO"
   },
   "nullable": true
+  }
+  },
+  "additionalProperties": false
+  },
+  "MaintenanceBillsInfoDTO": {
+  "type": "object",
+  "properties": {
+  "bills": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/PerformanceDTO"
+  },
+  "nullable": true
+  },
+  "maintenances": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
   }
   },
   "additionalProperties": false

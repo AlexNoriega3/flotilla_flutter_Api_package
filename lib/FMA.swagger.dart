@@ -2013,6 +2013,65 @@ abstract class FMA extends ChopperService {
           @Query('Active') bool? active});
 
   ///
+  ///@param VehicleId
+  ///@param DateStart
+  ///@param DateEnd
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  Future<chopper.Response<MaintenanceDetailDTOPagedResult>>
+      apiMaintenanceFindForVehicleAndDateGet(
+          {String? vehicleId,
+          required String? dateStart,
+          String? dateEnd,
+          required int? page,
+          String? search,
+          String? orderByPropertyName,
+          enums.SortOrderEnum? sortOrder,
+          required int? pageSize,
+          bool? active}) {
+    generatedMapping.putIfAbsent(MaintenanceDetailDTOPagedResult,
+        () => MaintenanceDetailDTOPagedResult.fromJsonFactory);
+
+    return _apiMaintenanceFindForVehicleAndDateGet(
+        vehicleId: vehicleId,
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        page: page,
+        search: search,
+        orderByPropertyName: orderByPropertyName,
+        sortOrder: enums.$SortOrderEnumMap[sortOrder]?.toString(),
+        pageSize: pageSize,
+        active: active);
+  }
+
+  ///
+  ///@param VehicleId
+  ///@param DateStart
+  ///@param DateEnd
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  @Get(path: '/api/Maintenance/FindForVehicleAndDate')
+  Future<chopper.Response<MaintenanceDetailDTOPagedResult>>
+      _apiMaintenanceFindForVehicleAndDateGet(
+          {@Query('VehicleId') String? vehicleId,
+          @Query('DateStart') required String? dateStart,
+          @Query('DateEnd') String? dateEnd,
+          @Query('Page') required int? page,
+          @Query('Search') String? search,
+          @Query('OrderByPropertyName') String? orderByPropertyName,
+          @Query('SortOrder') String? sortOrder,
+          @Query('PageSize') required int? pageSize,
+          @Query('Active') bool? active});
+
+  ///
   ///@param id
   Future<chopper.Response<MaintenanceNewEditDTO>> apiMaintenanceGetFormGet(
       {String? id}) {
@@ -2027,6 +2086,21 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/Maintenance/GetForm')
   Future<chopper.Response<MaintenanceNewEditDTO>> _apiMaintenanceGetFormGet(
       {@Query('id') String? id});
+
+  ///
+  Future<chopper.Response<MaintenanceBillsInfoDTO>>
+      apiMaintenanceMaintenanceBillsPost({required StatisticsFilterDTO? body}) {
+    generatedMapping.putIfAbsent(
+        MaintenanceBillsInfoDTO, () => MaintenanceBillsInfoDTO.fromJsonFactory);
+
+    return _apiMaintenanceMaintenanceBillsPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Maintenance/MaintenanceBills')
+  Future<chopper.Response<MaintenanceBillsInfoDTO>>
+      _apiMaintenanceMaintenanceBillsPost(
+          {@Body() required StatisticsFilterDTO? body});
 
   ///
   Future<chopper.Response<List<MaintenanceGroupDTO>>> apiMaintenanceGroupGet() {
@@ -7445,6 +7519,55 @@ extension $MachineDTOPagedResultExtension on MachineDTOPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class MaintenanceBillsInfoDTO {
+  MaintenanceBillsInfoDTO({
+    this.bills,
+    this.maintenances,
+  });
+
+  factory MaintenanceBillsInfoDTO.fromJson(Map<String, dynamic> json) =>
+      _$MaintenanceBillsInfoDTOFromJson(json);
+
+  @JsonKey(name: 'bills', defaultValue: <PerformanceDTO>[])
+  final List<PerformanceDTO>? bills;
+  @JsonKey(name: 'maintenances')
+  final MaintenanceDetailDTOPagedResult? maintenances;
+  static const fromJsonFactory = _$MaintenanceBillsInfoDTOFromJson;
+  static const toJsonFactory = _$MaintenanceBillsInfoDTOToJson;
+  Map<String, dynamic> toJson() => _$MaintenanceBillsInfoDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MaintenanceBillsInfoDTO &&
+            (identical(other.bills, bills) ||
+                const DeepCollectionEquality().equals(other.bills, bills)) &&
+            (identical(other.maintenances, maintenances) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenances, maintenances)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bills) ^
+      const DeepCollectionEquality().hash(maintenances) ^
+      runtimeType.hashCode;
+}
+
+extension $MaintenanceBillsInfoDTOExtension on MaintenanceBillsInfoDTO {
+  MaintenanceBillsInfoDTO copyWith(
+      {List<PerformanceDTO>? bills,
+      MaintenanceDetailDTOPagedResult? maintenances}) {
+    return MaintenanceBillsInfoDTO(
+        bills: bills ?? this.bills,
+        maintenances: maintenances ?? this.maintenances);
   }
 }
 

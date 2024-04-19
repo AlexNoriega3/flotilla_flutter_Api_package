@@ -1131,12 +1131,51 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<MaintenanceDetailDTOPagedResult>>
+      _apiMaintenanceFindForVehicleAndDateGet(
+          {String? vehicleId,
+          required String? dateStart,
+          String? dateEnd,
+          required int? page,
+          String? search,
+          String? orderByPropertyName,
+          String? sortOrder,
+          required int? pageSize,
+          bool? active}) {
+    final $url = '/api/Maintenance/FindForVehicleAndDate';
+    final $params = <String, dynamic>{
+      'VehicleId': vehicleId,
+      'DateStart': dateStart,
+      'DateEnd': dateEnd,
+      'Page': page,
+      'Search': search,
+      'OrderByPropertyName': orderByPropertyName,
+      'SortOrder': sortOrder,
+      'PageSize': pageSize,
+      'Active': active
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<MaintenanceDetailDTOPagedResult,
+        MaintenanceDetailDTOPagedResult>($request);
+  }
+
+  @override
   Future<Response<MaintenanceNewEditDTO>> _apiMaintenanceGetFormGet(
       {String? id}) {
     final $url = '/api/Maintenance/GetForm';
     final $params = <String, dynamic>{'id': id};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<MaintenanceNewEditDTO, MaintenanceNewEditDTO>($request);
+  }
+
+  @override
+  Future<Response<MaintenanceBillsInfoDTO>> _apiMaintenanceMaintenanceBillsPost(
+      {required StatisticsFilterDTO? body}) {
+    final $url = '/api/Maintenance/MaintenanceBills';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client
+        .send<MaintenanceBillsInfoDTO, MaintenanceBillsInfoDTO>($request);
   }
 
   @override

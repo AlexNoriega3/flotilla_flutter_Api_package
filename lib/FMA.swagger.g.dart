@@ -911,6 +911,26 @@ Map<String, dynamic> _$MachineDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+MaintenanceBillsInfoDTO _$MaintenanceBillsInfoDTOFromJson(
+        Map<String, dynamic> json) =>
+    MaintenanceBillsInfoDTO(
+      bills: (json['bills'] as List<dynamic>?)
+              ?.map((e) => PerformanceDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      maintenances: json['maintenances'] == null
+          ? null
+          : MaintenanceDetailDTOPagedResult.fromJson(
+              json['maintenances'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$MaintenanceBillsInfoDTOToJson(
+        MaintenanceBillsInfoDTO instance) =>
+    <String, dynamic>{
+      'bills': instance.bills?.map((e) => e.toJson()).toList(),
+      'maintenances': instance.maintenances?.toJson(),
+    };
+
 MaintenanceDTO _$MaintenanceDTOFromJson(Map<String, dynamic> json) =>
     MaintenanceDTO(
       id: json['id'] as String?,
