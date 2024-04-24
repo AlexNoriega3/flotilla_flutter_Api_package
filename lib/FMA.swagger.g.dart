@@ -950,11 +950,21 @@ MaintenanceDTO _$MaintenanceDTOFromJson(Map<String, dynamic> json) =>
           : TimeSpan.fromJson(json['finishHour'] as Map<String, dynamic>),
       comments: json['comments'] as String?,
       odometer: json['odometer'] as String?,
+      reference: json['reference'] as String?,
       maintenanceTypeId: json['maintenanceTypeId'] as String?,
       maintenanceGroupId: json['maintenanceGroupId'] as String?,
       vendorId: json['vendorId'] as String?,
       vehicleId: json['vehicleId'] as String?,
       documentId: json['documentId'] as String?,
+      services: (json['services'] as List<dynamic>?)
+              ?.map((e) => ServiceDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      maintenanceParts: (json['maintenanceParts'] as List<dynamic>?)
+              ?.map(
+                  (e) => MaintenancePartDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$MaintenanceDTOToJson(MaintenanceDTO instance) =>
@@ -968,11 +978,15 @@ Map<String, dynamic> _$MaintenanceDTOToJson(MaintenanceDTO instance) =>
       'finishHour': instance.finishHour?.toJson(),
       'comments': instance.comments,
       'odometer': instance.odometer,
+      'reference': instance.reference,
       'maintenanceTypeId': instance.maintenanceTypeId,
       'maintenanceGroupId': instance.maintenanceGroupId,
       'vendorId': instance.vendorId,
       'vehicleId': instance.vehicleId,
       'documentId': instance.documentId,
+      'services': instance.services?.map((e) => e.toJson()).toList(),
+      'maintenanceParts':
+          instance.maintenanceParts?.map((e) => e.toJson()).toList(),
     };
 
 MaintenanceDetailDTO _$MaintenanceDetailDTOFromJson(
@@ -1028,10 +1042,20 @@ MaintenanceFormDTO _$MaintenanceFormDTOFromJson(Map<String, dynamic> json) =>
       finishHour: json['finishHour'] as String?,
       comments: json['comments'] as String?,
       odometer: json['odometer'] as String?,
+      reference: json['reference'] as String?,
       maintenanceTypeId: json['maintenanceTypeId'] as String?,
       maintenanceGroupId: json['maintenanceGroupId'] as String?,
       vendorId: json['vendorId'] as String?,
       documentId: json['documentId'] as String?,
+      services: (json['services'] as List<dynamic>?)
+              ?.map((e) => ServiceDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      maintenanceParts: (json['maintenanceParts'] as List<dynamic>?)
+              ?.map(
+                  (e) => MaintenancePartDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       vehicleId: json['vehicleId'] as String?,
       images: (json['images'] as List<dynamic>?)
               ?.map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
@@ -1053,10 +1077,14 @@ Map<String, dynamic> _$MaintenanceFormDTOToJson(MaintenanceFormDTO instance) =>
       'finishHour': instance.finishHour,
       'comments': instance.comments,
       'odometer': instance.odometer,
+      'reference': instance.reference,
       'maintenanceTypeId': instance.maintenanceTypeId,
       'maintenanceGroupId': instance.maintenanceGroupId,
       'vendorId': instance.vendorId,
       'documentId': instance.documentId,
+      'services': instance.services?.map((e) => e.toJson()).toList(),
+      'maintenanceParts':
+          instance.maintenanceParts?.map((e) => e.toJson()).toList(),
       'vehicleId': instance.vehicleId,
       'images': instance.images?.map((e) => e.toJson()).toList(),
       'document': instance.document?.toJson(),
@@ -1103,6 +1131,28 @@ Map<String, dynamic> _$MaintenanceGroupDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+MaintenanceListPartDTO _$MaintenanceListPartDTOFromJson(
+        Map<String, dynamic> json) =>
+    MaintenanceListPartDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      maintenanceId: json['maintenanceId'] as String?,
+      item: json['item'] as String?,
+      quantity: json['quantity'] as int?,
+      cost: (json['cost'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$MaintenanceListPartDTOToJson(
+        MaintenanceListPartDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'maintenanceId': instance.maintenanceId,
+      'item': instance.item,
+      'quantity': instance.quantity,
+      'cost': instance.cost,
     };
 
 MaintenanceNewEditDTO _$MaintenanceNewEditDTOFromJson(
@@ -1157,6 +1207,9 @@ MaintenancePartDTO _$MaintenancePartDTOFromJson(Map<String, dynamic> json) =>
       active: json['active'] as bool?,
       maintenanceId: json['maintenanceId'] as String?,
       partId: json['partId'] as String?,
+      item: json['item'] as String?,
+      quantity: json['quantity'] as int?,
+      cost: (json['cost'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$MaintenancePartDTOToJson(MaintenancePartDTO instance) =>
@@ -1165,6 +1218,9 @@ Map<String, dynamic> _$MaintenancePartDTOToJson(MaintenancePartDTO instance) =>
       'active': instance.active,
       'maintenanceId': instance.maintenanceId,
       'partId': instance.partId,
+      'item': instance.item,
+      'quantity': instance.quantity,
+      'cost': instance.cost,
     };
 
 MaintenancePartDTOPagedResult _$MaintenancePartDTOPagedResultFromJson(
@@ -1189,6 +1245,75 @@ Map<String, dynamic> _$MaintenancePartDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+MaintenancePostDTO _$MaintenancePostDTOFromJson(Map<String, dynamic> json) =>
+    MaintenancePostDTO(
+      startDate: json['startDate'] as String,
+      finishDate: json['finishDate'] as String?,
+      startHour: json['startHour'] as String,
+      finishHour: json['finishHour'] as String?,
+      comments: json['comments'] as String?,
+      reference: json['reference'] as String?,
+      odometer: json['odometer'] as String?,
+      maintenanceTypeId: json['maintenanceTypeId'] as String?,
+      maintenanceGroupId: json['maintenanceGroupId'] as String?,
+      costLobour: (json['costLobour'] as num?)?.toDouble(),
+      providerId: json['providerId'] as String?,
+      vehicleId: json['vehicleId'] as String,
+      document: json['document'] as String?,
+      imageFiles: (json['imageFiles'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      services: (json['services'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      maintenanceParts: (json['maintenanceParts'] as List<dynamic>?)
+              ?.map((e) =>
+                  MaintenanceListPartDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$MaintenancePostDTOToJson(MaintenancePostDTO instance) =>
+    <String, dynamic>{
+      'startDate': instance.startDate,
+      'finishDate': instance.finishDate,
+      'startHour': instance.startHour,
+      'finishHour': instance.finishHour,
+      'comments': instance.comments,
+      'reference': instance.reference,
+      'odometer': instance.odometer,
+      'maintenanceTypeId': instance.maintenanceTypeId,
+      'maintenanceGroupId': instance.maintenanceGroupId,
+      'costLobour': instance.costLobour,
+      'providerId': instance.providerId,
+      'vehicleId': instance.vehicleId,
+      'document': instance.document,
+      'imageFiles': instance.imageFiles,
+      'services': instance.services,
+      'maintenanceParts':
+          instance.maintenanceParts?.map((e) => e.toJson()).toList(),
+    };
+
+MaintenanceStatisticsFilterDTO _$MaintenanceStatisticsFilterDTOFromJson(
+        Map<String, dynamic> json) =>
+    MaintenanceStatisticsFilterDTO(
+      vehicleId: json['vehicleId'] as String?,
+      servicesId: json['servicesId'] as String?,
+      dateStart: json['dateStart'] as String,
+      dateEnd: json['dateEnd'] as String?,
+    );
+
+Map<String, dynamic> _$MaintenanceStatisticsFilterDTOToJson(
+        MaintenanceStatisticsFilterDTO instance) =>
+    <String, dynamic>{
+      'vehicleId': instance.vehicleId,
+      'servicesId': instance.servicesId,
+      'dateStart': instance.dateStart,
+      'dateEnd': instance.dateEnd,
     };
 
 MaintenanceTypeDTO _$MaintenanceTypeDTOFromJson(Map<String, dynamic> json) =>
@@ -2428,6 +2553,23 @@ Map<String, dynamic> _$VendorDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+ApiMaintenanceIdPut$RequestBody _$ApiMaintenanceIdPut$RequestBodyFromJson(
+        Map<String, dynamic> json) =>
+    ApiMaintenanceIdPut$RequestBody(
+      document: json['Document'] as String?,
+      imageFiles: (json['ImageFiles'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ApiMaintenanceIdPut$RequestBodyToJson(
+        ApiMaintenanceIdPut$RequestBody instance) =>
+    <String, dynamic>{
+      'Document': instance.document,
+      'ImageFiles': instance.imageFiles,
     };
 
 ApiUserIdPut$RequestBody _$ApiUserIdPut$RequestBodyFromJson(

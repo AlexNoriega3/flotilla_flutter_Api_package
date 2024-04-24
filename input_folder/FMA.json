@@ -6209,7 +6209,7 @@
   "content": {
   "application/json": {
   "schema": {
-  "$ref": "#/components/schemas/MaintenanceDTO"
+  "$ref": "#/components/schemas/MaintenancePostDTO"
   }
   }
   }
@@ -6335,17 +6335,161 @@
   "schema": {
   "type": "string"
   }
+  },
+  {
+  "name": "ImagesToRemove",
+  "in": "query",
+  "schema": {
+  "type": "array",
+  "items": {
+  "type": "string"
+  }
+  }
+  },
+  {
+  "name": "StartDate",
+  "in": "query",
+  "required": true,
+  "schema": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  }
+  },
+  {
+  "name": "FinishDate",
+  "in": "query",
+  "schema": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  }
+  },
+  {
+  "name": "StartHour",
+  "in": "query",
+  "required": true,
+  "schema": {
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string"
+  }
+  },
+  {
+  "name": "FinishHour",
+  "in": "query",
+  "schema": {
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string"
+  }
+  },
+  {
+  "name": "Comments",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "Reference",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "Odometer",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "MaintenanceTypeId",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "MaintenanceGroupId",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "CostLobour",
+  "in": "query",
+  "schema": {
+  "type": "number",
+  "format": "double"
+  }
+  },
+  {
+  "name": "ProviderId",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "VehicleId",
+  "in": "query",
+  "required": true,
+  "schema": {
+  "maxLength": 255,
+  "minLength": 6,
+  "type": "string"
+  }
+  },
+  {
+  "name": "Services",
+  "in": "query",
+  "schema": {
+  "type": "array",
+  "items": {
+  "type": "string"
+  }
+  }
+  },
+  {
+  "name": "MaintenanceParts",
+  "in": "query",
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceListPartDTO"
+  }
+  }
   }
   ],
   "requestBody": {
   "content": {
   "application/json": {
   "schema": {
-  "$ref": "#/components/schemas/MaintenanceDTO"
+  "type": "object",
+  "properties": {
+  "Document": {
+  "type": "string",
+  "format": "binary"
+  },
+  "ImageFiles": {
+  "type": "array",
+  "items": {
+  "type": "string",
+  "format": "binary"
+  }
   }
   }
   },
-  "required": true
+  "encoding": {
+  "Document": {
+  "style": "form"
+  },
+  "ImageFiles": {
+  "style": "form"
+  }
+  }
+  }
+  }
   },
   "responses": {
   "200": {
@@ -6476,6 +6620,13 @@
   }
   },
   {
+  "name": "ServicesId",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
   "name": "DateStart",
   "in": "query",
   "required": true,
@@ -6590,7 +6741,7 @@
   "content": {
   "application/json": {
   "schema": {
-  "$ref": "#/components/schemas/StatisticsFilterDTO"
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
   }
   }
   }
@@ -13727,7 +13878,8 @@
   "Companies",
   "FuelMeasures",
   "Measures",
-  "ActiveCategories"
+  "ActiveCategories",
+  "MaintenanceTypes"
   ],
   "type": "string"
   },
@@ -14934,6 +15086,10 @@
   "type": "string",
   "nullable": true
   },
+  "reference": {
+  "type": "string",
+  "nullable": true
+  },
   "maintenanceTypeId": {
   "type": "string",
   "nullable": true
@@ -14952,6 +15108,20 @@
   },
   "documentId": {
   "type": "string",
+  "nullable": true
+  },
+  "services": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/ServiceDTO"
+  },
+  "nullable": true
+  },
+  "maintenanceParts": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenancePartDTO"
+  },
   "nullable": true
   }
   },
@@ -15046,6 +15216,10 @@
   "type": "string",
   "nullable": true
   },
+  "reference": {
+  "type": "string",
+  "nullable": true
+  },
   "maintenanceTypeId": {
   "type": "string",
   "nullable": true
@@ -15060,6 +15234,20 @@
   },
   "documentId": {
   "type": "string",
+  "nullable": true
+  },
+  "services": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/ServiceDTO"
+  },
+  "nullable": true
+  },
+  "maintenanceParts": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenancePartDTO"
+  },
   "nullable": true
   },
   "vehicleId": {
@@ -15139,6 +15327,35 @@
   },
   "additionalProperties": false
   },
+  "MaintenanceListPartDTO": {
+  "type": "object",
+  "properties": {
+  "id": {
+  "type": "string",
+  "nullable": true
+  },
+  "active": {
+  "type": "boolean"
+  },
+  "maintenanceId": {
+  "type": "string",
+  "nullable": true
+  },
+  "item": {
+  "type": "string",
+  "nullable": true
+  },
+  "quantity": {
+  "type": "integer",
+  "format": "int32"
+  },
+  "cost": {
+  "type": "number",
+  "format": "double"
+  }
+  },
+  "additionalProperties": false
+  },
   "MaintenanceNewEditDTO": {
   "type": "object",
   "properties": {
@@ -15208,6 +15425,18 @@
   "partId": {
   "type": "string",
   "nullable": true
+  },
+  "item": {
+  "type": "string",
+  "nullable": true
+  },
+  "quantity": {
+  "type": "integer",
+  "format": "int32"
+  },
+  "cost": {
+  "type": "number",
+  "format": "double"
   }
   },
   "additionalProperties": false
@@ -15236,6 +15465,124 @@
   "items": {
   "$ref": "#/components/schemas/MaintenancePartDTO"
   },
+  "nullable": true
+  }
+  },
+  "additionalProperties": false
+  },
+  "MaintenancePostDTO": {
+  "required": [
+  "startDate",
+  "startHour",
+  "vehicleId"
+  ],
+  "type": "object",
+  "properties": {
+  "startDate": {
+  "minLength": 1,
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  },
+  "finishDate": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string",
+  "nullable": true
+  },
+  "startHour": {
+  "minLength": 1,
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string"
+  },
+  "finishHour": {
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string",
+  "nullable": true
+  },
+  "comments": {
+  "type": "string",
+  "nullable": true
+  },
+  "reference": {
+  "type": "string",
+  "nullable": true
+  },
+  "odometer": {
+  "type": "string",
+  "nullable": true
+  },
+  "maintenanceTypeId": {
+  "type": "string",
+  "nullable": true
+  },
+  "maintenanceGroupId": {
+  "type": "string",
+  "nullable": true
+  },
+  "costLobour": {
+  "type": "number",
+  "format": "double"
+  },
+  "providerId": {
+  "type": "string",
+  "nullable": true
+  },
+  "vehicleId": {
+  "maxLength": 255,
+  "minLength": 6,
+  "type": "string"
+  },
+  "document": {
+  "type": "string",
+  "format": "binary",
+  "nullable": true
+  },
+  "imageFiles": {
+  "type": "array",
+  "items": {
+  "type": "string",
+  "format": "binary"
+  },
+  "nullable": true
+  },
+  "services": {
+  "type": "array",
+  "items": {
+  "type": "string"
+  },
+  "nullable": true
+  },
+  "maintenanceParts": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceListPartDTO"
+  },
+  "nullable": true
+  }
+  },
+  "additionalProperties": false
+  },
+  "MaintenanceStatisticsFilterDTO": {
+  "required": [
+  "dateStart"
+  ],
+  "type": "object",
+  "properties": {
+  "vehicleId": {
+  "type": "string",
+  "nullable": true
+  },
+  "servicesId": {
+  "type": "string",
+  "nullable": true
+  },
+  "dateStart": {
+  "minLength": 1,
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  },
+  "dateEnd": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string",
   "nullable": true
   }
   },

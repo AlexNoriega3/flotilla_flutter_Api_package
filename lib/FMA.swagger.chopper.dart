@@ -1053,7 +1053,7 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<String>> _apiMaintenancePost(
-      {required MaintenanceDTO? body}) {
+      {required MaintenancePostDTO? body}) {
     final $url = '/api/Maintenance';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -1091,10 +1091,44 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<bool>> _apiMaintenanceIdPut(
-      {required String? id, required MaintenanceDTO? body}) {
+      {required String? id,
+      List<String>? imagesToRemove,
+      required String? startDate,
+      String? finishDate,
+      required String? startHour,
+      String? finishHour,
+      String? comments,
+      String? reference,
+      String? odometer,
+      String? maintenanceTypeId,
+      String? maintenanceGroupId,
+      num? costLobour,
+      String? providerId,
+      required String? vehicleId,
+      List<String>? services,
+      List<MaintenanceListPartDTO>? maintenanceParts,
+      required ApiMaintenanceIdPut$RequestBody? body}) {
     final $url = '/api/Maintenance/${id}';
+    final $params = <String, dynamic>{
+      'ImagesToRemove': imagesToRemove,
+      'StartDate': startDate,
+      'FinishDate': finishDate,
+      'StartHour': startHour,
+      'FinishHour': finishHour,
+      'Comments': comments,
+      'Reference': reference,
+      'Odometer': odometer,
+      'MaintenanceTypeId': maintenanceTypeId,
+      'MaintenanceGroupId': maintenanceGroupId,
+      'CostLobour': costLobour,
+      'ProviderId': providerId,
+      'VehicleId': vehicleId,
+      'Services': services,
+      'MaintenanceParts': maintenanceParts
+    };
     final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $request =
+        Request('PUT', $url, client.baseUrl, body: $body, parameters: $params);
     return client.send<bool, bool>($request);
   }
 
@@ -1134,6 +1168,7 @@ class _$FMA extends FMA {
   Future<Response<MaintenanceDetailDTOPagedResult>>
       _apiMaintenanceFindForVehicleAndDateGet(
           {String? vehicleId,
+          String? servicesId,
           required String? dateStart,
           String? dateEnd,
           required int? page,
@@ -1145,6 +1180,7 @@ class _$FMA extends FMA {
     final $url = '/api/Maintenance/FindForVehicleAndDate';
     final $params = <String, dynamic>{
       'VehicleId': vehicleId,
+      'ServicesId': servicesId,
       'DateStart': dateStart,
       'DateEnd': dateEnd,
       'Page': page,
@@ -1170,7 +1206,7 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<MaintenanceBillsInfoDTO>> _apiMaintenanceMaintenanceBillsPost(
-      {required StatisticsFilterDTO? body}) {
+      {required MaintenanceStatisticsFilterDTO? body}) {
     final $url = '/api/Maintenance/MaintenanceBills';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);

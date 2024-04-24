@@ -1869,14 +1869,14 @@ abstract class FMA extends ChopperService {
 
   ///
   Future<chopper.Response<String>> apiMaintenancePost(
-      {required MaintenanceDTO? body}) {
+      {required MaintenancePostDTO? body}) {
     return _apiMaintenancePost(body: body);
   }
 
   ///
   @Post(path: '/api/Maintenance')
   Future<chopper.Response<String>> _apiMaintenancePost(
-      {@Body() required MaintenanceDTO? body});
+      {@Body() required MaintenancePostDTO? body});
 
   ///
   ///@param Page
@@ -1940,16 +1940,95 @@ abstract class FMA extends ChopperService {
 
   ///
   ///@param id
+  ///@param ImagesToRemove
+  ///@param StartDate
+  ///@param FinishDate
+  ///@param StartHour
+  ///@param FinishHour
+  ///@param Comments
+  ///@param Reference
+  ///@param Odometer
+  ///@param MaintenanceTypeId
+  ///@param MaintenanceGroupId
+  ///@param CostLobour
+  ///@param ProviderId
+  ///@param VehicleId
+  ///@param Services
+  ///@param MaintenanceParts
   Future<chopper.Response<bool>> apiMaintenanceIdPut(
-      {required String? id, required MaintenanceDTO? body}) {
-    return _apiMaintenanceIdPut(id: id, body: body);
+      {required String? id,
+      List<String>? imagesToRemove,
+      required String? startDate,
+      String? finishDate,
+      required String? startHour,
+      String? finishHour,
+      String? comments,
+      String? reference,
+      String? odometer,
+      String? maintenanceTypeId,
+      String? maintenanceGroupId,
+      num? costLobour,
+      String? providerId,
+      required String? vehicleId,
+      List<String>? services,
+      List<MaintenanceListPartDTO>? maintenanceParts,
+      required ApiMaintenanceIdPut$RequestBody? body}) {
+    return _apiMaintenanceIdPut(
+        id: id,
+        imagesToRemove: imagesToRemove,
+        startDate: startDate,
+        finishDate: finishDate,
+        startHour: startHour,
+        finishHour: finishHour,
+        comments: comments,
+        reference: reference,
+        odometer: odometer,
+        maintenanceTypeId: maintenanceTypeId,
+        maintenanceGroupId: maintenanceGroupId,
+        costLobour: costLobour,
+        providerId: providerId,
+        vehicleId: vehicleId,
+        services: services,
+        maintenanceParts: maintenanceParts,
+        body: body);
   }
 
   ///
   ///@param id
+  ///@param ImagesToRemove
+  ///@param StartDate
+  ///@param FinishDate
+  ///@param StartHour
+  ///@param FinishHour
+  ///@param Comments
+  ///@param Reference
+  ///@param Odometer
+  ///@param MaintenanceTypeId
+  ///@param MaintenanceGroupId
+  ///@param CostLobour
+  ///@param ProviderId
+  ///@param VehicleId
+  ///@param Services
+  ///@param MaintenanceParts
   @Put(path: '/api/Maintenance/{id}')
   Future<chopper.Response<bool>> _apiMaintenanceIdPut(
-      {@Path('id') required String? id, @Body() required MaintenanceDTO? body});
+      {@Path('id') required String? id,
+      @Query('ImagesToRemove') List<String>? imagesToRemove,
+      @Query('StartDate') required String? startDate,
+      @Query('FinishDate') String? finishDate,
+      @Query('StartHour') required String? startHour,
+      @Query('FinishHour') String? finishHour,
+      @Query('Comments') String? comments,
+      @Query('Reference') String? reference,
+      @Query('Odometer') String? odometer,
+      @Query('MaintenanceTypeId') String? maintenanceTypeId,
+      @Query('MaintenanceGroupId') String? maintenanceGroupId,
+      @Query('CostLobour') num? costLobour,
+      @Query('ProviderId') String? providerId,
+      @Query('VehicleId') required String? vehicleId,
+      @Query('Services') List<String>? services,
+      @Query('MaintenanceParts') List<MaintenanceListPartDTO>? maintenanceParts,
+      @Body() required ApiMaintenanceIdPut$RequestBody? body});
 
   ///
   ///@param id
@@ -2014,6 +2093,7 @@ abstract class FMA extends ChopperService {
 
   ///
   ///@param VehicleId
+  ///@param ServicesId
   ///@param DateStart
   ///@param DateEnd
   ///@param Page
@@ -2025,6 +2105,7 @@ abstract class FMA extends ChopperService {
   Future<chopper.Response<MaintenanceDetailDTOPagedResult>>
       apiMaintenanceFindForVehicleAndDateGet(
           {String? vehicleId,
+          String? servicesId,
           required String? dateStart,
           String? dateEnd,
           required int? page,
@@ -2038,6 +2119,7 @@ abstract class FMA extends ChopperService {
 
     return _apiMaintenanceFindForVehicleAndDateGet(
         vehicleId: vehicleId,
+        servicesId: servicesId,
         dateStart: dateStart,
         dateEnd: dateEnd,
         page: page,
@@ -2050,6 +2132,7 @@ abstract class FMA extends ChopperService {
 
   ///
   ///@param VehicleId
+  ///@param ServicesId
   ///@param DateStart
   ///@param DateEnd
   ///@param Page
@@ -2062,6 +2145,7 @@ abstract class FMA extends ChopperService {
   Future<chopper.Response<MaintenanceDetailDTOPagedResult>>
       _apiMaintenanceFindForVehicleAndDateGet(
           {@Query('VehicleId') String? vehicleId,
+          @Query('ServicesId') String? servicesId,
           @Query('DateStart') required String? dateStart,
           @Query('DateEnd') String? dateEnd,
           @Query('Page') required int? page,
@@ -2089,7 +2173,8 @@ abstract class FMA extends ChopperService {
 
   ///
   Future<chopper.Response<MaintenanceBillsInfoDTO>>
-      apiMaintenanceMaintenanceBillsPost({required StatisticsFilterDTO? body}) {
+      apiMaintenanceMaintenanceBillsPost(
+          {required MaintenanceStatisticsFilterDTO? body}) {
     generatedMapping.putIfAbsent(
         MaintenanceBillsInfoDTO, () => MaintenanceBillsInfoDTO.fromJsonFactory);
 
@@ -2100,7 +2185,7 @@ abstract class FMA extends ChopperService {
   @Post(path: '/api/Maintenance/MaintenanceBills')
   Future<chopper.Response<MaintenanceBillsInfoDTO>>
       _apiMaintenanceMaintenanceBillsPost(
-          {@Body() required StatisticsFilterDTO? body});
+          {@Body() required MaintenanceStatisticsFilterDTO? body});
 
   ///
   Future<chopper.Response<List<MaintenanceGroupDTO>>> apiMaintenanceGroupGet() {
@@ -7583,11 +7668,14 @@ class MaintenanceDTO {
     this.finishHour,
     this.comments,
     this.odometer,
+    this.reference,
     this.maintenanceTypeId,
     this.maintenanceGroupId,
     this.vendorId,
     this.vehicleId,
     this.documentId,
+    this.services,
+    this.maintenanceParts,
   });
 
   factory MaintenanceDTO.fromJson(Map<String, dynamic> json) =>
@@ -7611,6 +7699,8 @@ class MaintenanceDTO {
   final String? comments;
   @JsonKey(name: 'odometer')
   final String? odometer;
+  @JsonKey(name: 'reference')
+  final String? reference;
   @JsonKey(name: 'maintenanceTypeId')
   final String? maintenanceTypeId;
   @JsonKey(name: 'maintenanceGroupId')
@@ -7621,6 +7711,10 @@ class MaintenanceDTO {
   final String? vehicleId;
   @JsonKey(name: 'documentId')
   final String? documentId;
+  @JsonKey(name: 'services', defaultValue: <ServiceDTO>[])
+  final List<ServiceDTO>? services;
+  @JsonKey(name: 'maintenanceParts', defaultValue: <MaintenancePartDTO>[])
+  final List<MaintenancePartDTO>? maintenanceParts;
   static const fromJsonFactory = _$MaintenanceDTOFromJson;
   static const toJsonFactory = _$MaintenanceDTOToJson;
   Map<String, dynamic> toJson() => _$MaintenanceDTOToJson(this);
@@ -7656,6 +7750,9 @@ class MaintenanceDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
+            (identical(other.reference, reference) ||
+                const DeepCollectionEquality()
+                    .equals(other.reference, reference)) &&
             (identical(other.maintenanceTypeId, maintenanceTypeId) ||
                 const DeepCollectionEquality()
                     .equals(other.maintenanceTypeId, maintenanceTypeId)) &&
@@ -7670,7 +7767,13 @@ class MaintenanceDTO {
                     .equals(other.vehicleId, vehicleId)) &&
             (identical(other.documentId, documentId) ||
                 const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)));
+                    .equals(other.documentId, documentId)) &&
+            (identical(other.services, services) ||
+                const DeepCollectionEquality()
+                    .equals(other.services, services)) &&
+            (identical(other.maintenanceParts, maintenanceParts) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenanceParts, maintenanceParts)));
   }
 
   @override
@@ -7684,11 +7787,14 @@ class MaintenanceDTO {
       const DeepCollectionEquality().hash(finishHour) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(reference) ^
       const DeepCollectionEquality().hash(maintenanceTypeId) ^
       const DeepCollectionEquality().hash(maintenanceGroupId) ^
       const DeepCollectionEquality().hash(vendorId) ^
       const DeepCollectionEquality().hash(vehicleId) ^
       const DeepCollectionEquality().hash(documentId) ^
+      const DeepCollectionEquality().hash(services) ^
+      const DeepCollectionEquality().hash(maintenanceParts) ^
       runtimeType.hashCode;
 }
 
@@ -7703,11 +7809,14 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
       TimeSpan? finishHour,
       String? comments,
       String? odometer,
+      String? reference,
       String? maintenanceTypeId,
       String? maintenanceGroupId,
       String? vendorId,
       String? vehicleId,
-      String? documentId}) {
+      String? documentId,
+      List<ServiceDTO>? services,
+      List<MaintenancePartDTO>? maintenanceParts}) {
     return MaintenanceDTO(
         id: id ?? this.id,
         active: active ?? this.active,
@@ -7718,11 +7827,14 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
         finishHour: finishHour ?? this.finishHour,
         comments: comments ?? this.comments,
         odometer: odometer ?? this.odometer,
+        reference: reference ?? this.reference,
         maintenanceTypeId: maintenanceTypeId ?? this.maintenanceTypeId,
         maintenanceGroupId: maintenanceGroupId ?? this.maintenanceGroupId,
         vendorId: vendorId ?? this.vendorId,
         vehicleId: vehicleId ?? this.vehicleId,
-        documentId: documentId ?? this.documentId);
+        documentId: documentId ?? this.documentId,
+        services: services ?? this.services,
+        maintenanceParts: maintenanceParts ?? this.maintenanceParts);
   }
 }
 
@@ -7879,10 +7991,13 @@ class MaintenanceFormDTO {
     this.finishHour,
     this.comments,
     this.odometer,
+    this.reference,
     this.maintenanceTypeId,
     this.maintenanceGroupId,
     this.vendorId,
     this.documentId,
+    this.services,
+    this.maintenanceParts,
     this.vehicleId,
     this.images,
     this.document,
@@ -7909,6 +8024,8 @@ class MaintenanceFormDTO {
   final String? comments;
   @JsonKey(name: 'odometer')
   final String? odometer;
+  @JsonKey(name: 'reference')
+  final String? reference;
   @JsonKey(name: 'maintenanceTypeId')
   final String? maintenanceTypeId;
   @JsonKey(name: 'maintenanceGroupId')
@@ -7917,6 +8034,10 @@ class MaintenanceFormDTO {
   final String? vendorId;
   @JsonKey(name: 'documentId')
   final String? documentId;
+  @JsonKey(name: 'services', defaultValue: <ServiceDTO>[])
+  final List<ServiceDTO>? services;
+  @JsonKey(name: 'maintenanceParts', defaultValue: <MaintenancePartDTO>[])
+  final List<MaintenancePartDTO>? maintenanceParts;
   @JsonKey(name: 'vehicleId')
   final String? vehicleId;
   @JsonKey(name: 'images', defaultValue: <ImageDTO>[])
@@ -7958,6 +8079,9 @@ class MaintenanceFormDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
+            (identical(other.reference, reference) ||
+                const DeepCollectionEquality()
+                    .equals(other.reference, reference)) &&
             (identical(other.maintenanceTypeId, maintenanceTypeId) ||
                 const DeepCollectionEquality()
                     .equals(other.maintenanceTypeId, maintenanceTypeId)) &&
@@ -7970,6 +8094,12 @@ class MaintenanceFormDTO {
             (identical(other.documentId, documentId) ||
                 const DeepCollectionEquality()
                     .equals(other.documentId, documentId)) &&
+            (identical(other.services, services) ||
+                const DeepCollectionEquality()
+                    .equals(other.services, services)) &&
+            (identical(other.maintenanceParts, maintenanceParts) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenanceParts, maintenanceParts)) &&
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
                     .equals(other.vehicleId, vehicleId)) &&
@@ -7991,10 +8121,13 @@ class MaintenanceFormDTO {
       const DeepCollectionEquality().hash(finishHour) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(reference) ^
       const DeepCollectionEquality().hash(maintenanceTypeId) ^
       const DeepCollectionEquality().hash(maintenanceGroupId) ^
       const DeepCollectionEquality().hash(vendorId) ^
       const DeepCollectionEquality().hash(documentId) ^
+      const DeepCollectionEquality().hash(services) ^
+      const DeepCollectionEquality().hash(maintenanceParts) ^
       const DeepCollectionEquality().hash(vehicleId) ^
       const DeepCollectionEquality().hash(images) ^
       const DeepCollectionEquality().hash(document) ^
@@ -8012,10 +8145,13 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
       String? finishHour,
       String? comments,
       String? odometer,
+      String? reference,
       String? maintenanceTypeId,
       String? maintenanceGroupId,
       String? vendorId,
       String? documentId,
+      List<ServiceDTO>? services,
+      List<MaintenancePartDTO>? maintenanceParts,
       String? vehicleId,
       List<ImageDTO>? images,
       DocumentDTO? document}) {
@@ -8029,10 +8165,13 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
         finishHour: finishHour ?? this.finishHour,
         comments: comments ?? this.comments,
         odometer: odometer ?? this.odometer,
+        reference: reference ?? this.reference,
         maintenanceTypeId: maintenanceTypeId ?? this.maintenanceTypeId,
         maintenanceGroupId: maintenanceGroupId ?? this.maintenanceGroupId,
         vendorId: vendorId ?? this.vendorId,
         documentId: documentId ?? this.documentId,
+        services: services ?? this.services,
+        maintenanceParts: maintenanceParts ?? this.maintenanceParts,
         vehicleId: vehicleId ?? this.vehicleId,
         images: images ?? this.images,
         document: document ?? this.document);
@@ -8190,6 +8329,88 @@ extension $MaintenanceGroupDTOPagedResultExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class MaintenanceListPartDTO {
+  MaintenanceListPartDTO({
+    this.id,
+    this.active,
+    this.maintenanceId,
+    this.item,
+    this.quantity,
+    this.cost,
+  });
+
+  factory MaintenanceListPartDTO.fromJson(Map<String, dynamic> json) =>
+      _$MaintenanceListPartDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(name: 'maintenanceId')
+  final String? maintenanceId;
+  @JsonKey(name: 'item')
+  final String? item;
+  @JsonKey(name: 'quantity')
+  final int? quantity;
+  @JsonKey(name: 'cost')
+  final double? cost;
+  static const fromJsonFactory = _$MaintenanceListPartDTOFromJson;
+  static const toJsonFactory = _$MaintenanceListPartDTOToJson;
+  Map<String, dynamic> toJson() => _$MaintenanceListPartDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MaintenanceListPartDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.maintenanceId, maintenanceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenanceId, maintenanceId)) &&
+            (identical(other.item, item) ||
+                const DeepCollectionEquality().equals(other.item, item)) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantity, quantity)) &&
+            (identical(other.cost, cost) ||
+                const DeepCollectionEquality().equals(other.cost, cost)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(maintenanceId) ^
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(cost) ^
+      runtimeType.hashCode;
+}
+
+extension $MaintenanceListPartDTOExtension on MaintenanceListPartDTO {
+  MaintenanceListPartDTO copyWith(
+      {String? id,
+      bool? active,
+      String? maintenanceId,
+      String? item,
+      int? quantity,
+      double? cost}) {
+    return MaintenanceListPartDTO(
+        id: id ?? this.id,
+        active: active ?? this.active,
+        maintenanceId: maintenanceId ?? this.maintenanceId,
+        item: item ?? this.item,
+        quantity: quantity ?? this.quantity,
+        cost: cost ?? this.cost);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class MaintenanceNewEditDTO {
   MaintenanceNewEditDTO({
     this.odometer,
@@ -8300,6 +8521,9 @@ class MaintenancePartDTO {
     this.active,
     this.maintenanceId,
     this.partId,
+    this.item,
+    this.quantity,
+    this.cost,
   });
 
   factory MaintenancePartDTO.fromJson(Map<String, dynamic> json) =>
@@ -8313,6 +8537,12 @@ class MaintenancePartDTO {
   final String? maintenanceId;
   @JsonKey(name: 'partId')
   final String? partId;
+  @JsonKey(name: 'item')
+  final String? item;
+  @JsonKey(name: 'quantity')
+  final int? quantity;
+  @JsonKey(name: 'cost')
+  final double? cost;
   static const fromJsonFactory = _$MaintenancePartDTOFromJson;
   static const toJsonFactory = _$MaintenancePartDTOToJson;
   Map<String, dynamic> toJson() => _$MaintenancePartDTOToJson(this);
@@ -8332,7 +8562,14 @@ class MaintenancePartDTO {
                 const DeepCollectionEquality()
                     .equals(other.maintenanceId, maintenanceId)) &&
             (identical(other.partId, partId) ||
-                const DeepCollectionEquality().equals(other.partId, partId)));
+                const DeepCollectionEquality().equals(other.partId, partId)) &&
+            (identical(other.item, item) ||
+                const DeepCollectionEquality().equals(other.item, item)) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantity, quantity)) &&
+            (identical(other.cost, cost) ||
+                const DeepCollectionEquality().equals(other.cost, cost)));
   }
 
   @override
@@ -8341,17 +8578,29 @@ class MaintenancePartDTO {
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(maintenanceId) ^
       const DeepCollectionEquality().hash(partId) ^
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(cost) ^
       runtimeType.hashCode;
 }
 
 extension $MaintenancePartDTOExtension on MaintenancePartDTO {
   MaintenancePartDTO copyWith(
-      {String? id, bool? active, String? maintenanceId, String? partId}) {
+      {String? id,
+      bool? active,
+      String? maintenanceId,
+      String? partId,
+      String? item,
+      int? quantity,
+      double? cost}) {
     return MaintenancePartDTO(
         id: id ?? this.id,
         active: active ?? this.active,
         maintenanceId: maintenanceId ?? this.maintenanceId,
-        partId: partId ?? this.partId);
+        partId: partId ?? this.partId,
+        item: item ?? this.item,
+        quantity: quantity ?? this.quantity,
+        cost: cost ?? this.cost);
   }
 }
 
@@ -8429,6 +8678,250 @@ extension $MaintenancePartDTOPagedResultExtension
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class MaintenancePostDTO {
+  MaintenancePostDTO({
+    required this.startDate,
+    this.finishDate,
+    required this.startHour,
+    this.finishHour,
+    this.comments,
+    this.reference,
+    this.odometer,
+    this.maintenanceTypeId,
+    this.maintenanceGroupId,
+    this.costLobour,
+    this.providerId,
+    required this.vehicleId,
+    this.document,
+    this.imageFiles,
+    this.services,
+    this.maintenanceParts,
+  });
+
+  factory MaintenancePostDTO.fromJson(Map<String, dynamic> json) =>
+      _$MaintenancePostDTOFromJson(json);
+
+  @JsonKey(name: 'startDate')
+  final String startDate;
+  @JsonKey(name: 'finishDate')
+  final String? finishDate;
+  @JsonKey(name: 'startHour')
+  final String startHour;
+  @JsonKey(name: 'finishHour')
+  final String? finishHour;
+  @JsonKey(name: 'comments')
+  final String? comments;
+  @JsonKey(name: 'reference')
+  final String? reference;
+  @JsonKey(name: 'odometer')
+  final String? odometer;
+  @JsonKey(name: 'maintenanceTypeId')
+  final String? maintenanceTypeId;
+  @JsonKey(name: 'maintenanceGroupId')
+  final String? maintenanceGroupId;
+  @JsonKey(name: 'costLobour')
+  final double? costLobour;
+  @JsonKey(name: 'providerId')
+  final String? providerId;
+  @JsonKey(name: 'vehicleId')
+  final String vehicleId;
+  @JsonKey(name: 'document')
+  final String? document;
+  @JsonKey(name: 'imageFiles', defaultValue: <String>[])
+  final List<String>? imageFiles;
+  @JsonKey(name: 'services', defaultValue: <String>[])
+  final List<String>? services;
+  @JsonKey(name: 'maintenanceParts', defaultValue: <MaintenanceListPartDTO>[])
+  final List<MaintenanceListPartDTO>? maintenanceParts;
+  static const fromJsonFactory = _$MaintenancePostDTOFromJson;
+  static const toJsonFactory = _$MaintenancePostDTOToJson;
+  Map<String, dynamic> toJson() => _$MaintenancePostDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MaintenancePostDTO &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.finishDate, finishDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.finishDate, finishDate)) &&
+            (identical(other.startHour, startHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.startHour, startHour)) &&
+            (identical(other.finishHour, finishHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.finishHour, finishHour)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
+            (identical(other.reference, reference) ||
+                const DeepCollectionEquality()
+                    .equals(other.reference, reference)) &&
+            (identical(other.odometer, odometer) ||
+                const DeepCollectionEquality()
+                    .equals(other.odometer, odometer)) &&
+            (identical(other.maintenanceTypeId, maintenanceTypeId) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenanceTypeId, maintenanceTypeId)) &&
+            (identical(other.maintenanceGroupId, maintenanceGroupId) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenanceGroupId, maintenanceGroupId)) &&
+            (identical(other.costLobour, costLobour) ||
+                const DeepCollectionEquality()
+                    .equals(other.costLobour, costLobour)) &&
+            (identical(other.providerId, providerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.providerId, providerId)) &&
+            (identical(other.vehicleId, vehicleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleId, vehicleId)) &&
+            (identical(other.document, document) ||
+                const DeepCollectionEquality()
+                    .equals(other.document, document)) &&
+            (identical(other.imageFiles, imageFiles) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageFiles, imageFiles)) &&
+            (identical(other.services, services) ||
+                const DeepCollectionEquality()
+                    .equals(other.services, services)) &&
+            (identical(other.maintenanceParts, maintenanceParts) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenanceParts, maintenanceParts)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(finishDate) ^
+      const DeepCollectionEquality().hash(startHour) ^
+      const DeepCollectionEquality().hash(finishHour) ^
+      const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(reference) ^
+      const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(maintenanceTypeId) ^
+      const DeepCollectionEquality().hash(maintenanceGroupId) ^
+      const DeepCollectionEquality().hash(costLobour) ^
+      const DeepCollectionEquality().hash(providerId) ^
+      const DeepCollectionEquality().hash(vehicleId) ^
+      const DeepCollectionEquality().hash(document) ^
+      const DeepCollectionEquality().hash(imageFiles) ^
+      const DeepCollectionEquality().hash(services) ^
+      const DeepCollectionEquality().hash(maintenanceParts) ^
+      runtimeType.hashCode;
+}
+
+extension $MaintenancePostDTOExtension on MaintenancePostDTO {
+  MaintenancePostDTO copyWith(
+      {String? startDate,
+      String? finishDate,
+      String? startHour,
+      String? finishHour,
+      String? comments,
+      String? reference,
+      String? odometer,
+      String? maintenanceTypeId,
+      String? maintenanceGroupId,
+      double? costLobour,
+      String? providerId,
+      String? vehicleId,
+      String? document,
+      List<String>? imageFiles,
+      List<String>? services,
+      List<MaintenanceListPartDTO>? maintenanceParts}) {
+    return MaintenancePostDTO(
+        startDate: startDate ?? this.startDate,
+        finishDate: finishDate ?? this.finishDate,
+        startHour: startHour ?? this.startHour,
+        finishHour: finishHour ?? this.finishHour,
+        comments: comments ?? this.comments,
+        reference: reference ?? this.reference,
+        odometer: odometer ?? this.odometer,
+        maintenanceTypeId: maintenanceTypeId ?? this.maintenanceTypeId,
+        maintenanceGroupId: maintenanceGroupId ?? this.maintenanceGroupId,
+        costLobour: costLobour ?? this.costLobour,
+        providerId: providerId ?? this.providerId,
+        vehicleId: vehicleId ?? this.vehicleId,
+        document: document ?? this.document,
+        imageFiles: imageFiles ?? this.imageFiles,
+        services: services ?? this.services,
+        maintenanceParts: maintenanceParts ?? this.maintenanceParts);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class MaintenanceStatisticsFilterDTO {
+  MaintenanceStatisticsFilterDTO({
+    this.vehicleId,
+    this.servicesId,
+    required this.dateStart,
+    this.dateEnd,
+  });
+
+  factory MaintenanceStatisticsFilterDTO.fromJson(Map<String, dynamic> json) =>
+      _$MaintenanceStatisticsFilterDTOFromJson(json);
+
+  @JsonKey(name: 'vehicleId')
+  final String? vehicleId;
+  @JsonKey(name: 'servicesId')
+  final String? servicesId;
+  @JsonKey(name: 'dateStart')
+  final String dateStart;
+  @JsonKey(name: 'dateEnd')
+  final String? dateEnd;
+  static const fromJsonFactory = _$MaintenanceStatisticsFilterDTOFromJson;
+  static const toJsonFactory = _$MaintenanceStatisticsFilterDTOToJson;
+  Map<String, dynamic> toJson() => _$MaintenanceStatisticsFilterDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MaintenanceStatisticsFilterDTO &&
+            (identical(other.vehicleId, vehicleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleId, vehicleId)) &&
+            (identical(other.servicesId, servicesId) ||
+                const DeepCollectionEquality()
+                    .equals(other.servicesId, servicesId)) &&
+            (identical(other.dateStart, dateStart) ||
+                const DeepCollectionEquality()
+                    .equals(other.dateStart, dateStart)) &&
+            (identical(other.dateEnd, dateEnd) ||
+                const DeepCollectionEquality().equals(other.dateEnd, dateEnd)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(vehicleId) ^
+      const DeepCollectionEquality().hash(servicesId) ^
+      const DeepCollectionEquality().hash(dateStart) ^
+      const DeepCollectionEquality().hash(dateEnd) ^
+      runtimeType.hashCode;
+}
+
+extension $MaintenanceStatisticsFilterDTOExtension
+    on MaintenanceStatisticsFilterDTO {
+  MaintenanceStatisticsFilterDTO copyWith(
+      {String? vehicleId,
+      String? servicesId,
+      String? dateStart,
+      String? dateEnd}) {
+    return MaintenanceStatisticsFilterDTO(
+        vehicleId: vehicleId ?? this.vehicleId,
+        servicesId: servicesId ?? this.servicesId,
+        dateStart: dateStart ?? this.dateStart,
+        dateEnd: dateEnd ?? this.dateEnd);
   }
 }
 
@@ -13288,6 +13781,57 @@ List<enums.VehicleStatusEnum> vehicleStatusEnumListFromJson(
   return vehicleStatusEnum
       .map((e) => vehicleStatusEnumFromJson(e.toString()))
       .toList();
+}
+
+@JsonSerializable(explicitToJson: true)
+class ApiMaintenanceIdPut$RequestBody {
+  ApiMaintenanceIdPut$RequestBody({
+    this.document,
+    this.imageFiles,
+  });
+
+  factory ApiMaintenanceIdPut$RequestBody.fromJson(Map<String, dynamic> json) =>
+      _$ApiMaintenanceIdPut$RequestBodyFromJson(json);
+
+  @JsonKey(name: 'Document')
+  final String? document;
+  @JsonKey(name: 'ImageFiles', defaultValue: <String>[])
+  final List<String>? imageFiles;
+  static const fromJsonFactory = _$ApiMaintenanceIdPut$RequestBodyFromJson;
+  static const toJsonFactory = _$ApiMaintenanceIdPut$RequestBodyToJson;
+  Map<String, dynamic> toJson() =>
+      _$ApiMaintenanceIdPut$RequestBodyToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ApiMaintenanceIdPut$RequestBody &&
+            (identical(other.document, document) ||
+                const DeepCollectionEquality()
+                    .equals(other.document, document)) &&
+            (identical(other.imageFiles, imageFiles) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageFiles, imageFiles)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(document) ^
+      const DeepCollectionEquality().hash(imageFiles) ^
+      runtimeType.hashCode;
+}
+
+extension $ApiMaintenanceIdPut$RequestBodyExtension
+    on ApiMaintenanceIdPut$RequestBody {
+  ApiMaintenanceIdPut$RequestBody copyWith(
+      {String? document, List<String>? imageFiles}) {
+    return ApiMaintenanceIdPut$RequestBody(
+        document: document ?? this.document,
+        imageFiles: imageFiles ?? this.imageFiles);
+  }
 }
 
 @JsonSerializable(explicitToJson: true)
