@@ -1105,8 +1105,8 @@ class _$FMA extends FMA {
       num? costLobour,
       String? providerId,
       required String? vehicleId,
-      List<String>? services,
       List<MaintenanceListPartDTO>? maintenanceParts,
+      List<MaintenanceServiceDTO>? maintenanceServices,
       required ApiMaintenanceIdPut$RequestBody? body}) {
     final $url = '/api/Maintenance/${id}';
     final $params = <String, dynamic>{
@@ -1123,8 +1123,8 @@ class _$FMA extends FMA {
       'CostLobour': costLobour,
       'ProviderId': providerId,
       'VehicleId': vehicleId,
-      'Services': services,
-      'MaintenanceParts': maintenanceParts
+      'MaintenanceParts': maintenanceParts,
+      'MaintenanceServices': maintenanceServices
     };
     final $body = body;
     final $request =

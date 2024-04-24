@@ -6441,22 +6441,22 @@
   }
   },
   {
-  "name": "Services",
-  "in": "query",
-  "schema": {
-  "type": "array",
-  "items": {
-  "type": "string"
-  }
-  }
-  },
-  {
   "name": "MaintenanceParts",
   "in": "query",
   "schema": {
   "type": "array",
   "items": {
   "$ref": "#/components/schemas/MaintenanceListPartDTO"
+  }
+  }
+  },
+  {
+  "name": "MaintenanceServices",
+  "in": "query",
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceServiceDTO"
   }
   }
   }
@@ -15544,18 +15544,32 @@
   },
   "nullable": true
   },
-  "services": {
-  "type": "array",
-  "items": {
-  "type": "string"
-  },
-  "nullable": true
-  },
   "maintenanceParts": {
   "type": "array",
   "items": {
   "$ref": "#/components/schemas/MaintenanceListPartDTO"
   },
+  "nullable": true
+  },
+  "maintenanceServices": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceServiceDTO"
+  },
+  "nullable": true
+  }
+  },
+  "additionalProperties": false
+  },
+  "MaintenanceServiceDTO": {
+  "type": "object",
+  "properties": {
+  "maintenanceId": {
+  "type": "string",
+  "nullable": true
+  },
+  "serviceId": {
+  "type": "string",
   "nullable": true
   }
   },
