@@ -16459,7 +16459,7 @@
   "services": {
   "type": "array",
   "items": {
-  "$ref": "#/components/schemas/ServiceDTO"
+  "$ref": "#/components/schemas/MaintenanceServiceFormDTO"
   },
   "nullable": true
   },
@@ -16589,7 +16589,7 @@
   "services": {
   "type": "array",
   "items": {
-  "$ref": "#/components/schemas/ServiceDTO"
+  "$ref": "#/components/schemas/MaintenanceServiceFormDTO"
   },
   "nullable": true
   },
@@ -17017,6 +17017,24 @@
   "nullable": true
   },
   "serviceId": {
+  "type": "string",
+  "nullable": true
+  }
+  },
+  "additionalProperties": false
+  },
+  "MaintenanceServiceFormDTO": {
+  "type": "object",
+  "properties": {
+  "maintenanceId": {
+  "type": "string",
+  "nullable": true
+  },
+  "serviceId": {
+  "type": "string",
+  "nullable": true
+  },
+  "serviceName": {
   "type": "string",
   "nullable": true
   }

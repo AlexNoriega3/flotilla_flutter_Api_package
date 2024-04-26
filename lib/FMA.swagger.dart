@@ -7660,8 +7660,8 @@ class MaintenanceDTO {
   final String? vehicleId;
   @JsonKey(name: 'documentId')
   final String? documentId;
-  @JsonKey(name: 'services', defaultValue: <ServiceDTO>[])
-  final List<ServiceDTO>? services;
+  @JsonKey(name: 'services', defaultValue: <MaintenanceServiceFormDTO>[])
+  final List<MaintenanceServiceFormDTO>? services;
   @JsonKey(name: 'maintenanceParts', defaultValue: <MaintenancePartDTO>[])
   final List<MaintenancePartDTO>? maintenanceParts;
   static const fromJsonFactory = _$MaintenanceDTOFromJson;
@@ -7764,7 +7764,7 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
       String? vendorId,
       String? vehicleId,
       String? documentId,
-      List<ServiceDTO>? services,
+      List<MaintenanceServiceFormDTO>? services,
       List<MaintenancePartDTO>? maintenanceParts}) {
     return MaintenanceDTO(
         id: id ?? this.id,
@@ -7995,8 +7995,8 @@ class MaintenanceFormDTO {
   final String? vendorId;
   @JsonKey(name: 'documentId')
   final String? documentId;
-  @JsonKey(name: 'services', defaultValue: <ServiceDTO>[])
-  final List<ServiceDTO>? services;
+  @JsonKey(name: 'services', defaultValue: <MaintenanceServiceFormDTO>[])
+  final List<MaintenanceServiceFormDTO>? services;
   @JsonKey(name: 'maintenanceParts', defaultValue: <MaintenancePartDTO>[])
   final List<MaintenancePartDTO>? maintenanceParts;
   @JsonKey(name: 'vehicleId')
@@ -8111,7 +8111,7 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
       String? maintenanceGroupId,
       String? vendorId,
       String? documentId,
-      List<ServiceDTO>? services,
+      List<MaintenanceServiceFormDTO>? services,
       List<MaintenancePartDTO>? maintenanceParts,
       String? vehicleId,
       List<ImageDTO>? images,
@@ -9048,6 +9048,63 @@ extension $MaintenanceServiceDTOExtension on MaintenanceServiceDTO {
     return MaintenanceServiceDTO(
         maintenanceId: maintenanceId ?? this.maintenanceId,
         serviceId: serviceId ?? this.serviceId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class MaintenanceServiceFormDTO {
+  MaintenanceServiceFormDTO({
+    this.maintenanceId,
+    this.serviceId,
+    this.serviceName,
+  });
+
+  factory MaintenanceServiceFormDTO.fromJson(Map<String, dynamic> json) =>
+      _$MaintenanceServiceFormDTOFromJson(json);
+
+  @JsonKey(name: 'maintenanceId')
+  final String? maintenanceId;
+  @JsonKey(name: 'serviceId')
+  final String? serviceId;
+  @JsonKey(name: 'serviceName')
+  final String? serviceName;
+  static const fromJsonFactory = _$MaintenanceServiceFormDTOFromJson;
+  static const toJsonFactory = _$MaintenanceServiceFormDTOToJson;
+  Map<String, dynamic> toJson() => _$MaintenanceServiceFormDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MaintenanceServiceFormDTO &&
+            (identical(other.maintenanceId, maintenanceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenanceId, maintenanceId)) &&
+            (identical(other.serviceId, serviceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceId, serviceId)) &&
+            (identical(other.serviceName, serviceName) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceName, serviceName)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(maintenanceId) ^
+      const DeepCollectionEquality().hash(serviceId) ^
+      const DeepCollectionEquality().hash(serviceName) ^
+      runtimeType.hashCode;
+}
+
+extension $MaintenanceServiceFormDTOExtension on MaintenanceServiceFormDTO {
+  MaintenanceServiceFormDTO copyWith(
+      {String? maintenanceId, String? serviceId, String? serviceName}) {
+    return MaintenanceServiceFormDTO(
+        maintenanceId: maintenanceId ?? this.maintenanceId,
+        serviceId: serviceId ?? this.serviceId,
+        serviceName: serviceName ?? this.serviceName);
   }
 }
 

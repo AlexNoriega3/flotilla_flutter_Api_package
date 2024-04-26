@@ -957,7 +957,8 @@ MaintenanceDTO _$MaintenanceDTOFromJson(Map<String, dynamic> json) =>
       vehicleId: json['vehicleId'] as String?,
       documentId: json['documentId'] as String?,
       services: (json['services'] as List<dynamic>?)
-              ?.map((e) => ServiceDTO.fromJson(e as Map<String, dynamic>))
+              ?.map((e) =>
+                  MaintenanceServiceFormDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       maintenanceParts: (json['maintenanceParts'] as List<dynamic>?)
@@ -1050,7 +1051,8 @@ MaintenanceFormDTO _$MaintenanceFormDTOFromJson(Map<String, dynamic> json) =>
       vendorId: json['vendorId'] as String?,
       documentId: json['documentId'] as String?,
       services: (json['services'] as List<dynamic>?)
-              ?.map((e) => ServiceDTO.fromJson(e as Map<String, dynamic>))
+              ?.map((e) =>
+                  MaintenanceServiceFormDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       maintenanceParts: (json['maintenanceParts'] as List<dynamic>?)
@@ -1372,6 +1374,22 @@ Map<String, dynamic> _$MaintenanceServiceDTOToJson(
     <String, dynamic>{
       'maintenanceId': instance.maintenanceId,
       'serviceId': instance.serviceId,
+    };
+
+MaintenanceServiceFormDTO _$MaintenanceServiceFormDTOFromJson(
+        Map<String, dynamic> json) =>
+    MaintenanceServiceFormDTO(
+      maintenanceId: json['maintenanceId'] as String?,
+      serviceId: json['serviceId'] as String?,
+      serviceName: json['serviceName'] as String?,
+    );
+
+Map<String, dynamic> _$MaintenanceServiceFormDTOToJson(
+        MaintenanceServiceFormDTO instance) =>
+    <String, dynamic>{
+      'maintenanceId': instance.maintenanceId,
+      'serviceId': instance.serviceId,
+      'serviceName': instance.serviceName,
     };
 
 MaintenanceStatisticsFilterDTO _$MaintenanceStatisticsFilterDTOFromJson(
