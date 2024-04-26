@@ -1261,7 +1261,7 @@ MaintenancePostDTO _$MaintenancePostDTOFromJson(Map<String, dynamic> json) =>
       costLobour: (json['costLobour'] as num?)?.toDouble(),
       providerId: json['providerId'] as String?,
       vehicleId: json['vehicleId'] as String,
-      document: json['document'] as String?,
+      documentFile: json['documentFile'] as String?,
       imageFiles: (json['imageFiles'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -1292,7 +1292,7 @@ Map<String, dynamic> _$MaintenancePostDTOToJson(MaintenancePostDTO instance) =>
       'costLobour': instance.costLobour,
       'providerId': instance.providerId,
       'vehicleId': instance.vehicleId,
-      'document': instance.document,
+      'documentFile': instance.documentFile,
       'imageFiles': instance.imageFiles,
       'maintenanceParts':
           instance.maintenanceParts?.map((e) => e.toJson()).toList(),
@@ -2574,7 +2574,7 @@ Map<String, dynamic> _$VendorDTOPagedResultToJson(
 ApiMaintenanceIdPut$RequestBody _$ApiMaintenanceIdPut$RequestBodyFromJson(
         Map<String, dynamic> json) =>
     ApiMaintenanceIdPut$RequestBody(
-      document: json['Document'] as String?,
+      documentFile: json['DocumentFile'] as String?,
       imageFiles: (json['ImageFiles'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -2584,7 +2584,7 @@ ApiMaintenanceIdPut$RequestBody _$ApiMaintenanceIdPut$RequestBodyFromJson(
 Map<String, dynamic> _$ApiMaintenanceIdPut$RequestBodyToJson(
         ApiMaintenanceIdPut$RequestBody instance) =>
     <String, dynamic>{
-      'Document': instance.document,
+      'DocumentFile': instance.documentFile,
       'ImageFiles': instance.imageFiles,
     };
 

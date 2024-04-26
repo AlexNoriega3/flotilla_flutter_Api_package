@@ -6467,7 +6467,7 @@
   "schema": {
   "type": "object",
   "properties": {
-  "Document": {
+  "DocumentFile": {
   "type": "string",
   "format": "binary"
   },
@@ -6481,7 +6481,7 @@
   }
   },
   "encoding": {
-  "Document": {
+  "DocumentFile": {
   "style": "form"
   },
   "ImageFiles": {
@@ -15531,7 +15531,7 @@
   "minLength": 6,
   "type": "string"
   },
-  "document": {
+  "documentFile": {
   "type": "string",
   "format": "binary",
   "nullable": true

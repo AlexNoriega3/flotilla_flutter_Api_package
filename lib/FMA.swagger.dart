@@ -8713,7 +8713,7 @@ class MaintenancePostDTO {
     this.costLobour,
     this.providerId,
     required this.vehicleId,
-    this.document,
+    this.documentFile,
     this.imageFiles,
     this.maintenanceParts,
     this.maintenanceServices,
@@ -8746,8 +8746,8 @@ class MaintenancePostDTO {
   final String? providerId;
   @JsonKey(name: 'vehicleId')
   final String vehicleId;
-  @JsonKey(name: 'document')
-  final String? document;
+  @JsonKey(name: 'documentFile')
+  final String? documentFile;
   @JsonKey(name: 'imageFiles', defaultValue: <String>[])
   final List<String>? imageFiles;
   @JsonKey(name: 'maintenanceParts', defaultValue: <MaintenanceListPartDTO>[])
@@ -8801,9 +8801,9 @@ class MaintenancePostDTO {
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
                     .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.document, document) ||
+            (identical(other.documentFile, documentFile) ||
                 const DeepCollectionEquality()
-                    .equals(other.document, document)) &&
+                    .equals(other.documentFile, documentFile)) &&
             (identical(other.imageFiles, imageFiles) ||
                 const DeepCollectionEquality()
                     .equals(other.imageFiles, imageFiles)) &&
@@ -8829,7 +8829,7 @@ class MaintenancePostDTO {
       const DeepCollectionEquality().hash(costLobour) ^
       const DeepCollectionEquality().hash(providerId) ^
       const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(document) ^
+      const DeepCollectionEquality().hash(documentFile) ^
       const DeepCollectionEquality().hash(imageFiles) ^
       const DeepCollectionEquality().hash(maintenanceParts) ^
       const DeepCollectionEquality().hash(maintenanceServices) ^
@@ -8850,7 +8850,7 @@ extension $MaintenancePostDTOExtension on MaintenancePostDTO {
       double? costLobour,
       String? providerId,
       String? vehicleId,
-      String? document,
+      String? documentFile,
       List<String>? imageFiles,
       List<MaintenanceListPartDTO>? maintenanceParts,
       List<MaintenanceServiceDTO>? maintenanceServices}) {
@@ -8867,7 +8867,7 @@ extension $MaintenancePostDTOExtension on MaintenancePostDTO {
         costLobour: costLobour ?? this.costLobour,
         providerId: providerId ?? this.providerId,
         vehicleId: vehicleId ?? this.vehicleId,
-        document: document ?? this.document,
+        documentFile: documentFile ?? this.documentFile,
         imageFiles: imageFiles ?? this.imageFiles,
         maintenanceParts: maintenanceParts ?? this.maintenanceParts,
         maintenanceServices: maintenanceServices ?? this.maintenanceServices);
@@ -13851,15 +13851,15 @@ List<enums.VehicleStatusEnum> vehicleStatusEnumListFromJson(
 @JsonSerializable(explicitToJson: true)
 class ApiMaintenanceIdPut$RequestBody {
   ApiMaintenanceIdPut$RequestBody({
-    this.document,
+    this.documentFile,
     this.imageFiles,
   });
 
   factory ApiMaintenanceIdPut$RequestBody.fromJson(Map<String, dynamic> json) =>
       _$ApiMaintenanceIdPut$RequestBodyFromJson(json);
 
-  @JsonKey(name: 'Document')
-  final String? document;
+  @JsonKey(name: 'DocumentFile')
+  final String? documentFile;
   @JsonKey(name: 'ImageFiles', defaultValue: <String>[])
   final List<String>? imageFiles;
   static const fromJsonFactory = _$ApiMaintenanceIdPut$RequestBodyFromJson;
@@ -13874,9 +13874,9 @@ class ApiMaintenanceIdPut$RequestBody {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiMaintenanceIdPut$RequestBody &&
-            (identical(other.document, document) ||
+            (identical(other.documentFile, documentFile) ||
                 const DeepCollectionEquality()
-                    .equals(other.document, document)) &&
+                    .equals(other.documentFile, documentFile)) &&
             (identical(other.imageFiles, imageFiles) ||
                 const DeepCollectionEquality()
                     .equals(other.imageFiles, imageFiles)));
@@ -13884,7 +13884,7 @@ class ApiMaintenanceIdPut$RequestBody {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(document) ^
+      const DeepCollectionEquality().hash(documentFile) ^
       const DeepCollectionEquality().hash(imageFiles) ^
       runtimeType.hashCode;
 }
@@ -13892,9 +13892,9 @@ class ApiMaintenanceIdPut$RequestBody {
 extension $ApiMaintenanceIdPut$RequestBodyExtension
     on ApiMaintenanceIdPut$RequestBody {
   ApiMaintenanceIdPut$RequestBody copyWith(
-      {String? document, List<String>? imageFiles}) {
+      {String? documentFile, List<String>? imageFiles}) {
     return ApiMaintenanceIdPut$RequestBody(
-        document: document ?? this.document,
+        documentFile: documentFile ?? this.documentFile,
         imageFiles: imageFiles ?? this.imageFiles);
   }
 }
