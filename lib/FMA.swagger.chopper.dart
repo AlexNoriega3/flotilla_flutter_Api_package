@@ -1052,11 +1052,11 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiMaintenancePost(
-      {required MaintenancePostDTO? body}) {
+  Future<Response<String>> _apiMaintenancePost({required List<int> partFile}) {
     final $url = '/api/Maintenance';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<String, String>($request);
   }
 
@@ -1083,6 +1083,15 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<String>> _apiMaintenanceSavePost(
+      {required MaintenancePostDTO? body}) {
+    final $url = '/api/Maintenance/Save';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
   Future<Response<MaintenanceDTO>> _apiMaintenanceIdGet({required String? id}) {
     final $url = '/api/Maintenance/${id}';
     final $request = Request('GET', $url, client.baseUrl);
@@ -1091,44 +1100,10 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<bool>> _apiMaintenanceIdPut(
-      {required String? id,
-      List<String>? imagesToRemove,
-      required String? startDate,
-      String? finishDate,
-      required String? startHour,
-      String? finishHour,
-      String? comments,
-      String? reference,
-      String? odometer,
-      String? maintenanceTypeId,
-      String? maintenanceGroupId,
-      num? costLobour,
-      String? providerId,
-      required String? vehicleId,
-      List<MaintenanceListPartDTO>? maintenanceParts,
-      List<MaintenanceServiceDTO>? maintenanceServices,
-      required ApiMaintenanceIdPut$RequestBody? body}) {
+      {required String? id, required MaintenancePutDTO? body}) {
     final $url = '/api/Maintenance/${id}';
-    final $params = <String, dynamic>{
-      'ImagesToRemove': imagesToRemove,
-      'StartDate': startDate,
-      'FinishDate': finishDate,
-      'StartHour': startHour,
-      'FinishHour': finishHour,
-      'Comments': comments,
-      'Reference': reference,
-      'Odometer': odometer,
-      'MaintenanceTypeId': maintenanceTypeId,
-      'MaintenanceGroupId': maintenanceGroupId,
-      'CostLobour': costLobour,
-      'ProviderId': providerId,
-      'VehicleId': vehicleId,
-      'MaintenanceParts': maintenanceParts,
-      'MaintenanceServices': maintenanceServices
-    };
     final $body = body;
-    final $request =
-        Request('PUT', $url, client.baseUrl, body: $body, parameters: $params);
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
     return client.send<bool, bool>($request);
   }
 
@@ -1136,6 +1111,16 @@ class _$FMA extends FMA {
   Future<Response<bool>> _apiMaintenanceIdDelete({required String? id}) {
     final $url = '/api/Maintenance/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiMaintenanceEditIdPut(
+      {required String? id, required List<int> partFile}) {
+    final $url = '/api/Maintenance/Edit/${id}';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<bool, bool>($request);
   }
 

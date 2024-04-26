@@ -6189,7 +6189,127 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
   "application/json": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  }
+  },
+  "text/json": {
   "schema": {
   "type": "array",
   "items": {
@@ -6207,9 +6327,132 @@
   ],
   "requestBody": {
   "content": {
-  "application/json": {
+  "multipart/form-data": {
   "schema": {
-  "$ref": "#/components/schemas/MaintenancePostDTO"
+  "required": [
+  "StartDate",
+  "StartHour",
+  "VehicleId"
+  ],
+  "type": "object",
+  "properties": {
+  "StartDate": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  },
+  "FinishDate": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  },
+  "StartHour": {
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string"
+  },
+  "FinishHour": {
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string"
+  },
+  "Comments": {
+  "type": "string"
+  },
+  "Reference": {
+  "type": "string"
+  },
+  "Odometer": {
+  "type": "string"
+  },
+  "MaintenanceTypeId": {
+  "type": "string"
+  },
+  "MaintenanceGroupId": {
+  "type": "string"
+  },
+  "CostLobour": {
+  "type": "number",
+  "format": "double"
+  },
+  "ProviderId": {
+  "type": "string"
+  },
+  "VehicleId": {
+  "maxLength": 255,
+  "minLength": 6,
+  "type": "string"
+  },
+  "DocumentFile": {
+  "type": "string",
+  "format": "binary"
+  },
+  "ImageFiles": {
+  "type": "array",
+  "items": {
+  "type": "string",
+  "format": "binary"
+  }
+  },
+  "MaintenanceParts": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceListPartDTO"
+  }
+  },
+  "MaintenanceServices": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceServiceDTO"
+  }
+  }
+  }
+  },
+  "encoding": {
+  "StartDate": {
+  "style": "form"
+  },
+  "FinishDate": {
+  "style": "form"
+  },
+  "StartHour": {
+  "style": "form"
+  },
+  "FinishHour": {
+  "style": "form"
+  },
+  "Comments": {
+  "style": "form"
+  },
+  "Reference": {
+  "style": "form"
+  },
+  "Odometer": {
+  "style": "form"
+  },
+  "MaintenanceTypeId": {
+  "style": "form"
+  },
+  "MaintenanceGroupId": {
+  "style": "form"
+  },
+  "CostLobour": {
+  "style": "form"
+  },
+  "ProviderId": {
+  "style": "form"
+  },
+  "VehicleId": {
+  "style": "form"
+  },
+  "DocumentFile": {
+  "style": "form"
+  },
+  "ImageFiles": {
+  "style": "form"
+  },
+  "MaintenanceParts": {
+  "style": "form"
+  },
+  "MaintenanceServices": {
+  "style": "form"
+  }
   }
   }
   }
@@ -6218,7 +6461,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
   "application/json": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "text/json": {
   "schema": {
   "type": "string"
   }
@@ -6285,9 +6603,262 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
   "application/json": {
   "schema": {
   "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  }
+  }
+  }
+  }
+  }
+  },
+  "/api/Maintenance/Save": {
+  "post": {
+  "tags": [
+  "Maintenance"
+  ],
+  "requestBody": {
+  "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  },
+  "application/*+json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePostDTO"
+  }
+  }
+  }
+  },
+  "responses": {
+  "200": {
+  "description": "Success",
+  "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "type": "string"
   }
   }
   }
@@ -6314,7 +6885,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDTO"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/MaintenanceDTO"
   }
@@ -6335,158 +6981,88 @@
   "schema": {
   "type": "string"
   }
-  },
-  {
-  "name": "ImagesToRemove",
-  "in": "query",
-  "schema": {
-  "type": "array",
-  "items": {
-  "type": "string"
-  }
-  }
-  },
-  {
-  "name": "StartDate",
-  "in": "query",
-  "required": true,
-  "schema": {
-  "pattern": "\\d{4}-\\d{2}-\\d{2}",
-  "type": "string"
-  }
-  },
-  {
-  "name": "FinishDate",
-  "in": "query",
-  "schema": {
-  "pattern": "\\d{4}-\\d{2}-\\d{2}",
-  "type": "string"
-  }
-  },
-  {
-  "name": "StartHour",
-  "in": "query",
-  "required": true,
-  "schema": {
-  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
-  "type": "string"
-  }
-  },
-  {
-  "name": "FinishHour",
-  "in": "query",
-  "schema": {
-  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
-  "type": "string"
-  }
-  },
-  {
-  "name": "Comments",
-  "in": "query",
-  "schema": {
-  "type": "string"
-  }
-  },
-  {
-  "name": "Reference",
-  "in": "query",
-  "schema": {
-  "type": "string"
-  }
-  },
-  {
-  "name": "Odometer",
-  "in": "query",
-  "schema": {
-  "type": "string"
-  }
-  },
-  {
-  "name": "MaintenanceTypeId",
-  "in": "query",
-  "schema": {
-  "type": "string"
-  }
-  },
-  {
-  "name": "MaintenanceGroupId",
-  "in": "query",
-  "schema": {
-  "type": "string"
-  }
-  },
-  {
-  "name": "CostLobour",
-  "in": "query",
-  "schema": {
-  "type": "number",
-  "format": "double"
-  }
-  },
-  {
-  "name": "ProviderId",
-  "in": "query",
-  "schema": {
-  "type": "string"
-  }
-  },
-  {
-  "name": "VehicleId",
-  "in": "query",
-  "required": true,
-  "schema": {
-  "maxLength": 255,
-  "minLength": 6,
-  "type": "string"
-  }
-  },
-  {
-  "name": "MaintenanceParts",
-  "in": "query",
-  "schema": {
-  "type": "array",
-  "items": {
-  "$ref": "#/components/schemas/MaintenanceListPartDTO"
-  }
-  }
-  },
-  {
-  "name": "MaintenanceServices",
-  "in": "query",
-  "schema": {
-  "type": "array",
-  "items": {
-  "$ref": "#/components/schemas/MaintenanceServiceDTO"
-  }
-  }
   }
   ],
   "requestBody": {
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
   "application/json": {
   "schema": {
-  "type": "object",
-  "properties": {
-  "DocumentFile": {
-  "type": "string",
-  "format": "binary"
-  },
-  "ImageFiles": {
-  "type": "array",
-  "items": {
-  "type": "string",
-  "format": "binary"
-  }
-  }
+  "$ref": "#/components/schemas/MaintenancePutDTO"
   }
   },
-  "encoding": {
-  "DocumentFile": {
-  "style": "form"
-  },
-  "ImageFiles": {
-  "style": "form"
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
   }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
+  }
+  },
+  "application/*+json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenancePutDTO"
   }
   }
   }
@@ -6495,7 +7071,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
   "application/json": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "text/json": {
   "schema": {
   "type": "boolean"
   }
@@ -6522,7 +7173,327 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
   "application/json": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "type": "boolean"
+  }
+  }
+  }
+  }
+  }
+  }
+  },
+  "/api/Maintenance/Edit/{id}": {
+  "put": {
+  "tags": [
+  "Maintenance"
+  ],
+  "parameters": [
+  {
+  "name": "id",
+  "in": "path",
+  "required": true,
+  "schema": {
+  "type": "string"
+  }
+  }
+  ],
+  "requestBody": {
+  "content": {
+  "multipart/form-data": {
+  "schema": {
+  "required": [
+  "StartDate",
+  "StartHour",
+  "VehicleId"
+  ],
+  "type": "object",
+  "properties": {
+  "ImagesToRemove": {
+  "type": "array",
+  "items": {
+  "type": "string"
+  }
+  },
+  "StartDate": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  },
+  "FinishDate": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  },
+  "StartHour": {
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string"
+  },
+  "FinishHour": {
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string"
+  },
+  "Comments": {
+  "type": "string"
+  },
+  "Reference": {
+  "type": "string"
+  },
+  "Odometer": {
+  "type": "string"
+  },
+  "MaintenanceTypeId": {
+  "type": "string"
+  },
+  "MaintenanceGroupId": {
+  "type": "string"
+  },
+  "CostLobour": {
+  "type": "number",
+  "format": "double"
+  },
+  "ProviderId": {
+  "type": "string"
+  },
+  "VehicleId": {
+  "maxLength": 255,
+  "minLength": 6,
+  "type": "string"
+  },
+  "DocumentFile": {
+  "type": "string",
+  "format": "binary"
+  },
+  "ImageFiles": {
+  "type": "array",
+  "items": {
+  "type": "string",
+  "format": "binary"
+  }
+  },
+  "MaintenanceParts": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceListPartDTO"
+  }
+  },
+  "MaintenanceServices": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceServiceDTO"
+  }
+  }
+  }
+  },
+  "encoding": {
+  "ImagesToRemove": {
+  "style": "form"
+  },
+  "StartDate": {
+  "style": "form"
+  },
+  "FinishDate": {
+  "style": "form"
+  },
+  "StartHour": {
+  "style": "form"
+  },
+  "FinishHour": {
+  "style": "form"
+  },
+  "Comments": {
+  "style": "form"
+  },
+  "Reference": {
+  "style": "form"
+  },
+  "Odometer": {
+  "style": "form"
+  },
+  "MaintenanceTypeId": {
+  "style": "form"
+  },
+  "MaintenanceGroupId": {
+  "style": "form"
+  },
+  "CostLobour": {
+  "style": "form"
+  },
+  "ProviderId": {
+  "style": "form"
+  },
+  "VehicleId": {
+  "style": "form"
+  },
+  "DocumentFile": {
+  "style": "form"
+  },
+  "ImageFiles": {
+  "style": "form"
+  },
+  "MaintenanceParts": {
+  "style": "form"
+  },
+  "MaintenanceServices": {
+  "style": "form"
+  }
+  }
+  }
+  }
+  },
+  "responses": {
+  "200": {
+  "description": "Success",
+  "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/json": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "type": "boolean"
+  }
+  },
+  "text/json": {
   "schema": {
   "type": "boolean"
   }
@@ -6596,7 +7567,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
   }
@@ -6694,7 +7740,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/MaintenanceDetailDTOPagedResult"
   }
@@ -6722,7 +7843,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceNewEditDTO"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/MaintenanceNewEditDTO"
   }
@@ -6739,7 +7935,82 @@
   ],
   "requestBody": {
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
+  }
+  },
+  "application/*+json": {
   "schema": {
   "$ref": "#/components/schemas/MaintenanceStatisticsFilterDTO"
   }
@@ -6750,7 +8021,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/MaintenanceBillsInfoDTO"
   }
@@ -15134,6 +16480,10 @@
   "type": "string",
   "nullable": true
   },
+  "vehicleId": {
+  "type": "string",
+  "nullable": true
+  },
   "vehicle": {
   "type": "string",
   "nullable": true
@@ -15555,6 +16905,104 @@
   "type": "array",
   "items": {
   "$ref": "#/components/schemas/MaintenanceServiceDTO"
+  },
+  "nullable": true
+  }
+  },
+  "additionalProperties": false
+  },
+  "MaintenancePutDTO": {
+  "required": [
+  "startDate",
+  "startHour",
+  "vehicleId"
+  ],
+  "type": "object",
+  "properties": {
+  "startDate": {
+  "minLength": 1,
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  },
+  "finishDate": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string",
+  "nullable": true
+  },
+  "startHour": {
+  "minLength": 1,
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string"
+  },
+  "finishHour": {
+  "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+  "type": "string",
+  "nullable": true
+  },
+  "comments": {
+  "type": "string",
+  "nullable": true
+  },
+  "reference": {
+  "type": "string",
+  "nullable": true
+  },
+  "odometer": {
+  "type": "string",
+  "nullable": true
+  },
+  "maintenanceTypeId": {
+  "type": "string",
+  "nullable": true
+  },
+  "maintenanceGroupId": {
+  "type": "string",
+  "nullable": true
+  },
+  "costLobour": {
+  "type": "number",
+  "format": "double"
+  },
+  "providerId": {
+  "type": "string",
+  "nullable": true
+  },
+  "vehicleId": {
+  "maxLength": 255,
+  "minLength": 6,
+  "type": "string"
+  },
+  "documentFile": {
+  "type": "string",
+  "format": "binary",
+  "nullable": true
+  },
+  "imageFiles": {
+  "type": "array",
+  "items": {
+  "type": "string",
+  "format": "binary"
+  },
+  "nullable": true
+  },
+  "maintenanceParts": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceListPartDTO"
+  },
+  "nullable": true
+  },
+  "maintenanceServices": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/MaintenanceServiceDTO"
+  },
+  "nullable": true
+  },
+  "imagesToRemove": {
+  "type": "array",
+  "items": {
+  "type": "string"
   },
   "nullable": true
   }
