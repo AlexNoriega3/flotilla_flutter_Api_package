@@ -1068,6 +1068,7 @@ MaintenanceFormDTO _$MaintenanceFormDTOFromJson(Map<String, dynamic> json) =>
       document: json['document'] == null
           ? null
           : DocumentDTO.fromJson(json['document'] as Map<String, dynamic>),
+      costLobour: (json['costLobour'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$MaintenanceFormDTOToJson(MaintenanceFormDTO instance) =>
@@ -1092,6 +1093,7 @@ Map<String, dynamic> _$MaintenanceFormDTOToJson(MaintenanceFormDTO instance) =>
       'vehicleId': instance.vehicleId,
       'images': instance.images?.map((e) => e.toJson()).toList(),
       'document': instance.document?.toJson(),
+      'costLobour': instance.costLobour,
     };
 
 MaintenanceGroupDTO _$MaintenanceGroupDTOFromJson(Map<String, dynamic> json) =>

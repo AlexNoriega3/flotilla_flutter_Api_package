@@ -7962,6 +7962,7 @@ class MaintenanceFormDTO {
     this.vehicleId,
     this.images,
     this.document,
+    this.costLobour,
   });
 
   factory MaintenanceFormDTO.fromJson(Map<String, dynamic> json) =>
@@ -8005,6 +8006,8 @@ class MaintenanceFormDTO {
   final List<ImageDTO>? images;
   @JsonKey(name: 'document')
   final DocumentDTO? document;
+  @JsonKey(name: 'costLobour')
+  final double? costLobour;
   static const fromJsonFactory = _$MaintenanceFormDTOFromJson;
   static const toJsonFactory = _$MaintenanceFormDTOToJson;
   Map<String, dynamic> toJson() => _$MaintenanceFormDTOToJson(this);
@@ -8068,7 +8071,10 @@ class MaintenanceFormDTO {
                 const DeepCollectionEquality().equals(other.images, images)) &&
             (identical(other.document, document) ||
                 const DeepCollectionEquality()
-                    .equals(other.document, document)));
+                    .equals(other.document, document)) &&
+            (identical(other.costLobour, costLobour) ||
+                const DeepCollectionEquality()
+                    .equals(other.costLobour, costLobour)));
   }
 
   @override
@@ -8092,6 +8098,7 @@ class MaintenanceFormDTO {
       const DeepCollectionEquality().hash(vehicleId) ^
       const DeepCollectionEquality().hash(images) ^
       const DeepCollectionEquality().hash(document) ^
+      const DeepCollectionEquality().hash(costLobour) ^
       runtimeType.hashCode;
 }
 
@@ -8115,7 +8122,8 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
       List<MaintenancePartDTO>? maintenanceParts,
       String? vehicleId,
       List<ImageDTO>? images,
-      DocumentDTO? document}) {
+      DocumentDTO? document,
+      double? costLobour}) {
     return MaintenanceFormDTO(
         id: id ?? this.id,
         active: active ?? this.active,
@@ -8135,7 +8143,8 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
         maintenanceParts: maintenanceParts ?? this.maintenanceParts,
         vehicleId: vehicleId ?? this.vehicleId,
         images: images ?? this.images,
-        document: document ?? this.document);
+        document: document ?? this.document,
+        costLobour: costLobour ?? this.costLobour);
   }
 }
 

@@ -16613,6 +16613,10 @@
   },
   "document": {
   "$ref": "#/components/schemas/DocumentDTO"
+  },
+  "costLobour": {
+  "type": "number",
+  "format": "double"
   }
   },
   "additionalProperties": false
