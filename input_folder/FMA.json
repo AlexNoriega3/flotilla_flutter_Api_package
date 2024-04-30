@@ -16495,6 +16495,10 @@
   "period": {
   "type": "string",
   "nullable": true
+  },
+  "maintenanceType": {
+  "type": "string",
+  "nullable": true
   }
   },
   "additionalProperties": false

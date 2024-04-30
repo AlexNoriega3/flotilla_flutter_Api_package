@@ -7795,6 +7795,7 @@ class MaintenanceDetailDTO {
     this.vehicle,
     this.comments,
     this.period,
+    this.maintenanceType,
   });
 
   factory MaintenanceDetailDTO.fromJson(Map<String, dynamic> json) =>
@@ -7810,6 +7811,8 @@ class MaintenanceDetailDTO {
   final String? comments;
   @JsonKey(name: 'period')
   final String? period;
+  @JsonKey(name: 'maintenanceType')
+  final String? maintenanceType;
   static const fromJsonFactory = _$MaintenanceDetailDTOFromJson;
   static const toJsonFactory = _$MaintenanceDetailDTOToJson;
   Map<String, dynamic> toJson() => _$MaintenanceDetailDTOToJson(this);
@@ -7833,7 +7836,10 @@ class MaintenanceDetailDTO {
                 const DeepCollectionEquality()
                     .equals(other.comments, comments)) &&
             (identical(other.period, period) ||
-                const DeepCollectionEquality().equals(other.period, period)));
+                const DeepCollectionEquality().equals(other.period, period)) &&
+            (identical(other.maintenanceType, maintenanceType) ||
+                const DeepCollectionEquality()
+                    .equals(other.maintenanceType, maintenanceType)));
   }
 
   @override
@@ -7843,6 +7849,7 @@ class MaintenanceDetailDTO {
       const DeepCollectionEquality().hash(vehicle) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(period) ^
+      const DeepCollectionEquality().hash(maintenanceType) ^
       runtimeType.hashCode;
 }
 
@@ -7852,13 +7859,15 @@ extension $MaintenanceDetailDTOExtension on MaintenanceDetailDTO {
       String? vehicleId,
       String? vehicle,
       String? comments,
-      String? period}) {
+      String? period,
+      String? maintenanceType}) {
     return MaintenanceDetailDTO(
         id: id ?? this.id,
         vehicleId: vehicleId ?? this.vehicleId,
         vehicle: vehicle ?? this.vehicle,
         comments: comments ?? this.comments,
-        period: period ?? this.period);
+        period: period ?? this.period,
+        maintenanceType: maintenanceType ?? this.maintenanceType);
   }
 }
 

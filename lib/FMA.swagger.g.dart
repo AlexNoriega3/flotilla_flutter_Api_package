@@ -998,6 +998,7 @@ MaintenanceDetailDTO _$MaintenanceDetailDTOFromJson(
       vehicle: json['vehicle'] as String?,
       comments: json['comments'] as String?,
       period: json['period'] as String?,
+      maintenanceType: json['maintenanceType'] as String?,
     );
 
 Map<String, dynamic> _$MaintenanceDetailDTOToJson(
@@ -1008,6 +1009,7 @@ Map<String, dynamic> _$MaintenanceDetailDTOToJson(
       'vehicle': instance.vehicle,
       'comments': instance.comments,
       'period': instance.period,
+      'maintenanceType': instance.maintenanceType,
     };
 
 MaintenanceDetailDTOPagedResult _$MaintenanceDetailDTOPagedResultFromJson(
