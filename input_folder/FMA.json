@@ -8106,6 +8106,51 @@
   }
   }
   },
+  "/api/Maintenance/Download": {
+  "get": {
+  "tags": [
+  "Maintenance"
+  ],
+  "parameters": [
+  {
+  "name": "VehicleId",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "ServicesId",
+  "in": "query",
+  "schema": {
+  "type": "string"
+  }
+  },
+  {
+  "name": "DateStart",
+  "in": "query",
+  "required": true,
+  "schema": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  }
+  },
+  {
+  "name": "DateEnd",
+  "in": "query",
+  "schema": {
+  "pattern": "\\d{4}-\\d{2}-\\d{2}",
+  "type": "string"
+  }
+  }
+  ],
+  "responses": {
+  "200": {
+  "description": "Success"
+  }
+  }
+  }
+  },
   "/api/MaintenanceGroup": {
   "get": {
   "tags": [
@@ -17879,6 +17924,24 @@
   },
   "additionalProperties": false
   },
+  "SelectModelDTO": {
+  "type": "object",
+  "properties": {
+  "key": {
+  "type": "string",
+  "nullable": true
+  },
+  "value": {
+  "type": "string",
+  "nullable": true
+  },
+  "brandId": {
+  "type": "string",
+  "nullable": true
+  }
+  },
+  "additionalProperties": false
+  },
   "SelectVehicleDTO": {
   "type": "object",
   "properties": {
@@ -18748,7 +18811,7 @@
   "models": {
   "type": "array",
   "items": {
-  "$ref": "#/components/schemas/SelectDTO"
+  "$ref": "#/components/schemas/SelectModelDTO"
   },
   "nullable": true
   },

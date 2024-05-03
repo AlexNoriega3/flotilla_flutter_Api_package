@@ -1951,6 +1951,20 @@ Map<String, dynamic> _$SelectDTOToJson(SelectDTO instance) => <String, dynamic>{
       'value': instance.value,
     };
 
+SelectModelDTO _$SelectModelDTOFromJson(Map<String, dynamic> json) =>
+    SelectModelDTO(
+      key: json['key'] as String?,
+      value: json['value'] as String?,
+      brandId: json['brandId'] as String?,
+    );
+
+Map<String, dynamic> _$SelectModelDTOToJson(SelectModelDTO instance) =>
+    <String, dynamic>{
+      'key': instance.key,
+      'value': instance.value,
+      'brandId': instance.brandId,
+    };
+
 SelectVehicleDTO _$SelectVehicleDTOFromJson(Map<String, dynamic> json) =>
     SelectVehicleDTO(
       key: json['key'] as String?,
@@ -2467,7 +2481,7 @@ VehicleNewEditDTO _$VehicleNewEditDTOFromJson(Map<String, dynamic> json) =>
               .toList() ??
           [],
       models: (json['models'] as List<dynamic>?)
-              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => SelectModelDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       engines: (json['engines'] as List<dynamic>?)

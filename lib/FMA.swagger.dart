@@ -2137,6 +2137,35 @@ abstract class FMA extends ChopperService {
           {@Body() required MaintenanceStatisticsFilterDTO? body});
 
   ///
+  ///@param VehicleId
+  ///@param ServicesId
+  ///@param DateStart
+  ///@param DateEnd
+  Future<chopper.Response> apiMaintenanceDownloadGet(
+      {String? vehicleId,
+      String? servicesId,
+      required String? dateStart,
+      String? dateEnd}) {
+    return _apiMaintenanceDownloadGet(
+        vehicleId: vehicleId,
+        servicesId: servicesId,
+        dateStart: dateStart,
+        dateEnd: dateEnd);
+  }
+
+  ///
+  ///@param VehicleId
+  ///@param ServicesId
+  ///@param DateStart
+  ///@param DateEnd
+  @Get(path: '/api/Maintenance/Download')
+  Future<chopper.Response> _apiMaintenanceDownloadGet(
+      {@Query('VehicleId') String? vehicleId,
+      @Query('ServicesId') String? servicesId,
+      @Query('DateStart') required String? dateStart,
+      @Query('DateEnd') String? dateEnd});
+
+  ///
   Future<chopper.Response<List<MaintenanceGroupDTO>>> apiMaintenanceGroupGet() {
     generatedMapping.putIfAbsent(
         MaintenanceGroupDTO, () => MaintenanceGroupDTO.fromJsonFactory);
@@ -11227,6 +11256,59 @@ extension $SelectDTOExtension on SelectDTO {
 }
 
 @JsonSerializable(explicitToJson: true)
+class SelectModelDTO {
+  SelectModelDTO({
+    this.key,
+    this.value,
+    this.brandId,
+  });
+
+  factory SelectModelDTO.fromJson(Map<String, dynamic> json) =>
+      _$SelectModelDTOFromJson(json);
+
+  @JsonKey(name: 'key')
+  final String? key;
+  @JsonKey(name: 'value')
+  final String? value;
+  @JsonKey(name: 'brandId')
+  final String? brandId;
+  static const fromJsonFactory = _$SelectModelDTOFromJson;
+  static const toJsonFactory = _$SelectModelDTOToJson;
+  Map<String, dynamic> toJson() => _$SelectModelDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SelectModelDTO &&
+            (identical(other.key, key) ||
+                const DeepCollectionEquality().equals(other.key, key)) &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)) &&
+            (identical(other.brandId, brandId) ||
+                const DeepCollectionEquality().equals(other.brandId, brandId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(key) ^
+      const DeepCollectionEquality().hash(value) ^
+      const DeepCollectionEquality().hash(brandId) ^
+      runtimeType.hashCode;
+}
+
+extension $SelectModelDTOExtension on SelectModelDTO {
+  SelectModelDTO copyWith({String? key, String? value, String? brandId}) {
+    return SelectModelDTO(
+        key: key ?? this.key,
+        value: value ?? this.value,
+        brandId: brandId ?? this.brandId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class SelectVehicleDTO {
   SelectVehicleDTO({
     this.key,
@@ -13130,8 +13212,8 @@ class VehicleNewEditDTO {
   final List<SelectDTO>? brands;
   @JsonKey(name: 'categories', defaultValue: <SelectDTO>[])
   final List<SelectDTO>? categories;
-  @JsonKey(name: 'models', defaultValue: <SelectDTO>[])
-  final List<SelectDTO>? models;
+  @JsonKey(name: 'models', defaultValue: <SelectModelDTO>[])
+  final List<SelectModelDTO>? models;
   @JsonKey(name: 'engines', defaultValue: <SelectDTO>[])
   final List<SelectDTO>? engines;
   @JsonKey(name: 'policies', defaultValue: <SelectDTO>[])
@@ -13227,7 +13309,7 @@ extension $VehicleNewEditDTOExtension on VehicleNewEditDTO {
       List<SelectDTO>? users,
       List<SelectDTO>? brands,
       List<SelectDTO>? categories,
-      List<SelectDTO>? models,
+      List<SelectModelDTO>? models,
       List<SelectDTO>? engines,
       List<SelectDTO>? policies,
       List<SelectDTO>? incisos,

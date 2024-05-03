@@ -1200,6 +1200,23 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<dynamic>> _apiMaintenanceDownloadGet(
+      {String? vehicleId,
+      String? servicesId,
+      required String? dateStart,
+      String? dateEnd}) {
+    final $url = '/api/Maintenance/Download';
+    final $params = <String, dynamic>{
+      'VehicleId': vehicleId,
+      'ServicesId': servicesId,
+      'DateStart': dateStart,
+      'DateEnd': dateEnd
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<List<MaintenanceGroupDTO>>> _apiMaintenanceGroupGet() {
     final $url = '/api/MaintenanceGroup';
     final $request = Request('GET', $url, client.baseUrl);
