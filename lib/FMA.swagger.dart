@@ -4074,24 +4074,18 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
-  ///@param id
-  ///@param categoryType
   Future<chopper.Response<VehicleNewEditDTO>> apiVehicleGetFormGet(
-      {String? id, enums.CategoryTypeEnum? categoryType}) {
+      {required GetFormsDTO? body}) {
     generatedMapping.putIfAbsent(
         VehicleNewEditDTO, () => VehicleNewEditDTO.fromJsonFactory);
 
-    return _apiVehicleGetFormGet(
-        id: id,
-        categoryType: enums.$CategoryTypeEnumMap[categoryType]?.toString());
+    return _apiVehicleGetFormGet(body: body);
   }
 
   ///
-  ///@param id
-  ///@param categoryType
   @Get(path: '/api/Vehicle/GetForm')
   Future<chopper.Response<VehicleNewEditDTO>> _apiVehicleGetFormGet(
-      {@Query('id') String? id, @Query('categoryType') String? categoryType});
+      {@Body() required GetFormsDTO? body});
 
   ///
   ///@param id
@@ -4139,32 +4133,32 @@ abstract class FMA extends ChopperService {
       {@Path('Id') required String? id});
 
   ///
-  ///@param vehicles
-  ///@param all
-  ///@param active
+  ///@param LstIds
+  ///@param All
+  ///@param Active
   ///@param categoryType
   Future<chopper.Response> apiVehicleDownloadGet(
-      {List<String>? vehicles,
+      {List<String>? lstIds,
       bool? all,
       bool? active,
       enums.CategoryTypeEnum? categoryType}) {
     return _apiVehicleDownloadGet(
-        vehicles: vehicles,
+        lstIds: lstIds,
         all: all,
         active: active,
         categoryType: enums.$CategoryTypeEnumMap[categoryType]?.toString());
   }
 
   ///
-  ///@param vehicles
-  ///@param all
-  ///@param active
+  ///@param LstIds
+  ///@param All
+  ///@param Active
   ///@param categoryType
   @Get(path: '/api/Vehicle/Download')
   Future<chopper.Response> _apiVehicleDownloadGet(
-      {@Query('vehicles') List<String>? vehicles,
-      @Query('all') bool? all,
-      @Query('active') bool? active,
+      {@Query('LstIds') List<String>? lstIds,
+      @Query('All') bool? all,
+      @Query('Active') bool? active,
       @Query('categoryType') String? categoryType});
 
   ///
@@ -6814,6 +6808,55 @@ extension $FuelVendorDTOPagedResultExtension on FuelVendorDTOPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetFormsDTO {
+  GetFormsDTO({
+    this.id,
+    this.categoryType,
+  });
+
+  factory GetFormsDTO.fromJson(Map<String, dynamic> json) =>
+      _$GetFormsDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(
+      name: 'categoryType',
+      toJson: categoryTypeEnumToJson,
+      fromJson: categoryTypeEnumFromJson)
+  final enums.CategoryTypeEnum? categoryType;
+  static const fromJsonFactory = _$GetFormsDTOFromJson;
+  static const toJsonFactory = _$GetFormsDTOToJson;
+  Map<String, dynamic> toJson() => _$GetFormsDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetFormsDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.categoryType, categoryType) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryType, categoryType)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(categoryType) ^
+      runtimeType.hashCode;
+}
+
+extension $GetFormsDTOExtension on GetFormsDTO {
+  GetFormsDTO copyWith({String? id, enums.CategoryTypeEnum? categoryType}) {
+    return GetFormsDTO(
+        id: id ?? this.id, categoryType: categoryType ?? this.categoryType);
   }
 }
 

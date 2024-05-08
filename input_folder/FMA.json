@@ -14925,22 +14925,90 @@
   "tags": [
   "Vehicle"
   ],
-  "parameters": [
-  {
-  "name": "id",
-  "in": "query",
+  "requestBody": {
+  "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
   "schema": {
-  "type": "string"
+  "$ref": "#/components/schemas/GetFormsDTO"
   }
   },
-  {
-  "name": "categoryType",
-  "in": "query",
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
   "schema": {
-  "$ref": "#/components/schemas/CategoryTypeEnum"
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
+  }
+  },
+  "application/*+json": {
+  "schema": {
+  "$ref": "#/components/schemas/GetFormsDTO"
   }
   }
-  ],
+  }
+  },
   "responses": {
   "200": {
   "description": "Success",
@@ -15549,7 +15617,7 @@
   ],
   "parameters": [
   {
-  "name": "vehicles",
+  "name": "LstIds",
   "in": "query",
   "schema": {
   "type": "array",
@@ -15559,14 +15627,14 @@
   }
   },
   {
-  "name": "all",
+  "name": "All",
   "in": "query",
   "schema": {
   "type": "boolean"
   }
   },
   {
-  "name": "active",
+  "name": "Active",
   "in": "query",
   "schema": {
   "type": "boolean"
@@ -16872,6 +16940,19 @@
   "Otro"
   ],
   "type": "string"
+  },
+  "GetFormsDTO": {
+  "type": "object",
+  "properties": {
+  "id": {
+  "type": "string",
+  "nullable": true
+  },
+  "categoryType": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
+  }
+  },
+  "additionalProperties": false
   },
   "ImageDTO": {
   "type": "object",

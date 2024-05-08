@@ -699,6 +699,17 @@ Map<String, dynamic> _$FuelVendorDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+GetFormsDTO _$GetFormsDTOFromJson(Map<String, dynamic> json) => GetFormsDTO(
+      id: json['id'] as String?,
+      categoryType: categoryTypeEnumFromJson(json['categoryType']),
+    );
+
+Map<String, dynamic> _$GetFormsDTOToJson(GetFormsDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'categoryType': categoryTypeEnumToJson(instance.categoryType),
+    };
+
 ImageDTO _$ImageDTOFromJson(Map<String, dynamic> json) => ImageDTO(
       id: json['id'] as String?,
       active: json['active'] as bool?,
