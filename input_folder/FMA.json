@@ -6361,6 +6361,9 @@
   "Odometer": {
   "type": "string"
   },
+  "Horometro": {
+  "type": "string"
+  },
   "MaintenanceTypeId": {
   "type": "string"
   },
@@ -6424,6 +6427,9 @@
   "style": "form"
   },
   "Odometer": {
+  "style": "form"
+  },
+  "Horometro": {
   "style": "form"
   },
   "MaintenanceTypeId": {
@@ -7315,6 +7321,9 @@
   "Odometer": {
   "type": "string"
   },
+  "Horometro": {
+  "type": "string"
+  },
   "MaintenanceTypeId": {
   "type": "string"
   },
@@ -7381,6 +7390,9 @@
   "style": "form"
   },
   "Odometer": {
+  "style": "form"
+  },
+  "Horometro": {
   "style": "form"
   },
   "MaintenanceTypeId": {
@@ -8141,6 +8153,13 @@
   "schema": {
   "pattern": "\\d{4}-\\d{2}-\\d{2}",
   "type": "string"
+  }
+  },
+  {
+  "name": "CategoryType",
+  "in": "query",
+  "schema": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
   }
   }
   ],
@@ -12183,7 +12202,127 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
   "application/json": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "type": "array",
+  "items": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  }
+  },
+  "text/json": {
   "schema": {
   "type": "array",
   "items": {
@@ -12203,7 +12342,82 @@
   "description": "Sample request:\r\n            \r\n   GET api/User/Registrar \\n\r\n   [FirstName] Opcional\\n\r\n   [LastName] Opcional\\n\r\n   \\n\r\n   [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n\r\n   Para los roles existentes consultar el recurso \"/api/Role\"\r\n            \r\nEl user",
   "requestBody": {
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPostDTO"
+  }
+  },
+  "application/*+json": {
   "schema": {
   "$ref": "#/components/schemas/UserPostDTO"
   }
@@ -12214,7 +12428,82 @@
   "200": {
   "description": "Description here",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "type": "string"
+  }
+  },
   "application/json": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "type": "string"
+  }
+  },
+  "text/json": {
   "schema": {
   "type": "string"
   }
@@ -12284,7 +12573,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTOPagedResult"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/AppUserDTOPagedResult"
   }
@@ -12313,7 +12677,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/AppUserDTO"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/AppUserDTO"
   }
@@ -12338,7 +12777,7 @@
   ],
   "requestBody": {
   "content": {
-  "application/json": {
+  "multipart/form-data": {
   "schema": {
   "required": [
   "firstName",
@@ -12470,7 +12909,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/EditUserResponse"
   }
@@ -12497,7 +13011,82 @@
   ],
   "requestBody": {
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "text/json": {
+  "schema": {
+  "$ref": "#/components/schemas/UserPutDTO"
+  }
+  },
+  "application/*+json": {
   "schema": {
   "$ref": "#/components/schemas/UserPutDTO"
   }
@@ -12508,7 +13097,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/EditUserResponse"
   }
@@ -12535,7 +13199,7 @@
   ],
   "requestBody": {
   "content": {
-  "application/json": {
+  "multipart/form-data": {
   "schema": {
   "type": "object",
   "properties": {
@@ -12557,7 +13221,82 @@
   "200": {
   "description": "Success",
   "content": {
+  "application/json;odata.metadata=minimal;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=minimal;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=minimal": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=full": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.metadata=none": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.streaming=true": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/json;odata.streaming=false": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
   "application/json": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/xml": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "text/plain": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "application/octet-stream": {
+  "schema": {
+  "$ref": "#/components/schemas/EditUserResponse"
+  }
+  },
+  "text/json": {
   "schema": {
   "$ref": "#/components/schemas/EditUserResponse"
   }
@@ -12925,6 +13664,7 @@
   "multipart/form-data": {
   "schema": {
   "required": [
+  "CategoryId",
   "Description",
   "EconomicNumber",
   "MachineId",
@@ -13339,6 +14079,13 @@
   "Vehicle"
   ],
   "parameters": [
+  {
+  "name": "CategoryType",
+  "in": "query",
+  "schema": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
+  }
+  },
   {
   "name": "Page",
   "in": "query",
@@ -13924,6 +14671,7 @@
   {
   "name": "CategoryId",
   "in": "query",
+  "required": true,
   "schema": {
   "type": "string"
   }
@@ -14184,6 +14932,13 @@
   "schema": {
   "type": "string"
   }
+  },
+  {
+  "name": "categoryType",
+  "in": "query",
+  "schema": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
+  }
   }
   ],
   "responses": {
@@ -14295,6 +15050,7 @@
   "multipart/form-data": {
   "schema": {
   "required": [
+  "CategoryId",
   "Description",
   "EconomicNumber",
   "MachineId",
@@ -14814,6 +15570,13 @@
   "in": "query",
   "schema": {
   "type": "boolean"
+  }
+  },
+  {
+  "name": "categoryType",
+  "in": "query",
+  "schema": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
   }
   }
   ],
@@ -15651,6 +16414,9 @@
   "totalAmount": {
   "type": "string",
   "nullable": true
+  },
+  "categoryType": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
   }
   },
   "additionalProperties": false
@@ -15759,6 +16525,9 @@
   "$ref": "#/components/schemas/ImageDTO"
   },
   "nullable": true
+  },
+  "categoryType": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
   }
   },
   "additionalProperties": false
@@ -16544,6 +17313,9 @@
   "maintenanceType": {
   "type": "string",
   "nullable": true
+  },
+  "categoryType": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
   }
   },
   "additionalProperties": false
@@ -16913,6 +17685,10 @@
   "type": "string",
   "nullable": true
   },
+  "horometro": {
+  "type": "string",
+  "nullable": true
+  },
   "maintenanceTypeId": {
   "type": "string",
   "nullable": true
@@ -17001,6 +17777,10 @@
   "nullable": true
   },
   "odometer": {
+  "type": "string",
+  "nullable": true
+  },
+  "horometro": {
   "type": "string",
   "nullable": true
   },
@@ -17117,6 +17897,9 @@
   "pattern": "\\d{4}-\\d{2}-\\d{2}",
   "type": "string",
   "nullable": true
+  },
+  "categoryType": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
   }
   },
   "additionalProperties": false
@@ -17968,6 +18751,9 @@
   "fuelType": {
   "type": "string",
   "nullable": true
+  },
+  "categoryType": {
+  "$ref": "#/components/schemas/CategoryTypeEnum"
   }
   },
   "additionalProperties": false
@@ -18577,6 +19363,9 @@
   "additionalProperties": false
   },
   "VehicleFormDTO": {
+  "required": [
+  "categoryId"
+  ],
   "type": "object",
   "properties": {
   "assignedId": {
@@ -18638,8 +19427,8 @@
   "nullable": true
   },
   "categoryId": {
-  "type": "string",
-  "nullable": true
+  "minLength": 1,
+  "type": "string"
   },
   "tankSize": {
   "type": "integer",
@@ -18883,6 +19672,7 @@
   },
   "VehiclePostDTO": {
   "required": [
+  "categoryId",
   "description",
   "economicNumber",
   "machineId",
@@ -18969,8 +19759,8 @@
   "nullable": true
   },
   "categoryId": {
-  "type": "string",
-  "nullable": true
+  "minLength": 1,
+  "type": "string"
   },
   "tankSize": {
   "type": "integer",

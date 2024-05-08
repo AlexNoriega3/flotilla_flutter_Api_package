@@ -400,6 +400,7 @@ FuelLoadDetailDTO _$FuelLoadDetailDTOFromJson(Map<String, dynamic> json) =>
       chargeDate: json['chargeDate'] as String?,
       odometer: json['odometer'] as String?,
       totalAmount: json['totalAmount'] as String?,
+      categoryType: categoryTypeEnumFromJson(json['categoryType']),
     );
 
 Map<String, dynamic> _$FuelLoadDetailDTOToJson(FuelLoadDetailDTO instance) =>
@@ -409,6 +410,7 @@ Map<String, dynamic> _$FuelLoadDetailDTOToJson(FuelLoadDetailDTO instance) =>
       'chargeDate': instance.chargeDate,
       'odometer': instance.odometer,
       'totalAmount': instance.totalAmount,
+      'categoryType': categoryTypeEnumToJson(instance.categoryType),
     };
 
 FuelLoadDetailDTOPagedResult _$FuelLoadDetailDTOPagedResultFromJson(
@@ -460,6 +462,7 @@ FuelLoadFormDTO _$FuelLoadFormDTOFromJson(Map<String, dynamic> json) =>
               ?.map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      categoryType: categoryTypeEnumFromJson(json['categoryType']),
     );
 
 Map<String, dynamic> _$FuelLoadFormDTOToJson(FuelLoadFormDTO instance) =>
@@ -481,6 +484,7 @@ Map<String, dynamic> _$FuelLoadFormDTOToJson(FuelLoadFormDTO instance) =>
       'odometer': instance.odometer,
       'odometerMeasurementId': instance.odometerMeasurementId,
       'images': instance.images?.map((e) => e.toJson()).toList(),
+      'categoryType': categoryTypeEnumToJson(instance.categoryType),
     };
 
 FuelLoadNewEditDTO _$FuelLoadNewEditDTOFromJson(Map<String, dynamic> json) =>
@@ -999,6 +1003,7 @@ MaintenanceDetailDTO _$MaintenanceDetailDTOFromJson(
       comments: json['comments'] as String?,
       period: json['period'] as String?,
       maintenanceType: json['maintenanceType'] as String?,
+      categoryType: categoryTypeEnumFromJson(json['categoryType']),
     );
 
 Map<String, dynamic> _$MaintenanceDetailDTOToJson(
@@ -1010,6 +1015,7 @@ Map<String, dynamic> _$MaintenanceDetailDTOToJson(
       'comments': instance.comments,
       'period': instance.period,
       'maintenanceType': instance.maintenanceType,
+      'categoryType': categoryTypeEnumToJson(instance.categoryType),
     };
 
 MaintenanceDetailDTOPagedResult _$MaintenanceDetailDTOPagedResultFromJson(
@@ -1264,6 +1270,7 @@ MaintenancePostDTO _$MaintenancePostDTOFromJson(Map<String, dynamic> json) =>
       comments: json['comments'] as String?,
       reference: json['reference'] as String?,
       odometer: json['odometer'] as String?,
+      horometro: json['horometro'] as String?,
       maintenanceTypeId: json['maintenanceTypeId'] as String?,
       maintenanceGroupId: json['maintenanceGroupId'] as String?,
       costLobour: (json['costLobour'] as num?)?.toDouble(),
@@ -1295,6 +1302,7 @@ Map<String, dynamic> _$MaintenancePostDTOToJson(MaintenancePostDTO instance) =>
       'comments': instance.comments,
       'reference': instance.reference,
       'odometer': instance.odometer,
+      'horometro': instance.horometro,
       'maintenanceTypeId': instance.maintenanceTypeId,
       'maintenanceGroupId': instance.maintenanceGroupId,
       'costLobour': instance.costLobour,
@@ -1317,6 +1325,7 @@ MaintenancePutDTO _$MaintenancePutDTOFromJson(Map<String, dynamic> json) =>
       comments: json['comments'] as String?,
       reference: json['reference'] as String?,
       odometer: json['odometer'] as String?,
+      horometro: json['horometro'] as String?,
       maintenanceTypeId: json['maintenanceTypeId'] as String?,
       maintenanceGroupId: json['maintenanceGroupId'] as String?,
       costLobour: (json['costLobour'] as num?)?.toDouble(),
@@ -1352,6 +1361,7 @@ Map<String, dynamic> _$MaintenancePutDTOToJson(MaintenancePutDTO instance) =>
       'comments': instance.comments,
       'reference': instance.reference,
       'odometer': instance.odometer,
+      'horometro': instance.horometro,
       'maintenanceTypeId': instance.maintenanceTypeId,
       'maintenanceGroupId': instance.maintenanceGroupId,
       'costLobour': instance.costLobour,
@@ -1403,6 +1413,7 @@ MaintenanceStatisticsFilterDTO _$MaintenanceStatisticsFilterDTOFromJson(
       servicesId: json['servicesId'] as String?,
       dateStart: json['dateStart'] as String,
       dateEnd: json['dateEnd'] as String?,
+      categoryType: categoryTypeEnumFromJson(json['categoryType']),
     );
 
 Map<String, dynamic> _$MaintenanceStatisticsFilterDTOToJson(
@@ -1412,6 +1423,7 @@ Map<String, dynamic> _$MaintenanceStatisticsFilterDTOToJson(
       'servicesId': instance.servicesId,
       'dateStart': instance.dateStart,
       'dateEnd': instance.dateEnd,
+      'categoryType': categoryTypeEnumToJson(instance.categoryType),
     };
 
 MaintenanceTypeDTO _$MaintenanceTypeDTOFromJson(Map<String, dynamic> json) =>
@@ -1973,6 +1985,7 @@ SelectVehicleDTO _$SelectVehicleDTOFromJson(Map<String, dynamic> json) =>
       placas: json['placas'] as String?,
       economicNumber: json['economicNumber'] as String?,
       fuelType: json['fuelType'] as String?,
+      categoryType: categoryTypeEnumFromJson(json['categoryType']),
     );
 
 Map<String, dynamic> _$SelectVehicleDTOToJson(SelectVehicleDTO instance) =>
@@ -1983,6 +1996,7 @@ Map<String, dynamic> _$SelectVehicleDTOToJson(SelectVehicleDTO instance) =>
       'placas': instance.placas,
       'economicNumber': instance.economicNumber,
       'fuelType': instance.fuelType,
+      'categoryType': categoryTypeEnumToJson(instance.categoryType),
     };
 
 ServiceDTO _$ServiceDTOFromJson(Map<String, dynamic> json) => ServiceDTO(
@@ -2352,7 +2366,7 @@ VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
       fuelMeasureId: json['fuelMeasureId'] as String?,
       fuelTypeId: json['fuelTypeId'] as String?,
       companyId: json['companyId'] as String?,
-      categoryId: json['categoryId'] as String?,
+      categoryId: json['categoryId'] as String,
       tankSize: json['tankSize'] as int?,
       active: json['active'] as bool?,
       photographsFiles: (json['photographsFiles'] as List<dynamic>?)
@@ -2561,7 +2575,7 @@ VehiclePostDTO _$VehiclePostDTOFromJson(Map<String, dynamic> json) =>
       fuelMeasureId: json['fuelMeasureId'] as String?,
       fuelTypeId: json['fuelTypeId'] as String?,
       companyId: json['companyId'] as String?,
-      categoryId: json['categoryId'] as String?,
+      categoryId: json['categoryId'] as String,
       tankSize: json['tankSize'] as int?,
       active: json['active'] as bool?,
       photographsFiles: (json['photographsFiles'] as List<dynamic>?)
@@ -2665,56 +2679,4 @@ Map<String, dynamic> _$VendorDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
-    };
-
-ApiUserIdPut$RequestBody _$ApiUserIdPut$RequestBodyFromJson(
-        Map<String, dynamic> json) =>
-    ApiUserIdPut$RequestBody(
-      imageFile: json['imageFile'] as String?,
-      name: json['name'] as String?,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-      url: json['Url'] as String?,
-      countryCode: json['countryCode'] as String?,
-      titleAbbreviation: json['titleAbbreviation'] as String?,
-      gender: genderEnumFromJson(json['gender']),
-      phone: json['phone'] as String,
-      country: json['country'] as String?,
-      city: json['city'] as String?,
-      address: json['address'] as String?,
-      birthDate: json['birthDate'] == null
-          ? null
-          : DateTime.parse(json['birthDate'] as String),
-      costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
-    );
-
-Map<String, dynamic> _$ApiUserIdPut$RequestBodyToJson(
-        ApiUserIdPut$RequestBody instance) =>
-    <String, dynamic>{
-      'imageFile': instance.imageFile,
-      'name': instance.name,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'Url': instance.url,
-      'countryCode': instance.countryCode,
-      'titleAbbreviation': instance.titleAbbreviation,
-      'gender': genderEnumToJson(instance.gender),
-      'phone': instance.phone,
-      'country': instance.country,
-      'city': instance.city,
-      'address': instance.address,
-      'birthDate': instance.birthDate?.toIso8601String(),
-      'costPerAppointment': instance.costPerAppointment,
-    };
-
-ApiUserUploadImageIdPost$RequestBody
-    _$ApiUserUploadImageIdPost$RequestBodyFromJson(Map<String, dynamic> json) =>
-        ApiUserUploadImageIdPost$RequestBody(
-          image: json['image'] as String?,
-        );
-
-Map<String, dynamic> _$ApiUserUploadImageIdPost$RequestBodyToJson(
-        ApiUserUploadImageIdPost$RequestBody instance) =>
-    <String, dynamic>{
-      'image': instance.image,
     };

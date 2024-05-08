@@ -1204,13 +1204,15 @@ class _$FMA extends FMA {
       {String? vehicleId,
       String? servicesId,
       required String? dateStart,
-      String? dateEnd}) {
+      String? dateEnd,
+      String? categoryType}) {
     final $url = '/api/Maintenance/Download';
     final $params = <String, dynamic>{
       'VehicleId': vehicleId,
       'ServicesId': servicesId,
       'DateStart': dateStart,
-      'DateEnd': dateEnd
+      'DateEnd': dateEnd,
+      'CategoryType': categoryType
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
@@ -2057,10 +2059,11 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<EditUserResponse>> _apiUserIdPut(
-      {required String? id, required ApiUserIdPut$RequestBody? body}) {
+      {required String? id, required List<int> partFile}) {
     final $url = '/api/User/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<EditUserResponse, EditUserResponse>($request);
   }
 
@@ -2075,11 +2078,11 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<EditUserResponse>> _apiUserUploadImageIdPost(
-      {required String? id,
-      required ApiUserUploadImageIdPost$RequestBody? body}) {
+      {required String? id, required List<int> partFile}) {
     final $url = '/api/User/UploadImage/${id}';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<EditUserResponse, EditUserResponse>($request);
   }
 
@@ -2183,7 +2186,8 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<VehicleInboxDTOPagedResult>> _apiVehicleInboxGet(
-      {required int? page,
+      {String? categoryType,
+      required int? page,
       String? search,
       String? orderByPropertyName,
       String? sortOrder,
@@ -2191,6 +2195,7 @@ class _$FMA extends FMA {
       bool? active}) {
     final $url = '/api/Vehicle/Inbox';
     final $params = <String, dynamic>{
+      'CategoryType': categoryType,
       'Page': page,
       'Search': search,
       'OrderByPropertyName': orderByPropertyName,
@@ -2241,7 +2246,7 @@ class _$FMA extends FMA {
       String? fuelMeasureId,
       String? fuelTypeId,
       String? companyId,
-      String? categoryId,
+      required String? categoryId,
       int? tankSize,
       bool? active,
       required List<int> partFile}) {
@@ -2284,9 +2289,10 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<VehicleNewEditDTO>> _apiVehicleGetFormGet({String? id}) {
+  Future<Response<VehicleNewEditDTO>> _apiVehicleGetFormGet(
+      {String? id, String? categoryType}) {
     final $url = '/api/Vehicle/GetForm';
-    final $params = <String, dynamic>{'id': id};
+    final $params = <String, dynamic>{'id': id, 'categoryType': categoryType};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<VehicleNewEditDTO, VehicleNewEditDTO>($request);
   }
@@ -2318,12 +2324,13 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<dynamic>> _apiVehicleDownloadGet(
-      {List<String>? vehicles, bool? all, bool? active}) {
+      {List<String>? vehicles, bool? all, bool? active, String? categoryType}) {
     final $url = '/api/Vehicle/Download';
     final $params = <String, dynamic>{
       'vehicles': vehicles,
       'all': all,
-      'active': active
+      'active': active,
+      'categoryType': categoryType
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
