@@ -2290,10 +2290,10 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<VehicleNewEditDTO>> _apiVehicleGetFormGet(
-      {required GetFormsDTO? body}) {
+      {String? id, String? categoryType}) {
     final $url = '/api/Vehicle/GetForm';
-    final $body = body;
-    final $request = Request('GET', $url, client.baseUrl, body: $body);
+    final $params = <String, dynamic>{'Id': id, 'CategoryType': categoryType};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<VehicleNewEditDTO, VehicleNewEditDTO>($request);
   }
 
