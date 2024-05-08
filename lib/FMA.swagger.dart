@@ -12827,7 +12827,6 @@ class VehicleFormDTO {
     this.fuelMeasureId,
     this.fuelTypeId,
     this.companyId,
-    required this.categoryId,
     this.tankSize,
     this.active,
     this.photographsFiles,
@@ -12837,6 +12836,7 @@ class VehicleFormDTO {
     this.vin,
     this.machineId,
     this.economicNumber,
+    this.categoryId,
     this.photographs,
     this.bill,
     this.pedimento,
@@ -12873,8 +12873,6 @@ class VehicleFormDTO {
   final String? fuelTypeId;
   @JsonKey(name: 'companyId')
   final String? companyId;
-  @JsonKey(name: 'categoryId')
-  final String categoryId;
   @JsonKey(name: 'tankSize')
   final int? tankSize;
   @JsonKey(name: 'active')
@@ -12893,6 +12891,8 @@ class VehicleFormDTO {
   final String? machineId;
   @JsonKey(name: 'economicNumber')
   final String? economicNumber;
+  @JsonKey(name: 'categoryId')
+  final String? categoryId;
   @JsonKey(name: 'photographs', defaultValue: <ImageDTO>[])
   final List<ImageDTO>? photographs;
   @JsonKey(name: 'bill')
@@ -12951,9 +12951,6 @@ class VehicleFormDTO {
             (identical(other.companyId, companyId) ||
                 const DeepCollectionEquality()
                     .equals(other.companyId, companyId)) &&
-            (identical(other.categoryId, categoryId) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoryId, categoryId)) &&
             (identical(other.tankSize, tankSize) ||
                 const DeepCollectionEquality()
                     .equals(other.tankSize, tankSize)) &&
@@ -12976,7 +12973,10 @@ class VehicleFormDTO {
             (identical(other.machineId, machineId) ||
                 const DeepCollectionEquality()
                     .equals(other.machineId, machineId)) &&
-            (identical(other.economicNumber, economicNumber) || const DeepCollectionEquality().equals(other.economicNumber, economicNumber)) &&
+            (identical(other.economicNumber, economicNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.economicNumber, economicNumber)) &&
+            (identical(other.categoryId, categoryId) || const DeepCollectionEquality().equals(other.categoryId, categoryId)) &&
             (identical(other.photographs, photographs) || const DeepCollectionEquality().equals(other.photographs, photographs)) &&
             (identical(other.bill, bill) || const DeepCollectionEquality().equals(other.bill, bill)) &&
             (identical(other.pedimento, pedimento) || const DeepCollectionEquality().equals(other.pedimento, pedimento)));
@@ -12998,7 +12998,6 @@ class VehicleFormDTO {
       const DeepCollectionEquality().hash(fuelMeasureId) ^
       const DeepCollectionEquality().hash(fuelTypeId) ^
       const DeepCollectionEquality().hash(companyId) ^
-      const DeepCollectionEquality().hash(categoryId) ^
       const DeepCollectionEquality().hash(tankSize) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(photographsFiles) ^
@@ -13008,6 +13007,7 @@ class VehicleFormDTO {
       const DeepCollectionEquality().hash(vin) ^
       const DeepCollectionEquality().hash(machineId) ^
       const DeepCollectionEquality().hash(economicNumber) ^
+      const DeepCollectionEquality().hash(categoryId) ^
       const DeepCollectionEquality().hash(photographs) ^
       const DeepCollectionEquality().hash(bill) ^
       const DeepCollectionEquality().hash(pedimento) ^
@@ -13030,7 +13030,6 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
       String? fuelMeasureId,
       String? fuelTypeId,
       String? companyId,
-      String? categoryId,
       int? tankSize,
       bool? active,
       List<String>? photographsFiles,
@@ -13040,6 +13039,7 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
       String? vin,
       String? machineId,
       String? economicNumber,
+      String? categoryId,
       List<ImageDTO>? photographs,
       DocumentDTO? bill,
       DocumentDTO? pedimento}) {
@@ -13058,7 +13058,6 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
         fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
         fuelTypeId: fuelTypeId ?? this.fuelTypeId,
         companyId: companyId ?? this.companyId,
-        categoryId: categoryId ?? this.categoryId,
         tankSize: tankSize ?? this.tankSize,
         active: active ?? this.active,
         photographsFiles: photographsFiles ?? this.photographsFiles,
@@ -13068,6 +13067,7 @@ extension $VehicleFormDTOExtension on VehicleFormDTO {
         vin: vin ?? this.vin,
         machineId: machineId ?? this.machineId,
         economicNumber: economicNumber ?? this.economicNumber,
+        categoryId: categoryId ?? this.categoryId,
         photographs: photographs ?? this.photographs,
         bill: bill ?? this.bill,
         pedimento: pedimento ?? this.pedimento);

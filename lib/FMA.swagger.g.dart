@@ -2366,7 +2366,6 @@ VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
       fuelMeasureId: json['fuelMeasureId'] as String?,
       fuelTypeId: json['fuelTypeId'] as String?,
       companyId: json['companyId'] as String?,
-      categoryId: json['categoryId'] as String,
       tankSize: json['tankSize'] as int?,
       active: json['active'] as bool?,
       photographsFiles: (json['photographsFiles'] as List<dynamic>?)
@@ -2379,6 +2378,7 @@ VehicleFormDTO _$VehicleFormDTOFromJson(Map<String, dynamic> json) =>
       vin: json['vin'] as String?,
       machineId: json['machineId'] as String?,
       economicNumber: json['economicNumber'] as String?,
+      categoryId: json['categoryId'] as String?,
       photographs: (json['photographs'] as List<dynamic>?)
               ?.map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -2407,7 +2407,6 @@ Map<String, dynamic> _$VehicleFormDTOToJson(VehicleFormDTO instance) =>
       'fuelMeasureId': instance.fuelMeasureId,
       'fuelTypeId': instance.fuelTypeId,
       'companyId': instance.companyId,
-      'categoryId': instance.categoryId,
       'tankSize': instance.tankSize,
       'active': instance.active,
       'photographsFiles': instance.photographsFiles,
@@ -2417,6 +2416,7 @@ Map<String, dynamic> _$VehicleFormDTOToJson(VehicleFormDTO instance) =>
       'vin': instance.vin,
       'machineId': instance.machineId,
       'economicNumber': instance.economicNumber,
+      'categoryId': instance.categoryId,
       'photographs': instance.photographs?.map((e) => e.toJson()).toList(),
       'bill': instance.bill?.toJson(),
       'pedimento': instance.pedimento?.toJson(),
