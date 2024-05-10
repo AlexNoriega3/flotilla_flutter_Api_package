@@ -865,6 +865,7 @@ abstract class FMA extends ChopperService {
   ///@param Amount
   ///@param UnitCost
   ///@param Odometer
+  ///@param Horometro
   ///@param OdometerMeasurementId
   ///@param Summary
   Future<chopper.Response<bool>> apiFuelLoadIdPut(
@@ -883,6 +884,7 @@ abstract class FMA extends ChopperService {
       required num? amount,
       num? unitCost,
       required int? odometer,
+      int? horometro,
       required String? odometerMeasurementId,
       bool? summary,
       required List<int> partFile}) {
@@ -902,6 +904,7 @@ abstract class FMA extends ChopperService {
         amount: amount,
         unitCost: unitCost,
         odometer: odometer,
+        horometro: horometro,
         odometerMeasurementId: odometerMeasurementId,
         summary: summary,
         partFile: partFile);
@@ -923,6 +926,7 @@ abstract class FMA extends ChopperService {
   ///@param Amount
   ///@param UnitCost
   ///@param Odometer
+  ///@param Horometro
   ///@param OdometerMeasurementId
   ///@param Summary
   @Put(path: '/api/FuelLoad/{id}')
@@ -943,6 +947,7 @@ abstract class FMA extends ChopperService {
       @Query('Amount') required num? amount,
       @Query('UnitCost') num? unitCost,
       @Query('Odometer') required int? odometer,
+      @Query('Horometro') int? horometro,
       @Query('OdometerMeasurementId') required String? odometerMeasurementId,
       @Query('Summary') bool? summary,
       @PartFile() required List<int> partFile});
@@ -5886,6 +5891,7 @@ class FuelLoadFormDTO {
     this.fuelMeasureId,
     this.userDriverId,
     this.unitCost,
+    this.horometro,
     this.summary,
     this.vehicleId,
     this.chargeDate,
@@ -5917,6 +5923,8 @@ class FuelLoadFormDTO {
   final String? userDriverId;
   @JsonKey(name: 'unitCost')
   final double? unitCost;
+  @JsonKey(name: 'horometro')
+  final int? horometro;
   @JsonKey(name: 'summary')
   final bool? summary;
   @JsonKey(name: 'vehicleId')
@@ -5974,6 +5982,9 @@ class FuelLoadFormDTO {
             (identical(other.unitCost, unitCost) ||
                 const DeepCollectionEquality()
                     .equals(other.unitCost, unitCost)) &&
+            (identical(other.horometro, horometro) ||
+                const DeepCollectionEquality()
+                    .equals(other.horometro, horometro)) &&
             (identical(other.summary, summary) ||
                 const DeepCollectionEquality()
                     .equals(other.summary, summary)) &&
@@ -6013,6 +6024,7 @@ class FuelLoadFormDTO {
       const DeepCollectionEquality().hash(fuelMeasureId) ^
       const DeepCollectionEquality().hash(userDriverId) ^
       const DeepCollectionEquality().hash(unitCost) ^
+      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(summary) ^
       const DeepCollectionEquality().hash(vehicleId) ^
       const DeepCollectionEquality().hash(chargeDate) ^
@@ -6036,6 +6048,7 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
       String? fuelMeasureId,
       String? userDriverId,
       double? unitCost,
+      int? horometro,
       bool? summary,
       String? vehicleId,
       String? chargeDate,
@@ -6055,6 +6068,7 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
         fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
         userDriverId: userDriverId ?? this.userDriverId,
         unitCost: unitCost ?? this.unitCost,
+        horometro: horometro ?? this.horometro,
         summary: summary ?? this.summary,
         vehicleId: vehicleId ?? this.vehicleId,
         chargeDate: chargeDate ?? this.chargeDate,
@@ -6205,6 +6219,7 @@ class FuelLoadPostDTO {
     required this.amount,
     this.unitCost,
     required this.odometer,
+    this.horometro,
     required this.odometerMeasurementId,
     this.summary,
   });
@@ -6240,6 +6255,8 @@ class FuelLoadPostDTO {
   final double? unitCost;
   @JsonKey(name: 'odometer')
   final int odometer;
+  @JsonKey(name: 'horometro')
+  final int? horometro;
   @JsonKey(name: 'odometerMeasurementId')
   final String odometerMeasurementId;
   @JsonKey(name: 'summary')
@@ -6294,6 +6311,9 @@ class FuelLoadPostDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
+            (identical(other.horometro, horometro) ||
+                const DeepCollectionEquality()
+                    .equals(other.horometro, horometro)) &&
             (identical(other.odometerMeasurementId, odometerMeasurementId) ||
                 const DeepCollectionEquality().equals(
                     other.odometerMeasurementId, odometerMeasurementId)) &&
@@ -6317,6 +6337,7 @@ class FuelLoadPostDTO {
       const DeepCollectionEquality().hash(amount) ^
       const DeepCollectionEquality().hash(unitCost) ^
       const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(odometerMeasurementId) ^
       const DeepCollectionEquality().hash(summary) ^
       runtimeType.hashCode;
@@ -6338,6 +6359,7 @@ extension $FuelLoadPostDTOExtension on FuelLoadPostDTO {
       double? amount,
       double? unitCost,
       int? odometer,
+      int? horometro,
       String? odometerMeasurementId,
       bool? summary}) {
     return FuelLoadPostDTO(
@@ -6355,6 +6377,7 @@ extension $FuelLoadPostDTOExtension on FuelLoadPostDTO {
         amount: amount ?? this.amount,
         unitCost: unitCost ?? this.unitCost,
         odometer: odometer ?? this.odometer,
+        horometro: horometro ?? this.horometro,
         odometerMeasurementId:
             odometerMeasurementId ?? this.odometerMeasurementId,
         summary: summary ?? this.summary);
@@ -11950,7 +11973,7 @@ class UserPutDTO {
     this.countryCode,
     this.titleAbbreviation,
     this.gender,
-    required this.phone,
+    required this.phoneNumber,
     this.country,
     this.city,
     this.address,
@@ -11978,8 +12001,8 @@ class UserPutDTO {
   @JsonKey(
       name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
   final enums.GenderEnum? gender;
-  @JsonKey(name: 'phone')
-  final String phone;
+  @JsonKey(name: 'phoneNumber')
+  final String phoneNumber;
   @JsonKey(name: 'country')
   final String? country;
   @JsonKey(name: 'city')
@@ -12022,8 +12045,9 @@ class UserPutDTO {
                     .equals(other.titleAbbreviation, titleAbbreviation)) &&
             (identical(other.gender, gender) ||
                 const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumber, phoneNumber)) &&
             (identical(other.country, country) ||
                 const DeepCollectionEquality()
                     .equals(other.country, country)) &&
@@ -12050,7 +12074,7 @@ class UserPutDTO {
       const DeepCollectionEquality().hash(countryCode) ^
       const DeepCollectionEquality().hash(titleAbbreviation) ^
       const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
       const DeepCollectionEquality().hash(country) ^
       const DeepCollectionEquality().hash(city) ^
       const DeepCollectionEquality().hash(address) ^
@@ -12069,7 +12093,7 @@ extension $UserPutDTOExtension on UserPutDTO {
       String? countryCode,
       String? titleAbbreviation,
       enums.GenderEnum? gender,
-      String? phone,
+      String? phoneNumber,
       String? country,
       String? city,
       String? address,
@@ -12084,7 +12108,7 @@ extension $UserPutDTOExtension on UserPutDTO {
         countryCode: countryCode ?? this.countryCode,
         titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
         gender: gender ?? this.gender,
-        phone: phone ?? this.phone,
+        phoneNumber: phoneNumber ?? this.phoneNumber,
         country: country ?? this.country,
         city: city ?? this.city,
         address: address ?? this.address,

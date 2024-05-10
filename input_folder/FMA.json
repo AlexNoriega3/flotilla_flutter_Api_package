@@ -1513,6 +1513,10 @@
   "type": "integer",
   "format": "int32"
   },
+  "Horometro": {
+  "type": "integer",
+  "format": "int32"
+  },
   "OdometerMeasurementId": {
   "type": "string"
   },
@@ -1562,6 +1566,9 @@
   "style": "form"
   },
   "Odometer": {
+  "style": "form"
+  },
+  "Horometro": {
   "style": "form"
   },
   "OdometerMeasurementId": {
@@ -2537,6 +2544,14 @@
   }
   },
   {
+  "name": "Horometro",
+  "in": "query",
+  "schema": {
+  "type": "integer",
+  "format": "int32"
+  }
+  },
+  {
   "name": "OdometerMeasurementId",
   "in": "query",
   "required": true,
@@ -2863,6 +2878,10 @@
   "type": "integer",
   "format": "int32"
   },
+  "Horometro": {
+  "type": "integer",
+  "format": "int32"
+  },
   "OdometerMeasurementId": {
   "type": "string"
   },
@@ -2915,6 +2934,9 @@
   "style": "form"
   },
   "Odometer": {
+  "style": "form"
+  },
+  "Horometro": {
   "style": "form"
   },
   "OdometerMeasurementId": {
@@ -12782,7 +12804,7 @@
   "required": [
   "firstName",
   "lastName",
-  "phone"
+  "phoneNumber"
   ],
   "type": "object",
   "properties": {
@@ -12826,7 +12848,7 @@
   "gender": {
   "$ref": "#/components/schemas/GenderEnum"
   },
-  "phone": {
+  "phoneNumber": {
   "maxLength": 10,
   "minLength": 10,
   "type": "string"
@@ -12883,7 +12905,7 @@
   "gender": {
   "style": "form"
   },
-  "phone": {
+  "phoneNumber": {
   "style": "form"
   },
   "country": {
@@ -16488,6 +16510,10 @@
   "type": "number",
   "format": "double"
   },
+  "horometro": {
+  "type": "integer",
+  "format": "int32"
+  },
   "summary": {
   "type": "boolean"
   },
@@ -16668,6 +16694,10 @@
   "odometer": {
   "maximum": 999999,
   "minimum": 1,
+  "type": "integer",
+  "format": "int32"
+  },
+  "horometro": {
   "type": "integer",
   "format": "int32"
   },
@@ -18964,7 +18994,7 @@
   "required": [
   "firstName",
   "lastName",
-  "phone"
+  "phoneNumber"
   ],
   "type": "object",
   "properties": {
@@ -19013,7 +19043,7 @@
   "gender": {
   "$ref": "#/components/schemas/GenderEnum"
   },
-  "phone": {
+  "phoneNumber": {
   "maxLength": 10,
   "minLength": 10,
   "type": "string"

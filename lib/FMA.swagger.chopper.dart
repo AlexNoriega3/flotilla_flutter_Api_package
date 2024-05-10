@@ -493,6 +493,7 @@ class _$FMA extends FMA {
       required num? amount,
       num? unitCost,
       required int? odometer,
+      int? horometro,
       required String? odometerMeasurementId,
       bool? summary,
       required List<int> partFile}) {
@@ -512,6 +513,7 @@ class _$FMA extends FMA {
       'Amount': amount,
       'UnitCost': unitCost,
       'Odometer': odometer,
+      'Horometro': horometro,
       'OdometerMeasurementId': odometerMeasurementId,
       'Summary': summary
     };
