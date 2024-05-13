@@ -450,7 +450,6 @@ FuelLoadFormDTO _$FuelLoadFormDTOFromJson(Map<String, dynamic> json) =>
       fuelMeasureId: json['fuelMeasureId'] as String?,
       userDriverId: json['userDriverId'] as String?,
       unitCost: (json['unitCost'] as num?)?.toDouble(),
-      horometro: json['horometro'] as int?,
       summary: json['summary'] as bool?,
       vehicleId: json['vehicleId'] as String?,
       chargeDate: json['chargeDate'] as String?,
@@ -458,6 +457,7 @@ FuelLoadFormDTO _$FuelLoadFormDTOFromJson(Map<String, dynamic> json) =>
       liters: (json['liters'] as num?)?.toDouble(),
       amount: (json['amount'] as num?)?.toDouble(),
       odometer: json['odometer'] as int?,
+      horometro: json['horometro'] as int?,
       odometerMeasurementId: json['odometerMeasurementId'] as String?,
       images: (json['images'] as List<dynamic>?)
               ?.map((e) => ImageDTO.fromJson(e as Map<String, dynamic>))
@@ -476,7 +476,6 @@ Map<String, dynamic> _$FuelLoadFormDTOToJson(FuelLoadFormDTO instance) =>
       'fuelMeasureId': instance.fuelMeasureId,
       'userDriverId': instance.userDriverId,
       'unitCost': instance.unitCost,
-      'horometro': instance.horometro,
       'summary': instance.summary,
       'vehicleId': instance.vehicleId,
       'chargeDate': instance.chargeDate,
@@ -484,6 +483,7 @@ Map<String, dynamic> _$FuelLoadFormDTOToJson(FuelLoadFormDTO instance) =>
       'liters': instance.liters,
       'amount': instance.amount,
       'odometer': instance.odometer,
+      'horometro': instance.horometro,
       'odometerMeasurementId': instance.odometerMeasurementId,
       'images': instance.images?.map((e) => e.toJson()).toList(),
       'categoryType': categoryTypeEnumToJson(instance.categoryType),
@@ -958,6 +958,7 @@ MaintenanceDTO _$MaintenanceDTOFromJson(Map<String, dynamic> json) =>
           : TimeSpan.fromJson(json['finishHour'] as Map<String, dynamic>),
       comments: json['comments'] as String?,
       odometer: json['odometer'] as String?,
+      horometro: json['horometro'] as int?,
       reference: json['reference'] as String?,
       maintenanceTypeId: json['maintenanceTypeId'] as String?,
       maintenanceGroupId: json['maintenanceGroupId'] as String?,
@@ -987,6 +988,7 @@ Map<String, dynamic> _$MaintenanceDTOToJson(MaintenanceDTO instance) =>
       'finishHour': instance.finishHour?.toJson(),
       'comments': instance.comments,
       'odometer': instance.odometer,
+      'horometro': instance.horometro,
       'reference': instance.reference,
       'maintenanceTypeId': instance.maintenanceTypeId,
       'maintenanceGroupId': instance.maintenanceGroupId,
@@ -1057,6 +1059,7 @@ MaintenanceFormDTO _$MaintenanceFormDTOFromJson(Map<String, dynamic> json) =>
       finishHour: json['finishHour'] as String?,
       comments: json['comments'] as String?,
       odometer: json['odometer'] as String?,
+      horometro: json['horometro'] as int?,
       reference: json['reference'] as String?,
       maintenanceTypeId: json['maintenanceTypeId'] as String?,
       maintenanceGroupId: json['maintenanceGroupId'] as String?,
@@ -1094,6 +1097,7 @@ Map<String, dynamic> _$MaintenanceFormDTOToJson(MaintenanceFormDTO instance) =>
       'finishHour': instance.finishHour,
       'comments': instance.comments,
       'odometer': instance.odometer,
+      'horometro': instance.horometro,
       'reference': instance.reference,
       'maintenanceTypeId': instance.maintenanceTypeId,
       'maintenanceGroupId': instance.maintenanceGroupId,
@@ -1177,6 +1181,7 @@ MaintenanceNewEditDTO _$MaintenanceNewEditDTOFromJson(
         Map<String, dynamic> json) =>
     MaintenanceNewEditDTO(
       odometer: json['odometer'] as String?,
+      horometro: json['horometro'] as String?,
       maintenanceId: json['maintenanceId'] as String?,
       maintenance: json['maintenance'] == null
           ? null
@@ -1208,6 +1213,7 @@ Map<String, dynamic> _$MaintenanceNewEditDTOToJson(
         MaintenanceNewEditDTO instance) =>
     <String, dynamic>{
       'odometer': instance.odometer,
+      'horometro': instance.horometro,
       'maintenanceId': instance.maintenanceId,
       'maintenance': instance.maintenance?.toJson(),
       'services': instance.services?.map((e) => e.toJson()).toList(),

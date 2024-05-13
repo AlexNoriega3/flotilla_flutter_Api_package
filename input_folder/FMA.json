@@ -16510,10 +16510,6 @@
   "type": "number",
   "format": "double"
   },
-  "horometro": {
-  "type": "integer",
-  "format": "int32"
-  },
   "summary": {
   "type": "boolean"
   },
@@ -16538,6 +16534,10 @@
   "format": "double"
   },
   "odometer": {
+  "type": "integer",
+  "format": "int32"
+  },
+  "horometro": {
   "type": "integer",
   "format": "int32"
   },
@@ -17276,6 +17276,10 @@
   "type": "string",
   "nullable": true
   },
+  "horometro": {
+  "type": "integer",
+  "format": "int32"
+  },
   "reference": {
   "type": "string",
   "nullable": true
@@ -17416,6 +17420,10 @@
   "odometer": {
   "type": "string",
   "nullable": true
+  },
+  "horometro": {
+  "type": "integer",
+  "format": "int32"
   },
   "reference": {
   "type": "string",
@@ -17565,6 +17573,10 @@
   "type": "object",
   "properties": {
   "odometer": {
+  "type": "string",
+  "nullable": true
+  },
+  "horometro": {
   "type": "string",
   "nullable": true
   },

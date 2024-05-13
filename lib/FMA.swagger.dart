@@ -5891,7 +5891,6 @@ class FuelLoadFormDTO {
     this.fuelMeasureId,
     this.userDriverId,
     this.unitCost,
-    this.horometro,
     this.summary,
     this.vehicleId,
     this.chargeDate,
@@ -5899,6 +5898,7 @@ class FuelLoadFormDTO {
     this.liters,
     this.amount,
     this.odometer,
+    this.horometro,
     this.odometerMeasurementId,
     this.images,
     this.categoryType,
@@ -5923,8 +5923,6 @@ class FuelLoadFormDTO {
   final String? userDriverId;
   @JsonKey(name: 'unitCost')
   final double? unitCost;
-  @JsonKey(name: 'horometro')
-  final int? horometro;
   @JsonKey(name: 'summary')
   final bool? summary;
   @JsonKey(name: 'vehicleId')
@@ -5939,6 +5937,8 @@ class FuelLoadFormDTO {
   final double? amount;
   @JsonKey(name: 'odometer')
   final int? odometer;
+  @JsonKey(name: 'horometro')
+  final int? horometro;
   @JsonKey(name: 'odometerMeasurementId')
   final String? odometerMeasurementId;
   @JsonKey(name: 'images', defaultValue: <ImageDTO>[])
@@ -5982,9 +5982,6 @@ class FuelLoadFormDTO {
             (identical(other.unitCost, unitCost) ||
                 const DeepCollectionEquality()
                     .equals(other.unitCost, unitCost)) &&
-            (identical(other.horometro, horometro) ||
-                const DeepCollectionEquality()
-                    .equals(other.horometro, horometro)) &&
             (identical(other.summary, summary) ||
                 const DeepCollectionEquality()
                     .equals(other.summary, summary)) &&
@@ -6004,6 +6001,9 @@ class FuelLoadFormDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
+            (identical(other.horometro, horometro) ||
+                const DeepCollectionEquality()
+                    .equals(other.horometro, horometro)) &&
             (identical(other.odometerMeasurementId, odometerMeasurementId) ||
                 const DeepCollectionEquality().equals(
                     other.odometerMeasurementId, odometerMeasurementId)) &&
@@ -6024,7 +6024,6 @@ class FuelLoadFormDTO {
       const DeepCollectionEquality().hash(fuelMeasureId) ^
       const DeepCollectionEquality().hash(userDriverId) ^
       const DeepCollectionEquality().hash(unitCost) ^
-      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(summary) ^
       const DeepCollectionEquality().hash(vehicleId) ^
       const DeepCollectionEquality().hash(chargeDate) ^
@@ -6032,6 +6031,7 @@ class FuelLoadFormDTO {
       const DeepCollectionEquality().hash(liters) ^
       const DeepCollectionEquality().hash(amount) ^
       const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(odometerMeasurementId) ^
       const DeepCollectionEquality().hash(images) ^
       const DeepCollectionEquality().hash(categoryType) ^
@@ -6048,7 +6048,6 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
       String? fuelMeasureId,
       String? userDriverId,
       double? unitCost,
-      int? horometro,
       bool? summary,
       String? vehicleId,
       String? chargeDate,
@@ -6056,6 +6055,7 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
       double? liters,
       double? amount,
       int? odometer,
+      int? horometro,
       String? odometerMeasurementId,
       List<ImageDTO>? images,
       enums.CategoryTypeEnum? categoryType}) {
@@ -6068,7 +6068,6 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
         fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
         userDriverId: userDriverId ?? this.userDriverId,
         unitCost: unitCost ?? this.unitCost,
-        horometro: horometro ?? this.horometro,
         summary: summary ?? this.summary,
         vehicleId: vehicleId ?? this.vehicleId,
         chargeDate: chargeDate ?? this.chargeDate,
@@ -6076,6 +6075,7 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
         liters: liters ?? this.liters,
         amount: amount ?? this.amount,
         odometer: odometer ?? this.odometer,
+        horometro: horometro ?? this.horometro,
         odometerMeasurementId:
             odometerMeasurementId ?? this.odometerMeasurementId,
         images: images ?? this.images,
@@ -7718,6 +7718,7 @@ class MaintenanceDTO {
     this.finishHour,
     this.comments,
     this.odometer,
+    this.horometro,
     this.reference,
     this.maintenanceTypeId,
     this.maintenanceGroupId,
@@ -7749,6 +7750,8 @@ class MaintenanceDTO {
   final String? comments;
   @JsonKey(name: 'odometer')
   final String? odometer;
+  @JsonKey(name: 'horometro')
+  final int? horometro;
   @JsonKey(name: 'reference')
   final String? reference;
   @JsonKey(name: 'maintenanceTypeId')
@@ -7800,6 +7803,9 @@ class MaintenanceDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
+            (identical(other.horometro, horometro) ||
+                const DeepCollectionEquality()
+                    .equals(other.horometro, horometro)) &&
             (identical(other.reference, reference) ||
                 const DeepCollectionEquality()
                     .equals(other.reference, reference)) &&
@@ -7837,6 +7843,7 @@ class MaintenanceDTO {
       const DeepCollectionEquality().hash(finishHour) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(reference) ^
       const DeepCollectionEquality().hash(maintenanceTypeId) ^
       const DeepCollectionEquality().hash(maintenanceGroupId) ^
@@ -7859,6 +7866,7 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
       TimeSpan? finishHour,
       String? comments,
       String? odometer,
+      int? horometro,
       String? reference,
       String? maintenanceTypeId,
       String? maintenanceGroupId,
@@ -7877,6 +7885,7 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
         finishHour: finishHour ?? this.finishHour,
         comments: comments ?? this.comments,
         odometer: odometer ?? this.odometer,
+        horometro: horometro ?? this.horometro,
         reference: reference ?? this.reference,
         maintenanceTypeId: maintenanceTypeId ?? this.maintenanceTypeId,
         maintenanceGroupId: maintenanceGroupId ?? this.maintenanceGroupId,
@@ -8074,6 +8083,7 @@ class MaintenanceFormDTO {
     this.finishHour,
     this.comments,
     this.odometer,
+    this.horometro,
     this.reference,
     this.maintenanceTypeId,
     this.maintenanceGroupId,
@@ -8108,6 +8118,8 @@ class MaintenanceFormDTO {
   final String? comments;
   @JsonKey(name: 'odometer')
   final String? odometer;
+  @JsonKey(name: 'horometro')
+  final int? horometro;
   @JsonKey(name: 'reference')
   final String? reference;
   @JsonKey(name: 'maintenanceTypeId')
@@ -8165,6 +8177,9 @@ class MaintenanceFormDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
+            (identical(other.horometro, horometro) ||
+                const DeepCollectionEquality()
+                    .equals(other.horometro, horometro)) &&
             (identical(other.reference, reference) ||
                 const DeepCollectionEquality()
                     .equals(other.reference, reference)) &&
@@ -8210,6 +8225,7 @@ class MaintenanceFormDTO {
       const DeepCollectionEquality().hash(finishHour) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(reference) ^
       const DeepCollectionEquality().hash(maintenanceTypeId) ^
       const DeepCollectionEquality().hash(maintenanceGroupId) ^
@@ -8235,6 +8251,7 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
       String? finishHour,
       String? comments,
       String? odometer,
+      int? horometro,
       String? reference,
       String? maintenanceTypeId,
       String? maintenanceGroupId,
@@ -8256,6 +8273,7 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
         finishHour: finishHour ?? this.finishHour,
         comments: comments ?? this.comments,
         odometer: odometer ?? this.odometer,
+        horometro: horometro ?? this.horometro,
         reference: reference ?? this.reference,
         maintenanceTypeId: maintenanceTypeId ?? this.maintenanceTypeId,
         maintenanceGroupId: maintenanceGroupId ?? this.maintenanceGroupId,
@@ -8506,6 +8524,7 @@ extension $MaintenanceListPartDTOExtension on MaintenanceListPartDTO {
 class MaintenanceNewEditDTO {
   MaintenanceNewEditDTO({
     this.odometer,
+    this.horometro,
     this.maintenanceId,
     this.maintenance,
     this.services,
@@ -8520,6 +8539,8 @@ class MaintenanceNewEditDTO {
 
   @JsonKey(name: 'odometer')
   final String? odometer;
+  @JsonKey(name: 'horometro')
+  final String? horometro;
   @JsonKey(name: 'maintenanceId')
   final String? maintenanceId;
   @JsonKey(name: 'maintenance')
@@ -8548,6 +8569,9 @@ class MaintenanceNewEditDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
+            (identical(other.horometro, horometro) ||
+                const DeepCollectionEquality()
+                    .equals(other.horometro, horometro)) &&
             (identical(other.maintenanceId, maintenanceId) ||
                 const DeepCollectionEquality()
                     .equals(other.maintenanceId, maintenanceId)) &&
@@ -8574,6 +8598,7 @@ class MaintenanceNewEditDTO {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(odometer) ^
+      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(maintenanceId) ^
       const DeepCollectionEquality().hash(maintenance) ^
       const DeepCollectionEquality().hash(services) ^
@@ -8587,6 +8612,7 @@ class MaintenanceNewEditDTO {
 extension $MaintenanceNewEditDTOExtension on MaintenanceNewEditDTO {
   MaintenanceNewEditDTO copyWith(
       {String? odometer,
+      String? horometro,
       String? maintenanceId,
       MaintenanceFormDTO? maintenance,
       List<SelectDTO>? services,
@@ -8596,6 +8622,7 @@ extension $MaintenanceNewEditDTOExtension on MaintenanceNewEditDTO {
       List<SelectDTO>? providers}) {
     return MaintenanceNewEditDTO(
         odometer: odometer ?? this.odometer,
+        horometro: horometro ?? this.horometro,
         maintenanceId: maintenanceId ?? this.maintenanceId,
         maintenance: maintenance ?? this.maintenance,
         services: services ?? this.services,
