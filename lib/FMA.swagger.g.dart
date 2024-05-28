@@ -1884,6 +1884,78 @@ Map<String, dynamic> _$ReminderDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+ReminderFormDTO _$ReminderFormDTOFromJson(Map<String, dynamic> json) =>
+    ReminderFormDTO(
+      id: json['id'] as String?,
+      reminderDate: json['reminderDate'] as String?,
+      code: json['code'] as String?,
+      serviceName: json['serviceName'] as String?,
+      title: json['title'] as String?,
+      vehicle: json['vehicle'] as String?,
+      vehicleId: json['vehicleId'] as String?,
+      serviceId: json['serviceId'] as String?,
+      userId: json['userId'] as String?,
+      measureId: json['measureId'] as String?,
+      frecuency: json['frecuency'] as int?,
+      frecuencyPeriod: json['frecuencyPeriod'] as int?,
+      period: periodEnumFromJson(json['period']),
+      kmBeforeReminder: json['kmBeforeReminder'] as String?,
+      timeBefore: json['timeBefore'] as int?,
+      periodToReminder: periodEnumFromJson(json['periodToReminder']),
+    );
+
+Map<String, dynamic> _$ReminderFormDTOToJson(ReminderFormDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'reminderDate': instance.reminderDate,
+      'code': instance.code,
+      'serviceName': instance.serviceName,
+      'title': instance.title,
+      'vehicle': instance.vehicle,
+      'vehicleId': instance.vehicleId,
+      'serviceId': instance.serviceId,
+      'userId': instance.userId,
+      'measureId': instance.measureId,
+      'frecuency': instance.frecuency,
+      'frecuencyPeriod': instance.frecuencyPeriod,
+      'period': periodEnumToJson(instance.period),
+      'kmBeforeReminder': instance.kmBeforeReminder,
+      'timeBefore': instance.timeBefore,
+      'periodToReminder': periodEnumToJson(instance.periodToReminder),
+    };
+
+ReminderNewEditDTO _$ReminderNewEditDTOFromJson(Map<String, dynamic> json) =>
+    ReminderNewEditDTO(
+      reminder: json['reminder'] == null
+          ? null
+          : ReminderFormDTO.fromJson(json['reminder'] as Map<String, dynamic>),
+      services: (json['services'] as List<dynamic>?)
+              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      vehicles: (json['vehicles'] as List<dynamic>?)
+              ?.map((e) => SelectVehicleDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      measures: (json['measures'] as List<dynamic>?)
+              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      users: (json['users'] as List<dynamic>?)
+              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ReminderNewEditDTOToJson(ReminderNewEditDTO instance) =>
+    <String, dynamic>{
+      'reminder': instance.reminder?.toJson(),
+      'services': instance.services?.map((e) => e.toJson()).toList(),
+      'vehicles': instance.vehicles?.map((e) => e.toJson()).toList(),
+      'measures': instance.measures?.map((e) => e.toJson()).toList(),
+      'users': instance.users?.map((e) => e.toJson()).toList(),
+    };
+
 ReminderPostDTO _$ReminderPostDTOFromJson(Map<String, dynamic> json) =>
     ReminderPostDTO(
       title: json['title'] as String?,

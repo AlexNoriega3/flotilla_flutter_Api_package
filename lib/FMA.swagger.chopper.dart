@@ -1890,6 +1890,14 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<ReminderNewEditDTO>> _apiReminderGetFormGet({String? id}) {
+    final $url = '/api/Reminder/GetForm';
+    final $params = <String, dynamic>{'id': id};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<ReminderNewEditDTO, ReminderNewEditDTO>($request);
+  }
+
+  @override
   Future<Response<List<RoleDTO>>> _apiRoleGet() {
     final $url = '/api/Role';
     final $request = Request('GET', $url, client.baseUrl);
