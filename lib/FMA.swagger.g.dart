@@ -1842,48 +1842,6 @@ Map<String, dynamic> _$ProjectDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-ReminderDTO _$ReminderDTOFromJson(Map<String, dynamic> json) => ReminderDTO(
-      id: json['id'] as String?,
-      reminderDate: json['reminderDate'] as String?,
-      code: json['code'] as String?,
-      serviceName: json['serviceName'] as String?,
-      title: json['title'] as String?,
-      vehicle: json['vehicle'] as String?,
-    );
-
-Map<String, dynamic> _$ReminderDTOToJson(ReminderDTO instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'reminderDate': instance.reminderDate,
-      'code': instance.code,
-      'serviceName': instance.serviceName,
-      'title': instance.title,
-      'vehicle': instance.vehicle,
-    };
-
-ReminderDTOPagedResult _$ReminderDTOPagedResultFromJson(
-        Map<String, dynamic> json) =>
-    ReminderDTOPagedResult(
-      totalCount: json['totalCount'] as int?,
-      pageNumber: json['pageNumber'] as int?,
-      recordNumber: json['recordNumber'] as int?,
-      totalPages: json['totalPages'] as int?,
-      items: (json['items'] as List<dynamic>?)
-              ?.map((e) => ReminderDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$ReminderDTOPagedResultToJson(
-        ReminderDTOPagedResult instance) =>
-    <String, dynamic>{
-      'totalCount': instance.totalCount,
-      'pageNumber': instance.pageNumber,
-      'recordNumber': instance.recordNumber,
-      'totalPages': instance.totalPages,
-      'items': instance.items?.map((e) => e.toJson()).toList(),
-    };
-
 ReminderFormDTO _$ReminderFormDTOFromJson(Map<String, dynamic> json) =>
     ReminderFormDTO(
       id: json['id'] as String?,
@@ -1922,6 +1880,29 @@ Map<String, dynamic> _$ReminderFormDTOToJson(ReminderFormDTO instance) =>
       'kmBeforeReminder': instance.kmBeforeReminder,
       'timeBefore': instance.timeBefore,
       'periodToReminder': periodEnumToJson(instance.periodToReminder),
+    };
+
+ReminderFormDTOPagedResult _$ReminderFormDTOPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ReminderFormDTOPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ReminderFormDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ReminderFormDTOPagedResultToJson(
+        ReminderFormDTOPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 ReminderNewEditDTO _$ReminderNewEditDTOFromJson(Map<String, dynamic> json) =>
@@ -2403,7 +2384,7 @@ VehicleDetailDTO _$VehicleDetailDTOFromJson(Map<String, dynamic> json) =>
           : DocumentDTO.fromJson(json['pedimento'] as Map<String, dynamic>),
       listReminders: json['listReminders'] == null
           ? null
-          : ReminderDTOPagedResult.fromJson(
+          : ReminderFormDTOPagedResult.fromJson(
               json['listReminders'] as Map<String, dynamic>),
       active: json['active'] as bool?,
     );
