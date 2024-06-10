@@ -3265,7 +3265,7 @@ abstract class FMA extends ChopperService {
   ///@param SortOrder
   ///@param PageSize
   ///@param Active
-  Future<chopper.Response<ReminderDTOPagedResult>> apiReminderSearchGet(
+  Future<chopper.Response<ReminderFormDTOPagedResult>> apiReminderSearchGet(
       {String? id,
       required int? page,
       String? search,
@@ -3273,8 +3273,8 @@ abstract class FMA extends ChopperService {
       enums.SortOrderEnum? sortOrder,
       required int? pageSize,
       bool? active}) {
-    generatedMapping.putIfAbsent(
-        ReminderDTOPagedResult, () => ReminderDTOPagedResult.fromJsonFactory);
+    generatedMapping.putIfAbsent(ReminderFormDTOPagedResult,
+        () => ReminderFormDTOPagedResult.fromJsonFactory);
 
     return _apiReminderSearchGet(
         id: id,
@@ -3295,7 +3295,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   ///@param Active
   @Get(path: '/api/Reminder/Search')
-  Future<chopper.Response<ReminderDTOPagedResult>> _apiReminderSearchGet(
+  Future<chopper.Response<ReminderFormDTOPagedResult>> _apiReminderSearchGet(
       {@Query('Id') String? id,
       @Query('Page') required int? page,
       @Query('Search') String? search,
@@ -3345,6 +3345,22 @@ abstract class FMA extends ChopperService {
   @Delete(path: '/api/Reminder/{id}')
   Future<chopper.Response<bool>> _apiReminderIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<ReminderNewEditDTO>> apiReminderGetFormGet(
+      {String? id}) {
+    generatedMapping.putIfAbsent(
+        ReminderNewEditDTO, () => ReminderNewEditDTO.fromJsonFactory);
+
+    return _apiReminderGetFormGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Reminder/GetForm')
+  Future<chopper.Response<ReminderNewEditDTO>> _apiReminderGetFormGet(
+      {@Query('id') String? id});
 
   ///
   Future<chopper.Response<List<RoleDTO>>> apiRoleGet() {
@@ -10869,18 +10885,30 @@ extension $ProjectDTOPagedResultExtension on ProjectDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ReminderDTO {
-  ReminderDTO({
+class ReminderFormDTO {
+  ReminderFormDTO({
     this.id,
     this.reminderDate,
     this.code,
     this.serviceName,
     this.title,
     this.vehicle,
+    this.vehicleId,
+    this.serviceId,
+    this.userId,
+    this.measureId,
+    this.frecuency,
+    this.frecuencyPeriod,
+    this.period,
+    this.kmBeforeReminder,
+    this.timeBefore,
+    this.periodToReminder,
+    this.initialDate,
+    this.initialOdometer,
   });
 
-  factory ReminderDTO.fromJson(Map<String, dynamic> json) =>
-      _$ReminderDTOFromJson(json);
+  factory ReminderFormDTO.fromJson(Map<String, dynamic> json) =>
+      _$ReminderFormDTOFromJson(json);
 
   @JsonKey(name: 'id')
   final String? id;
@@ -10894,9 +10922,37 @@ class ReminderDTO {
   final String? title;
   @JsonKey(name: 'vehicle')
   final String? vehicle;
-  static const fromJsonFactory = _$ReminderDTOFromJson;
-  static const toJsonFactory = _$ReminderDTOToJson;
-  Map<String, dynamic> toJson() => _$ReminderDTOToJson(this);
+  @JsonKey(name: 'vehicleId')
+  final String? vehicleId;
+  @JsonKey(name: 'serviceId')
+  final String? serviceId;
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'measureId')
+  final String? measureId;
+  @JsonKey(name: 'frecuency')
+  final int? frecuency;
+  @JsonKey(name: 'frecuencyPeriod')
+  final int? frecuencyPeriod;
+  @JsonKey(
+      name: 'period', toJson: periodEnumToJson, fromJson: periodEnumFromJson)
+  final enums.PeriodEnum? period;
+  @JsonKey(name: 'kmBeforeReminder')
+  final String? kmBeforeReminder;
+  @JsonKey(name: 'timeBefore')
+  final int? timeBefore;
+  @JsonKey(
+      name: 'periodToReminder',
+      toJson: periodEnumToJson,
+      fromJson: periodEnumFromJson)
+  final enums.PeriodEnum? periodToReminder;
+  @JsonKey(name: 'initialDate')
+  final DateTime? initialDate;
+  @JsonKey(name: 'initialOdometer')
+  final int? initialOdometer;
+  static const fromJsonFactory = _$ReminderFormDTOFromJson;
+  static const toJsonFactory = _$ReminderFormDTOToJson;
+  Map<String, dynamic> toJson() => _$ReminderFormDTOToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -10904,7 +10960,7 @@ class ReminderDTO {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ReminderDTO &&
+        (other is ReminderFormDTO &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.reminderDate, reminderDate) ||
@@ -10918,7 +10974,42 @@ class ReminderDTO {
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality().equals(other.vehicle, vehicle)));
+                const DeepCollectionEquality()
+                    .equals(other.vehicle, vehicle)) &&
+            (identical(other.vehicleId, vehicleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleId, vehicleId)) &&
+            (identical(other.serviceId, serviceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.serviceId, serviceId)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.measureId, measureId) ||
+                const DeepCollectionEquality()
+                    .equals(other.measureId, measureId)) &&
+            (identical(other.frecuency, frecuency) ||
+                const DeepCollectionEquality()
+                    .equals(other.frecuency, frecuency)) &&
+            (identical(other.frecuencyPeriod, frecuencyPeriod) ||
+                const DeepCollectionEquality()
+                    .equals(other.frecuencyPeriod, frecuencyPeriod)) &&
+            (identical(other.period, period) ||
+                const DeepCollectionEquality().equals(other.period, period)) &&
+            (identical(other.kmBeforeReminder, kmBeforeReminder) ||
+                const DeepCollectionEquality()
+                    .equals(other.kmBeforeReminder, kmBeforeReminder)) &&
+            (identical(other.timeBefore, timeBefore) ||
+                const DeepCollectionEquality()
+                    .equals(other.timeBefore, timeBefore)) &&
+            (identical(other.periodToReminder, periodToReminder) ||
+                const DeepCollectionEquality()
+                    .equals(other.periodToReminder, periodToReminder)) &&
+            (identical(other.initialDate, initialDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.initialDate, initialDate)) &&
+            (identical(other.initialOdometer, initialOdometer) ||
+                const DeepCollectionEquality()
+                    .equals(other.initialOdometer, initialOdometer)));
   }
 
   @override
@@ -10929,30 +11020,66 @@ class ReminderDTO {
       const DeepCollectionEquality().hash(serviceName) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(vehicle) ^
+      const DeepCollectionEquality().hash(vehicleId) ^
+      const DeepCollectionEquality().hash(serviceId) ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(measureId) ^
+      const DeepCollectionEquality().hash(frecuency) ^
+      const DeepCollectionEquality().hash(frecuencyPeriod) ^
+      const DeepCollectionEquality().hash(period) ^
+      const DeepCollectionEquality().hash(kmBeforeReminder) ^
+      const DeepCollectionEquality().hash(timeBefore) ^
+      const DeepCollectionEquality().hash(periodToReminder) ^
+      const DeepCollectionEquality().hash(initialDate) ^
+      const DeepCollectionEquality().hash(initialOdometer) ^
       runtimeType.hashCode;
 }
 
-extension $ReminderDTOExtension on ReminderDTO {
-  ReminderDTO copyWith(
+extension $ReminderFormDTOExtension on ReminderFormDTO {
+  ReminderFormDTO copyWith(
       {String? id,
       String? reminderDate,
       String? code,
       String? serviceName,
       String? title,
-      String? vehicle}) {
-    return ReminderDTO(
+      String? vehicle,
+      String? vehicleId,
+      String? serviceId,
+      String? userId,
+      String? measureId,
+      int? frecuency,
+      int? frecuencyPeriod,
+      enums.PeriodEnum? period,
+      String? kmBeforeReminder,
+      int? timeBefore,
+      enums.PeriodEnum? periodToReminder,
+      DateTime? initialDate,
+      int? initialOdometer}) {
+    return ReminderFormDTO(
         id: id ?? this.id,
         reminderDate: reminderDate ?? this.reminderDate,
         code: code ?? this.code,
         serviceName: serviceName ?? this.serviceName,
         title: title ?? this.title,
-        vehicle: vehicle ?? this.vehicle);
+        vehicle: vehicle ?? this.vehicle,
+        vehicleId: vehicleId ?? this.vehicleId,
+        serviceId: serviceId ?? this.serviceId,
+        userId: userId ?? this.userId,
+        measureId: measureId ?? this.measureId,
+        frecuency: frecuency ?? this.frecuency,
+        frecuencyPeriod: frecuencyPeriod ?? this.frecuencyPeriod,
+        period: period ?? this.period,
+        kmBeforeReminder: kmBeforeReminder ?? this.kmBeforeReminder,
+        timeBefore: timeBefore ?? this.timeBefore,
+        periodToReminder: periodToReminder ?? this.periodToReminder,
+        initialDate: initialDate ?? this.initialDate,
+        initialOdometer: initialOdometer ?? this.initialOdometer);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ReminderDTOPagedResult {
-  ReminderDTOPagedResult({
+class ReminderFormDTOPagedResult {
+  ReminderFormDTOPagedResult({
     this.totalCount,
     this.pageNumber,
     this.recordNumber,
@@ -10960,8 +11087,8 @@ class ReminderDTOPagedResult {
     this.items,
   });
 
-  factory ReminderDTOPagedResult.fromJson(Map<String, dynamic> json) =>
-      _$ReminderDTOPagedResultFromJson(json);
+  factory ReminderFormDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ReminderFormDTOPagedResultFromJson(json);
 
   @JsonKey(name: 'totalCount')
   final int? totalCount;
@@ -10971,11 +11098,11 @@ class ReminderDTOPagedResult {
   final int? recordNumber;
   @JsonKey(name: 'totalPages')
   final int? totalPages;
-  @JsonKey(name: 'items', defaultValue: <ReminderDTO>[])
-  final List<ReminderDTO>? items;
-  static const fromJsonFactory = _$ReminderDTOPagedResultFromJson;
-  static const toJsonFactory = _$ReminderDTOPagedResultToJson;
-  Map<String, dynamic> toJson() => _$ReminderDTOPagedResultToJson(this);
+  @JsonKey(name: 'items', defaultValue: <ReminderFormDTO>[])
+  final List<ReminderFormDTO>? items;
+  static const fromJsonFactory = _$ReminderFormDTOPagedResultFromJson;
+  static const toJsonFactory = _$ReminderFormDTOPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ReminderFormDTOPagedResultToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -10983,7 +11110,7 @@ class ReminderDTOPagedResult {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ReminderDTOPagedResult &&
+        (other is ReminderFormDTOPagedResult &&
             (identical(other.totalCount, totalCount) ||
                 const DeepCollectionEquality()
                     .equals(other.totalCount, totalCount)) &&
@@ -11010,19 +11137,95 @@ class ReminderDTOPagedResult {
       runtimeType.hashCode;
 }
 
-extension $ReminderDTOPagedResultExtension on ReminderDTOPagedResult {
-  ReminderDTOPagedResult copyWith(
+extension $ReminderFormDTOPagedResultExtension on ReminderFormDTOPagedResult {
+  ReminderFormDTOPagedResult copyWith(
       {int? totalCount,
       int? pageNumber,
       int? recordNumber,
       int? totalPages,
-      List<ReminderDTO>? items}) {
-    return ReminderDTOPagedResult(
+      List<ReminderFormDTO>? items}) {
+    return ReminderFormDTOPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ReminderNewEditDTO {
+  ReminderNewEditDTO({
+    this.reminder,
+    this.services,
+    this.vehicles,
+    this.measures,
+    this.users,
+  });
+
+  factory ReminderNewEditDTO.fromJson(Map<String, dynamic> json) =>
+      _$ReminderNewEditDTOFromJson(json);
+
+  @JsonKey(name: 'reminder')
+  final ReminderFormDTO? reminder;
+  @JsonKey(name: 'services', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? services;
+  @JsonKey(name: 'vehicles', defaultValue: <SelectVehicleDTO>[])
+  final List<SelectVehicleDTO>? vehicles;
+  @JsonKey(name: 'measures', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? measures;
+  @JsonKey(name: 'users', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? users;
+  static const fromJsonFactory = _$ReminderNewEditDTOFromJson;
+  static const toJsonFactory = _$ReminderNewEditDTOToJson;
+  Map<String, dynamic> toJson() => _$ReminderNewEditDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ReminderNewEditDTO &&
+            (identical(other.reminder, reminder) ||
+                const DeepCollectionEquality()
+                    .equals(other.reminder, reminder)) &&
+            (identical(other.services, services) ||
+                const DeepCollectionEquality()
+                    .equals(other.services, services)) &&
+            (identical(other.vehicles, vehicles) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicles, vehicles)) &&
+            (identical(other.measures, measures) ||
+                const DeepCollectionEquality()
+                    .equals(other.measures, measures)) &&
+            (identical(other.users, users) ||
+                const DeepCollectionEquality().equals(other.users, users)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(reminder) ^
+      const DeepCollectionEquality().hash(services) ^
+      const DeepCollectionEquality().hash(vehicles) ^
+      const DeepCollectionEquality().hash(measures) ^
+      const DeepCollectionEquality().hash(users) ^
+      runtimeType.hashCode;
+}
+
+extension $ReminderNewEditDTOExtension on ReminderNewEditDTO {
+  ReminderNewEditDTO copyWith(
+      {ReminderFormDTO? reminder,
+      List<SelectDTO>? services,
+      List<SelectVehicleDTO>? vehicles,
+      List<SelectDTO>? measures,
+      List<SelectDTO>? users}) {
+    return ReminderNewEditDTO(
+        reminder: reminder ?? this.reminder,
+        services: services ?? this.services,
+        vehicles: vehicles ?? this.vehicles,
+        measures: measures ?? this.measures,
+        users: users ?? this.users);
   }
 }
 
@@ -11040,6 +11243,8 @@ class ReminderPostDTO {
     required this.serviceId,
     this.userId,
     required this.vehicleId,
+    this.initialDate,
+    this.initialOdometer,
   });
 
   factory ReminderPostDTO.fromJson(Map<String, dynamic> json) =>
@@ -11071,6 +11276,10 @@ class ReminderPostDTO {
   final String? userId;
   @JsonKey(name: 'vehicleId')
   final String vehicleId;
+  @JsonKey(name: 'initialDate')
+  final DateTime? initialDate;
+  @JsonKey(name: 'initialOdometer')
+  final int? initialOdometer;
   static const fromJsonFactory = _$ReminderPostDTOFromJson;
   static const toJsonFactory = _$ReminderPostDTOToJson;
   Map<String, dynamic> toJson() => _$ReminderPostDTOToJson(this);
@@ -11111,7 +11320,13 @@ class ReminderPostDTO {
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
-                    .equals(other.vehicleId, vehicleId)));
+                    .equals(other.vehicleId, vehicleId)) &&
+            (identical(other.initialDate, initialDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.initialDate, initialDate)) &&
+            (identical(other.initialOdometer, initialOdometer) ||
+                const DeepCollectionEquality()
+                    .equals(other.initialOdometer, initialOdometer)));
   }
 
   @override
@@ -11127,6 +11342,8 @@ class ReminderPostDTO {
       const DeepCollectionEquality().hash(serviceId) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(vehicleId) ^
+      const DeepCollectionEquality().hash(initialDate) ^
+      const DeepCollectionEquality().hash(initialOdometer) ^
       runtimeType.hashCode;
 }
 
@@ -11142,7 +11359,9 @@ extension $ReminderPostDTOExtension on ReminderPostDTO {
       enums.PeriodEnum? periodToReminder,
       String? serviceId,
       String? userId,
-      String? vehicleId}) {
+      String? vehicleId,
+      DateTime? initialDate,
+      int? initialOdometer}) {
     return ReminderPostDTO(
         title: title ?? this.title,
         frecuency: frecuency ?? this.frecuency,
@@ -11154,7 +11373,9 @@ extension $ReminderPostDTOExtension on ReminderPostDTO {
         periodToReminder: periodToReminder ?? this.periodToReminder,
         serviceId: serviceId ?? this.serviceId,
         userId: userId ?? this.userId,
-        vehicleId: vehicleId ?? this.vehicleId);
+        vehicleId: vehicleId ?? this.vehicleId,
+        initialDate: initialDate ?? this.initialDate,
+        initialOdometer: initialOdometer ?? this.initialOdometer);
   }
 }
 
@@ -12720,7 +12941,7 @@ class VehicleDetailDTO {
   @JsonKey(name: 'pedimento')
   final DocumentDTO? pedimento;
   @JsonKey(name: 'listReminders')
-  final ReminderDTOPagedResult? listReminders;
+  final ReminderFormDTOPagedResult? listReminders;
   @JsonKey(name: 'active')
   final bool? active;
   static const fromJsonFactory = _$VehicleDetailDTOFromJson;
@@ -12835,7 +13056,7 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
       List<ImageDTO>? photographs,
       DocumentDTO? bill,
       DocumentDTO? pedimento,
-      ReminderDTOPagedResult? listReminders,
+      ReminderFormDTOPagedResult? listReminders,
       bool? active}) {
     return VehicleDetailDTO(
         id: id ?? this.id,
