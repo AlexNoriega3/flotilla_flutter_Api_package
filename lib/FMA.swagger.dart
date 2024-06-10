@@ -3265,7 +3265,7 @@ abstract class FMA extends ChopperService {
   ///@param SortOrder
   ///@param PageSize
   ///@param Active
-  Future<chopper.Response<ReminderFormDTOPagedResult>> apiReminderSearchGet(
+  Future<chopper.Response<Object>> apiReminderSearchGet(
       {String? id,
       required int? page,
       String? search,
@@ -3273,9 +3273,6 @@ abstract class FMA extends ChopperService {
       enums.SortOrderEnum? sortOrder,
       required int? pageSize,
       bool? active}) {
-    generatedMapping.putIfAbsent(ReminderFormDTOPagedResult,
-        () => ReminderFormDTOPagedResult.fromJsonFactory);
-
     return _apiReminderSearchGet(
         id: id,
         page: page,
@@ -3295,7 +3292,7 @@ abstract class FMA extends ChopperService {
   ///@param PageSize
   ///@param Active
   @Get(path: '/api/Reminder/Search')
-  Future<chopper.Response<ReminderFormDTOPagedResult>> _apiReminderSearchGet(
+  Future<chopper.Response<Object>> _apiReminderSearchGet(
       {@Query('Id') String? id,
       @Query('Page') required int? page,
       @Query('Search') String? search,
@@ -3348,18 +3345,14 @@ abstract class FMA extends ChopperService {
 
   ///
   ///@param id
-  Future<chopper.Response<ReminderNewEditDTO>> apiReminderGetFormGet(
-      {String? id}) {
-    generatedMapping.putIfAbsent(
-        ReminderNewEditDTO, () => ReminderNewEditDTO.fromJsonFactory);
-
+  Future<chopper.Response<Object>> apiReminderGetFormGet({String? id}) {
     return _apiReminderGetFormGet(id: id);
   }
 
   ///
   ///@param id
   @Get(path: '/api/Reminder/GetForm')
-  Future<chopper.Response<ReminderNewEditDTO>> _apiReminderGetFormGet(
+  Future<chopper.Response<Object>> _apiReminderGetFormGet(
       {@Query('id') String? id});
 
   ///
@@ -5907,6 +5900,7 @@ class FuelLoadFormDTO {
     this.fuelMeasureId,
     this.userDriverId,
     this.unitCost,
+    this.horometro,
     this.summary,
     this.vehicleId,
     this.chargeDate,
@@ -5914,7 +5908,6 @@ class FuelLoadFormDTO {
     this.liters,
     this.amount,
     this.odometer,
-    this.horometro,
     this.odometerMeasurementId,
     this.images,
     this.categoryType,
@@ -5939,6 +5932,8 @@ class FuelLoadFormDTO {
   final String? userDriverId;
   @JsonKey(name: 'unitCost')
   final double? unitCost;
+  @JsonKey(name: 'horometro')
+  final int? horometro;
   @JsonKey(name: 'summary')
   final bool? summary;
   @JsonKey(name: 'vehicleId')
@@ -5953,8 +5948,6 @@ class FuelLoadFormDTO {
   final double? amount;
   @JsonKey(name: 'odometer')
   final int? odometer;
-  @JsonKey(name: 'horometro')
-  final int? horometro;
   @JsonKey(name: 'odometerMeasurementId')
   final String? odometerMeasurementId;
   @JsonKey(name: 'images', defaultValue: <ImageDTO>[])
@@ -5998,6 +5991,9 @@ class FuelLoadFormDTO {
             (identical(other.unitCost, unitCost) ||
                 const DeepCollectionEquality()
                     .equals(other.unitCost, unitCost)) &&
+            (identical(other.horometro, horometro) ||
+                const DeepCollectionEquality()
+                    .equals(other.horometro, horometro)) &&
             (identical(other.summary, summary) ||
                 const DeepCollectionEquality()
                     .equals(other.summary, summary)) &&
@@ -6017,9 +6013,6 @@ class FuelLoadFormDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
-            (identical(other.horometro, horometro) ||
-                const DeepCollectionEquality()
-                    .equals(other.horometro, horometro)) &&
             (identical(other.odometerMeasurementId, odometerMeasurementId) ||
                 const DeepCollectionEquality().equals(
                     other.odometerMeasurementId, odometerMeasurementId)) &&
@@ -6040,6 +6033,7 @@ class FuelLoadFormDTO {
       const DeepCollectionEquality().hash(fuelMeasureId) ^
       const DeepCollectionEquality().hash(userDriverId) ^
       const DeepCollectionEquality().hash(unitCost) ^
+      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(summary) ^
       const DeepCollectionEquality().hash(vehicleId) ^
       const DeepCollectionEquality().hash(chargeDate) ^
@@ -6047,7 +6041,6 @@ class FuelLoadFormDTO {
       const DeepCollectionEquality().hash(liters) ^
       const DeepCollectionEquality().hash(amount) ^
       const DeepCollectionEquality().hash(odometer) ^
-      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(odometerMeasurementId) ^
       const DeepCollectionEquality().hash(images) ^
       const DeepCollectionEquality().hash(categoryType) ^
@@ -6064,6 +6057,7 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
       String? fuelMeasureId,
       String? userDriverId,
       double? unitCost,
+      int? horometro,
       bool? summary,
       String? vehicleId,
       String? chargeDate,
@@ -6071,7 +6065,6 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
       double? liters,
       double? amount,
       int? odometer,
-      int? horometro,
       String? odometerMeasurementId,
       List<ImageDTO>? images,
       enums.CategoryTypeEnum? categoryType}) {
@@ -6084,6 +6077,7 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
         fuelMeasureId: fuelMeasureId ?? this.fuelMeasureId,
         userDriverId: userDriverId ?? this.userDriverId,
         unitCost: unitCost ?? this.unitCost,
+        horometro: horometro ?? this.horometro,
         summary: summary ?? this.summary,
         vehicleId: vehicleId ?? this.vehicleId,
         chargeDate: chargeDate ?? this.chargeDate,
@@ -6091,7 +6085,6 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
         liters: liters ?? this.liters,
         amount: amount ?? this.amount,
         odometer: odometer ?? this.odometer,
-        horometro: horometro ?? this.horometro,
         odometerMeasurementId:
             odometerMeasurementId ?? this.odometerMeasurementId,
         images: images ?? this.images,
@@ -7734,7 +7727,6 @@ class MaintenanceDTO {
     this.finishHour,
     this.comments,
     this.odometer,
-    this.horometro,
     this.reference,
     this.maintenanceTypeId,
     this.maintenanceGroupId,
@@ -7766,8 +7758,6 @@ class MaintenanceDTO {
   final String? comments;
   @JsonKey(name: 'odometer')
   final String? odometer;
-  @JsonKey(name: 'horometro')
-  final int? horometro;
   @JsonKey(name: 'reference')
   final String? reference;
   @JsonKey(name: 'maintenanceTypeId')
@@ -7819,9 +7809,6 @@ class MaintenanceDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
-            (identical(other.horometro, horometro) ||
-                const DeepCollectionEquality()
-                    .equals(other.horometro, horometro)) &&
             (identical(other.reference, reference) ||
                 const DeepCollectionEquality()
                     .equals(other.reference, reference)) &&
@@ -7859,7 +7846,6 @@ class MaintenanceDTO {
       const DeepCollectionEquality().hash(finishHour) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(odometer) ^
-      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(reference) ^
       const DeepCollectionEquality().hash(maintenanceTypeId) ^
       const DeepCollectionEquality().hash(maintenanceGroupId) ^
@@ -7882,7 +7868,6 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
       TimeSpan? finishHour,
       String? comments,
       String? odometer,
-      int? horometro,
       String? reference,
       String? maintenanceTypeId,
       String? maintenanceGroupId,
@@ -7901,7 +7886,6 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
         finishHour: finishHour ?? this.finishHour,
         comments: comments ?? this.comments,
         odometer: odometer ?? this.odometer,
-        horometro: horometro ?? this.horometro,
         reference: reference ?? this.reference,
         maintenanceTypeId: maintenanceTypeId ?? this.maintenanceTypeId,
         maintenanceGroupId: maintenanceGroupId ?? this.maintenanceGroupId,
@@ -8099,7 +8083,6 @@ class MaintenanceFormDTO {
     this.finishHour,
     this.comments,
     this.odometer,
-    this.horometro,
     this.reference,
     this.maintenanceTypeId,
     this.maintenanceGroupId,
@@ -8134,8 +8117,6 @@ class MaintenanceFormDTO {
   final String? comments;
   @JsonKey(name: 'odometer')
   final String? odometer;
-  @JsonKey(name: 'horometro')
-  final int? horometro;
   @JsonKey(name: 'reference')
   final String? reference;
   @JsonKey(name: 'maintenanceTypeId')
@@ -8193,9 +8174,6 @@ class MaintenanceFormDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
-            (identical(other.horometro, horometro) ||
-                const DeepCollectionEquality()
-                    .equals(other.horometro, horometro)) &&
             (identical(other.reference, reference) ||
                 const DeepCollectionEquality()
                     .equals(other.reference, reference)) &&
@@ -8241,7 +8219,6 @@ class MaintenanceFormDTO {
       const DeepCollectionEquality().hash(finishHour) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(odometer) ^
-      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(reference) ^
       const DeepCollectionEquality().hash(maintenanceTypeId) ^
       const DeepCollectionEquality().hash(maintenanceGroupId) ^
@@ -8267,7 +8244,6 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
       String? finishHour,
       String? comments,
       String? odometer,
-      int? horometro,
       String? reference,
       String? maintenanceTypeId,
       String? maintenanceGroupId,
@@ -8289,7 +8265,6 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
         finishHour: finishHour ?? this.finishHour,
         comments: comments ?? this.comments,
         odometer: odometer ?? this.odometer,
-        horometro: horometro ?? this.horometro,
         reference: reference ?? this.reference,
         maintenanceTypeId: maintenanceTypeId ?? this.maintenanceTypeId,
         maintenanceGroupId: maintenanceGroupId ?? this.maintenanceGroupId,
@@ -8540,7 +8515,6 @@ extension $MaintenanceListPartDTOExtension on MaintenanceListPartDTO {
 class MaintenanceNewEditDTO {
   MaintenanceNewEditDTO({
     this.odometer,
-    this.horometro,
     this.maintenanceId,
     this.maintenance,
     this.services,
@@ -8555,8 +8529,6 @@ class MaintenanceNewEditDTO {
 
   @JsonKey(name: 'odometer')
   final String? odometer;
-  @JsonKey(name: 'horometro')
-  final String? horometro;
   @JsonKey(name: 'maintenanceId')
   final String? maintenanceId;
   @JsonKey(name: 'maintenance')
@@ -8585,9 +8557,6 @@ class MaintenanceNewEditDTO {
             (identical(other.odometer, odometer) ||
                 const DeepCollectionEquality()
                     .equals(other.odometer, odometer)) &&
-            (identical(other.horometro, horometro) ||
-                const DeepCollectionEquality()
-                    .equals(other.horometro, horometro)) &&
             (identical(other.maintenanceId, maintenanceId) ||
                 const DeepCollectionEquality()
                     .equals(other.maintenanceId, maintenanceId)) &&
@@ -8614,7 +8583,6 @@ class MaintenanceNewEditDTO {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(odometer) ^
-      const DeepCollectionEquality().hash(horometro) ^
       const DeepCollectionEquality().hash(maintenanceId) ^
       const DeepCollectionEquality().hash(maintenance) ^
       const DeepCollectionEquality().hash(services) ^
@@ -8628,7 +8596,6 @@ class MaintenanceNewEditDTO {
 extension $MaintenanceNewEditDTOExtension on MaintenanceNewEditDTO {
   MaintenanceNewEditDTO copyWith(
       {String? odometer,
-      String? horometro,
       String? maintenanceId,
       MaintenanceFormDTO? maintenance,
       List<SelectDTO>? services,
@@ -8638,7 +8605,6 @@ extension $MaintenanceNewEditDTOExtension on MaintenanceNewEditDTO {
       List<SelectDTO>? providers}) {
     return MaintenanceNewEditDTO(
         odometer: odometer ?? this.odometer,
-        horometro: horometro ?? this.horometro,
         maintenanceId: maintenanceId ?? this.maintenanceId,
         maintenance: maintenance ?? this.maintenance,
         services: services ?? this.services,
@@ -10885,30 +10851,18 @@ extension $ProjectDTOPagedResultExtension on ProjectDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ReminderFormDTO {
-  ReminderFormDTO({
+class ReminderDTO {
+  ReminderDTO({
     this.id,
     this.reminderDate,
     this.code,
     this.serviceName,
     this.title,
     this.vehicle,
-    this.vehicleId,
-    this.serviceId,
-    this.userId,
-    this.measureId,
-    this.frecuency,
-    this.frecuencyPeriod,
-    this.period,
-    this.kmBeforeReminder,
-    this.timeBefore,
-    this.periodToReminder,
-    this.initialDate,
-    this.initialOdometer,
   });
 
-  factory ReminderFormDTO.fromJson(Map<String, dynamic> json) =>
-      _$ReminderFormDTOFromJson(json);
+  factory ReminderDTO.fromJson(Map<String, dynamic> json) =>
+      _$ReminderDTOFromJson(json);
 
   @JsonKey(name: 'id')
   final String? id;
@@ -10922,37 +10876,9 @@ class ReminderFormDTO {
   final String? title;
   @JsonKey(name: 'vehicle')
   final String? vehicle;
-  @JsonKey(name: 'vehicleId')
-  final String? vehicleId;
-  @JsonKey(name: 'serviceId')
-  final String? serviceId;
-  @JsonKey(name: 'userId')
-  final String? userId;
-  @JsonKey(name: 'measureId')
-  final String? measureId;
-  @JsonKey(name: 'frecuency')
-  final int? frecuency;
-  @JsonKey(name: 'frecuencyPeriod')
-  final int? frecuencyPeriod;
-  @JsonKey(
-      name: 'period', toJson: periodEnumToJson, fromJson: periodEnumFromJson)
-  final enums.PeriodEnum? period;
-  @JsonKey(name: 'kmBeforeReminder')
-  final String? kmBeforeReminder;
-  @JsonKey(name: 'timeBefore')
-  final int? timeBefore;
-  @JsonKey(
-      name: 'periodToReminder',
-      toJson: periodEnumToJson,
-      fromJson: periodEnumFromJson)
-  final enums.PeriodEnum? periodToReminder;
-  @JsonKey(name: 'initialDate')
-  final DateTime? initialDate;
-  @JsonKey(name: 'initialOdometer')
-  final int? initialOdometer;
-  static const fromJsonFactory = _$ReminderFormDTOFromJson;
-  static const toJsonFactory = _$ReminderFormDTOToJson;
-  Map<String, dynamic> toJson() => _$ReminderFormDTOToJson(this);
+  static const fromJsonFactory = _$ReminderDTOFromJson;
+  static const toJsonFactory = _$ReminderDTOToJson;
+  Map<String, dynamic> toJson() => _$ReminderDTOToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -10960,7 +10886,7 @@ class ReminderFormDTO {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ReminderFormDTO &&
+        (other is ReminderDTO &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.reminderDate, reminderDate) ||
@@ -10974,42 +10900,7 @@ class ReminderFormDTO {
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.vehicle, vehicle) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicle, vehicle)) &&
-            (identical(other.vehicleId, vehicleId) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.serviceId, serviceId) ||
-                const DeepCollectionEquality()
-                    .equals(other.serviceId, serviceId)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.measureId, measureId) ||
-                const DeepCollectionEquality()
-                    .equals(other.measureId, measureId)) &&
-            (identical(other.frecuency, frecuency) ||
-                const DeepCollectionEquality()
-                    .equals(other.frecuency, frecuency)) &&
-            (identical(other.frecuencyPeriod, frecuencyPeriod) ||
-                const DeepCollectionEquality()
-                    .equals(other.frecuencyPeriod, frecuencyPeriod)) &&
-            (identical(other.period, period) ||
-                const DeepCollectionEquality().equals(other.period, period)) &&
-            (identical(other.kmBeforeReminder, kmBeforeReminder) ||
-                const DeepCollectionEquality()
-                    .equals(other.kmBeforeReminder, kmBeforeReminder)) &&
-            (identical(other.timeBefore, timeBefore) ||
-                const DeepCollectionEquality()
-                    .equals(other.timeBefore, timeBefore)) &&
-            (identical(other.periodToReminder, periodToReminder) ||
-                const DeepCollectionEquality()
-                    .equals(other.periodToReminder, periodToReminder)) &&
-            (identical(other.initialDate, initialDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.initialDate, initialDate)) &&
-            (identical(other.initialOdometer, initialOdometer) ||
-                const DeepCollectionEquality()
-                    .equals(other.initialOdometer, initialOdometer)));
+                const DeepCollectionEquality().equals(other.vehicle, vehicle)));
   }
 
   @override
@@ -11020,66 +10911,30 @@ class ReminderFormDTO {
       const DeepCollectionEquality().hash(serviceName) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(vehicle) ^
-      const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(serviceId) ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(measureId) ^
-      const DeepCollectionEquality().hash(frecuency) ^
-      const DeepCollectionEquality().hash(frecuencyPeriod) ^
-      const DeepCollectionEquality().hash(period) ^
-      const DeepCollectionEquality().hash(kmBeforeReminder) ^
-      const DeepCollectionEquality().hash(timeBefore) ^
-      const DeepCollectionEquality().hash(periodToReminder) ^
-      const DeepCollectionEquality().hash(initialDate) ^
-      const DeepCollectionEquality().hash(initialOdometer) ^
       runtimeType.hashCode;
 }
 
-extension $ReminderFormDTOExtension on ReminderFormDTO {
-  ReminderFormDTO copyWith(
+extension $ReminderDTOExtension on ReminderDTO {
+  ReminderDTO copyWith(
       {String? id,
       String? reminderDate,
       String? code,
       String? serviceName,
       String? title,
-      String? vehicle,
-      String? vehicleId,
-      String? serviceId,
-      String? userId,
-      String? measureId,
-      int? frecuency,
-      int? frecuencyPeriod,
-      enums.PeriodEnum? period,
-      String? kmBeforeReminder,
-      int? timeBefore,
-      enums.PeriodEnum? periodToReminder,
-      DateTime? initialDate,
-      int? initialOdometer}) {
-    return ReminderFormDTO(
+      String? vehicle}) {
+    return ReminderDTO(
         id: id ?? this.id,
         reminderDate: reminderDate ?? this.reminderDate,
         code: code ?? this.code,
         serviceName: serviceName ?? this.serviceName,
         title: title ?? this.title,
-        vehicle: vehicle ?? this.vehicle,
-        vehicleId: vehicleId ?? this.vehicleId,
-        serviceId: serviceId ?? this.serviceId,
-        userId: userId ?? this.userId,
-        measureId: measureId ?? this.measureId,
-        frecuency: frecuency ?? this.frecuency,
-        frecuencyPeriod: frecuencyPeriod ?? this.frecuencyPeriod,
-        period: period ?? this.period,
-        kmBeforeReminder: kmBeforeReminder ?? this.kmBeforeReminder,
-        timeBefore: timeBefore ?? this.timeBefore,
-        periodToReminder: periodToReminder ?? this.periodToReminder,
-        initialDate: initialDate ?? this.initialDate,
-        initialOdometer: initialOdometer ?? this.initialOdometer);
+        vehicle: vehicle ?? this.vehicle);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ReminderFormDTOPagedResult {
-  ReminderFormDTOPagedResult({
+class ReminderDTOPagedResult {
+  ReminderDTOPagedResult({
     this.totalCount,
     this.pageNumber,
     this.recordNumber,
@@ -11087,8 +10942,8 @@ class ReminderFormDTOPagedResult {
     this.items,
   });
 
-  factory ReminderFormDTOPagedResult.fromJson(Map<String, dynamic> json) =>
-      _$ReminderFormDTOPagedResultFromJson(json);
+  factory ReminderDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ReminderDTOPagedResultFromJson(json);
 
   @JsonKey(name: 'totalCount')
   final int? totalCount;
@@ -11098,11 +10953,11 @@ class ReminderFormDTOPagedResult {
   final int? recordNumber;
   @JsonKey(name: 'totalPages')
   final int? totalPages;
-  @JsonKey(name: 'items', defaultValue: <ReminderFormDTO>[])
-  final List<ReminderFormDTO>? items;
-  static const fromJsonFactory = _$ReminderFormDTOPagedResultFromJson;
-  static const toJsonFactory = _$ReminderFormDTOPagedResultToJson;
-  Map<String, dynamic> toJson() => _$ReminderFormDTOPagedResultToJson(this);
+  @JsonKey(name: 'items', defaultValue: <ReminderDTO>[])
+  final List<ReminderDTO>? items;
+  static const fromJsonFactory = _$ReminderDTOPagedResultFromJson;
+  static const toJsonFactory = _$ReminderDTOPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ReminderDTOPagedResultToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -11110,7 +10965,7 @@ class ReminderFormDTOPagedResult {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ReminderFormDTOPagedResult &&
+        (other is ReminderDTOPagedResult &&
             (identical(other.totalCount, totalCount) ||
                 const DeepCollectionEquality()
                     .equals(other.totalCount, totalCount)) &&
@@ -11137,95 +10992,19 @@ class ReminderFormDTOPagedResult {
       runtimeType.hashCode;
 }
 
-extension $ReminderFormDTOPagedResultExtension on ReminderFormDTOPagedResult {
-  ReminderFormDTOPagedResult copyWith(
+extension $ReminderDTOPagedResultExtension on ReminderDTOPagedResult {
+  ReminderDTOPagedResult copyWith(
       {int? totalCount,
       int? pageNumber,
       int? recordNumber,
       int? totalPages,
-      List<ReminderFormDTO>? items}) {
-    return ReminderFormDTOPagedResult(
+      List<ReminderDTO>? items}) {
+    return ReminderDTOPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ReminderNewEditDTO {
-  ReminderNewEditDTO({
-    this.reminder,
-    this.services,
-    this.vehicles,
-    this.measures,
-    this.users,
-  });
-
-  factory ReminderNewEditDTO.fromJson(Map<String, dynamic> json) =>
-      _$ReminderNewEditDTOFromJson(json);
-
-  @JsonKey(name: 'reminder')
-  final ReminderFormDTO? reminder;
-  @JsonKey(name: 'services', defaultValue: <SelectDTO>[])
-  final List<SelectDTO>? services;
-  @JsonKey(name: 'vehicles', defaultValue: <SelectVehicleDTO>[])
-  final List<SelectVehicleDTO>? vehicles;
-  @JsonKey(name: 'measures', defaultValue: <SelectDTO>[])
-  final List<SelectDTO>? measures;
-  @JsonKey(name: 'users', defaultValue: <SelectDTO>[])
-  final List<SelectDTO>? users;
-  static const fromJsonFactory = _$ReminderNewEditDTOFromJson;
-  static const toJsonFactory = _$ReminderNewEditDTOToJson;
-  Map<String, dynamic> toJson() => _$ReminderNewEditDTOToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is ReminderNewEditDTO &&
-            (identical(other.reminder, reminder) ||
-                const DeepCollectionEquality()
-                    .equals(other.reminder, reminder)) &&
-            (identical(other.services, services) ||
-                const DeepCollectionEquality()
-                    .equals(other.services, services)) &&
-            (identical(other.vehicles, vehicles) ||
-                const DeepCollectionEquality()
-                    .equals(other.vehicles, vehicles)) &&
-            (identical(other.measures, measures) ||
-                const DeepCollectionEquality()
-                    .equals(other.measures, measures)) &&
-            (identical(other.users, users) ||
-                const DeepCollectionEquality().equals(other.users, users)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(reminder) ^
-      const DeepCollectionEquality().hash(services) ^
-      const DeepCollectionEquality().hash(vehicles) ^
-      const DeepCollectionEquality().hash(measures) ^
-      const DeepCollectionEquality().hash(users) ^
-      runtimeType.hashCode;
-}
-
-extension $ReminderNewEditDTOExtension on ReminderNewEditDTO {
-  ReminderNewEditDTO copyWith(
-      {ReminderFormDTO? reminder,
-      List<SelectDTO>? services,
-      List<SelectVehicleDTO>? vehicles,
-      List<SelectDTO>? measures,
-      List<SelectDTO>? users}) {
-    return ReminderNewEditDTO(
-        reminder: reminder ?? this.reminder,
-        services: services ?? this.services,
-        vehicles: vehicles ?? this.vehicles,
-        measures: measures ?? this.measures,
-        users: users ?? this.users);
   }
 }
 
@@ -11243,8 +11022,6 @@ class ReminderPostDTO {
     required this.serviceId,
     this.userId,
     required this.vehicleId,
-    this.initialDate,
-    this.initialOdometer,
   });
 
   factory ReminderPostDTO.fromJson(Map<String, dynamic> json) =>
@@ -11276,10 +11053,6 @@ class ReminderPostDTO {
   final String? userId;
   @JsonKey(name: 'vehicleId')
   final String vehicleId;
-  @JsonKey(name: 'initialDate')
-  final DateTime? initialDate;
-  @JsonKey(name: 'initialOdometer')
-  final int? initialOdometer;
   static const fromJsonFactory = _$ReminderPostDTOFromJson;
   static const toJsonFactory = _$ReminderPostDTOToJson;
   Map<String, dynamic> toJson() => _$ReminderPostDTOToJson(this);
@@ -11320,13 +11093,7 @@ class ReminderPostDTO {
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
-                    .equals(other.vehicleId, vehicleId)) &&
-            (identical(other.initialDate, initialDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.initialDate, initialDate)) &&
-            (identical(other.initialOdometer, initialOdometer) ||
-                const DeepCollectionEquality()
-                    .equals(other.initialOdometer, initialOdometer)));
+                    .equals(other.vehicleId, vehicleId)));
   }
 
   @override
@@ -11342,8 +11109,6 @@ class ReminderPostDTO {
       const DeepCollectionEquality().hash(serviceId) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(vehicleId) ^
-      const DeepCollectionEquality().hash(initialDate) ^
-      const DeepCollectionEquality().hash(initialOdometer) ^
       runtimeType.hashCode;
 }
 
@@ -11359,9 +11124,7 @@ extension $ReminderPostDTOExtension on ReminderPostDTO {
       enums.PeriodEnum? periodToReminder,
       String? serviceId,
       String? userId,
-      String? vehicleId,
-      DateTime? initialDate,
-      int? initialOdometer}) {
+      String? vehicleId}) {
     return ReminderPostDTO(
         title: title ?? this.title,
         frecuency: frecuency ?? this.frecuency,
@@ -11373,9 +11136,7 @@ extension $ReminderPostDTOExtension on ReminderPostDTO {
         periodToReminder: periodToReminder ?? this.periodToReminder,
         serviceId: serviceId ?? this.serviceId,
         userId: userId ?? this.userId,
-        vehicleId: vehicleId ?? this.vehicleId,
-        initialDate: initialDate ?? this.initialDate,
-        initialOdometer: initialOdometer ?? this.initialOdometer);
+        vehicleId: vehicleId ?? this.vehicleId);
   }
 }
 
@@ -12941,7 +12702,7 @@ class VehicleDetailDTO {
   @JsonKey(name: 'pedimento')
   final DocumentDTO? pedimento;
   @JsonKey(name: 'listReminders')
-  final ReminderFormDTOPagedResult? listReminders;
+  final ReminderDTOPagedResult? listReminders;
   @JsonKey(name: 'active')
   final bool? active;
   static const fromJsonFactory = _$VehicleDetailDTOFromJson;
@@ -13056,7 +12817,7 @@ extension $VehicleDetailDTOExtension on VehicleDetailDTO {
       List<ImageDTO>? photographs,
       DocumentDTO? bill,
       DocumentDTO? pedimento,
-      ReminderFormDTOPagedResult? listReminders,
+      ReminderDTOPagedResult? listReminders,
       bool? active}) {
     return VehicleDetailDTO(
         id: id ?? this.id,

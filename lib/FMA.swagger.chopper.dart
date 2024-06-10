@@ -1843,7 +1843,7 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<ReminderFormDTOPagedResult>> _apiReminderSearchGet(
+  Future<Response<Object>> _apiReminderSearchGet(
       {String? id,
       required int? page,
       String? search,
@@ -1862,8 +1862,7 @@ class _$FMA extends FMA {
       'Active': active
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client
-        .send<ReminderFormDTOPagedResult, ReminderFormDTOPagedResult>($request);
+    return client.send<Object, Object>($request);
   }
 
   @override
@@ -1890,11 +1889,11 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<ReminderNewEditDTO>> _apiReminderGetFormGet({String? id}) {
+  Future<Response<Object>> _apiReminderGetFormGet({String? id}) {
     final $url = '/api/Reminder/GetForm';
     final $params = <String, dynamic>{'id': id};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<ReminderNewEditDTO, ReminderNewEditDTO>($request);
+    return client.send<Object, Object>($request);
   }
 
   @override
