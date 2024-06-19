@@ -1655,10 +1655,11 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiPolicyPost({required PolicyDTO? body}) {
+  Future<Response<String>> _apiPolicyPost({required List<int> partFile}) {
     final $url = '/api/Policy';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<String, String>($request);
   }
 
@@ -1684,6 +1685,14 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<String>> _apiPolicySavePost({required PolicyPostDTO? body}) {
+    final $url = '/api/Policy/Save';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
   Future<Response<PolicyDTO>> _apiPolicyIdGet({required String? id}) {
     final $url = '/api/Policy/${id}';
     final $request = Request('GET', $url, client.baseUrl);
@@ -1704,6 +1713,14 @@ class _$FMA extends FMA {
     final $url = '/api/Policy/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<PolicyNewEditDTO>> _apiPolicyGetFormGet({String? id}) {
+    final $url = '/api/Policy/GetForm';
+    final $params = <String, dynamic>{'id': id};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<PolicyNewEditDTO, PolicyNewEditDTO>($request);
   }
 
   @override

@@ -2933,14 +2933,16 @@ abstract class FMA extends ChopperService {
   Future<chopper.Response<List<PolicyDTO>>> _apiPolicyGet();
 
   ///
-  Future<chopper.Response<String>> apiPolicyPost({required PolicyDTO? body}) {
-    return _apiPolicyPost(body: body);
+  Future<chopper.Response<String>> apiPolicyPost(
+      {required List<int> partFile}) {
+    return _apiPolicyPost(partFile: partFile);
   }
 
   ///
   @Post(path: '/api/Policy')
+  @Multipart()
   Future<chopper.Response<String>> _apiPolicyPost(
-      {@Body() required PolicyDTO? body});
+      {@PartFile() required List<int> partFile});
 
   ///
   ///@param Page
@@ -2985,6 +2987,17 @@ abstract class FMA extends ChopperService {
       @Query('Active') bool? active});
 
   ///
+  Future<chopper.Response<String>> apiPolicySavePost(
+      {required PolicyPostDTO? body}) {
+    return _apiPolicySavePost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Policy/Save')
+  Future<chopper.Response<String>> _apiPolicySavePost(
+      {@Body() required PolicyPostDTO? body});
+
+  ///
   ///@param id
   Future<chopper.Response<PolicyDTO>> apiPolicyIdGet({required String? id}) {
     generatedMapping.putIfAbsent(PolicyDTO, () => PolicyDTO.fromJsonFactory);
@@ -3022,6 +3035,21 @@ abstract class FMA extends ChopperService {
   @Delete(path: '/api/Policy/{id}')
   Future<chopper.Response<bool>> _apiPolicyIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<PolicyNewEditDTO>> apiPolicyGetFormGet({String? id}) {
+    generatedMapping.putIfAbsent(
+        PolicyNewEditDTO, () => PolicyNewEditDTO.fromJsonFactory);
+
+    return _apiPolicyGetFormGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Policy/GetForm')
+  Future<chopper.Response<PolicyNewEditDTO>> _apiPolicyGetFormGet(
+      {@Query('id') String? id});
 
   ///
   Future<chopper.Response<List<PolicyStatusDTO>>> apiPolicyStatusGet() {
@@ -7765,7 +7793,7 @@ class MaintenanceDTO {
   @JsonKey(name: 'comments')
   final String? comments;
   @JsonKey(name: 'odometer')
-  final String? odometer;
+  final int? odometer;
   @JsonKey(name: 'horometro')
   final int? horometro;
   @JsonKey(name: 'reference')
@@ -7881,7 +7909,7 @@ extension $MaintenanceDTOExtension on MaintenanceDTO {
       TimeSpan? startHour,
       TimeSpan? finishHour,
       String? comments,
-      String? odometer,
+      int? odometer,
       int? horometro,
       String? reference,
       String? maintenanceTypeId,
@@ -8133,7 +8161,7 @@ class MaintenanceFormDTO {
   @JsonKey(name: 'comments')
   final String? comments;
   @JsonKey(name: 'odometer')
-  final String? odometer;
+  final int? odometer;
   @JsonKey(name: 'horometro')
   final int? horometro;
   @JsonKey(name: 'reference')
@@ -8266,7 +8294,7 @@ extension $MaintenanceFormDTOExtension on MaintenanceFormDTO {
       String? startHour,
       String? finishHour,
       String? comments,
-      String? odometer,
+      int? odometer,
       int? horometro,
       String? reference,
       String? maintenanceTypeId,
@@ -10450,6 +10478,184 @@ extension $PolicyDTOPagedResultExtension on PolicyDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
+class PolicyNewEditDTO {
+  PolicyNewEditDTO({
+    this.policy,
+    this.policiesStatus,
+    this.policiesCompanies,
+  });
+
+  factory PolicyNewEditDTO.fromJson(Map<String, dynamic> json) =>
+      _$PolicyNewEditDTOFromJson(json);
+
+  @JsonKey(name: 'policy')
+  final PolicyDTO? policy;
+  @JsonKey(name: 'policiesStatus', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? policiesStatus;
+  @JsonKey(name: 'policiesCompanies', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? policiesCompanies;
+  static const fromJsonFactory = _$PolicyNewEditDTOFromJson;
+  static const toJsonFactory = _$PolicyNewEditDTOToJson;
+  Map<String, dynamic> toJson() => _$PolicyNewEditDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PolicyNewEditDTO &&
+            (identical(other.policy, policy) ||
+                const DeepCollectionEquality().equals(other.policy, policy)) &&
+            (identical(other.policiesStatus, policiesStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.policiesStatus, policiesStatus)) &&
+            (identical(other.policiesCompanies, policiesCompanies) ||
+                const DeepCollectionEquality()
+                    .equals(other.policiesCompanies, policiesCompanies)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(policy) ^
+      const DeepCollectionEquality().hash(policiesStatus) ^
+      const DeepCollectionEquality().hash(policiesCompanies) ^
+      runtimeType.hashCode;
+}
+
+extension $PolicyNewEditDTOExtension on PolicyNewEditDTO {
+  PolicyNewEditDTO copyWith(
+      {PolicyDTO? policy,
+      List<SelectDTO>? policiesStatus,
+      List<SelectDTO>? policiesCompanies}) {
+    return PolicyNewEditDTO(
+        policy: policy ?? this.policy,
+        policiesStatus: policiesStatus ?? this.policiesStatus,
+        policiesCompanies: policiesCompanies ?? this.policiesCompanies);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PolicyPostDTO {
+  PolicyPostDTO({
+    this.name,
+    required this.code,
+    this.description,
+    required this.startDate,
+    this.endDate,
+    this.quantityVehicles,
+    this.policyStatusId,
+    this.packagePolicyId,
+    this.insuranceCompanyId,
+    this.policyFile,
+  });
+
+  factory PolicyPostDTO.fromJson(Map<String, dynamic> json) =>
+      _$PolicyPostDTOFromJson(json);
+
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'code')
+  final String code;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'startDate')
+  final String startDate;
+  @JsonKey(name: 'endDate')
+  final String? endDate;
+  @JsonKey(name: 'quantityVehicles')
+  final int? quantityVehicles;
+  @JsonKey(name: 'policyStatusId')
+  final String? policyStatusId;
+  @JsonKey(name: 'packagePolicyId')
+  final String? packagePolicyId;
+  @JsonKey(name: 'insuranceCompanyId')
+  final String? insuranceCompanyId;
+  @JsonKey(name: 'policyFile')
+  final String? policyFile;
+  static const fromJsonFactory = _$PolicyPostDTOFromJson;
+  static const toJsonFactory = _$PolicyPostDTOToJson;
+  Map<String, dynamic> toJson() => _$PolicyPostDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PolicyPostDTO &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.quantityVehicles, quantityVehicles) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantityVehicles, quantityVehicles)) &&
+            (identical(other.policyStatusId, policyStatusId) ||
+                const DeepCollectionEquality()
+                    .equals(other.policyStatusId, policyStatusId)) &&
+            (identical(other.packagePolicyId, packagePolicyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.packagePolicyId, packagePolicyId)) &&
+            (identical(other.insuranceCompanyId, insuranceCompanyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.insuranceCompanyId, insuranceCompanyId)) &&
+            (identical(other.policyFile, policyFile) ||
+                const DeepCollectionEquality()
+                    .equals(other.policyFile, policyFile)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(quantityVehicles) ^
+      const DeepCollectionEquality().hash(policyStatusId) ^
+      const DeepCollectionEquality().hash(packagePolicyId) ^
+      const DeepCollectionEquality().hash(insuranceCompanyId) ^
+      const DeepCollectionEquality().hash(policyFile) ^
+      runtimeType.hashCode;
+}
+
+extension $PolicyPostDTOExtension on PolicyPostDTO {
+  PolicyPostDTO copyWith(
+      {String? name,
+      String? code,
+      String? description,
+      String? startDate,
+      String? endDate,
+      int? quantityVehicles,
+      String? policyStatusId,
+      String? packagePolicyId,
+      String? insuranceCompanyId,
+      String? policyFile}) {
+    return PolicyPostDTO(
+        name: name ?? this.name,
+        code: code ?? this.code,
+        description: description ?? this.description,
+        startDate: startDate ?? this.startDate,
+        endDate: endDate ?? this.endDate,
+        quantityVehicles: quantityVehicles ?? this.quantityVehicles,
+        policyStatusId: policyStatusId ?? this.policyStatusId,
+        packagePolicyId: packagePolicyId ?? this.packagePolicyId,
+        insuranceCompanyId: insuranceCompanyId ?? this.insuranceCompanyId,
+        policyFile: policyFile ?? this.policyFile);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class PolicyStatusDTO {
   PolicyStatusDTO({
     this.id,
@@ -11245,6 +11451,7 @@ class ReminderPostDTO {
     required this.vehicleId,
     this.initialDate,
     this.initialOdometer,
+    this.notified,
   });
 
   factory ReminderPostDTO.fromJson(Map<String, dynamic> json) =>
@@ -11280,6 +11487,8 @@ class ReminderPostDTO {
   final DateTime? initialDate;
   @JsonKey(name: 'initialOdometer')
   final int? initialOdometer;
+  @JsonKey(name: 'notified')
+  final bool? notified;
   static const fromJsonFactory = _$ReminderPostDTOFromJson;
   static const toJsonFactory = _$ReminderPostDTOToJson;
   Map<String, dynamic> toJson() => _$ReminderPostDTOToJson(this);
@@ -11326,7 +11535,10 @@ class ReminderPostDTO {
                     .equals(other.initialDate, initialDate)) &&
             (identical(other.initialOdometer, initialOdometer) ||
                 const DeepCollectionEquality()
-                    .equals(other.initialOdometer, initialOdometer)));
+                    .equals(other.initialOdometer, initialOdometer)) &&
+            (identical(other.notified, notified) ||
+                const DeepCollectionEquality()
+                    .equals(other.notified, notified)));
   }
 
   @override
@@ -11344,6 +11556,7 @@ class ReminderPostDTO {
       const DeepCollectionEquality().hash(vehicleId) ^
       const DeepCollectionEquality().hash(initialDate) ^
       const DeepCollectionEquality().hash(initialOdometer) ^
+      const DeepCollectionEquality().hash(notified) ^
       runtimeType.hashCode;
 }
 
@@ -11361,7 +11574,8 @@ extension $ReminderPostDTOExtension on ReminderPostDTO {
       String? userId,
       String? vehicleId,
       DateTime? initialDate,
-      int? initialOdometer}) {
+      int? initialOdometer,
+      bool? notified}) {
     return ReminderPostDTO(
         title: title ?? this.title,
         frecuency: frecuency ?? this.frecuency,
@@ -11375,7 +11589,8 @@ extension $ReminderPostDTOExtension on ReminderPostDTO {
         userId: userId ?? this.userId,
         vehicleId: vehicleId ?? this.vehicleId,
         initialDate: initialDate ?? this.initialDate,
-        initialOdometer: initialOdometer ?? this.initialOdometer);
+        initialOdometer: initialOdometer ?? this.initialOdometer,
+        notified: notified ?? this.notified);
   }
 }
 

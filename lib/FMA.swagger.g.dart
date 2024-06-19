@@ -957,7 +957,7 @@ MaintenanceDTO _$MaintenanceDTOFromJson(Map<String, dynamic> json) =>
           ? null
           : TimeSpan.fromJson(json['finishHour'] as Map<String, dynamic>),
       comments: json['comments'] as String?,
-      odometer: json['odometer'] as String?,
+      odometer: json['odometer'] as int?,
       horometro: json['horometro'] as int?,
       reference: json['reference'] as String?,
       maintenanceTypeId: json['maintenanceTypeId'] as String?,
@@ -1058,7 +1058,7 @@ MaintenanceFormDTO _$MaintenanceFormDTOFromJson(Map<String, dynamic> json) =>
       startHour: json['startHour'] as String?,
       finishHour: json['finishHour'] as String?,
       comments: json['comments'] as String?,
-      odometer: json['odometer'] as String?,
+      odometer: json['odometer'] as int?,
       horometro: json['horometro'] as int?,
       reference: json['reference'] as String?,
       maintenanceTypeId: json['maintenanceTypeId'] as String?,
@@ -1727,6 +1727,58 @@ Map<String, dynamic> _$PolicyDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+PolicyNewEditDTO _$PolicyNewEditDTOFromJson(Map<String, dynamic> json) =>
+    PolicyNewEditDTO(
+      policy: json['policy'] == null
+          ? null
+          : PolicyDTO.fromJson(json['policy'] as Map<String, dynamic>),
+      policiesStatus: (json['policiesStatus'] as List<dynamic>?)
+              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      policiesCompanies: (json['policiesCompanies'] as List<dynamic>?)
+              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$PolicyNewEditDTOToJson(PolicyNewEditDTO instance) =>
+    <String, dynamic>{
+      'policy': instance.policy?.toJson(),
+      'policiesStatus':
+          instance.policiesStatus?.map((e) => e.toJson()).toList(),
+      'policiesCompanies':
+          instance.policiesCompanies?.map((e) => e.toJson()).toList(),
+    };
+
+PolicyPostDTO _$PolicyPostDTOFromJson(Map<String, dynamic> json) =>
+    PolicyPostDTO(
+      name: json['name'] as String?,
+      code: json['code'] as String,
+      description: json['description'] as String?,
+      startDate: json['startDate'] as String,
+      endDate: json['endDate'] as String?,
+      quantityVehicles: json['quantityVehicles'] as int?,
+      policyStatusId: json['policyStatusId'] as String?,
+      packagePolicyId: json['packagePolicyId'] as String?,
+      insuranceCompanyId: json['insuranceCompanyId'] as String?,
+      policyFile: json['policyFile'] as String?,
+    );
+
+Map<String, dynamic> _$PolicyPostDTOToJson(PolicyPostDTO instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'code': instance.code,
+      'description': instance.description,
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
+      'quantityVehicles': instance.quantityVehicles,
+      'policyStatusId': instance.policyStatusId,
+      'packagePolicyId': instance.packagePolicyId,
+      'insuranceCompanyId': instance.insuranceCompanyId,
+      'policyFile': instance.policyFile,
+    };
+
 PolicyStatusDTO _$PolicyStatusDTOFromJson(Map<String, dynamic> json) =>
     PolicyStatusDTO(
       id: json['id'] as String?,
@@ -1960,6 +2012,7 @@ ReminderPostDTO _$ReminderPostDTOFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['initialDate'] as String),
       initialOdometer: json['initialOdometer'] as int?,
+      notified: json['notified'] as bool?,
     );
 
 Map<String, dynamic> _$ReminderPostDTOToJson(ReminderPostDTO instance) =>
@@ -1977,6 +2030,7 @@ Map<String, dynamic> _$ReminderPostDTOToJson(ReminderPostDTO instance) =>
       'vehicleId': instance.vehicleId,
       'initialDate': instance.initialDate?.toIso8601String(),
       'initialOdometer': instance.initialOdometer,
+      'notified': instance.notified,
     };
 
 ResetPasswordModel _$ResetPasswordModelFromJson(Map<String, dynamic> json) =>
