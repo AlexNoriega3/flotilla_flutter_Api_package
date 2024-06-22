@@ -11696,86 +11696,85 @@
           "content": {
             "application/json;odata.metadata=minimal;odata.streaming=true": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.metadata=minimal;odata.streaming=false": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.metadata=minimal": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.metadata=full;odata.streaming=true": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.metadata=full;odata.streaming=false": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.metadata=full": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.metadata=none;odata.streaming=true": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.metadata=none;odata.streaming=false": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.metadata=none": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.streaming=true": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json;odata.streaming=false": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "text/plain": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/PolicyDTO"
+                "$ref": "#/components/schemas/PolicyPostDTO"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -11968,6 +11967,193 @@
         }
       }
     },
+    "/api/Policy/Edit/{id}": {
+      "put": {
+        "tags": [
+          "Policy"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Code",
+                  "StartDate"
+                ],
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Code": {
+                    "maxLength": 255,
+                    "minLength": 6,
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "StartDate": {
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}",
+                    "type": "string"
+                  },
+                  "EndDate": {
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}",
+                    "type": "string"
+                  },
+                  "QuantityVehicles": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "PolicyStatusId": {
+                    "type": "string"
+                  },
+                  "PackagePolicyId": {
+                    "type": "string"
+                  },
+                  "InsuranceCompanyId": {
+                    "type": "string"
+                  },
+                  "PolicyFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Name": {
+                  "style": "form"
+                },
+                "Code": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "StartDate": {
+                  "style": "form"
+                },
+                "EndDate": {
+                  "style": "form"
+                },
+                "QuantityVehicles": {
+                  "style": "form"
+                },
+                "PolicyStatusId": {
+                  "style": "form"
+                },
+                "PackagePolicyId": {
+                  "style": "form"
+                },
+                "InsuranceCompanyId": {
+                  "style": "form"
+                },
+                "PolicyFile": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Policy/GetForm": {
       "get": {
         "tags": [
@@ -12064,6 +12250,148 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PolicyNewEditDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Policy/Inbox": {
+      "get": {
+        "tags": [
+          "Policy"
+        ],
+        "parameters": [
+          {
+            "name": "Page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderByPropertyName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SortOrderEnum"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Active",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyInboxDTOPagedResult"
                 }
               }
             }
@@ -19301,6 +19629,9 @@
           "insuranceCompanyId": {
             "type": "string",
             "nullable": true
+          },
+          "documentPolicy": {
+            "$ref": "#/components/schemas/DocumentDTO"
           }
         },
         "additionalProperties": false
@@ -19328,6 +19659,92 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PolicyDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PolicyInboxDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantityVehicles": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "policyStatusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "policyStatusDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "policyStatusName": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuranceCompanyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuranceCompanyDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuranceCompanyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PolicyInboxDTOPagedResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recordNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PolicyInboxDTO"
             },
             "nullable": true
           }

@@ -1688,6 +1688,10 @@ PolicyDTO _$PolicyDTOFromJson(Map<String, dynamic> json) => PolicyDTO(
       policyStatusId: json['policyStatusId'] as String?,
       packagePolicyId: json['packagePolicyId'] as String?,
       insuranceCompanyId: json['insuranceCompanyId'] as String?,
+      documentPolicy: json['documentPolicy'] == null
+          ? null
+          : DocumentDTO.fromJson(
+              json['documentPolicy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PolicyDTOToJson(PolicyDTO instance) => <String, dynamic>{
@@ -1702,6 +1706,7 @@ Map<String, dynamic> _$PolicyDTOToJson(PolicyDTO instance) => <String, dynamic>{
       'policyStatusId': instance.policyStatusId,
       'packagePolicyId': instance.packagePolicyId,
       'insuranceCompanyId': instance.insuranceCompanyId,
+      'documentPolicy': instance.documentPolicy?.toJson(),
     };
 
 PolicyDTOPagedResult _$PolicyDTOPagedResultFromJson(
@@ -1719,6 +1724,64 @@ PolicyDTOPagedResult _$PolicyDTOPagedResultFromJson(
 
 Map<String, dynamic> _$PolicyDTOPagedResultToJson(
         PolicyDTOPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+PolicyInboxDTO _$PolicyInboxDTOFromJson(Map<String, dynamic> json) =>
+    PolicyInboxDTO(
+      id: json['id'] as String?,
+      code: json['code'] as String?,
+      description: json['description'] as String?,
+      startDate: json['startDate'] as String?,
+      endDate: json['endDate'] as String?,
+      quantityVehicles: json['quantityVehicles'] as int?,
+      policyStatusId: json['policyStatusId'] as String?,
+      policyStatusDescription: json['policyStatusDescription'] as String?,
+      policyStatusName: json['policyStatusName'] as String?,
+      insuranceCompanyId: json['insuranceCompanyId'] as String?,
+      insuranceCompanyDescription:
+          json['insuranceCompanyDescription'] as String?,
+      insuranceCompanyName: json['insuranceCompanyName'] as String?,
+      active: json['active'] as bool?,
+    );
+
+Map<String, dynamic> _$PolicyInboxDTOToJson(PolicyInboxDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'code': instance.code,
+      'description': instance.description,
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
+      'quantityVehicles': instance.quantityVehicles,
+      'policyStatusId': instance.policyStatusId,
+      'policyStatusDescription': instance.policyStatusDescription,
+      'policyStatusName': instance.policyStatusName,
+      'insuranceCompanyId': instance.insuranceCompanyId,
+      'insuranceCompanyDescription': instance.insuranceCompanyDescription,
+      'insuranceCompanyName': instance.insuranceCompanyName,
+      'active': instance.active,
+    };
+
+PolicyInboxDTOPagedResult _$PolicyInboxDTOPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    PolicyInboxDTOPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => PolicyInboxDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$PolicyInboxDTOPagedResultToJson(
+        PolicyInboxDTOPagedResult instance) =>
     <String, dynamic>{
       'totalCount': instance.totalCount,
       'pageNumber': instance.pageNumber,

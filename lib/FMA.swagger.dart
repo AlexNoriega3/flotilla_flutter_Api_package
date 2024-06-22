@@ -3014,7 +3014,7 @@ abstract class FMA extends ChopperService {
   ///
   ///@param id
   Future<chopper.Response<bool>> apiPolicyIdPut(
-      {required String? id, required PolicyDTO? body}) {
+      {required String? id, required PolicyPostDTO? body}) {
     return _apiPolicyIdPut(id: id, body: body);
   }
 
@@ -3022,7 +3022,7 @@ abstract class FMA extends ChopperService {
   ///@param id
   @Put(path: '/api/Policy/{id}')
   Future<chopper.Response<bool>> _apiPolicyIdPut(
-      {@Path('id') required String? id, @Body() required PolicyDTO? body});
+      {@Path('id') required String? id, @Body() required PolicyPostDTO? body});
 
   ///
   ///@param id
@@ -3038,6 +3038,21 @@ abstract class FMA extends ChopperService {
 
   ///
   ///@param id
+  Future<chopper.Response<bool>> apiPolicyEditIdPut(
+      {required String? id, required List<int> partFile}) {
+    return _apiPolicyEditIdPut(id: id, partFile: partFile);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/Policy/Edit/{id}')
+  @Multipart()
+  Future<chopper.Response<bool>> _apiPolicyEditIdPut(
+      {@Path('id') required String? id,
+      @PartFile() required List<int> partFile});
+
+  ///
+  ///@param id
   Future<chopper.Response<PolicyNewEditDTO>> apiPolicyGetFormGet({String? id}) {
     generatedMapping.putIfAbsent(
         PolicyNewEditDTO, () => PolicyNewEditDTO.fromJsonFactory);
@@ -3050,6 +3065,48 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/Policy/GetForm')
   Future<chopper.Response<PolicyNewEditDTO>> _apiPolicyGetFormGet(
       {@Query('id') String? id});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  Future<chopper.Response<PolicyInboxDTOPagedResult>> apiPolicyInboxGet(
+      {required int? page,
+      String? search,
+      String? orderByPropertyName,
+      enums.SortOrderEnum? sortOrder,
+      required int? pageSize,
+      bool? active}) {
+    generatedMapping.putIfAbsent(PolicyInboxDTOPagedResult,
+        () => PolicyInboxDTOPagedResult.fromJsonFactory);
+
+    return _apiPolicyInboxGet(
+        page: page,
+        search: search,
+        orderByPropertyName: orderByPropertyName,
+        sortOrder: enums.$SortOrderEnumMap[sortOrder]?.toString(),
+        pageSize: pageSize,
+        active: active);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  @Get(path: '/api/Policy/Inbox')
+  Future<chopper.Response<PolicyInboxDTOPagedResult>> _apiPolicyInboxGet(
+      {@Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('OrderByPropertyName') String? orderByPropertyName,
+      @Query('SortOrder') String? sortOrder,
+      @Query('PageSize') required int? pageSize,
+      @Query('Active') bool? active});
 
   ///
   Future<chopper.Response<List<PolicyStatusDTO>>> apiPolicyStatusGet() {
@@ -10288,6 +10345,7 @@ class PolicyDTO {
     this.policyStatusId,
     this.packagePolicyId,
     this.insuranceCompanyId,
+    this.documentPolicy,
   });
 
   factory PolicyDTO.fromJson(Map<String, dynamic> json) =>
@@ -10315,6 +10373,8 @@ class PolicyDTO {
   final String? packagePolicyId;
   @JsonKey(name: 'insuranceCompanyId')
   final String? insuranceCompanyId;
+  @JsonKey(name: 'documentPolicy')
+  final DocumentDTO? documentPolicy;
   static const fromJsonFactory = _$PolicyDTOFromJson;
   static const toJsonFactory = _$PolicyDTOToJson;
   Map<String, dynamic> toJson() => _$PolicyDTOToJson(this);
@@ -10354,7 +10414,10 @@ class PolicyDTO {
                     .equals(other.packagePolicyId, packagePolicyId)) &&
             (identical(other.insuranceCompanyId, insuranceCompanyId) ||
                 const DeepCollectionEquality()
-                    .equals(other.insuranceCompanyId, insuranceCompanyId)));
+                    .equals(other.insuranceCompanyId, insuranceCompanyId)) &&
+            (identical(other.documentPolicy, documentPolicy) ||
+                const DeepCollectionEquality()
+                    .equals(other.documentPolicy, documentPolicy)));
   }
 
   @override
@@ -10370,6 +10433,7 @@ class PolicyDTO {
       const DeepCollectionEquality().hash(policyStatusId) ^
       const DeepCollectionEquality().hash(packagePolicyId) ^
       const DeepCollectionEquality().hash(insuranceCompanyId) ^
+      const DeepCollectionEquality().hash(documentPolicy) ^
       runtimeType.hashCode;
 }
 
@@ -10385,7 +10449,8 @@ extension $PolicyDTOExtension on PolicyDTO {
       int? quantityVehicles,
       String? policyStatusId,
       String? packagePolicyId,
-      String? insuranceCompanyId}) {
+      String? insuranceCompanyId,
+      DocumentDTO? documentPolicy}) {
     return PolicyDTO(
         id: id ?? this.id,
         active: active ?? this.active,
@@ -10397,7 +10462,8 @@ extension $PolicyDTOExtension on PolicyDTO {
         quantityVehicles: quantityVehicles ?? this.quantityVehicles,
         policyStatusId: policyStatusId ?? this.policyStatusId,
         packagePolicyId: packagePolicyId ?? this.packagePolicyId,
-        insuranceCompanyId: insuranceCompanyId ?? this.insuranceCompanyId);
+        insuranceCompanyId: insuranceCompanyId ?? this.insuranceCompanyId,
+        documentPolicy: documentPolicy ?? this.documentPolicy);
   }
 }
 
@@ -10469,6 +10535,233 @@ extension $PolicyDTOPagedResultExtension on PolicyDTOPagedResult {
       int? totalPages,
       List<PolicyDTO>? items}) {
     return PolicyDTOPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PolicyInboxDTO {
+  PolicyInboxDTO({
+    this.id,
+    this.code,
+    this.description,
+    this.startDate,
+    this.endDate,
+    this.quantityVehicles,
+    this.policyStatusId,
+    this.policyStatusDescription,
+    this.policyStatusName,
+    this.insuranceCompanyId,
+    this.insuranceCompanyDescription,
+    this.insuranceCompanyName,
+    this.active,
+  });
+
+  factory PolicyInboxDTO.fromJson(Map<String, dynamic> json) =>
+      _$PolicyInboxDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'code')
+  final String? code;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'startDate')
+  final String? startDate;
+  @JsonKey(name: 'endDate')
+  final String? endDate;
+  @JsonKey(name: 'quantityVehicles')
+  final int? quantityVehicles;
+  @JsonKey(name: 'policyStatusId')
+  final String? policyStatusId;
+  @JsonKey(name: 'policyStatusDescription')
+  final String? policyStatusDescription;
+  @JsonKey(name: 'policyStatusName')
+  final String? policyStatusName;
+  @JsonKey(name: 'insuranceCompanyId')
+  final String? insuranceCompanyId;
+  @JsonKey(name: 'insuranceCompanyDescription')
+  final String? insuranceCompanyDescription;
+  @JsonKey(name: 'insuranceCompanyName')
+  final String? insuranceCompanyName;
+  @JsonKey(name: 'active')
+  final bool? active;
+  static const fromJsonFactory = _$PolicyInboxDTOFromJson;
+  static const toJsonFactory = _$PolicyInboxDTOToJson;
+  Map<String, dynamic> toJson() => _$PolicyInboxDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PolicyInboxDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.quantityVehicles, quantityVehicles) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantityVehicles, quantityVehicles)) &&
+            (identical(other.policyStatusId, policyStatusId) ||
+                const DeepCollectionEquality()
+                    .equals(other.policyStatusId, policyStatusId)) &&
+            (identical(
+                    other.policyStatusDescription, policyStatusDescription) ||
+                const DeepCollectionEquality().equals(
+                    other.policyStatusDescription, policyStatusDescription)) &&
+            (identical(other.policyStatusName, policyStatusName) ||
+                const DeepCollectionEquality()
+                    .equals(other.policyStatusName, policyStatusName)) &&
+            (identical(other.insuranceCompanyId, insuranceCompanyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.insuranceCompanyId, insuranceCompanyId)) &&
+            (identical(other.insuranceCompanyDescription,
+                    insuranceCompanyDescription) ||
+                const DeepCollectionEquality().equals(
+                    other.insuranceCompanyDescription,
+                    insuranceCompanyDescription)) &&
+            (identical(other.insuranceCompanyName, insuranceCompanyName) ||
+                const DeepCollectionEquality().equals(
+                    other.insuranceCompanyName, insuranceCompanyName)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(quantityVehicles) ^
+      const DeepCollectionEquality().hash(policyStatusId) ^
+      const DeepCollectionEquality().hash(policyStatusDescription) ^
+      const DeepCollectionEquality().hash(policyStatusName) ^
+      const DeepCollectionEquality().hash(insuranceCompanyId) ^
+      const DeepCollectionEquality().hash(insuranceCompanyDescription) ^
+      const DeepCollectionEquality().hash(insuranceCompanyName) ^
+      const DeepCollectionEquality().hash(active) ^
+      runtimeType.hashCode;
+}
+
+extension $PolicyInboxDTOExtension on PolicyInboxDTO {
+  PolicyInboxDTO copyWith(
+      {String? id,
+      String? code,
+      String? description,
+      String? startDate,
+      String? endDate,
+      int? quantityVehicles,
+      String? policyStatusId,
+      String? policyStatusDescription,
+      String? policyStatusName,
+      String? insuranceCompanyId,
+      String? insuranceCompanyDescription,
+      String? insuranceCompanyName,
+      bool? active}) {
+    return PolicyInboxDTO(
+        id: id ?? this.id,
+        code: code ?? this.code,
+        description: description ?? this.description,
+        startDate: startDate ?? this.startDate,
+        endDate: endDate ?? this.endDate,
+        quantityVehicles: quantityVehicles ?? this.quantityVehicles,
+        policyStatusId: policyStatusId ?? this.policyStatusId,
+        policyStatusDescription:
+            policyStatusDescription ?? this.policyStatusDescription,
+        policyStatusName: policyStatusName ?? this.policyStatusName,
+        insuranceCompanyId: insuranceCompanyId ?? this.insuranceCompanyId,
+        insuranceCompanyDescription:
+            insuranceCompanyDescription ?? this.insuranceCompanyDescription,
+        insuranceCompanyName: insuranceCompanyName ?? this.insuranceCompanyName,
+        active: active ?? this.active);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PolicyInboxDTOPagedResult {
+  PolicyInboxDTOPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory PolicyInboxDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$PolicyInboxDTOPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <PolicyInboxDTO>[])
+  final List<PolicyInboxDTO>? items;
+  static const fromJsonFactory = _$PolicyInboxDTOPagedResultFromJson;
+  static const toJsonFactory = _$PolicyInboxDTOPagedResultToJson;
+  Map<String, dynamic> toJson() => _$PolicyInboxDTOPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PolicyInboxDTOPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $PolicyInboxDTOPagedResultExtension on PolicyInboxDTOPagedResult {
+  PolicyInboxDTOPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<PolicyInboxDTO>? items}) {
+    return PolicyInboxDTOPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,

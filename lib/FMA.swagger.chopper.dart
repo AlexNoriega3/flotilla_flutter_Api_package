@@ -1701,7 +1701,7 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<bool>> _apiPolicyIdPut(
-      {required String? id, required PolicyDTO? body}) {
+      {required String? id, required PolicyPostDTO? body}) {
     final $url = '/api/Policy/${id}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
@@ -1716,11 +1716,43 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<bool>> _apiPolicyEditIdPut(
+      {required String? id, required List<int> partFile}) {
+    final $url = '/api/Policy/Edit/${id}';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<PolicyNewEditDTO>> _apiPolicyGetFormGet({String? id}) {
     final $url = '/api/Policy/GetForm';
     final $params = <String, dynamic>{'id': id};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<PolicyNewEditDTO, PolicyNewEditDTO>($request);
+  }
+
+  @override
+  Future<Response<PolicyInboxDTOPagedResult>> _apiPolicyInboxGet(
+      {required int? page,
+      String? search,
+      String? orderByPropertyName,
+      String? sortOrder,
+      required int? pageSize,
+      bool? active}) {
+    final $url = '/api/Policy/Inbox';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'OrderByPropertyName': orderByPropertyName,
+      'SortOrder': sortOrder,
+      'PageSize': pageSize,
+      'Active': active
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client
+        .send<PolicyInboxDTOPagedResult, PolicyInboxDTOPagedResult>($request);
   }
 
   @override
