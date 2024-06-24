@@ -12399,6 +12399,27 @@
         }
       }
     },
+    "/api/Policy/Download": {
+      "get": {
+        "tags": [
+          "Policy"
+        ],
+        "parameters": [
+          {
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/PolicyStatus": {
       "get": {
         "tags": [

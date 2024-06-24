@@ -3109,6 +3109,18 @@ abstract class FMA extends ChopperService {
       @Query('Active') bool? active});
 
   ///
+  ///@param active
+  Future<chopper.Response> apiPolicyDownloadGet({bool? active}) {
+    return _apiPolicyDownloadGet(active: active);
+  }
+
+  ///
+  ///@param active
+  @Get(path: '/api/Policy/Download')
+  Future<chopper.Response> _apiPolicyDownloadGet(
+      {@Query('active') bool? active});
+
+  ///
   Future<chopper.Response<List<PolicyStatusDTO>>> apiPolicyStatusGet() {
     generatedMapping.putIfAbsent(
         PolicyStatusDTO, () => PolicyStatusDTO.fromJsonFactory);

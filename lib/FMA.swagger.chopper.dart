@@ -1756,6 +1756,14 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<dynamic>> _apiPolicyDownloadGet({bool? active}) {
+    final $url = '/api/Policy/Download';
+    final $params = <String, dynamic>{'active': active};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<List<PolicyStatusDTO>>> _apiPolicyStatusGet() {
     final $url = '/api/PolicyStatus';
     final $request = Request('GET', $url, client.baseUrl);
