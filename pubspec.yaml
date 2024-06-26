@@ -1,6 +1,6 @@
 name: flotilla_api
 description: flotilla GBX API FLUTTER.
-version: 1.0.48
+version: 1.0.49
 
 environment:
   sdk: ">=2.16.2 <3.0.0"

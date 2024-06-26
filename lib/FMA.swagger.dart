@@ -10571,6 +10571,7 @@ class PolicyInboxDTO {
     this.insuranceCompanyDescription,
     this.insuranceCompanyName,
     this.active,
+    this.document,
   });
 
   factory PolicyInboxDTO.fromJson(Map<String, dynamic> json) =>
@@ -10602,6 +10603,8 @@ class PolicyInboxDTO {
   final String? insuranceCompanyName;
   @JsonKey(name: 'active')
   final bool? active;
+  @JsonKey(name: 'document')
+  final DocumentDTO? document;
   static const fromJsonFactory = _$PolicyInboxDTOFromJson;
   static const toJsonFactory = _$PolicyInboxDTOToJson;
   Map<String, dynamic> toJson() => _$PolicyInboxDTOToJson(this);
@@ -10651,7 +10654,10 @@ class PolicyInboxDTO {
                 const DeepCollectionEquality().equals(
                     other.insuranceCompanyName, insuranceCompanyName)) &&
             (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)));
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.document, document) ||
+                const DeepCollectionEquality()
+                    .equals(other.document, document)));
   }
 
   @override
@@ -10669,6 +10675,7 @@ class PolicyInboxDTO {
       const DeepCollectionEquality().hash(insuranceCompanyDescription) ^
       const DeepCollectionEquality().hash(insuranceCompanyName) ^
       const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(document) ^
       runtimeType.hashCode;
 }
 
@@ -10686,7 +10693,8 @@ extension $PolicyInboxDTOExtension on PolicyInboxDTO {
       String? insuranceCompanyId,
       String? insuranceCompanyDescription,
       String? insuranceCompanyName,
-      bool? active}) {
+      bool? active,
+      DocumentDTO? document}) {
     return PolicyInboxDTO(
         id: id ?? this.id,
         code: code ?? this.code,
@@ -10702,7 +10710,8 @@ extension $PolicyInboxDTOExtension on PolicyInboxDTO {
         insuranceCompanyDescription:
             insuranceCompanyDescription ?? this.insuranceCompanyDescription,
         insuranceCompanyName: insuranceCompanyName ?? this.insuranceCompanyName,
-        active: active ?? this.active);
+        active: active ?? this.active,
+        document: document ?? this.document);
   }
 }
 

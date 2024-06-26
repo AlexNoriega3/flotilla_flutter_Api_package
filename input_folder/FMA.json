@@ -19739,6 +19739,9 @@
           },
           "active": {
             "type": "boolean"
+          },
+          "document": {
+            "$ref": "#/components/schemas/DocumentDTO"
           }
         },
         "additionalProperties": false

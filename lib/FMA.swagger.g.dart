@@ -1748,6 +1748,9 @@ PolicyInboxDTO _$PolicyInboxDTOFromJson(Map<String, dynamic> json) =>
           json['insuranceCompanyDescription'] as String?,
       insuranceCompanyName: json['insuranceCompanyName'] as String?,
       active: json['active'] as bool?,
+      document: json['document'] == null
+          ? null
+          : DocumentDTO.fromJson(json['document'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PolicyInboxDTOToJson(PolicyInboxDTO instance) =>
@@ -1765,6 +1768,7 @@ Map<String, dynamic> _$PolicyInboxDTOToJson(PolicyInboxDTO instance) =>
       'insuranceCompanyDescription': instance.insuranceCompanyDescription,
       'insuranceCompanyName': instance.insuranceCompanyName,
       'active': instance.active,
+      'document': instance.document?.toJson(),
     };
 
 PolicyInboxDTOPagedResult _$PolicyInboxDTOPagedResultFromJson(
