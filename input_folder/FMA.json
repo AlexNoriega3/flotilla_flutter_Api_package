@@ -17357,7 +17357,8 @@
           "FuelMeasures",
           "Measures",
           "ActiveCategories",
-          "MaintenanceTypes"
+          "MaintenanceTypes",
+          "InsuranceCompanies"
         ],
         "type": "string"
       },
