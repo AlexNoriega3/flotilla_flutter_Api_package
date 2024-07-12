@@ -3073,13 +3073,15 @@ abstract class FMA extends ChopperService {
   ///@param SortOrder
   ///@param PageSize
   ///@param Active
+  ///@param Expired
   Future<chopper.Response<PolicyInboxDTOPagedResult>> apiPolicyInboxGet(
       {required int? page,
       String? search,
       String? orderByPropertyName,
       enums.SortOrderEnum? sortOrder,
       required int? pageSize,
-      bool? active}) {
+      bool? active,
+      bool? expired}) {
     generatedMapping.putIfAbsent(PolicyInboxDTOPagedResult,
         () => PolicyInboxDTOPagedResult.fromJsonFactory);
 
@@ -3089,7 +3091,8 @@ abstract class FMA extends ChopperService {
         orderByPropertyName: orderByPropertyName,
         sortOrder: enums.$SortOrderEnumMap[sortOrder]?.toString(),
         pageSize: pageSize,
-        active: active);
+        active: active,
+        expired: expired);
   }
 
   ///
@@ -3099,6 +3102,7 @@ abstract class FMA extends ChopperService {
   ///@param SortOrder
   ///@param PageSize
   ///@param Active
+  ///@param Expired
   @Get(path: '/api/Policy/Inbox')
   Future<chopper.Response<PolicyInboxDTOPagedResult>> _apiPolicyInboxGet(
       {@Query('Page') required int? page,
@@ -3106,7 +3110,8 @@ abstract class FMA extends ChopperService {
       @Query('OrderByPropertyName') String? orderByPropertyName,
       @Query('SortOrder') String? sortOrder,
       @Query('PageSize') required int? pageSize,
-      @Query('Active') bool? active});
+      @Query('Active') bool? active,
+      @Query('Expired') bool? expired});
 
   ///
   ///@param active

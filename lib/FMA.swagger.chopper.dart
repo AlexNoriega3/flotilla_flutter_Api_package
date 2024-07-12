@@ -1740,7 +1740,8 @@ class _$FMA extends FMA {
       String? orderByPropertyName,
       String? sortOrder,
       required int? pageSize,
-      bool? active}) {
+      bool? active,
+      bool? expired}) {
     final $url = '/api/Policy/Inbox';
     final $params = <String, dynamic>{
       'Page': page,
@@ -1748,7 +1749,8 @@ class _$FMA extends FMA {
       'OrderByPropertyName': orderByPropertyName,
       'SortOrder': sortOrder,
       'PageSize': pageSize,
-      'Active': active
+      'Active': active,
+      'Expired': expired
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
