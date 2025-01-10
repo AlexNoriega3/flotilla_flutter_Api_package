@@ -1861,6 +1861,31 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  ///@param id
+  Future<chopper.Response<bool>> apiMachineIdPut(
+      {required String? id, required MachineDTO? body}) {
+    return _apiMachineIdPut(id: id, body: body);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/Machine/{id}')
+  Future<chopper.Response<bool>> _apiMachineIdPut(
+      {@Path('id') required String? id, @Body() required MachineDTO? body});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiMachineIdDelete({required String? id}) {
+    return _apiMachineIdDelete(id: id);
+  }
+
+  ///
+  ///@param id
+  @Delete(path: '/api/Machine/{id}')
+  Future<chopper.Response<bool>> _apiMachineIdDelete(
+      {@Path('id') required String? id});
+
+  ///
   Future<chopper.Response<List<MaintenanceDTO>>> apiMaintenanceGet() {
     generatedMapping.putIfAbsent(
         MaintenanceDTO, () => MaintenanceDTO.fromJsonFactory);

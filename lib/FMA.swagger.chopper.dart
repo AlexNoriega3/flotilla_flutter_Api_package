@@ -1047,6 +1047,22 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<bool>> _apiMachineIdPut(
+      {required String? id, required MachineDTO? body}) {
+    final $url = '/api/Machine/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiMachineIdDelete({required String? id}) {
+    final $url = '/api/Machine/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<MaintenanceDTO>>> _apiMaintenanceGet() {
     final $url = '/api/Maintenance';
     final $request = Request('GET', $url, client.baseUrl);
