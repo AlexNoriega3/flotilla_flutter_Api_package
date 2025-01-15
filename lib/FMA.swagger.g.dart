@@ -6,6 +6,92 @@ part of 'FMA.swagger.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+AddressDTO _$AddressDTOFromJson(Map<String, dynamic> json) => AddressDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      name: json['name'] as String?,
+      code: json['code'] as String?,
+      description: json['description'] as String?,
+      providerID: json['providerID'] as String?,
+      addressLine: json['addressLine'] as String?,
+      street: json['street'] as String?,
+      number: json['number'] as String?,
+      neighborhood: json['neighborhood'] as String?,
+      zipCode: json['zipCode'] as String?,
+      cityId: json['cityId'] as String?,
+      isPrimary: json['isPrimary'] as bool?,
+    );
+
+Map<String, dynamic> _$AddressDTOToJson(AddressDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'name': instance.name,
+      'code': instance.code,
+      'description': instance.description,
+      'providerID': instance.providerID,
+      'addressLine': instance.addressLine,
+      'street': instance.street,
+      'number': instance.number,
+      'neighborhood': instance.neighborhood,
+      'zipCode': instance.zipCode,
+      'cityId': instance.cityId,
+      'isPrimary': instance.isPrimary,
+    };
+
+AddressDTOPagedResult _$AddressDTOPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    AddressDTOPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => AddressDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$AddressDTOPagedResultToJson(
+        AddressDTOPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+AddressPostDTO _$AddressPostDTOFromJson(Map<String, dynamic> json) =>
+    AddressPostDTO(
+      name: json['name'] as String?,
+      code: json['code'] as String?,
+      description: json['description'] as String?,
+      providerID: json['providerID'] as String?,
+      addressLine: json['addressLine'] as String?,
+      street: json['street'] as String?,
+      number: json['number'] as String?,
+      neighborhood: json['neighborhood'] as String?,
+      zipCode: json['zipCode'] as String?,
+      cityId: json['cityId'] as String?,
+      isPrimary: json['isPrimary'] as bool?,
+    );
+
+Map<String, dynamic> _$AddressPostDTOToJson(AddressPostDTO instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'code': instance.code,
+      'description': instance.description,
+      'providerID': instance.providerID,
+      'addressLine': instance.addressLine,
+      'street': instance.street,
+      'number': instance.number,
+      'neighborhood': instance.neighborhood,
+      'zipCode': instance.zipCode,
+      'cityId': instance.cityId,
+      'isPrimary': instance.isPrimary,
+    };
+
 AppUserDTO _$AppUserDTOFromJson(Map<String, dynamic> json) => AppUserDTO(
       id: json['id'] as String?,
       email: json['email'] as String?,
@@ -1959,6 +2045,130 @@ Map<String, dynamic> _$ProjectDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+ProviderDTO _$ProviderDTOFromJson(Map<String, dynamic> json) => ProviderDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      name: json['name'] as String?,
+      code: json['code'] as String?,
+      description: json['description'] as String?,
+      companyName: json['companyName'] as String?,
+      contactPerson: json['contactPerson'] as String?,
+      phone: json['phone'] as String?,
+      email: json['email'] as String?,
+      addresses: (json['addresses'] as List<dynamic>?)
+              ?.map((e) =>
+                  ProviderListAddressDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      taxID: json['taxID'] as String?,
+      website: json['website'] as String?,
+      notes: json['notes'] as String?,
+    );
+
+Map<String, dynamic> _$ProviderDTOToJson(ProviderDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'name': instance.name,
+      'code': instance.code,
+      'description': instance.description,
+      'companyName': instance.companyName,
+      'contactPerson': instance.contactPerson,
+      'phone': instance.phone,
+      'email': instance.email,
+      'addresses': instance.addresses?.map((e) => e.toJson()).toList(),
+      'taxID': instance.taxID,
+      'website': instance.website,
+      'notes': instance.notes,
+    };
+
+ProviderDTOPagedResult _$ProviderDTOPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ProviderDTOPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ProviderDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ProviderDTOPagedResultToJson(
+        ProviderDTOPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+ProviderListAddressDTO _$ProviderListAddressDTOFromJson(
+        Map<String, dynamic> json) =>
+    ProviderListAddressDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      provId: json['provId'] as String?,
+      addressLine: json['addressLine'] as String?,
+      street: json['street'] as String?,
+      number: json['number'] as String?,
+      neighborhood: json['neighborhood'] as String?,
+      zipCode: json['zipCode'] as String?,
+      cityId: json['cityId'] as String?,
+      isPrimary: json['isPrimary'] as bool?,
+    );
+
+Map<String, dynamic> _$ProviderListAddressDTOToJson(
+        ProviderListAddressDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'provId': instance.provId,
+      'addressLine': instance.addressLine,
+      'street': instance.street,
+      'number': instance.number,
+      'neighborhood': instance.neighborhood,
+      'zipCode': instance.zipCode,
+      'cityId': instance.cityId,
+      'isPrimary': instance.isPrimary,
+    };
+
+ProviderPostDTO _$ProviderPostDTOFromJson(Map<String, dynamic> json) =>
+    ProviderPostDTO(
+      name: json['name'] as String?,
+      code: json['code'] as String?,
+      description: json['description'] as String?,
+      companyName: json['companyName'] as String?,
+      contactPerson: json['contactPerson'] as String?,
+      phone: json['phone'] as String?,
+      email: json['email'] as String?,
+      addresses: (json['addresses'] as List<dynamic>?)
+              ?.map((e) =>
+                  ProviderListAddressDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      taxID: json['taxID'] as String?,
+      website: json['website'] as String?,
+      notes: json['notes'] as String?,
+    );
+
+Map<String, dynamic> _$ProviderPostDTOToJson(ProviderPostDTO instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'code': instance.code,
+      'description': instance.description,
+      'companyName': instance.companyName,
+      'contactPerson': instance.contactPerson,
+      'phone': instance.phone,
+      'email': instance.email,
+      'addresses': instance.addresses?.map((e) => e.toJson()).toList(),
+      'taxID': instance.taxID,
+      'website': instance.website,
+      'notes': instance.notes,
     };
 
 ReminderFormDTO _$ReminderFormDTOFromJson(Map<String, dynamic> json) =>
