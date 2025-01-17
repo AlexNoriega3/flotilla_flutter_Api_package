@@ -650,6 +650,113 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  Future<chopper.Response<List<DriverDTO>>> apiDriverGet() {
+    generatedMapping.putIfAbsent(DriverDTO, () => DriverDTO.fromJsonFactory);
+
+    return _apiDriverGet();
+  }
+
+  ///
+  @Get(path: '/api/Driver')
+  Future<chopper.Response<List<DriverDTO>>> _apiDriverGet();
+
+  ///
+  Future<chopper.Response<String>> apiDriverPost({required DriverDTO? body}) {
+    return _apiDriverPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Driver')
+  Future<chopper.Response<String>> _apiDriverPost(
+      {@Body() required DriverDTO? body});
+
+  ///
+  ///@param CategoryType
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  Future<chopper.Response<DriverDTOPagedResult>> apiDriverSearchGet(
+      {enums.CategoryTypeEnum? categoryType,
+      required int? page,
+      String? search,
+      String? orderByPropertyName,
+      enums.SortOrderEnum? sortOrder,
+      required int? pageSize,
+      bool? active}) {
+    generatedMapping.putIfAbsent(
+        DriverDTOPagedResult, () => DriverDTOPagedResult.fromJsonFactory);
+
+    return _apiDriverSearchGet(
+        categoryType: enums.$CategoryTypeEnumMap[categoryType]?.toString(),
+        page: page,
+        search: search,
+        orderByPropertyName: orderByPropertyName,
+        sortOrder: enums.$SortOrderEnumMap[sortOrder]?.toString(),
+        pageSize: pageSize,
+        active: active);
+  }
+
+  ///
+  ///@param CategoryType
+  ///@param Page
+  ///@param Search
+  ///@param OrderByPropertyName
+  ///@param SortOrder
+  ///@param PageSize
+  ///@param Active
+  @Get(path: '/api/Driver/Search')
+  Future<chopper.Response<DriverDTOPagedResult>> _apiDriverSearchGet(
+      {@Query('CategoryType') String? categoryType,
+      @Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('OrderByPropertyName') String? orderByPropertyName,
+      @Query('SortOrder') String? sortOrder,
+      @Query('PageSize') required int? pageSize,
+      @Query('Active') bool? active});
+
+  ///
+  ///@param id
+  Future<chopper.Response<DriverDTO>> apiDriverIdGet({required String? id}) {
+    generatedMapping.putIfAbsent(DriverDTO, () => DriverDTO.fromJsonFactory);
+
+    return _apiDriverIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Driver/{id}')
+  Future<chopper.Response<DriverDTO>> _apiDriverIdGet(
+      {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiDriverIdPut(
+      {required String? id, required DriverDTO? body}) {
+    return _apiDriverIdPut(id: id, body: body);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/Driver/{id}')
+  Future<chopper.Response<bool>> _apiDriverIdPut(
+      {@Path('id') required String? id, @Body() required DriverDTO? body});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiDriverIdDelete({required String? id}) {
+    return _apiDriverIdDelete(id: id);
+  }
+
+  ///
+  ///@param id
+  @Delete(path: '/api/Driver/{id}')
+  Future<chopper.Response<bool>> _apiDriverIdDelete(
+      {@Path('id') required String? id});
+
+  ///
   Future<chopper.Response<List<EngineDTO>>> apiEngineGet() {
     generatedMapping.putIfAbsent(EngineDTO, () => EngineDTO.fromJsonFactory);
 
@@ -980,7 +1087,7 @@ abstract class FMA extends ChopperService {
       String? reference,
       bool? full,
       bool? resetTank,
-      int? providerId,
+      String? providerId,
       required num? liters,
       String? fuelMeasureId,
       String? userDriverId,
@@ -1043,7 +1150,7 @@ abstract class FMA extends ChopperService {
       @Query('Reference') String? reference,
       @Query('Full') bool? full,
       @Query('ResetTank') bool? resetTank,
-      @Query('ProviderId') int? providerId,
+      @Query('ProviderId') String? providerId,
       @Query('Liters') required num? liters,
       @Query('FuelMeasureId') String? fuelMeasureId,
       @Query('UserDriverId') String? userDriverId,
@@ -1883,6 +1990,50 @@ abstract class FMA extends ChopperService {
   @Delete(path: '/api/InsuranceCompany/{id}')
   Future<chopper.Response<bool>> _apiInsuranceCompanyIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  Future<chopper.Response<SystemCountryDTO>> apiLocationCountriesGet() {
+    generatedMapping.putIfAbsent(
+        SystemCountryDTO, () => SystemCountryDTO.fromJsonFactory);
+
+    return _apiLocationCountriesGet();
+  }
+
+  ///
+  @Get(path: '/api/Location/Countries')
+  Future<chopper.Response<SystemCountryDTO>> _apiLocationCountriesGet();
+
+  ///
+  ///@param countryId
+  Future<chopper.Response<SystemStateDTO>> apiLocationCountryIdStatesGet(
+      {required String? countryId}) {
+    generatedMapping.putIfAbsent(
+        SystemStateDTO, () => SystemStateDTO.fromJsonFactory);
+
+    return _apiLocationCountryIdStatesGet(countryId: countryId);
+  }
+
+  ///
+  ///@param countryId
+  @Get(path: '/api/Location/{countryId}/States')
+  Future<chopper.Response<SystemStateDTO>> _apiLocationCountryIdStatesGet(
+      {@Path('countryId') required String? countryId});
+
+  ///
+  ///@param stateId
+  Future<chopper.Response<SystemCityDTO>> apiLocationStateIdCitiesGet(
+      {required String? stateId}) {
+    generatedMapping.putIfAbsent(
+        SystemCityDTO, () => SystemCityDTO.fromJsonFactory);
+
+    return _apiLocationStateIdCitiesGet(stateId: stateId);
+  }
+
+  ///
+  ///@param stateId
+  @Get(path: '/api/Location/{stateId}/Cities')
+  Future<chopper.Response<SystemCityDTO>> _apiLocationStateIdCitiesGet(
+      {@Path('stateId') required String? stateId});
 
   ///
   Future<chopper.Response<List<MachineDTO>>> apiMachineGet() {
@@ -4636,7 +4787,7 @@ class AddressDTO {
     this.name,
     this.code,
     this.description,
-    this.providerID,
+    this.providerId,
     this.addressLine,
     this.street,
     this.number,
@@ -4659,8 +4810,8 @@ class AddressDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'providerID')
-  final String? providerID;
+  @JsonKey(name: 'providerId')
+  final String? providerId;
   @JsonKey(name: 'addressLine')
   final String? addressLine;
   @JsonKey(name: 'street')
@@ -4697,9 +4848,9 @@ class AddressDTO {
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
-            (identical(other.providerID, providerID) ||
+            (identical(other.providerId, providerId) ||
                 const DeepCollectionEquality()
-                    .equals(other.providerID, providerID)) &&
+                    .equals(other.providerId, providerId)) &&
             (identical(other.addressLine, addressLine) ||
                 const DeepCollectionEquality()
                     .equals(other.addressLine, addressLine)) &&
@@ -4727,7 +4878,7 @@ class AddressDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(providerID) ^
+      const DeepCollectionEquality().hash(providerId) ^
       const DeepCollectionEquality().hash(addressLine) ^
       const DeepCollectionEquality().hash(street) ^
       const DeepCollectionEquality().hash(number) ^
@@ -4745,7 +4896,7 @@ extension $AddressDTOExtension on AddressDTO {
       String? name,
       String? code,
       String? description,
-      String? providerID,
+      String? providerId,
       String? addressLine,
       String? street,
       String? number,
@@ -4759,7 +4910,7 @@ extension $AddressDTOExtension on AddressDTO {
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
-        providerID: providerID ?? this.providerID,
+        providerId: providerId ?? this.providerId,
         addressLine: addressLine ?? this.addressLine,
         street: street ?? this.street,
         number: number ?? this.number,
@@ -4852,7 +5003,7 @@ class AddressPostDTO {
     this.name,
     this.code,
     this.description,
-    this.providerID,
+    this.providerId,
     this.addressLine,
     this.street,
     this.number,
@@ -4871,8 +5022,8 @@ class AddressPostDTO {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
-  @JsonKey(name: 'providerID')
-  final String? providerID;
+  @JsonKey(name: 'providerId')
+  final String? providerId;
   @JsonKey(name: 'addressLine')
   final String? addressLine;
   @JsonKey(name: 'street')
@@ -4905,9 +5056,9 @@ class AddressPostDTO {
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
-            (identical(other.providerID, providerID) ||
+            (identical(other.providerId, providerId) ||
                 const DeepCollectionEquality()
-                    .equals(other.providerID, providerID)) &&
+                    .equals(other.providerId, providerId)) &&
             (identical(other.addressLine, addressLine) ||
                 const DeepCollectionEquality()
                     .equals(other.addressLine, addressLine)) &&
@@ -4933,7 +5084,7 @@ class AddressPostDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(providerID) ^
+      const DeepCollectionEquality().hash(providerId) ^
       const DeepCollectionEquality().hash(addressLine) ^
       const DeepCollectionEquality().hash(street) ^
       const DeepCollectionEquality().hash(number) ^
@@ -4949,7 +5100,7 @@ extension $AddressPostDTOExtension on AddressPostDTO {
       {String? name,
       String? code,
       String? description,
-      String? providerID,
+      String? providerId,
       String? addressLine,
       String? street,
       String? number,
@@ -4961,7 +5112,7 @@ extension $AddressPostDTOExtension on AddressPostDTO {
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description,
-        providerID: providerID ?? this.providerID,
+        providerId: providerId ?? this.providerId,
         addressLine: addressLine ?? this.addressLine,
         street: street ?? this.street,
         number: number ?? this.number,
@@ -6004,6 +6155,156 @@ extension $DocumentDTOPagedResultExtension on DocumentDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
+class DriverDTO {
+  DriverDTO({
+    this.id,
+    this.active,
+    required this.name,
+    required this.lastName,
+    this.fullName,
+  });
+
+  factory DriverDTO.fromJson(Map<String, dynamic> json) =>
+      _$DriverDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'lastName')
+  final String lastName;
+  @JsonKey(name: 'fullName')
+  final String? fullName;
+  static const fromJsonFactory = _$DriverDTOFromJson;
+  static const toJsonFactory = _$DriverDTOToJson;
+  Map<String, dynamic> toJson() => _$DriverDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DriverDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.fullName, fullName) ||
+                const DeepCollectionEquality()
+                    .equals(other.fullName, fullName)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(fullName) ^
+      runtimeType.hashCode;
+}
+
+extension $DriverDTOExtension on DriverDTO {
+  DriverDTO copyWith(
+      {String? id,
+      bool? active,
+      String? name,
+      String? lastName,
+      String? fullName}) {
+    return DriverDTO(
+        id: id ?? this.id,
+        active: active ?? this.active,
+        name: name ?? this.name,
+        lastName: lastName ?? this.lastName,
+        fullName: fullName ?? this.fullName);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DriverDTOPagedResult {
+  DriverDTOPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory DriverDTOPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$DriverDTOPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <DriverDTO>[])
+  final List<DriverDTO>? items;
+  static const fromJsonFactory = _$DriverDTOPagedResultFromJson;
+  static const toJsonFactory = _$DriverDTOPagedResultToJson;
+  Map<String, dynamic> toJson() => _$DriverDTOPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DriverDTOPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $DriverDTOPagedResultExtension on DriverDTOPagedResult {
+  DriverDTOPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<DriverDTO>? items}) {
+    return DriverDTOPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EditUserResponse {
   EditUserResponse({
     this.saved,
@@ -6613,7 +6914,7 @@ class FuelLoadFormDTO {
   @JsonKey(name: 'imageFiles', defaultValue: <String>[])
   final List<String>? imageFiles;
   @JsonKey(name: 'providerId')
-  final int? providerId;
+  final String? providerId;
   @JsonKey(name: 'fuelMeasureId')
   final String? fuelMeasureId;
   @JsonKey(name: 'userDriverId')
@@ -6741,7 +7042,7 @@ extension $FuelLoadFormDTOExtension on FuelLoadFormDTO {
       bool? full,
       bool? resetTank,
       List<String>? imageFiles,
-      int? providerId,
+      String? providerId,
       String? fuelMeasureId,
       String? userDriverId,
       double? unitCost,
@@ -6939,7 +7240,7 @@ class FuelLoadPostDTO {
   @JsonKey(name: 'imageFiles', defaultValue: <String>[])
   final List<String>? imageFiles;
   @JsonKey(name: 'providerId')
-  final int? providerId;
+  final String? providerId;
   @JsonKey(name: 'liters')
   final double liters;
   @JsonKey(name: 'fuelMeasureId')
@@ -7049,7 +7350,7 @@ extension $FuelLoadPostDTOExtension on FuelLoadPostDTO {
       bool? full,
       bool? resetTank,
       List<String>? imageFiles,
-      int? providerId,
+      String? providerId,
       double? liters,
       String? fuelMeasureId,
       String? userDriverId,
@@ -12210,7 +12511,7 @@ class ProviderListAddressDTO {
   ProviderListAddressDTO({
     this.id,
     this.active,
-    this.provId,
+    this.providerId,
     this.addressLine,
     this.street,
     this.number,
@@ -12227,8 +12528,8 @@ class ProviderListAddressDTO {
   final String? id;
   @JsonKey(name: 'active')
   final bool? active;
-  @JsonKey(name: 'provId')
-  final String? provId;
+  @JsonKey(name: 'providerId')
+  final String? providerId;
   @JsonKey(name: 'addressLine')
   final String? addressLine;
   @JsonKey(name: 'street')
@@ -12258,8 +12559,9 @@ class ProviderListAddressDTO {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.provId, provId) ||
-                const DeepCollectionEquality().equals(other.provId, provId)) &&
+            (identical(other.providerId, providerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.providerId, providerId)) &&
             (identical(other.addressLine, addressLine) ||
                 const DeepCollectionEquality()
                     .equals(other.addressLine, addressLine)) &&
@@ -12284,7 +12586,7 @@ class ProviderListAddressDTO {
   int get hashCode =>
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(provId) ^
+      const DeepCollectionEquality().hash(providerId) ^
       const DeepCollectionEquality().hash(addressLine) ^
       const DeepCollectionEquality().hash(street) ^
       const DeepCollectionEquality().hash(number) ^
@@ -12299,7 +12601,7 @@ extension $ProviderListAddressDTOExtension on ProviderListAddressDTO {
   ProviderListAddressDTO copyWith(
       {String? id,
       bool? active,
-      String? provId,
+      String? providerId,
       String? addressLine,
       String? street,
       String? number,
@@ -12310,7 +12612,7 @@ extension $ProviderListAddressDTOExtension on ProviderListAddressDTO {
     return ProviderListAddressDTO(
         id: id ?? this.id,
         active: active ?? this.active,
-        provId: provId ?? this.provId,
+        providerId: providerId ?? this.providerId,
         addressLine: addressLine ?? this.addressLine,
         street: street ?? this.street,
         number: number ?? this.number,
@@ -13538,6 +13840,258 @@ extension $StatisticsFilterDTOExtension on StatisticsFilterDTO {
         vehicleId: vehicleId ?? this.vehicleId,
         dateStart: dateStart ?? this.dateStart,
         dateEnd: dateEnd ?? this.dateEnd);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SystemCityDTO {
+  SystemCityDTO({
+    this.id,
+    this.active,
+    this.stateId,
+    required this.code,
+    this.name,
+    this.state,
+  });
+
+  factory SystemCityDTO.fromJson(Map<String, dynamic> json) =>
+      _$SystemCityDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(name: 'stateId')
+  final String? stateId;
+  @JsonKey(name: 'code')
+  final String code;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'state')
+  final SystemStateDTO? state;
+  static const fromJsonFactory = _$SystemCityDTOFromJson;
+  static const toJsonFactory = _$SystemCityDTOToJson;
+  Map<String, dynamic> toJson() => _$SystemCityDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SystemCityDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.stateId, stateId) ||
+                const DeepCollectionEquality()
+                    .equals(other.stateId, stateId)) &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.state, state) ||
+                const DeepCollectionEquality().equals(other.state, state)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(stateId) ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(state) ^
+      runtimeType.hashCode;
+}
+
+extension $SystemCityDTOExtension on SystemCityDTO {
+  SystemCityDTO copyWith(
+      {String? id,
+      bool? active,
+      String? stateId,
+      String? code,
+      String? name,
+      SystemStateDTO? state}) {
+    return SystemCityDTO(
+        id: id ?? this.id,
+        active: active ?? this.active,
+        stateId: stateId ?? this.stateId,
+        code: code ?? this.code,
+        name: name ?? this.name,
+        state: state ?? this.state);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SystemCountryDTO {
+  SystemCountryDTO({
+    this.id,
+    this.active,
+    this.code,
+    required this.name,
+    this.phoneCode,
+    this.states,
+  });
+
+  factory SystemCountryDTO.fromJson(Map<String, dynamic> json) =>
+      _$SystemCountryDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(name: 'code')
+  final String? code;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'phoneCode')
+  final String? phoneCode;
+  @JsonKey(name: 'states', defaultValue: <SystemStateDTO>[])
+  final List<SystemStateDTO>? states;
+  static const fromJsonFactory = _$SystemCountryDTOFromJson;
+  static const toJsonFactory = _$SystemCountryDTOToJson;
+  Map<String, dynamic> toJson() => _$SystemCountryDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SystemCountryDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.phoneCode, phoneCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneCode, phoneCode)) &&
+            (identical(other.states, states) ||
+                const DeepCollectionEquality().equals(other.states, states)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(phoneCode) ^
+      const DeepCollectionEquality().hash(states) ^
+      runtimeType.hashCode;
+}
+
+extension $SystemCountryDTOExtension on SystemCountryDTO {
+  SystemCountryDTO copyWith(
+      {String? id,
+      bool? active,
+      String? code,
+      String? name,
+      String? phoneCode,
+      List<SystemStateDTO>? states}) {
+    return SystemCountryDTO(
+        id: id ?? this.id,
+        active: active ?? this.active,
+        code: code ?? this.code,
+        name: name ?? this.name,
+        phoneCode: phoneCode ?? this.phoneCode,
+        states: states ?? this.states);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SystemStateDTO {
+  SystemStateDTO({
+    this.id,
+    this.active,
+    this.countryId,
+    required this.code,
+    this.name,
+    this.country,
+    this.cities,
+  });
+
+  factory SystemStateDTO.fromJson(Map<String, dynamic> json) =>
+      _$SystemStateDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(name: 'countryId')
+  final String? countryId;
+  @JsonKey(name: 'code')
+  final String code;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'country')
+  final SystemCountryDTO? country;
+  @JsonKey(name: 'cities', defaultValue: <SystemCityDTO>[])
+  final List<SystemCityDTO>? cities;
+  static const fromJsonFactory = _$SystemStateDTOFromJson;
+  static const toJsonFactory = _$SystemStateDTOToJson;
+  Map<String, dynamic> toJson() => _$SystemStateDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SystemStateDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.countryId, countryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryId, countryId)) &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality()
+                    .equals(other.country, country)) &&
+            (identical(other.cities, cities) ||
+                const DeepCollectionEquality().equals(other.cities, cities)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(countryId) ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(cities) ^
+      runtimeType.hashCode;
+}
+
+extension $SystemStateDTOExtension on SystemStateDTO {
+  SystemStateDTO copyWith(
+      {String? id,
+      bool? active,
+      String? countryId,
+      String? code,
+      String? name,
+      SystemCountryDTO? country,
+      List<SystemCityDTO>? cities}) {
+    return SystemStateDTO(
+        id: id ?? this.id,
+        active: active ?? this.active,
+        countryId: countryId ?? this.countryId,
+        code: code ?? this.code,
+        name: name ?? this.name,
+        country: country ?? this.country,
+        cities: cities ?? this.cities);
   }
 }
 

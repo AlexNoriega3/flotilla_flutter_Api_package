@@ -1292,6 +1292,221 @@
         }
       }
     },
+    "/api/Driver": {
+      "get": {
+        "tags": [
+          "Driver"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DriverDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Driver"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DriverDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Driver/Search": {
+      "get": {
+        "tags": [
+          "Driver"
+        ],
+        "parameters": [
+          {
+            "name": "CategoryType",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/CategoryTypeEnum"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderByPropertyName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/SortOrderEnum"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Active",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriverDTOPagedResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Driver/{id}": {
+      "get": {
+        "tags": [
+          "Driver"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriverDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Driver"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DriverDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Driver"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Engine": {
       "get": {
         "tags": [
@@ -1690,8 +1905,7 @@
                     }
                   },
                   "ProviderId": {
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "string"
                   },
                   "Liters": {
                     "maximum": 2147483647,
@@ -2692,8 +2906,7 @@
             "name": "ProviderId",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           },
           {
@@ -3055,8 +3268,7 @@
                     }
                   },
                   "ProviderId": {
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "string"
                   },
                   "Liters": {
                     "maximum": 2147483647,
@@ -5837,6 +6049,308 @@
               "application/json": {
                 "schema": {
                   "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Location/Countries": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCountryDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Location/{countryId}/States": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStateDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Location/{stateId}/Cities": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "parameters": [
+          {
+            "name": "stateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemCityDTO"
                 }
               }
             }
@@ -17849,22 +18363,25 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
-          "providerID": {
+          "providerId": {
             "type": "string",
             "nullable": true
           },
@@ -17942,7 +18459,7 @@
             "type": "string",
             "nullable": true
           },
-          "providerID": {
+          "providerId": {
             "type": "string",
             "nullable": true
           },
@@ -18149,18 +18666,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -18212,7 +18732,9 @@
           "Measures",
           "ActiveCategories",
           "MaintenanceTypes",
-          "InsuranceCompanies"
+          "InsuranceCompanies",
+          "Providers",
+          "Drivers"
         ],
         "type": "string"
       },
@@ -18242,18 +18764,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -18312,18 +18837,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -18409,6 +18937,70 @@
         },
         "additionalProperties": false
       },
+      "DriverDTO": {
+        "required": [
+          "lastName",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": ".+\\S.*",
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": ".+\\S.*",
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true,
+            "deprecated": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DriverDTOPagedResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recordNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DriverDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "EditUserResponse": {
         "type": "object",
         "properties": {
@@ -18435,18 +19027,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -18515,18 +19110,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -18651,8 +19249,8 @@
             "nullable": true
           },
           "providerId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "fuelMeasureId": {
             "type": "string",
@@ -18821,8 +19419,8 @@
             "nullable": true
           },
           "providerId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "liters": {
             "maximum": 2147483647,
@@ -18881,18 +19479,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -18941,18 +19542,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -19001,18 +19605,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -19131,18 +19738,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -19245,18 +19855,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -19325,18 +19938,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -19650,18 +20266,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -20116,18 +20735,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -20176,18 +20798,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -20236,18 +20861,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -20300,18 +20928,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -20360,18 +20991,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -20467,18 +21101,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -20720,18 +21357,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -20821,18 +21461,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -20975,7 +21618,7 @@
           "active": {
             "type": "boolean"
           },
-          "provId": {
+          "providerId": {
             "type": "string",
             "nullable": true
           },
@@ -21421,18 +22064,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }
@@ -21493,6 +22139,116 @@
           "dateEnd": {
             "pattern": "\\d{4}-\\d{2}-\\d{2}",
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemCityDTO": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "stateId": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "maxLength": 350,
+            "minLength": 1,
+            "pattern": ".+\\S.*",
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "$ref": "#/components/schemas/SystemStateDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemCountryDTO": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "maxLength": 350,
+            "minLength": 1,
+            "pattern": ".+\\S.*",
+            "type": "string"
+          },
+          "phoneCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SystemStateDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemStateDTO": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "countryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "maxLength": 350,
+            "minLength": 1,
+            "pattern": ".+\\S.*",
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "$ref": "#/components/schemas/SystemCountryDTO"
+          },
+          "cities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SystemCityDTO"
+            },
             "nullable": true
           }
         },
@@ -21714,18 +22470,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -21790,18 +22549,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
@@ -22501,18 +23263,21 @@
           "name": {
             "maxLength": 150,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "code": {
             "maxLength": 30,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           },
           "description": {
             "maxLength": 500,
             "minLength": 0,
+            "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
           }

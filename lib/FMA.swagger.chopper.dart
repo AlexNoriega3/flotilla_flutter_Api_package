@@ -370,6 +370,67 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<List<DriverDTO>>> _apiDriverGet() {
+    final $url = '/api/Driver';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<DriverDTO>, DriverDTO>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiDriverPost({required DriverDTO? body}) {
+    final $url = '/api/Driver';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<DriverDTOPagedResult>> _apiDriverSearchGet(
+      {String? categoryType,
+      required int? page,
+      String? search,
+      String? orderByPropertyName,
+      String? sortOrder,
+      required int? pageSize,
+      bool? active}) {
+    final $url = '/api/Driver/Search';
+    final $params = <String, dynamic>{
+      'CategoryType': categoryType,
+      'Page': page,
+      'Search': search,
+      'OrderByPropertyName': orderByPropertyName,
+      'SortOrder': sortOrder,
+      'PageSize': pageSize,
+      'Active': active
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<DriverDTOPagedResult, DriverDTOPagedResult>($request);
+  }
+
+  @override
+  Future<Response<DriverDTO>> _apiDriverIdGet({required String? id}) {
+    final $url = '/api/Driver/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<DriverDTO, DriverDTO>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiDriverIdPut(
+      {required String? id, required DriverDTO? body}) {
+    final $url = '/api/Driver/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiDriverIdDelete({required String? id}) {
+    final $url = '/api/Driver/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<EngineDTO>>> _apiEngineGet() {
     final $url = '/api/Engine';
     final $request = Request('GET', $url, client.baseUrl);
@@ -545,7 +606,7 @@ class _$FMA extends FMA {
       String? reference,
       bool? full,
       bool? resetTank,
-      int? providerId,
+      String? providerId,
       required num? liters,
       String? fuelMeasureId,
       String? userDriverId,
@@ -1059,6 +1120,29 @@ class _$FMA extends FMA {
     final $url = '/api/InsuranceCompany/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<SystemCountryDTO>> _apiLocationCountriesGet() {
+    final $url = '/api/Location/Countries';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<SystemCountryDTO, SystemCountryDTO>($request);
+  }
+
+  @override
+  Future<Response<SystemStateDTO>> _apiLocationCountryIdStatesGet(
+      {required String? countryId}) {
+    final $url = '/api/Location/${countryId}/States';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<SystemStateDTO, SystemStateDTO>($request);
+  }
+
+  @override
+  Future<Response<SystemCityDTO>> _apiLocationStateIdCitiesGet(
+      {required String? stateId}) {
+    final $url = '/api/Location/${stateId}/Cities';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<SystemCityDTO, SystemCityDTO>($request);
   }
 
   @override

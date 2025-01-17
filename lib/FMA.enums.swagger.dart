@@ -32,7 +32,11 @@ enum CatalogsEnum {
   @JsonValue('MaintenanceTypes')
   maintenancetypes,
   @JsonValue('InsuranceCompanies')
-  insurancecompanies
+  insurancecompanies,
+  @JsonValue('Providers')
+  providers,
+  @JsonValue('Drivers')
+  drivers
 }
 
 const $CatalogsEnumMap = {
@@ -50,7 +54,9 @@ const $CatalogsEnumMap = {
   CatalogsEnum.measures: 'Measures',
   CatalogsEnum.activecategories: 'ActiveCategories',
   CatalogsEnum.maintenancetypes: 'MaintenanceTypes',
-  CatalogsEnum.insurancecompanies: 'InsuranceCompanies'
+  CatalogsEnum.insurancecompanies: 'InsuranceCompanies',
+  CatalogsEnum.providers: 'Providers',
+  CatalogsEnum.drivers: 'Drivers'
 };
 
 enum CategoryTypeEnum {

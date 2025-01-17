@@ -12,7 +12,7 @@ AddressDTO _$AddressDTOFromJson(Map<String, dynamic> json) => AddressDTO(
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      providerID: json['providerID'] as String?,
+      providerId: json['providerId'] as String?,
       addressLine: json['addressLine'] as String?,
       street: json['street'] as String?,
       number: json['number'] as String?,
@@ -29,7 +29,7 @@ Map<String, dynamic> _$AddressDTOToJson(AddressDTO instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'providerID': instance.providerID,
+      'providerId': instance.providerId,
       'addressLine': instance.addressLine,
       'street': instance.street,
       'number': instance.number,
@@ -67,7 +67,7 @@ AddressPostDTO _$AddressPostDTOFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      providerID: json['providerID'] as String?,
+      providerId: json['providerId'] as String?,
       addressLine: json['addressLine'] as String?,
       street: json['street'] as String?,
       number: json['number'] as String?,
@@ -82,7 +82,7 @@ Map<String, dynamic> _$AddressPostDTOToJson(AddressPostDTO instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'providerID': instance.providerID,
+      'providerId': instance.providerId,
       'addressLine': instance.addressLine,
       'street': instance.street,
       'number': instance.number,
@@ -365,6 +365,45 @@ Map<String, dynamic> _$DocumentDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+DriverDTO _$DriverDTOFromJson(Map<String, dynamic> json) => DriverDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      name: json['name'] as String,
+      lastName: json['lastName'] as String,
+      fullName: json['fullName'] as String?,
+    );
+
+Map<String, dynamic> _$DriverDTOToJson(DriverDTO instance) => <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'name': instance.name,
+      'lastName': instance.lastName,
+      'fullName': instance.fullName,
+    };
+
+DriverDTOPagedResult _$DriverDTOPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    DriverDTOPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => DriverDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$DriverDTOPagedResultToJson(
+        DriverDTOPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 EditUserResponse _$EditUserResponseFromJson(Map<String, dynamic> json) =>
     EditUserResponse(
       saved: json['saved'] as bool?,
@@ -532,7 +571,7 @@ FuelLoadFormDTO _$FuelLoadFormDTOFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           [],
-      providerId: json['providerId'] as int?,
+      providerId: json['providerId'] as String?,
       fuelMeasureId: json['fuelMeasureId'] as String?,
       userDriverId: json['userDriverId'] as String?,
       unitCost: (json['unitCost'] as num?)?.toDouble(),
@@ -632,7 +671,7 @@ FuelLoadPostDTO _$FuelLoadPostDTOFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           [],
-      providerId: json['providerId'] as int?,
+      providerId: json['providerId'] as String?,
       liters: (json['liters'] as num).toDouble(),
       fuelMeasureId: json['fuelMeasureId'] as String?,
       userDriverId: json['userDriverId'] as String?,
@@ -2112,7 +2151,7 @@ ProviderListAddressDTO _$ProviderListAddressDTOFromJson(
     ProviderListAddressDTO(
       id: json['id'] as String?,
       active: json['active'] as bool?,
-      provId: json['provId'] as String?,
+      providerId: json['providerId'] as String?,
       addressLine: json['addressLine'] as String?,
       street: json['street'] as String?,
       number: json['number'] as String?,
@@ -2127,7 +2166,7 @@ Map<String, dynamic> _$ProviderListAddressDTOToJson(
     <String, dynamic>{
       'id': instance.id,
       'active': instance.active,
-      'provId': instance.provId,
+      'providerId': instance.providerId,
       'addressLine': instance.addressLine,
       'street': instance.street,
       'number': instance.number,
@@ -2458,6 +2497,78 @@ Map<String, dynamic> _$StatisticsFilterDTOToJson(
       'vehicleId': instance.vehicleId,
       'dateStart': instance.dateStart,
       'dateEnd': instance.dateEnd,
+    };
+
+SystemCityDTO _$SystemCityDTOFromJson(Map<String, dynamic> json) =>
+    SystemCityDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      stateId: json['stateId'] as String?,
+      code: json['code'] as String,
+      name: json['name'] as String?,
+      state: json['state'] == null
+          ? null
+          : SystemStateDTO.fromJson(json['state'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$SystemCityDTOToJson(SystemCityDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'stateId': instance.stateId,
+      'code': instance.code,
+      'name': instance.name,
+      'state': instance.state?.toJson(),
+    };
+
+SystemCountryDTO _$SystemCountryDTOFromJson(Map<String, dynamic> json) =>
+    SystemCountryDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      code: json['code'] as String?,
+      name: json['name'] as String,
+      phoneCode: json['phoneCode'] as String?,
+      states: (json['states'] as List<dynamic>?)
+              ?.map((e) => SystemStateDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$SystemCountryDTOToJson(SystemCountryDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'code': instance.code,
+      'name': instance.name,
+      'phoneCode': instance.phoneCode,
+      'states': instance.states?.map((e) => e.toJson()).toList(),
+    };
+
+SystemStateDTO _$SystemStateDTOFromJson(Map<String, dynamic> json) =>
+    SystemStateDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      countryId: json['countryId'] as String?,
+      code: json['code'] as String,
+      name: json['name'] as String?,
+      country: json['country'] == null
+          ? null
+          : SystemCountryDTO.fromJson(json['country'] as Map<String, dynamic>),
+      cities: (json['cities'] as List<dynamic>?)
+              ?.map((e) => SystemCityDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$SystemStateDTOToJson(SystemStateDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'countryId': instance.countryId,
+      'code': instance.code,
+      'name': instance.name,
+      'country': instance.country?.toJson(),
+      'cities': instance.cities?.map((e) => e.toJson()).toList(),
     };
 
 TimeSpan _$TimeSpanFromJson(Map<String, dynamic> json) => TimeSpan(
