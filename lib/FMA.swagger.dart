@@ -4794,6 +4794,11 @@ class AddressDTO {
     this.neighborhood,
     this.zipCode,
     this.cityId,
+    this.cityName,
+    this.stateId,
+    this.stateName,
+    this.countryId,
+    this.countryName,
     this.isPrimary,
   });
 
@@ -4824,6 +4829,16 @@ class AddressDTO {
   final String? zipCode;
   @JsonKey(name: 'cityId')
   final String? cityId;
+  @JsonKey(name: 'cityName')
+  final String? cityName;
+  @JsonKey(name: 'stateId')
+  final String? stateId;
+  @JsonKey(name: 'stateName')
+  final String? stateName;
+  @JsonKey(name: 'countryId')
+  final String? countryId;
+  @JsonKey(name: 'countryName')
+  final String? countryName;
   @JsonKey(name: 'isPrimary')
   final bool? isPrimary;
   static const fromJsonFactory = _$AddressDTOFromJson;
@@ -4866,6 +4881,21 @@ class AddressDTO {
                     .equals(other.zipCode, zipCode)) &&
             (identical(other.cityId, cityId) ||
                 const DeepCollectionEquality().equals(other.cityId, cityId)) &&
+            (identical(other.cityName, cityName) ||
+                const DeepCollectionEquality()
+                    .equals(other.cityName, cityName)) &&
+            (identical(other.stateId, stateId) ||
+                const DeepCollectionEquality()
+                    .equals(other.stateId, stateId)) &&
+            (identical(other.stateName, stateName) ||
+                const DeepCollectionEquality()
+                    .equals(other.stateName, stateName)) &&
+            (identical(other.countryId, countryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryId, countryId)) &&
+            (identical(other.countryName, countryName) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryName, countryName)) &&
             (identical(other.isPrimary, isPrimary) ||
                 const DeepCollectionEquality()
                     .equals(other.isPrimary, isPrimary)));
@@ -4885,6 +4915,11 @@ class AddressDTO {
       const DeepCollectionEquality().hash(neighborhood) ^
       const DeepCollectionEquality().hash(zipCode) ^
       const DeepCollectionEquality().hash(cityId) ^
+      const DeepCollectionEquality().hash(cityName) ^
+      const DeepCollectionEquality().hash(stateId) ^
+      const DeepCollectionEquality().hash(stateName) ^
+      const DeepCollectionEquality().hash(countryId) ^
+      const DeepCollectionEquality().hash(countryName) ^
       const DeepCollectionEquality().hash(isPrimary) ^
       runtimeType.hashCode;
 }
@@ -4903,6 +4938,11 @@ extension $AddressDTOExtension on AddressDTO {
       String? neighborhood,
       String? zipCode,
       String? cityId,
+      String? cityName,
+      String? stateId,
+      String? stateName,
+      String? countryId,
+      String? countryName,
       bool? isPrimary}) {
     return AddressDTO(
         id: id ?? this.id,
@@ -4917,6 +4957,11 @@ extension $AddressDTOExtension on AddressDTO {
         neighborhood: neighborhood ?? this.neighborhood,
         zipCode: zipCode ?? this.zipCode,
         cityId: cityId ?? this.cityId,
+        cityName: cityName ?? this.cityName,
+        stateId: stateId ?? this.stateId,
+        stateName: stateName ?? this.stateName,
+        countryId: countryId ?? this.countryId,
+        countryName: countryName ?? this.countryName,
         isPrimary: isPrimary ?? this.isPrimary);
   }
 }
@@ -12518,6 +12563,11 @@ class ProviderListAddressDTO {
     this.neighborhood,
     this.zipCode,
     this.cityId,
+    this.cityName,
+    this.stateId,
+    this.stateName,
+    this.countryId,
+    this.countryName,
     this.isPrimary,
   });
 
@@ -12542,6 +12592,16 @@ class ProviderListAddressDTO {
   final String? zipCode;
   @JsonKey(name: 'cityId')
   final String? cityId;
+  @JsonKey(name: 'cityName')
+  final String? cityName;
+  @JsonKey(name: 'stateId')
+  final String? stateId;
+  @JsonKey(name: 'stateName')
+  final String? stateName;
+  @JsonKey(name: 'countryId')
+  final String? countryId;
+  @JsonKey(name: 'countryName')
+  final String? countryName;
   @JsonKey(name: 'isPrimary')
   final bool? isPrimary;
   static const fromJsonFactory = _$ProviderListAddressDTOFromJson;
@@ -12577,6 +12637,21 @@ class ProviderListAddressDTO {
                     .equals(other.zipCode, zipCode)) &&
             (identical(other.cityId, cityId) ||
                 const DeepCollectionEquality().equals(other.cityId, cityId)) &&
+            (identical(other.cityName, cityName) ||
+                const DeepCollectionEquality()
+                    .equals(other.cityName, cityName)) &&
+            (identical(other.stateId, stateId) ||
+                const DeepCollectionEquality()
+                    .equals(other.stateId, stateId)) &&
+            (identical(other.stateName, stateName) ||
+                const DeepCollectionEquality()
+                    .equals(other.stateName, stateName)) &&
+            (identical(other.countryId, countryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryId, countryId)) &&
+            (identical(other.countryName, countryName) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryName, countryName)) &&
             (identical(other.isPrimary, isPrimary) ||
                 const DeepCollectionEquality()
                     .equals(other.isPrimary, isPrimary)));
@@ -12593,6 +12668,11 @@ class ProviderListAddressDTO {
       const DeepCollectionEquality().hash(neighborhood) ^
       const DeepCollectionEquality().hash(zipCode) ^
       const DeepCollectionEquality().hash(cityId) ^
+      const DeepCollectionEquality().hash(cityName) ^
+      const DeepCollectionEquality().hash(stateId) ^
+      const DeepCollectionEquality().hash(stateName) ^
+      const DeepCollectionEquality().hash(countryId) ^
+      const DeepCollectionEquality().hash(countryName) ^
       const DeepCollectionEquality().hash(isPrimary) ^
       runtimeType.hashCode;
 }
@@ -12608,6 +12688,11 @@ extension $ProviderListAddressDTOExtension on ProviderListAddressDTO {
       String? neighborhood,
       String? zipCode,
       String? cityId,
+      String? cityName,
+      String? stateId,
+      String? stateName,
+      String? countryId,
+      String? countryName,
       bool? isPrimary}) {
     return ProviderListAddressDTO(
         id: id ?? this.id,
@@ -12619,6 +12704,11 @@ extension $ProviderListAddressDTOExtension on ProviderListAddressDTO {
         neighborhood: neighborhood ?? this.neighborhood,
         zipCode: zipCode ?? this.zipCode,
         cityId: cityId ?? this.cityId,
+        cityName: cityName ?? this.cityName,
+        stateId: stateId ?? this.stateId,
+        stateName: stateName ?? this.stateName,
+        countryId: countryId ?? this.countryId,
+        countryName: countryName ?? this.countryName,
         isPrimary: isPrimary ?? this.isPrimary);
   }
 }

@@ -19,6 +19,11 @@ AddressDTO _$AddressDTOFromJson(Map<String, dynamic> json) => AddressDTO(
       neighborhood: json['neighborhood'] as String?,
       zipCode: json['zipCode'] as String?,
       cityId: json['cityId'] as String?,
+      cityName: json['cityName'] as String?,
+      stateId: json['stateId'] as String?,
+      stateName: json['stateName'] as String?,
+      countryId: json['countryId'] as String?,
+      countryName: json['countryName'] as String?,
       isPrimary: json['isPrimary'] as bool?,
     );
 
@@ -36,6 +41,11 @@ Map<String, dynamic> _$AddressDTOToJson(AddressDTO instance) =>
       'neighborhood': instance.neighborhood,
       'zipCode': instance.zipCode,
       'cityId': instance.cityId,
+      'cityName': instance.cityName,
+      'stateId': instance.stateId,
+      'stateName': instance.stateName,
+      'countryId': instance.countryId,
+      'countryName': instance.countryName,
       'isPrimary': instance.isPrimary,
     };
 
@@ -2158,6 +2168,11 @@ ProviderListAddressDTO _$ProviderListAddressDTOFromJson(
       neighborhood: json['neighborhood'] as String?,
       zipCode: json['zipCode'] as String?,
       cityId: json['cityId'] as String?,
+      cityName: json['cityName'] as String?,
+      stateId: json['stateId'] as String?,
+      stateName: json['stateName'] as String?,
+      countryId: json['countryId'] as String?,
+      countryName: json['countryName'] as String?,
       isPrimary: json['isPrimary'] as bool?,
     );
 
@@ -2173,6 +2188,11 @@ Map<String, dynamic> _$ProviderListAddressDTOToJson(
       'neighborhood': instance.neighborhood,
       'zipCode': instance.zipCode,
       'cityId': instance.cityId,
+      'cityName': instance.cityName,
+      'stateId': instance.stateId,
+      'stateName': instance.stateName,
+      'countryId': instance.countryId,
+      'countryName': instance.countryName,
       'isPrimary': instance.isPrimary,
     };
 
