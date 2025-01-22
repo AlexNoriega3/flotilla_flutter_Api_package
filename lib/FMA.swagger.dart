@@ -1992,7 +1992,7 @@ abstract class FMA extends ChopperService {
       {@Path('id') required String? id});
 
   ///
-  Future<chopper.Response<SystemCountryDTO>> apiLocationCountriesGet() {
+  Future<chopper.Response<List<SystemCountryDTO>>> apiLocationCountriesGet() {
     generatedMapping.putIfAbsent(
         SystemCountryDTO, () => SystemCountryDTO.fromJsonFactory);
 
@@ -2001,11 +2001,11 @@ abstract class FMA extends ChopperService {
 
   ///
   @Get(path: '/api/Location/Countries')
-  Future<chopper.Response<SystemCountryDTO>> _apiLocationCountriesGet();
+  Future<chopper.Response<List<SystemCountryDTO>>> _apiLocationCountriesGet();
 
   ///
   ///@param countryId
-  Future<chopper.Response<SystemStateDTO>> apiLocationCountryIdStatesGet(
+  Future<chopper.Response<List<SystemStateDTO>>> apiLocationCountryIdStatesGet(
       {required String? countryId}) {
     generatedMapping.putIfAbsent(
         SystemStateDTO, () => SystemStateDTO.fromJsonFactory);
@@ -2016,12 +2016,12 @@ abstract class FMA extends ChopperService {
   ///
   ///@param countryId
   @Get(path: '/api/Location/{countryId}/States')
-  Future<chopper.Response<SystemStateDTO>> _apiLocationCountryIdStatesGet(
+  Future<chopper.Response<List<SystemStateDTO>>> _apiLocationCountryIdStatesGet(
       {@Path('countryId') required String? countryId});
 
   ///
   ///@param stateId
-  Future<chopper.Response<SystemCityDTO>> apiLocationStateIdCitiesGet(
+  Future<chopper.Response<List<SystemCityDTO>>> apiLocationStateIdCitiesGet(
       {required String? stateId}) {
     generatedMapping.putIfAbsent(
         SystemCityDTO, () => SystemCityDTO.fromJsonFactory);
@@ -2032,7 +2032,7 @@ abstract class FMA extends ChopperService {
   ///
   ///@param stateId
   @Get(path: '/api/Location/{stateId}/Cities')
-  Future<chopper.Response<SystemCityDTO>> _apiLocationStateIdCitiesGet(
+  Future<chopper.Response<List<SystemCityDTO>>> _apiLocationStateIdCitiesGet(
       {@Path('stateId') required String? stateId});
 
   ///

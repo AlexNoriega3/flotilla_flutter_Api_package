@@ -6067,82 +6067,130 @@
             "content": {
               "application/json;odata.metadata=minimal;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=minimal;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=minimal": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCountryDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCountryDTO"
+                  }
                 }
               }
             }
@@ -6171,82 +6219,130 @@
             "content": {
               "application/json;odata.metadata=minimal;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=minimal;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=minimal": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemStateDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemStateDTO"
+                  }
                 }
               }
             }
@@ -6275,82 +6371,130 @@
             "content": {
               "application/json;odata.metadata=minimal;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=minimal;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=minimal": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=full": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.metadata=none": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemCityDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SystemCityDTO"
+                  }
                 }
               }
             }

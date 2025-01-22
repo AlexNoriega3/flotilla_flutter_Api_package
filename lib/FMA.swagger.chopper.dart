@@ -1123,26 +1123,26 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<SystemCountryDTO>> _apiLocationCountriesGet() {
+  Future<Response<List<SystemCountryDTO>>> _apiLocationCountriesGet() {
     final $url = '/api/Location/Countries';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<SystemCountryDTO, SystemCountryDTO>($request);
+    return client.send<List<SystemCountryDTO>, SystemCountryDTO>($request);
   }
 
   @override
-  Future<Response<SystemStateDTO>> _apiLocationCountryIdStatesGet(
+  Future<Response<List<SystemStateDTO>>> _apiLocationCountryIdStatesGet(
       {required String? countryId}) {
     final $url = '/api/Location/${countryId}/States';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<SystemStateDTO, SystemStateDTO>($request);
+    return client.send<List<SystemStateDTO>, SystemStateDTO>($request);
   }
 
   @override
-  Future<Response<SystemCityDTO>> _apiLocationStateIdCitiesGet(
+  Future<Response<List<SystemCityDTO>>> _apiLocationStateIdCitiesGet(
       {required String? stateId}) {
     final $url = '/api/Location/${stateId}/Cities';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<SystemCityDTO, SystemCityDTO>($request);
+    return client.send<List<SystemCityDTO>, SystemCityDTO>($request);
   }
 
   @override
