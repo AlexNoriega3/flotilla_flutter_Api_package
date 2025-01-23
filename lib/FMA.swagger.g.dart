@@ -2524,7 +2524,7 @@ SystemCityDTO _$SystemCityDTOFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       active: json['active'] as bool?,
       stateId: json['stateId'] as String?,
-      code: json['code'] as String,
+      code: json['code'] as String?,
       name: json['name'] as String?,
       state: json['state'] == null
           ? null
@@ -2569,7 +2569,7 @@ SystemStateDTO _$SystemStateDTOFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       active: json['active'] as bool?,
       countryId: json['countryId'] as String?,
-      code: json['code'] as String,
+      code: json['code'] as String?,
       name: json['name'] as String?,
       country: json['country'] == null
           ? null

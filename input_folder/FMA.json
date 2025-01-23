@@ -22329,9 +22329,6 @@
         "additionalProperties": false
       },
       "SystemCityDTO": {
-        "required": [
-          "code"
-        ],
         "type": "object",
         "properties": {
           "id": {
@@ -22346,10 +22343,8 @@
             "nullable": true
           },
           "code": {
-            "maxLength": 350,
-            "minLength": 1,
-            "pattern": ".+\\S.*",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -22399,9 +22394,6 @@
         "additionalProperties": false
       },
       "SystemStateDTO": {
-        "required": [
-          "code"
-        ],
         "type": "object",
         "properties": {
           "id": {
@@ -22416,10 +22408,8 @@
             "nullable": true
           },
           "code": {
-            "maxLength": 350,
-            "minLength": 1,
-            "pattern": ".+\\S.*",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "name": {
             "type": "string",

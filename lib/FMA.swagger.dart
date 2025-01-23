@@ -13939,7 +13939,7 @@ class SystemCityDTO {
     this.id,
     this.active,
     this.stateId,
-    required this.code,
+    this.code,
     this.name,
     this.state,
   });
@@ -13954,7 +13954,7 @@ class SystemCityDTO {
   @JsonKey(name: 'stateId')
   final String? stateId;
   @JsonKey(name: 'code')
-  final String code;
+  final String? code;
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'state')
@@ -14101,7 +14101,7 @@ class SystemStateDTO {
     this.id,
     this.active,
     this.countryId,
-    required this.code,
+    this.code,
     this.name,
     this.country,
     this.cities,
@@ -14117,7 +14117,7 @@ class SystemStateDTO {
   @JsonKey(name: 'countryId')
   final String? countryId;
   @JsonKey(name: 'code')
-  final String code;
+  final String? code;
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'country')
