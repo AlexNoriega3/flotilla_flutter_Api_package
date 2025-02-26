@@ -34,13 +34,6 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<bool>> _apiAccountLogoutPost() {
-    final $url = '/api/Account/logout';
-    final $request = Request('POST', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
   Future<Response<dynamic>>
       _apiAccountChangepasswordUserEmailCurrentPasswordNewPasswordConfirmPasswordPost(
           {required String? userEmail,
@@ -68,6 +61,31 @@ class _$FMA extends FMA {
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<AuthResponseDTO>> _apiAccountTenantCompanyChangePost(
+      {required String? body}) {
+    final $url = '/api/Account/TenantCompanyChange';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<AuthResponseDTO, AuthResponseDTO>($request);
+  }
+
+  @override
+  Future<Response<List<CompanyTenantDTO>>> _apiAccountTenantGetCompaniesGet() {
+    final $url = '/api/Account/TenantGetCompanies';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<CompanyTenantDTO>, CompanyTenantDTO>($request);
+  }
+
+  @override
+  Future<Response<AuthResponseDTO>> _apiAccountTenantCompanyPost(
+      {required CompanyTenantDTO? body}) {
+    final $url = '/api/Account/TenantCompany';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<AuthResponseDTO, AuthResponseDTO>($request);
   }
 
   @override
@@ -426,6 +444,66 @@ class _$FMA extends FMA {
   @override
   Future<Response<bool>> _apiDriverIdDelete({required String? id}) {
     final $url = '/api/Driver/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<List<EmailSettingDTO>>> _apiEmailGet() {
+    final $url = '/api/Email';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<EmailSettingDTO>, EmailSettingDTO>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiEmailPost({required EmailSettingDTO? body}) {
+    final $url = '/api/Email';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<EmailSettingDTOPagedResult>> _apiEmailSearchGet(
+      {required int? page,
+      String? search,
+      String? orderByPropertyName,
+      String? sortOrder,
+      required int? pageSize,
+      bool? active}) {
+    final $url = '/api/Email/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'OrderByPropertyName': orderByPropertyName,
+      'SortOrder': sortOrder,
+      'PageSize': pageSize,
+      'Active': active
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client
+        .send<EmailSettingDTOPagedResult, EmailSettingDTOPagedResult>($request);
+  }
+
+  @override
+  Future<Response<EmailSettingDTO>> _apiEmailIdGet({required String? id}) {
+    final $url = '/api/Email/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<EmailSettingDTO, EmailSettingDTO>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiEmailIdPut(
+      {required String? id, required EmailSettingDTO? body}) {
+    final $url = '/api/Email/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiEmailIdDelete({required String? id}) {
+    final $url = '/api/Email/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
   }
@@ -1807,6 +1885,23 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<AdminPermissionsDTO>> _getUserPermissionGet({String? email}) {
+    final $url = '/GetUserPermission';
+    final $params = <String, dynamic>{'email': email};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<AdminPermissionsDTO, AdminPermissionsDTO>($request);
+  }
+
+  @override
+  Future<Response<bool>> _saveUserPermissionPost(
+      {required AdminPermissionsDTO? body}) {
+    final $url = '/SaveUserPermission';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<PolicyDTO>>> _apiPolicyGet() {
     final $url = '/api/Policy';
     final $request = Request('GET', $url, client.baseUrl);
@@ -2303,6 +2398,33 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<List<TenantLink>>> _getPendingLinksGet() {
+    final $url = '/GetPendingLinks';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<TenantLink>, TenantLink>($request);
+  }
+
+  @override
+  Future<Response<List<TenantLink>>> _changeLinkStatusPut(
+      {String? tenantCompany, String? vinculacionEstatus}) {
+    final $url = '/ChangeLinkStatus';
+    final $params = <String, dynamic>{
+      'tenantCompany': tenantCompany,
+      'vinculacionEstatus': vinculacionEstatus
+    };
+    final $request = Request('PUT', $url, client.baseUrl, parameters: $params);
+    return client.send<List<TenantLink>, TenantLink>($request);
+  }
+
+  @override
+  Future<Response<bool>> _linkUserPost({required TenantLinkUserDTO? body}) {
+    final $url = '/LinkUser';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<AppUserDTO>>> _apiUserGet() {
     final $url = '/api/User';
     final $request = Request('GET', $url, client.baseUrl);
@@ -2372,6 +2494,21 @@ class _$FMA extends FMA {
     final $request =
         Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<EditUserResponse, EditUserResponse>($request);
+  }
+
+  @override
+  Future<Response<List<CompanyTenantDTO>>>
+      _apiUserTenantAllCompaniesForUserGet() {
+    final $url = '/api/User/TenantAllCompaniesForUser';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<CompanyTenantDTO>, CompanyTenantDTO>($request);
+  }
+
+  @override
+  Future<Response<List<CompanyTenantDTO>>> _apiUserTenantMyCompaniesGet() {
+    final $url = '/api/User/TenantMyCompanies';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<CompanyTenantDTO>, CompanyTenantDTO>($request);
   }
 
   @override

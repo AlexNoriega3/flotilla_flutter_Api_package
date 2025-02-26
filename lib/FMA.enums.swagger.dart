@@ -110,6 +110,29 @@ const $PeriodEnumMap = {
   PeriodEnum.year: 'Year'
 };
 
+enum PermissionsEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Nulo')
+  nulo,
+  @JsonValue('Create')
+  create,
+  @JsonValue('Read')
+  read,
+  @JsonValue('Update')
+  update,
+  @JsonValue('Delete')
+  delete
+}
+
+const $PermissionsEnumMap = {
+  PermissionsEnum.nulo: 'Nulo',
+  PermissionsEnum.create: 'Create',
+  PermissionsEnum.read: 'Read',
+  PermissionsEnum.update: 'Update',
+  PermissionsEnum.delete: 'Delete'
+};
+
 enum SortOrderEnum {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
@@ -122,6 +145,23 @@ enum SortOrderEnum {
 const $SortOrderEnumMap = {
   SortOrderEnum.ascending: 'Ascending',
   SortOrderEnum.descending: 'Descending'
+};
+
+enum TenantLinkStatusEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Pending')
+  pending,
+  @JsonValue('Accepted')
+  accepted,
+  @JsonValue('Rejected')
+  rejected
+}
+
+const $TenantLinkStatusEnumMap = {
+  TenantLinkStatusEnum.pending: 'Pending',
+  TenantLinkStatusEnum.accepted: 'Accepted',
+  TenantLinkStatusEnum.rejected: 'Rejected'
 };
 
 enum VehicleStatusEnum {
