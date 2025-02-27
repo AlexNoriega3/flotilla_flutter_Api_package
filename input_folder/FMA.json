@@ -253,34 +253,6 @@
         }
       }
     },
-    "/api/Account/TenantCompany": {
-      "post": {
-        "tags": [
-          "Account"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CompanyTenantDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Address": {
       "get": {
         "tags": [
@@ -15427,7 +15399,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15435,7 +15407,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15443,7 +15415,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15451,7 +15423,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15459,7 +15431,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15467,7 +15439,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15475,7 +15447,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15483,7 +15455,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15491,7 +15463,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15499,7 +15471,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15507,7 +15479,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15515,7 +15487,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15523,7 +15495,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15531,7 +15503,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15539,7 +15511,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15547,7 +15519,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               }
@@ -15585,7 +15557,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15593,7 +15565,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15601,7 +15573,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15609,7 +15581,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15617,7 +15589,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15625,7 +15597,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15633,7 +15605,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15641,7 +15613,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15649,7 +15621,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15657,7 +15629,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15665,7 +15637,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15673,7 +15645,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15681,7 +15653,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15689,7 +15661,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15697,7 +15669,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               },
@@ -15705,7 +15677,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TenantLink"
+                    "$ref": "#/components/schemas/TenantLinkDTO"
                   }
                 }
               }
@@ -16378,82 +16350,82 @@
             "content": {
               "application/json;odata.metadata=minimal;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.metadata=minimal;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.metadata=minimal": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.metadata=full": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.metadata=none": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AppUserDTO"
+                  "$ref": "#/components/schemas/UserResponseDTO"
                 }
               }
             }
@@ -19968,10 +19940,6 @@
             "type": "string",
             "nullable": true
           },
-          "titleAbbreviation": {
-            "type": "string",
-            "nullable": true
-          },
           "gender": {
             "$ref": "#/components/schemas/GenderEnum"
           },
@@ -19987,36 +19955,8 @@
             "type": "string",
             "nullable": true
           },
-          "country": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "rating": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
           "active": {
             "type": "boolean"
-          },
-          "isOwner": {
-            "type": "boolean"
-          },
-          "tenantLinkStatusEnum": {
-            "$ref": "#/components/schemas/TenantLinkStatusEnum"
           },
           "department": {
             "type": "array",
@@ -20060,146 +20000,6 @@
               "$ref": "#/components/schemas/AppUserDTO"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AppUsuario": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedUserName": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "emailConfirmed": {
-            "type": "boolean"
-          },
-          "passwordHash": {
-            "type": "string",
-            "nullable": true
-          },
-          "securityStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumberConfirmed": {
-            "type": "boolean"
-          },
-          "twoFactorEnabled": {
-            "type": "boolean"
-          },
-          "lockoutEnd": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lockoutEnabled": {
-            "type": "boolean"
-          },
-          "accessFailedCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "url": {
-            "type": "string",
-            "nullable": true
-          },
-          "titleAbbreviation": {
-            "type": "string",
-            "nullable": true
-          },
-          "image": {
-            "type": "string",
-            "nullable": true
-          },
-          "gender": {
-            "$ref": "#/components/schemas/GenderEnum"
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "parentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "parent": {
-            "$ref": "#/components/schemas/AppUsuario"
-          },
-          "subordinates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AppUsuario"
-            },
-            "nullable": true
-          },
-          "userRoles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRole"
-            },
-            "nullable": true
-          },
-          "tenantLinks": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TenantLink"
-            },
-            "nullable": true
-          },
-          "tenantCompanyUserPermissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TenantCompanyUserPermission"
-            },
-            "nullable": true
-          },
-          "tenantOwnerCompanies": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TenantCompany"
-            },
-            "nullable": true
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -20437,13 +20237,6 @@
             "type": "string",
             "nullable": true
           },
-          "code": {
-            "maxLength": 30,
-            "minLength": 0,
-            "pattern": ".+\\S.*",
-            "type": "string",
-            "nullable": true
-          },
           "description": {
             "maxLength": 500,
             "minLength": 0,
@@ -20504,6 +20297,9 @@
           },
           "owner": {
             "type": "boolean"
+          },
+          "tenantLinkStatusEnum": {
+            "$ref": "#/components/schemas/TenantLinkStatusEnum"
           },
           "permissions": {
             "type": "array",
@@ -21619,58 +21415,6 @@
             "maxLength": 15,
             "minLength": 6,
             "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Machine": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "isActive": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "excludeFromLog": {
-            "type": "boolean"
-          },
-          "tenantId": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "drillRigId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "projectId": {
-            "type": "string",
-            "nullable": true
-          },
-          "project": {
-            "$ref": "#/components/schemas/Project"
           }
         },
         "additionalProperties": false
@@ -23210,49 +22954,6 @@
         },
         "additionalProperties": { }
       },
-      "Project": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "machines": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Machine"
-            },
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenant": {
-            "$ref": "#/components/schemas/TenantCompany"
-          }
-        },
-        "additionalProperties": false
-      },
       "ProjectCompanyDTO": {
         "type": "object",
         "properties": {
@@ -23779,55 +23480,6 @@
         },
         "additionalProperties": false
       },
-      "Role": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedName": {
-            "type": "string",
-            "nullable": true
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "createBy": {
-            "type": "string",
-            "nullable": true
-          },
-          "updateBy": {
-            "type": "string",
-            "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "dtUpdateDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "userRoles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRole"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "RoleDTO": {
         "type": "object",
         "properties": {
@@ -24140,82 +23792,6 @@
         },
         "additionalProperties": false
       },
-      "TenantCompany": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "userCreationId": {
-            "type": "string",
-            "nullable": true
-          },
-          "userCreation": {
-            "$ref": "#/components/schemas/AppUsuario"
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "tenantCompanyUserPermissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TenantCompanyUserPermission"
-            },
-            "nullable": true
-          },
-          "projects": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Project"
-            },
-            "nullable": true
-          },
-          "tenantLinks": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TenantLink"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantCompanyUserPermission": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenanCompanyId": {
-            "type": "string",
-            "nullable": true
-          },
-          "permission": {
-            "$ref": "#/components/schemas/PermissionsEnum"
-          },
-          "user": {
-            "$ref": "#/components/schemas/AppUsuario"
-          },
-          "tenanCompany": {
-            "$ref": "#/components/schemas/TenantCompany"
-          }
-        },
-        "additionalProperties": false
-      },
       "TenantCompanyUserPermissionDTO": {
         "type": "object",
         "properties": {
@@ -24233,7 +23809,7 @@
         },
         "additionalProperties": false
       },
-      "TenantLink": {
+      "TenantLinkDTO": {
         "type": "object",
         "properties": {
           "id": {
@@ -24250,12 +23826,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/TenantLinkStatusEnum"
-          },
-          "tenantCompany": {
-            "$ref": "#/components/schemas/TenantCompany"
-          },
-          "user": {
-            "$ref": "#/components/schemas/AppUsuario"
           }
         },
         "additionalProperties": false
@@ -24471,22 +24041,65 @@
         },
         "additionalProperties": false
       },
-      "UserRole": {
+      "UserResponseDTO": {
         "type": "object",
         "properties": {
-          "userId": {
+          "id": {
             "type": "string",
             "nullable": true
           },
-          "roleId": {
+          "email": {
             "type": "string",
             "nullable": true
           },
-          "user": {
-            "$ref": "#/components/schemas/AppUsuario"
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderEnum"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "department": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
+          },
+          "companies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyTenantDTO"
+            },
+            "nullable": true
           },
           "role": {
-            "$ref": "#/components/schemas/Role"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

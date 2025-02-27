@@ -145,20 +145,6 @@ abstract class FMA extends ChopperService {
       _apiAccountTenantGetCompaniesGet();
 
   ///
-  Future<chopper.Response<AuthResponseDTO>> apiAccountTenantCompanyPost(
-      {required CompanyTenantDTO? body}) {
-    generatedMapping.putIfAbsent(
-        AuthResponseDTO, () => AuthResponseDTO.fromJsonFactory);
-
-    return _apiAccountTenantCompanyPost(body: body);
-  }
-
-  ///
-  @Post(path: '/api/Account/TenantCompany')
-  Future<chopper.Response<AuthResponseDTO>> _apiAccountTenantCompanyPost(
-      {@Body() required CompanyTenantDTO? body});
-
-  ///
   Future<chopper.Response<List<AddressDTO>>> apiAddressGet() {
     generatedMapping.putIfAbsent(AddressDTO, () => AddressDTO.fromJsonFactory);
 
@@ -4236,22 +4222,24 @@ abstract class FMA extends ChopperService {
       _apiSystemCatalogsRegistersGet();
 
   ///
-  Future<chopper.Response<List<TenantLink>>> getPendingLinksGet() {
-    generatedMapping.putIfAbsent(TenantLink, () => TenantLink.fromJsonFactory);
+  Future<chopper.Response<List<TenantLinkDTO>>> getPendingLinksGet() {
+    generatedMapping.putIfAbsent(
+        TenantLinkDTO, () => TenantLinkDTO.fromJsonFactory);
 
     return _getPendingLinksGet();
   }
 
   ///
   @Get(path: '/GetPendingLinks')
-  Future<chopper.Response<List<TenantLink>>> _getPendingLinksGet();
+  Future<chopper.Response<List<TenantLinkDTO>>> _getPendingLinksGet();
 
   ///
   ///@param tenantCompany
   ///@param vinculacionEstatus
-  Future<chopper.Response<List<TenantLink>>> changeLinkStatusPut(
+  Future<chopper.Response<List<TenantLinkDTO>>> changeLinkStatusPut(
       {String? tenantCompany, enums.TenantLinkStatusEnum? vinculacionEstatus}) {
-    generatedMapping.putIfAbsent(TenantLink, () => TenantLink.fromJsonFactory);
+    generatedMapping.putIfAbsent(
+        TenantLinkDTO, () => TenantLinkDTO.fromJsonFactory);
 
     return _changeLinkStatusPut(
         tenantCompany: tenantCompany,
@@ -4263,7 +4251,7 @@ abstract class FMA extends ChopperService {
   ///@param tenantCompany
   ///@param vinculacionEstatus
   @Put(path: '/ChangeLinkStatus', optionalBody: true)
-  Future<chopper.Response<List<TenantLink>>> _changeLinkStatusPut(
+  Future<chopper.Response<List<TenantLinkDTO>>> _changeLinkStatusPut(
       {@Query('tenantCompany') String? tenantCompany,
       @Query('vinculacionEstatus') String? vinculacionEstatus});
 
@@ -4343,8 +4331,10 @@ abstract class FMA extends ChopperService {
 
   ///
   ///@param id
-  Future<chopper.Response<AppUserDTO>> apiUserIdGet({required String? id}) {
-    generatedMapping.putIfAbsent(AppUserDTO, () => AppUserDTO.fromJsonFactory);
+  Future<chopper.Response<UserResponseDTO>> apiUserIdGet(
+      {required String? id}) {
+    generatedMapping.putIfAbsent(
+        UserResponseDTO, () => UserResponseDTO.fromJsonFactory);
 
     return _apiUserIdGet(id: id);
   }
@@ -4352,7 +4342,7 @@ abstract class FMA extends ChopperService {
   ///
   ///@param id
   @Get(path: '/api/User/{id}')
-  Future<chopper.Response<AppUserDTO>> _apiUserIdGet(
+  Future<chopper.Response<UserResponseDTO>> _apiUserIdGet(
       {@Path('id') required String? id});
 
   ///
@@ -5470,19 +5460,11 @@ class AppUserDTO {
     this.image,
     this.firstName,
     this.lastName,
-    this.titleAbbreviation,
     this.gender,
     this.url,
     this.countryCode,
     this.phone,
-    this.country,
-    this.city,
-    this.address,
-    this.rating,
-    this.birthDate,
     this.active,
-    this.isOwner,
-    this.tenantLinkStatusEnum,
     this.department,
     this.companies,
   });
@@ -5502,8 +5484,6 @@ class AppUserDTO {
   final String? firstName;
   @JsonKey(name: 'lastName')
   final String? lastName;
-  @JsonKey(name: 'titleAbbreviation')
-  final String? titleAbbreviation;
   @JsonKey(
       name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
   final enums.GenderEnum? gender;
@@ -5513,25 +5493,8 @@ class AppUserDTO {
   final String? countryCode;
   @JsonKey(name: 'phone')
   final String? phone;
-  @JsonKey(name: 'country')
-  final String? country;
-  @JsonKey(name: 'city')
-  final String? city;
-  @JsonKey(name: 'address')
-  final String? address;
-  @JsonKey(name: 'rating')
-  final double? rating;
-  @JsonKey(name: 'birthDate')
-  final DateTime? birthDate;
   @JsonKey(name: 'active')
   final bool? active;
-  @JsonKey(name: 'isOwner')
-  final bool? isOwner;
-  @JsonKey(
-      name: 'tenantLinkStatusEnum',
-      toJson: tenantLinkStatusEnumToJson,
-      fromJson: tenantLinkStatusEnumFromJson)
-  final enums.TenantLinkStatusEnum? tenantLinkStatusEnum;
   @JsonKey(name: 'department', defaultValue: <SelectDTO>[])
   final List<SelectDTO>? department;
   @JsonKey(name: 'companies', defaultValue: <CompanyTenantDTO>[])
@@ -5561,9 +5524,6 @@ class AppUserDTO {
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
-            (identical(other.titleAbbreviation, titleAbbreviation) ||
-                const DeepCollectionEquality()
-                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
             (identical(other.gender, gender) ||
                 const DeepCollectionEquality().equals(other.gender, gender)) &&
             (identical(other.url, url) ||
@@ -5573,27 +5533,8 @@ class AppUserDTO {
                     .equals(other.countryCode, countryCode)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.country, country) ||
-                const DeepCollectionEquality()
-                    .equals(other.country, country)) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.rating, rating) ||
-                const DeepCollectionEquality().equals(other.rating, rating)) &&
-            (identical(other.birthDate, birthDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.birthDate, birthDate)) &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.isOwner, isOwner) ||
-                const DeepCollectionEquality()
-                    .equals(other.isOwner, isOwner)) &&
-            (identical(other.tenantLinkStatusEnum, tenantLinkStatusEnum) ||
-                const DeepCollectionEquality().equals(
-                    other.tenantLinkStatusEnum, tenantLinkStatusEnum)) &&
             (identical(other.department, department) ||
                 const DeepCollectionEquality()
                     .equals(other.department, department)) &&
@@ -5610,19 +5551,11 @@ class AppUserDTO {
       const DeepCollectionEquality().hash(image) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(titleAbbreviation) ^
       const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(countryCode) ^
       const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(country) ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(rating) ^
-      const DeepCollectionEquality().hash(birthDate) ^
       const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(isOwner) ^
-      const DeepCollectionEquality().hash(tenantLinkStatusEnum) ^
       const DeepCollectionEquality().hash(department) ^
       const DeepCollectionEquality().hash(companies) ^
       runtimeType.hashCode;
@@ -5636,19 +5569,11 @@ extension $AppUserDTOExtension on AppUserDTO {
       String? image,
       String? firstName,
       String? lastName,
-      String? titleAbbreviation,
       enums.GenderEnum? gender,
       String? url,
       String? countryCode,
       String? phone,
-      String? country,
-      String? city,
-      String? address,
-      double? rating,
-      DateTime? birthDate,
       bool? active,
-      bool? isOwner,
-      enums.TenantLinkStatusEnum? tenantLinkStatusEnum,
       List<SelectDTO>? department,
       List<CompanyTenantDTO>? companies}) {
     return AppUserDTO(
@@ -5658,19 +5583,11 @@ extension $AppUserDTOExtension on AppUserDTO {
         image: image ?? this.image,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
-        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
         gender: gender ?? this.gender,
         url: url ?? this.url,
         countryCode: countryCode ?? this.countryCode,
         phone: phone ?? this.phone,
-        country: country ?? this.country,
-        city: city ?? this.city,
-        address: address ?? this.address,
-        rating: rating ?? this.rating,
-        birthDate: birthDate ?? this.birthDate,
         active: active ?? this.active,
-        isOwner: isOwner ?? this.isOwner,
-        tenantLinkStatusEnum: tenantLinkStatusEnum ?? this.tenantLinkStatusEnum,
         department: department ?? this.department,
         companies: companies ?? this.companies);
   }
@@ -5749,302 +5666,6 @@ extension $AppUserDTOPagedResultExtension on AppUserDTOPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class AppUsuario {
-  AppUsuario({
-    this.id,
-    this.userName,
-    this.normalizedUserName,
-    this.normalizedEmail,
-    this.emailConfirmed,
-    this.passwordHash,
-    this.securityStamp,
-    this.concurrencyStamp,
-    this.phoneNumber,
-    this.phoneNumberConfirmed,
-    this.twoFactorEnabled,
-    this.lockoutEnd,
-    this.lockoutEnabled,
-    this.accessFailedCount,
-    this.firstName,
-    this.lastName,
-    this.name,
-    this.email,
-    this.url,
-    this.titleAbbreviation,
-    this.image,
-    this.gender,
-    this.active,
-    this.parentId,
-    this.parent,
-    this.subordinates,
-    this.userRoles,
-    this.tenantLinks,
-    this.tenantCompanyUserPermissions,
-    this.tenantOwnerCompanies,
-    this.fullName,
-  });
-
-  factory AppUsuario.fromJson(Map<String, dynamic> json) =>
-      _$AppUsuarioFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'userName')
-  final String? userName;
-  @JsonKey(name: 'normalizedUserName')
-  final String? normalizedUserName;
-  @JsonKey(name: 'normalizedEmail')
-  final String? normalizedEmail;
-  @JsonKey(name: 'emailConfirmed')
-  final bool? emailConfirmed;
-  @JsonKey(name: 'passwordHash')
-  final String? passwordHash;
-  @JsonKey(name: 'securityStamp')
-  final String? securityStamp;
-  @JsonKey(name: 'concurrencyStamp')
-  final String? concurrencyStamp;
-  @JsonKey(name: 'phoneNumber')
-  final String? phoneNumber;
-  @JsonKey(name: 'phoneNumberConfirmed')
-  final bool? phoneNumberConfirmed;
-  @JsonKey(name: 'twoFactorEnabled')
-  final bool? twoFactorEnabled;
-  @JsonKey(name: 'lockoutEnd')
-  final DateTime? lockoutEnd;
-  @JsonKey(name: 'lockoutEnabled')
-  final bool? lockoutEnabled;
-  @JsonKey(name: 'accessFailedCount')
-  final int? accessFailedCount;
-  @JsonKey(name: 'firstName')
-  final String? firstName;
-  @JsonKey(name: 'lastName')
-  final String? lastName;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'email')
-  final String? email;
-  @JsonKey(name: 'url')
-  final String? url;
-  @JsonKey(name: 'titleAbbreviation')
-  final String? titleAbbreviation;
-  @JsonKey(name: 'image')
-  final String? image;
-  @JsonKey(
-      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
-  final enums.GenderEnum? gender;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'parentId')
-  final String? parentId;
-  @JsonKey(name: 'parent')
-  final AppUsuario? parent;
-  @JsonKey(name: 'subordinates', defaultValue: <AppUsuario>[])
-  final List<AppUsuario>? subordinates;
-  @JsonKey(name: 'userRoles', defaultValue: <UserRole>[])
-  final List<UserRole>? userRoles;
-  @JsonKey(name: 'tenantLinks', defaultValue: <TenantLink>[])
-  final List<TenantLink>? tenantLinks;
-  @JsonKey(
-      name: 'tenantCompanyUserPermissions',
-      defaultValue: <TenantCompanyUserPermission>[])
-  final List<TenantCompanyUserPermission>? tenantCompanyUserPermissions;
-  @JsonKey(name: 'tenantOwnerCompanies', defaultValue: <TenantCompany>[])
-  final List<TenantCompany>? tenantOwnerCompanies;
-  @JsonKey(name: 'fullName')
-  final String? fullName;
-  static const fromJsonFactory = _$AppUsuarioFromJson;
-  static const toJsonFactory = _$AppUsuarioToJson;
-  Map<String, dynamic> toJson() => _$AppUsuarioToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is AppUsuario &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.normalizedUserName, normalizedUserName) ||
-                const DeepCollectionEquality()
-                    .equals(other.normalizedUserName, normalizedUserName)) &&
-            (identical(other.normalizedEmail, normalizedEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.normalizedEmail, normalizedEmail)) &&
-            (identical(other.emailConfirmed, emailConfirmed) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailConfirmed, emailConfirmed)) &&
-            (identical(other.passwordHash, passwordHash) ||
-                const DeepCollectionEquality()
-                    .equals(other.passwordHash, passwordHash)) &&
-            (identical(other.securityStamp, securityStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.securityStamp, securityStamp)) &&
-            (identical(other.concurrencyStamp, concurrencyStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.concurrencyStamp, concurrencyStamp)) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.phoneNumberConfirmed, phoneNumberConfirmed) ||
-                const DeepCollectionEquality().equals(
-                    other.phoneNumberConfirmed, phoneNumberConfirmed)) &&
-            (identical(other.twoFactorEnabled, twoFactorEnabled) ||
-                const DeepCollectionEquality()
-                    .equals(other.twoFactorEnabled, twoFactorEnabled)) &&
-            (identical(other.lockoutEnd, lockoutEnd) ||
-                const DeepCollectionEquality()
-                    .equals(other.lockoutEnd, lockoutEnd)) &&
-            (identical(other.lockoutEnabled, lockoutEnabled) ||
-                const DeepCollectionEquality()
-                    .equals(other.lockoutEnabled, lockoutEnabled)) &&
-            (identical(other.accessFailedCount, accessFailedCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.accessFailedCount, accessFailedCount)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.titleAbbreviation, titleAbbreviation) ||
-                const DeepCollectionEquality()
-                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.parentId, parentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.parentId, parentId)) &&
-            (identical(other.parent, parent) ||
-                const DeepCollectionEquality().equals(other.parent, parent)) &&
-            (identical(other.subordinates, subordinates) ||
-                const DeepCollectionEquality().equals(other.subordinates, subordinates)) &&
-            (identical(other.userRoles, userRoles) || const DeepCollectionEquality().equals(other.userRoles, userRoles)) &&
-            (identical(other.tenantLinks, tenantLinks) || const DeepCollectionEquality().equals(other.tenantLinks, tenantLinks)) &&
-            (identical(other.tenantCompanyUserPermissions, tenantCompanyUserPermissions) || const DeepCollectionEquality().equals(other.tenantCompanyUserPermissions, tenantCompanyUserPermissions)) &&
-            (identical(other.tenantOwnerCompanies, tenantOwnerCompanies) || const DeepCollectionEquality().equals(other.tenantOwnerCompanies, tenantOwnerCompanies)) &&
-            (identical(other.fullName, fullName) || const DeepCollectionEquality().equals(other.fullName, fullName)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(normalizedUserName) ^
-      const DeepCollectionEquality().hash(normalizedEmail) ^
-      const DeepCollectionEquality().hash(emailConfirmed) ^
-      const DeepCollectionEquality().hash(passwordHash) ^
-      const DeepCollectionEquality().hash(securityStamp) ^
-      const DeepCollectionEquality().hash(concurrencyStamp) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(phoneNumberConfirmed) ^
-      const DeepCollectionEquality().hash(twoFactorEnabled) ^
-      const DeepCollectionEquality().hash(lockoutEnd) ^
-      const DeepCollectionEquality().hash(lockoutEnabled) ^
-      const DeepCollectionEquality().hash(accessFailedCount) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(titleAbbreviation) ^
-      const DeepCollectionEquality().hash(image) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(parentId) ^
-      const DeepCollectionEquality().hash(parent) ^
-      const DeepCollectionEquality().hash(subordinates) ^
-      const DeepCollectionEquality().hash(userRoles) ^
-      const DeepCollectionEquality().hash(tenantLinks) ^
-      const DeepCollectionEquality().hash(tenantCompanyUserPermissions) ^
-      const DeepCollectionEquality().hash(tenantOwnerCompanies) ^
-      const DeepCollectionEquality().hash(fullName) ^
-      runtimeType.hashCode;
-}
-
-extension $AppUsuarioExtension on AppUsuario {
-  AppUsuario copyWith(
-      {String? id,
-      String? userName,
-      String? normalizedUserName,
-      String? normalizedEmail,
-      bool? emailConfirmed,
-      String? passwordHash,
-      String? securityStamp,
-      String? concurrencyStamp,
-      String? phoneNumber,
-      bool? phoneNumberConfirmed,
-      bool? twoFactorEnabled,
-      DateTime? lockoutEnd,
-      bool? lockoutEnabled,
-      int? accessFailedCount,
-      String? firstName,
-      String? lastName,
-      String? name,
-      String? email,
-      String? url,
-      String? titleAbbreviation,
-      String? image,
-      enums.GenderEnum? gender,
-      bool? active,
-      String? parentId,
-      AppUsuario? parent,
-      List<AppUsuario>? subordinates,
-      List<UserRole>? userRoles,
-      List<TenantLink>? tenantLinks,
-      List<TenantCompanyUserPermission>? tenantCompanyUserPermissions,
-      List<TenantCompany>? tenantOwnerCompanies,
-      String? fullName}) {
-    return AppUsuario(
-        id: id ?? this.id,
-        userName: userName ?? this.userName,
-        normalizedUserName: normalizedUserName ?? this.normalizedUserName,
-        normalizedEmail: normalizedEmail ?? this.normalizedEmail,
-        emailConfirmed: emailConfirmed ?? this.emailConfirmed,
-        passwordHash: passwordHash ?? this.passwordHash,
-        securityStamp: securityStamp ?? this.securityStamp,
-        concurrencyStamp: concurrencyStamp ?? this.concurrencyStamp,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        phoneNumberConfirmed: phoneNumberConfirmed ?? this.phoneNumberConfirmed,
-        twoFactorEnabled: twoFactorEnabled ?? this.twoFactorEnabled,
-        lockoutEnd: lockoutEnd ?? this.lockoutEnd,
-        lockoutEnabled: lockoutEnabled ?? this.lockoutEnabled,
-        accessFailedCount: accessFailedCount ?? this.accessFailedCount,
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        name: name ?? this.name,
-        email: email ?? this.email,
-        url: url ?? this.url,
-        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
-        image: image ?? this.image,
-        gender: gender ?? this.gender,
-        active: active ?? this.active,
-        parentId: parentId ?? this.parentId,
-        parent: parent ?? this.parent,
-        subordinates: subordinates ?? this.subordinates,
-        userRoles: userRoles ?? this.userRoles,
-        tenantLinks: tenantLinks ?? this.tenantLinks,
-        tenantCompanyUserPermissions:
-            tenantCompanyUserPermissions ?? this.tenantCompanyUserPermissions,
-        tenantOwnerCompanies: tenantOwnerCompanies ?? this.tenantOwnerCompanies,
-        fullName: fullName ?? this.fullName);
   }
 }
 
@@ -6528,7 +6149,6 @@ class CompanyDTO {
     this.id,
     this.active,
     this.name,
-    this.code,
     this.description,
   });
 
@@ -6541,8 +6161,6 @@ class CompanyDTO {
   final bool? active;
   @JsonKey(name: 'name')
   final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
   @JsonKey(name: 'description')
   final String? description;
   static const fromJsonFactory = _$CompanyDTOFromJson;
@@ -6562,8 +6180,6 @@ class CompanyDTO {
                 const DeepCollectionEquality().equals(other.active, active)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)));
@@ -6574,23 +6190,17 @@ class CompanyDTO {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
       runtimeType.hashCode;
 }
 
 extension $CompanyDTOExtension on CompanyDTO {
   CompanyDTO copyWith(
-      {String? id,
-      bool? active,
-      String? name,
-      String? code,
-      String? description}) {
+      {String? id, bool? active, String? name, String? description}) {
     return CompanyDTO(
         id: id ?? this.id,
         active: active ?? this.active,
         name: name ?? this.name,
-        code: code ?? this.code,
         description: description ?? this.description);
   }
 }
@@ -6679,6 +6289,7 @@ class CompanyTenantDTO {
     this.description,
     this.userCreationId,
     this.owner,
+    this.tenantLinkStatusEnum,
     this.permissions,
   });
 
@@ -6695,6 +6306,11 @@ class CompanyTenantDTO {
   final String? userCreationId;
   @JsonKey(name: 'owner')
   final bool? owner;
+  @JsonKey(
+      name: 'tenantLinkStatusEnum',
+      toJson: tenantLinkStatusEnumToJson,
+      fromJson: tenantLinkStatusEnumFromJson)
+  final enums.TenantLinkStatusEnum? tenantLinkStatusEnum;
   @JsonKey(
       name: 'permissions', defaultValue: <TenantCompanyUserPermissionDTO>[])
   final List<TenantCompanyUserPermissionDTO>? permissions;
@@ -6721,6 +6337,9 @@ class CompanyTenantDTO {
                     .equals(other.userCreationId, userCreationId)) &&
             (identical(other.owner, owner) ||
                 const DeepCollectionEquality().equals(other.owner, owner)) &&
+            (identical(other.tenantLinkStatusEnum, tenantLinkStatusEnum) ||
+                const DeepCollectionEquality().equals(
+                    other.tenantLinkStatusEnum, tenantLinkStatusEnum)) &&
             (identical(other.permissions, permissions) ||
                 const DeepCollectionEquality()
                     .equals(other.permissions, permissions)));
@@ -6733,6 +6352,7 @@ class CompanyTenantDTO {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(userCreationId) ^
       const DeepCollectionEquality().hash(owner) ^
+      const DeepCollectionEquality().hash(tenantLinkStatusEnum) ^
       const DeepCollectionEquality().hash(permissions) ^
       runtimeType.hashCode;
 }
@@ -6744,6 +6364,7 @@ extension $CompanyTenantDTOExtension on CompanyTenantDTO {
       String? description,
       String? userCreationId,
       bool? owner,
+      enums.TenantLinkStatusEnum? tenantLinkStatusEnum,
       List<TenantCompanyUserPermissionDTO>? permissions}) {
     return CompanyTenantDTO(
         id: id ?? this.id,
@@ -6751,6 +6372,7 @@ extension $CompanyTenantDTOExtension on CompanyTenantDTO {
         description: description ?? this.description,
         userCreationId: userCreationId ?? this.userCreationId,
         owner: owner ?? this.owner,
+        tenantLinkStatusEnum: tenantLinkStatusEnum ?? this.tenantLinkStatusEnum,
         permissions: permissions ?? this.permissions);
   }
 }
@@ -9406,141 +9028,6 @@ extension $LoginDTOExtension on LoginDTO {
   LoginDTO copyWith({String? email, String? password}) {
     return LoginDTO(
         email: email ?? this.email, password: password ?? this.password);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class Machine {
-  Machine({
-    this.id,
-    this.active,
-    this.createDate,
-    this.isActive,
-    this.excludeFromLog,
-    this.tenantId,
-    this.name,
-    this.code,
-    this.description,
-    this.drillRigId,
-    this.projectId,
-    this.project,
-  });
-
-  factory Machine.fromJson(Map<String, dynamic> json) =>
-      _$MachineFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'createDate')
-  final DateTime? createDate;
-  @JsonKey(name: 'isActive')
-  final int? isActive;
-  @JsonKey(name: 'excludeFromLog')
-  final bool? excludeFromLog;
-  @JsonKey(name: 'tenantId')
-  final String? tenantId;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'drillRigId')
-  final int? drillRigId;
-  @JsonKey(name: 'projectId')
-  final String? projectId;
-  @JsonKey(name: 'project')
-  final Project? project;
-  static const fromJsonFactory = _$MachineFromJson;
-  static const toJsonFactory = _$MachineToJson;
-  Map<String, dynamic> toJson() => _$MachineToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Machine &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.createDate, createDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.createDate, createDate)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.excludeFromLog, excludeFromLog) ||
-                const DeepCollectionEquality()
-                    .equals(other.excludeFromLog, excludeFromLog)) &&
-            (identical(other.tenantId, tenantId) ||
-                const DeepCollectionEquality()
-                    .equals(other.tenantId, tenantId)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.drillRigId, drillRigId) ||
-                const DeepCollectionEquality()
-                    .equals(other.drillRigId, drillRigId)) &&
-            (identical(other.projectId, projectId) ||
-                const DeepCollectionEquality()
-                    .equals(other.projectId, projectId)) &&
-            (identical(other.project, project) ||
-                const DeepCollectionEquality().equals(other.project, project)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(createDate) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(excludeFromLog) ^
-      const DeepCollectionEquality().hash(tenantId) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(drillRigId) ^
-      const DeepCollectionEquality().hash(projectId) ^
-      const DeepCollectionEquality().hash(project) ^
-      runtimeType.hashCode;
-}
-
-extension $MachineExtension on Machine {
-  Machine copyWith(
-      {String? id,
-      bool? active,
-      DateTime? createDate,
-      int? isActive,
-      bool? excludeFromLog,
-      String? tenantId,
-      String? name,
-      String? code,
-      String? description,
-      int? drillRigId,
-      String? projectId,
-      Project? project}) {
-    return Machine(
-        id: id ?? this.id,
-        active: active ?? this.active,
-        createDate: createDate ?? this.createDate,
-        isActive: isActive ?? this.isActive,
-        excludeFromLog: excludeFromLog ?? this.excludeFromLog,
-        tenantId: tenantId ?? this.tenantId,
-        name: name ?? this.name,
-        code: code ?? this.code,
-        description: description ?? this.description,
-        drillRigId: drillRigId ?? this.drillRigId,
-        projectId: projectId ?? this.projectId,
-        project: project ?? this.project);
   }
 }
 
@@ -13192,114 +12679,6 @@ extension $ProblemDetailsExtension on ProblemDetails {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Project {
-  Project({
-    this.id,
-    this.name,
-    this.code,
-    this.description,
-    this.active,
-    this.createDate,
-    this.machines,
-    this.tenantId,
-    this.tenant,
-  });
-
-  factory Project.fromJson(Map<String, dynamic> json) =>
-      _$ProjectFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'code')
-  final String? code;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'createDate')
-  final DateTime? createDate;
-  @JsonKey(name: 'machines', defaultValue: <Machine>[])
-  final List<Machine>? machines;
-  @JsonKey(name: 'tenantId')
-  final String? tenantId;
-  @JsonKey(name: 'tenant')
-  final TenantCompany? tenant;
-  static const fromJsonFactory = _$ProjectFromJson;
-  static const toJsonFactory = _$ProjectToJson;
-  Map<String, dynamic> toJson() => _$ProjectToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Project &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.createDate, createDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.createDate, createDate)) &&
-            (identical(other.machines, machines) ||
-                const DeepCollectionEquality()
-                    .equals(other.machines, machines)) &&
-            (identical(other.tenantId, tenantId) ||
-                const DeepCollectionEquality()
-                    .equals(other.tenantId, tenantId)) &&
-            (identical(other.tenant, tenant) ||
-                const DeepCollectionEquality().equals(other.tenant, tenant)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(createDate) ^
-      const DeepCollectionEquality().hash(machines) ^
-      const DeepCollectionEquality().hash(tenantId) ^
-      const DeepCollectionEquality().hash(tenant) ^
-      runtimeType.hashCode;
-}
-
-extension $ProjectExtension on Project {
-  Project copyWith(
-      {String? id,
-      String? name,
-      String? code,
-      String? description,
-      bool? active,
-      DateTime? createDate,
-      List<Machine>? machines,
-      String? tenantId,
-      TenantCompany? tenant}) {
-    return Project(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        code: code ?? this.code,
-        description: description ?? this.description,
-        active: active ?? this.active,
-        createDate: createDate ?? this.createDate,
-        machines: machines ?? this.machines,
-        tenantId: tenantId ?? this.tenantId,
-        tenant: tenant ?? this.tenant);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class ProjectCompanyDTO {
   ProjectCompanyDTO({
     this.project,
@@ -14587,124 +13966,6 @@ extension $ResetPasswordModelExtension on ResetPasswordModel {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Role {
-  Role({
-    this.id,
-    this.name,
-    this.normalizedName,
-    this.concurrencyStamp,
-    this.active,
-    this.createBy,
-    this.updateBy,
-    this.createDate,
-    this.dtUpdateDate,
-    this.userRoles,
-  });
-
-  factory Role.fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'normalizedName')
-  final String? normalizedName;
-  @JsonKey(name: 'concurrencyStamp')
-  final String? concurrencyStamp;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'createBy')
-  final String? createBy;
-  @JsonKey(name: 'updateBy')
-  final String? updateBy;
-  @JsonKey(name: 'createDate')
-  final DateTime? createDate;
-  @JsonKey(name: 'dtUpdateDate')
-  final DateTime? dtUpdateDate;
-  @JsonKey(name: 'userRoles', defaultValue: <UserRole>[])
-  final List<UserRole>? userRoles;
-  static const fromJsonFactory = _$RoleFromJson;
-  static const toJsonFactory = _$RoleToJson;
-  Map<String, dynamic> toJson() => _$RoleToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Role &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.normalizedName, normalizedName) ||
-                const DeepCollectionEquality()
-                    .equals(other.normalizedName, normalizedName)) &&
-            (identical(other.concurrencyStamp, concurrencyStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.concurrencyStamp, concurrencyStamp)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.createBy, createBy) ||
-                const DeepCollectionEquality()
-                    .equals(other.createBy, createBy)) &&
-            (identical(other.updateBy, updateBy) ||
-                const DeepCollectionEquality()
-                    .equals(other.updateBy, updateBy)) &&
-            (identical(other.createDate, createDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.createDate, createDate)) &&
-            (identical(other.dtUpdateDate, dtUpdateDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.dtUpdateDate, dtUpdateDate)) &&
-            (identical(other.userRoles, userRoles) ||
-                const DeepCollectionEquality()
-                    .equals(other.userRoles, userRoles)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(normalizedName) ^
-      const DeepCollectionEquality().hash(concurrencyStamp) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(createBy) ^
-      const DeepCollectionEquality().hash(updateBy) ^
-      const DeepCollectionEquality().hash(createDate) ^
-      const DeepCollectionEquality().hash(dtUpdateDate) ^
-      const DeepCollectionEquality().hash(userRoles) ^
-      runtimeType.hashCode;
-}
-
-extension $RoleExtension on Role {
-  Role copyWith(
-      {String? id,
-      String? name,
-      String? normalizedName,
-      String? concurrencyStamp,
-      bool? active,
-      String? createBy,
-      String? updateBy,
-      DateTime? createDate,
-      DateTime? dtUpdateDate,
-      List<UserRole>? userRoles}) {
-    return Role(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        normalizedName: normalizedName ?? this.normalizedName,
-        concurrencyStamp: concurrencyStamp ?? this.concurrencyStamp,
-        active: active ?? this.active,
-        createBy: createBy ?? this.createBy,
-        updateBy: updateBy ?? this.updateBy,
-        createDate: createDate ?? this.createDate,
-        dtUpdateDate: dtUpdateDate ?? this.dtUpdateDate,
-        userRoles: userRoles ?? this.userRoles);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class RoleDTO {
   RoleDTO({
     this.id,
@@ -15500,208 +14761,6 @@ extension $SystemStateDTOExtension on SystemStateDTO {
 }
 
 @JsonSerializable(explicitToJson: true)
-class TenantCompany {
-  TenantCompany({
-    this.id,
-    this.name,
-    this.description,
-    this.userCreationId,
-    this.userCreation,
-    this.active,
-    this.createDate,
-    this.tenantCompanyUserPermissions,
-    this.projects,
-    this.tenantLinks,
-  });
-
-  factory TenantCompany.fromJson(Map<String, dynamic> json) =>
-      _$TenantCompanyFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'userCreationId')
-  final String? userCreationId;
-  @JsonKey(name: 'userCreation')
-  final AppUsuario? userCreation;
-  @JsonKey(name: 'active')
-  final bool? active;
-  @JsonKey(name: 'createDate')
-  final DateTime? createDate;
-  @JsonKey(
-      name: 'tenantCompanyUserPermissions',
-      defaultValue: <TenantCompanyUserPermission>[])
-  final List<TenantCompanyUserPermission>? tenantCompanyUserPermissions;
-  @JsonKey(name: 'projects', defaultValue: <Project>[])
-  final List<Project>? projects;
-  @JsonKey(name: 'tenantLinks', defaultValue: <TenantLink>[])
-  final List<TenantLink>? tenantLinks;
-  static const fromJsonFactory = _$TenantCompanyFromJson;
-  static const toJsonFactory = _$TenantCompanyToJson;
-  Map<String, dynamic> toJson() => _$TenantCompanyToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is TenantCompany &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.userCreationId, userCreationId) ||
-                const DeepCollectionEquality()
-                    .equals(other.userCreationId, userCreationId)) &&
-            (identical(other.userCreation, userCreation) ||
-                const DeepCollectionEquality()
-                    .equals(other.userCreation, userCreation)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.createDate, createDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.createDate, createDate)) &&
-            (identical(other.tenantCompanyUserPermissions,
-                    tenantCompanyUserPermissions) ||
-                const DeepCollectionEquality().equals(
-                    other.tenantCompanyUserPermissions,
-                    tenantCompanyUserPermissions)) &&
-            (identical(other.projects, projects) ||
-                const DeepCollectionEquality()
-                    .equals(other.projects, projects)) &&
-            (identical(other.tenantLinks, tenantLinks) ||
-                const DeepCollectionEquality()
-                    .equals(other.tenantLinks, tenantLinks)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(userCreationId) ^
-      const DeepCollectionEquality().hash(userCreation) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(createDate) ^
-      const DeepCollectionEquality().hash(tenantCompanyUserPermissions) ^
-      const DeepCollectionEquality().hash(projects) ^
-      const DeepCollectionEquality().hash(tenantLinks) ^
-      runtimeType.hashCode;
-}
-
-extension $TenantCompanyExtension on TenantCompany {
-  TenantCompany copyWith(
-      {String? id,
-      String? name,
-      String? description,
-      String? userCreationId,
-      AppUsuario? userCreation,
-      bool? active,
-      DateTime? createDate,
-      List<TenantCompanyUserPermission>? tenantCompanyUserPermissions,
-      List<Project>? projects,
-      List<TenantLink>? tenantLinks}) {
-    return TenantCompany(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        description: description ?? this.description,
-        userCreationId: userCreationId ?? this.userCreationId,
-        userCreation: userCreation ?? this.userCreation,
-        active: active ?? this.active,
-        createDate: createDate ?? this.createDate,
-        tenantCompanyUserPermissions:
-            tenantCompanyUserPermissions ?? this.tenantCompanyUserPermissions,
-        projects: projects ?? this.projects,
-        tenantLinks: tenantLinks ?? this.tenantLinks);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class TenantCompanyUserPermission {
-  TenantCompanyUserPermission({
-    this.userId,
-    this.tenanCompanyId,
-    this.permission,
-    this.user,
-    this.tenanCompany,
-  });
-
-  factory TenantCompanyUserPermission.fromJson(Map<String, dynamic> json) =>
-      _$TenantCompanyUserPermissionFromJson(json);
-
-  @JsonKey(name: 'userId')
-  final String? userId;
-  @JsonKey(name: 'tenanCompanyId')
-  final String? tenanCompanyId;
-  @JsonKey(
-      name: 'permission',
-      toJson: permissionsEnumToJson,
-      fromJson: permissionsEnumFromJson)
-  final enums.PermissionsEnum? permission;
-  @JsonKey(name: 'user')
-  final AppUsuario? user;
-  @JsonKey(name: 'tenanCompany')
-  final TenantCompany? tenanCompany;
-  static const fromJsonFactory = _$TenantCompanyUserPermissionFromJson;
-  static const toJsonFactory = _$TenantCompanyUserPermissionToJson;
-  Map<String, dynamic> toJson() => _$TenantCompanyUserPermissionToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is TenantCompanyUserPermission &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.tenanCompanyId, tenanCompanyId) ||
-                const DeepCollectionEquality()
-                    .equals(other.tenanCompanyId, tenanCompanyId)) &&
-            (identical(other.permission, permission) ||
-                const DeepCollectionEquality()
-                    .equals(other.permission, permission)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.tenanCompany, tenanCompany) ||
-                const DeepCollectionEquality()
-                    .equals(other.tenanCompany, tenanCompany)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(tenanCompanyId) ^
-      const DeepCollectionEquality().hash(permission) ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(tenanCompany) ^
-      runtimeType.hashCode;
-}
-
-extension $TenantCompanyUserPermissionExtension on TenantCompanyUserPermission {
-  TenantCompanyUserPermission copyWith(
-      {String? userId,
-      String? tenanCompanyId,
-      enums.PermissionsEnum? permission,
-      AppUsuario? user,
-      TenantCompany? tenanCompany}) {
-    return TenantCompanyUserPermission(
-        userId: userId ?? this.userId,
-        tenanCompanyId: tenanCompanyId ?? this.tenanCompanyId,
-        permission: permission ?? this.permission,
-        user: user ?? this.user,
-        tenanCompany: tenanCompany ?? this.tenanCompany);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class TenantCompanyUserPermissionDTO {
   TenantCompanyUserPermissionDTO({
     this.userId,
@@ -15764,18 +14823,16 @@ extension $TenantCompanyUserPermissionDTOExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class TenantLink {
-  TenantLink({
+class TenantLinkDTO {
+  TenantLinkDTO({
     this.id,
     this.tenantCompanyId,
     this.userId,
     this.status,
-    this.tenantCompany,
-    this.user,
   });
 
-  factory TenantLink.fromJson(Map<String, dynamic> json) =>
-      _$TenantLinkFromJson(json);
+  factory TenantLinkDTO.fromJson(Map<String, dynamic> json) =>
+      _$TenantLinkDTOFromJson(json);
 
   @JsonKey(name: 'id')
   final int? id;
@@ -15788,13 +14845,9 @@ class TenantLink {
       toJson: tenantLinkStatusEnumToJson,
       fromJson: tenantLinkStatusEnumFromJson)
   final enums.TenantLinkStatusEnum? status;
-  @JsonKey(name: 'tenantCompany')
-  final TenantCompany? tenantCompany;
-  @JsonKey(name: 'user')
-  final AppUsuario? user;
-  static const fromJsonFactory = _$TenantLinkFromJson;
-  static const toJsonFactory = _$TenantLinkToJson;
-  Map<String, dynamic> toJson() => _$TenantLinkToJson(this);
+  static const fromJsonFactory = _$TenantLinkDTOFromJson;
+  static const toJsonFactory = _$TenantLinkDTOToJson;
+  Map<String, dynamic> toJson() => _$TenantLinkDTOToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -15802,7 +14855,7 @@ class TenantLink {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TenantLink &&
+        (other is TenantLinkDTO &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.tenantCompanyId, tenantCompanyId) ||
@@ -15811,12 +14864,7 @@ class TenantLink {
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.tenantCompany, tenantCompany) ||
-                const DeepCollectionEquality()
-                    .equals(other.tenantCompany, tenantCompany)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+                const DeepCollectionEquality().equals(other.status, status)));
   }
 
   @override
@@ -15825,26 +14873,20 @@ class TenantLink {
       const DeepCollectionEquality().hash(tenantCompanyId) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(tenantCompany) ^
-      const DeepCollectionEquality().hash(user) ^
       runtimeType.hashCode;
 }
 
-extension $TenantLinkExtension on TenantLink {
-  TenantLink copyWith(
+extension $TenantLinkDTOExtension on TenantLinkDTO {
+  TenantLinkDTO copyWith(
       {int? id,
       String? tenantCompanyId,
       String? userId,
-      enums.TenantLinkStatusEnum? status,
-      TenantCompany? tenantCompany,
-      AppUsuario? user}) {
-    return TenantLink(
+      enums.TenantLinkStatusEnum? status}) {
+    return TenantLinkDTO(
         id: id ?? this.id,
         tenantCompanyId: tenantCompanyId ?? this.tenantCompanyId,
         userId: userId ?? this.userId,
-        status: status ?? this.status,
-        tenantCompany: tenantCompany ?? this.tenantCompany,
-        user: user ?? this.user);
+        status: status ?? this.status);
   }
 }
 
@@ -16273,28 +15315,56 @@ extension $UserPutDTOExtension on UserPutDTO {
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserRole {
-  UserRole({
-    this.userId,
-    this.roleId,
-    this.user,
+class UserResponseDTO {
+  UserResponseDTO({
+    this.id,
+    this.email,
+    this.name,
+    this.image,
+    this.firstName,
+    this.lastName,
+    this.gender,
+    this.url,
+    this.countryCode,
+    this.phone,
+    this.department,
+    this.companies,
     this.role,
   });
 
-  factory UserRole.fromJson(Map<String, dynamic> json) =>
-      _$UserRoleFromJson(json);
+  factory UserResponseDTO.fromJson(Map<String, dynamic> json) =>
+      _$UserResponseDTOFromJson(json);
 
-  @JsonKey(name: 'userId')
-  final String? userId;
-  @JsonKey(name: 'roleId')
-  final String? roleId;
-  @JsonKey(name: 'user')
-  final AppUsuario? user;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'image')
+  final String? image;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(
+      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
+  final enums.GenderEnum? gender;
+  @JsonKey(name: 'url')
+  final String? url;
+  @JsonKey(name: 'countryCode')
+  final String? countryCode;
+  @JsonKey(name: 'phone')
+  final String? phone;
+  @JsonKey(name: 'department', defaultValue: <SelectDTO>[])
+  final List<SelectDTO>? department;
+  @JsonKey(name: 'companies', defaultValue: <CompanyTenantDTO>[])
+  final List<CompanyTenantDTO>? companies;
   @JsonKey(name: 'role')
-  final Role? role;
-  static const fromJsonFactory = _$UserRoleFromJson;
-  static const toJsonFactory = _$UserRoleToJson;
-  Map<String, dynamic> toJson() => _$UserRoleToJson(this);
+  final String? role;
+  static const fromJsonFactory = _$UserResponseDTOFromJson;
+  static const toJsonFactory = _$UserResponseDTOToJson;
+  Map<String, dynamic> toJson() => _$UserResponseDTOToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -16302,33 +15372,86 @@ class UserRole {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UserRole &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.roleId, roleId) ||
-                const DeepCollectionEquality().equals(other.roleId, roleId)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other is UserResponseDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.countryCode, countryCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryCode, countryCode)) &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.department, department) ||
+                const DeepCollectionEquality()
+                    .equals(other.department, department)) &&
+            (identical(other.companies, companies) ||
+                const DeepCollectionEquality()
+                    .equals(other.companies, companies)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)));
   }
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(roleId) ^
-      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(gender) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(countryCode) ^
+      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(department) ^
+      const DeepCollectionEquality().hash(companies) ^
       const DeepCollectionEquality().hash(role) ^
       runtimeType.hashCode;
 }
 
-extension $UserRoleExtension on UserRole {
-  UserRole copyWith(
-      {String? userId, String? roleId, AppUsuario? user, Role? role}) {
-    return UserRole(
-        userId: userId ?? this.userId,
-        roleId: roleId ?? this.roleId,
-        user: user ?? this.user,
+extension $UserResponseDTOExtension on UserResponseDTO {
+  UserResponseDTO copyWith(
+      {String? id,
+      String? email,
+      String? name,
+      String? image,
+      String? firstName,
+      String? lastName,
+      enums.GenderEnum? gender,
+      String? url,
+      String? countryCode,
+      String? phone,
+      List<SelectDTO>? department,
+      List<CompanyTenantDTO>? companies,
+      String? role}) {
+    return UserResponseDTO(
+        id: id ?? this.id,
+        email: email ?? this.email,
+        name: name ?? this.name,
+        image: image ?? this.image,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        gender: gender ?? this.gender,
+        url: url ?? this.url,
+        countryCode: countryCode ?? this.countryCode,
+        phone: phone ?? this.phone,
+        department: department ?? this.department,
+        companies: companies ?? this.companies,
         role: role ?? this.role);
   }
 }

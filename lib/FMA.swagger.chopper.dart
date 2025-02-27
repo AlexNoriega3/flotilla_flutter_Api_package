@@ -80,15 +80,6 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<AuthResponseDTO>> _apiAccountTenantCompanyPost(
-      {required CompanyTenantDTO? body}) {
-    final $url = '/api/Account/TenantCompany';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<AuthResponseDTO, AuthResponseDTO>($request);
-  }
-
-  @override
   Future<Response<List<AddressDTO>>> _apiAddressGet() {
     final $url = '/api/Address';
     final $request = Request('GET', $url, client.baseUrl);
@@ -2398,14 +2389,14 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<List<TenantLink>>> _getPendingLinksGet() {
+  Future<Response<List<TenantLinkDTO>>> _getPendingLinksGet() {
     final $url = '/GetPendingLinks';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<TenantLink>, TenantLink>($request);
+    return client.send<List<TenantLinkDTO>, TenantLinkDTO>($request);
   }
 
   @override
-  Future<Response<List<TenantLink>>> _changeLinkStatusPut(
+  Future<Response<List<TenantLinkDTO>>> _changeLinkStatusPut(
       {String? tenantCompany, String? vinculacionEstatus}) {
     final $url = '/ChangeLinkStatus';
     final $params = <String, dynamic>{
@@ -2413,7 +2404,7 @@ class _$FMA extends FMA {
       'vinculacionEstatus': vinculacionEstatus
     };
     final $request = Request('PUT', $url, client.baseUrl, parameters: $params);
-    return client.send<List<TenantLink>, TenantLink>($request);
+    return client.send<List<TenantLinkDTO>, TenantLinkDTO>($request);
   }
 
   @override
@@ -2461,10 +2452,10 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<AppUserDTO>> _apiUserIdGet({required String? id}) {
+  Future<Response<UserResponseDTO>> _apiUserIdGet({required String? id}) {
     final $url = '/api/User/${id}';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<AppUserDTO, AppUserDTO>($request);
+    return client.send<UserResponseDTO, UserResponseDTO>($request);
   }
 
   @override
