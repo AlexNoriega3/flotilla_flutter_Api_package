@@ -310,6 +310,7 @@ CompanyDTO _$CompanyDTOFromJson(Map<String, dynamic> json) => CompanyDTO(
       active: json['active'] as bool?,
       name: json['name'] as String?,
       description: json['description'] as String?,
+      logo: json['logo'] as String?,
     );
 
 Map<String, dynamic> _$CompanyDTOToJson(CompanyDTO instance) =>
@@ -318,6 +319,7 @@ Map<String, dynamic> _$CompanyDTOToJson(CompanyDTO instance) =>
       'active': instance.active,
       'name': instance.name,
       'description': instance.description,
+      'logo': instance.logo,
     };
 
 CompanyDTOPagedResult _$CompanyDTOPagedResultFromJson(
@@ -341,6 +343,26 @@ Map<String, dynamic> _$CompanyDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+CompanyPostDTO _$CompanyPostDTOFromJson(Map<String, dynamic> json) =>
+    CompanyPostDTO(
+      id: json['id'] as String?,
+      active: json['active'] as bool?,
+      name: json['name'] as String?,
+      description: json['description'] as String?,
+      logo: json['logo'] as String?,
+      logoFile: json['logoFile'] as String?,
+    );
+
+Map<String, dynamic> _$CompanyPostDTOToJson(CompanyPostDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'active': instance.active,
+      'name': instance.name,
+      'description': instance.description,
+      'logo': instance.logo,
+      'logoFile': instance.logoFile,
     };
 
 CompanyTenantDTO _$CompanyTenantDTOFromJson(Map<String, dynamic> json) =>
@@ -2515,6 +2537,17 @@ Map<String, dynamic> _$RoleDTOPagedResultToJson(RoleDTOPagedResult instance) =>
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+RoleTenatDTO _$RoleTenatDTOFromJson(Map<String, dynamic> json) => RoleTenatDTO(
+      roleId: json['roleId'] as String,
+      tenantCompanyId: json['tenantCompanyId'] as String,
+    );
+
+Map<String, dynamic> _$RoleTenatDTOToJson(RoleTenatDTO instance) =>
+    <String, dynamic>{
+      'roleId': instance.roleId,
+      'tenantCompanyId': instance.tenantCompanyId,
+    };
+
 SelectDTO _$SelectDTOFromJson(Map<String, dynamic> json) => SelectDTO(
       key: json['key'] as String?,
       value: json['value'] as String?,
@@ -2712,6 +2745,11 @@ TenantLinkDTO _$TenantLinkDTOFromJson(Map<String, dynamic> json) =>
     TenantLinkDTO(
       id: json['id'] as int?,
       tenantCompanyId: json['tenantCompanyId'] as String?,
+      tenantCompanyName: json['tenantCompanyName'] as String?,
+      tenantCompanyDescription: json['tenantCompanyDescription'] as String?,
+      tenantCompanyLogo: json['tenantCompanyLogo'] as String?,
+      tenantCompanyOwner: json['tenantCompanyOwner'] as String?,
+      inviteDate: json['inviteDate'] as String?,
       userId: json['userId'] as String?,
       status: tenantLinkStatusEnumFromJson(json['status']),
     );
@@ -2720,6 +2758,11 @@ Map<String, dynamic> _$TenantLinkDTOToJson(TenantLinkDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
       'tenantCompanyId': instance.tenantCompanyId,
+      'tenantCompanyName': instance.tenantCompanyName,
+      'tenantCompanyDescription': instance.tenantCompanyDescription,
+      'tenantCompanyLogo': instance.tenantCompanyLogo,
+      'tenantCompanyOwner': instance.tenantCompanyOwner,
+      'inviteDate': instance.inviteDate,
       'userId': instance.userId,
       'status': tenantLinkStatusEnumToJson(instance.status),
     };
@@ -2774,50 +2817,41 @@ Map<String, dynamic> _$TimeSpanToJson(TimeSpan instance) => <String, dynamic>{
       'totalSeconds': instance.totalSeconds,
     };
 
-UserPostDTO _$UserPostDTOFromJson(Map<String, dynamic> json) => UserPostDTO(
+UserPutDTO _$UserPutDTOFromJson(Map<String, dynamic> json) => UserPutDTO(
+      imageFile: json['imageFile'] as String?,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      gender: genderEnumFromJson(json['gender']),
+      phoneNumber: json['phoneNumber'] as String,
+    );
+
+Map<String, dynamic> _$UserPutDTOToJson(UserPutDTO instance) =>
+    <String, dynamic>{
+      'imageFile': instance.imageFile,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'gender': genderEnumToJson(instance.gender),
+      'phoneNumber': instance.phoneNumber,
+    };
+
+UserRegisterDTO _$UserRegisterDTOFromJson(Map<String, dynamic> json) =>
+    UserRegisterDTO(
       email: json['email'] as String,
       password: json['password'] as String,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       roleName: json['roleName'] as String?,
+      companyName: json['companyName'] as String,
     );
 
-Map<String, dynamic> _$UserPostDTOToJson(UserPostDTO instance) =>
+Map<String, dynamic> _$UserRegisterDTOToJson(UserRegisterDTO instance) =>
     <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'roleName': instance.roleName,
-    };
-
-UserPutDTO _$UserPutDTOFromJson(Map<String, dynamic> json) => UserPutDTO(
-      imageFile: json['imageFile'] as String?,
-      name: json['name'] as String?,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-      url: json['url'] as String?,
-      titleAbbreviation: json['titleAbbreviation'] as String?,
-      gender: genderEnumFromJson(json['gender']),
-      phoneNumber: json['phoneNumber'] as String,
-      country: json['country'] as String?,
-      city: json['city'] as String?,
-      address: json['address'] as String?,
-    );
-
-Map<String, dynamic> _$UserPutDTOToJson(UserPutDTO instance) =>
-    <String, dynamic>{
-      'imageFile': instance.imageFile,
-      'name': instance.name,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'url': instance.url,
-      'titleAbbreviation': instance.titleAbbreviation,
-      'gender': genderEnumToJson(instance.gender),
-      'phoneNumber': instance.phoneNumber,
-      'country': instance.country,
-      'city': instance.city,
-      'address': instance.address,
+      'companyName': instance.companyName,
     };
 
 UserResponseDTO _$UserResponseDTOFromJson(Map<String, dynamic> json) =>

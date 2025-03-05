@@ -472,14 +472,15 @@ abstract class FMA extends ChopperService {
   Future<chopper.Response<List<CompanyDTO>>> _apiCompanyGet();
 
   ///
-  Future<chopper.Response<String>> apiCompanyPost({required CompanyDTO? body}) {
+  Future<chopper.Response<String>> apiCompanyPost(
+      {required CompanyPostDTO? body}) {
     return _apiCompanyPost(body: body);
   }
 
   ///
   @Post(path: '/api/Company')
   Future<chopper.Response<String>> _apiCompanyPost(
-      {@Body() required CompanyDTO? body});
+      {@Body() required CompanyPostDTO? body});
 
   ///
   ///@param Page
@@ -4277,16 +4278,6 @@ abstract class FMA extends ChopperService {
   @Get(path: '/api/User')
   Future<chopper.Response<List<AppUserDTO>>> _apiUserGet();
 
-  ///Endpoint para el registro de los usuarios
-  Future<chopper.Response<String>> apiUserPost({required UserPostDTO? body}) {
-    return _apiUserPost(body: body);
-  }
-
-  ///Endpoint para el registro de los usuarios
-  @Post(path: '/api/User')
-  Future<chopper.Response<String>> _apiUserPost(
-      {@Body() required UserPostDTO? body});
-
   ///
   ///@param Page
   ///@param Search
@@ -4328,6 +4319,32 @@ abstract class FMA extends ChopperService {
       @Query('SortOrder') String? sortOrder,
       @Query('PageSize') required int? pageSize,
       @Query('Active') bool? active});
+
+  ///Endpoint para el registro de los usuarios
+  Future<chopper.Response<String>> apiUserRegisterPost(
+      {required UserRegisterDTO? body}) {
+    return _apiUserRegisterPost(body: body);
+  }
+
+  ///Endpoint para el registro de los usuarios
+  @Post(path: '/api/User/Register')
+  Future<chopper.Response<String>> _apiUserRegisterPost(
+      {@Body() required UserRegisterDTO? body});
+
+  ///
+  Future<chopper.Response<EditUserResponse>> apiUserCreateUserPost(
+      {required List<int> partFile}) {
+    generatedMapping.putIfAbsent(
+        EditUserResponse, () => EditUserResponse.fromJsonFactory);
+
+    return _apiUserCreateUserPost(partFile: partFile);
+  }
+
+  ///
+  @Post(path: '/api/User/CreateUser')
+  @Multipart()
+  Future<chopper.Response<EditUserResponse>> _apiUserCreateUserPost(
+      {@PartFile() required List<int> partFile});
 
   ///
   ///@param id
@@ -6150,6 +6167,7 @@ class CompanyDTO {
     this.active,
     this.name,
     this.description,
+    this.logo,
   });
 
   factory CompanyDTO.fromJson(Map<String, dynamic> json) =>
@@ -6163,6 +6181,8 @@ class CompanyDTO {
   final String? name;
   @JsonKey(name: 'description')
   final String? description;
+  @JsonKey(name: 'logo')
+  final String? logo;
   static const fromJsonFactory = _$CompanyDTOFromJson;
   static const toJsonFactory = _$CompanyDTOToJson;
   Map<String, dynamic> toJson() => _$CompanyDTOToJson(this);
@@ -6182,7 +6202,9 @@ class CompanyDTO {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)));
+                    .equals(other.description, description)) &&
+            (identical(other.logo, logo) ||
+                const DeepCollectionEquality().equals(other.logo, logo)));
   }
 
   @override
@@ -6191,17 +6213,23 @@ class CompanyDTO {
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(logo) ^
       runtimeType.hashCode;
 }
 
 extension $CompanyDTOExtension on CompanyDTO {
   CompanyDTO copyWith(
-      {String? id, bool? active, String? name, String? description}) {
+      {String? id,
+      bool? active,
+      String? name,
+      String? description,
+      String? logo}) {
     return CompanyDTO(
         id: id ?? this.id,
         active: active ?? this.active,
         name: name ?? this.name,
-        description: description ?? this.description);
+        description: description ?? this.description,
+        logo: logo ?? this.logo);
   }
 }
 
@@ -6278,6 +6306,88 @@ extension $CompanyDTOPagedResultExtension on CompanyDTOPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CompanyPostDTO {
+  CompanyPostDTO({
+    this.id,
+    this.active,
+    this.name,
+    this.description,
+    this.logo,
+    this.logoFile,
+  });
+
+  factory CompanyPostDTO.fromJson(Map<String, dynamic> json) =>
+      _$CompanyPostDTOFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'logo')
+  final String? logo;
+  @JsonKey(name: 'logoFile')
+  final String? logoFile;
+  static const fromJsonFactory = _$CompanyPostDTOFromJson;
+  static const toJsonFactory = _$CompanyPostDTOToJson;
+  Map<String, dynamic> toJson() => _$CompanyPostDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CompanyPostDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.logo, logo) ||
+                const DeepCollectionEquality().equals(other.logo, logo)) &&
+            (identical(other.logoFile, logoFile) ||
+                const DeepCollectionEquality()
+                    .equals(other.logoFile, logoFile)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(logo) ^
+      const DeepCollectionEquality().hash(logoFile) ^
+      runtimeType.hashCode;
+}
+
+extension $CompanyPostDTOExtension on CompanyPostDTO {
+  CompanyPostDTO copyWith(
+      {String? id,
+      bool? active,
+      String? name,
+      String? description,
+      String? logo,
+      String? logoFile}) {
+    return CompanyPostDTO(
+        id: id ?? this.id,
+        active: active ?? this.active,
+        name: name ?? this.name,
+        description: description ?? this.description,
+        logo: logo ?? this.logo,
+        logoFile: logoFile ?? this.logoFile);
   }
 }
 
@@ -14095,6 +14205,53 @@ extension $RoleDTOPagedResultExtension on RoleDTOPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
+class RoleTenatDTO {
+  RoleTenatDTO({
+    required this.roleId,
+    required this.tenantCompanyId,
+  });
+
+  factory RoleTenatDTO.fromJson(Map<String, dynamic> json) =>
+      _$RoleTenatDTOFromJson(json);
+
+  @JsonKey(name: 'roleId')
+  final String roleId;
+  @JsonKey(name: 'tenantCompanyId')
+  final String tenantCompanyId;
+  static const fromJsonFactory = _$RoleTenatDTOFromJson;
+  static const toJsonFactory = _$RoleTenatDTOToJson;
+  Map<String, dynamic> toJson() => _$RoleTenatDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RoleTenatDTO &&
+            (identical(other.roleId, roleId) ||
+                const DeepCollectionEquality().equals(other.roleId, roleId)) &&
+            (identical(other.tenantCompanyId, tenantCompanyId) ||
+                const DeepCollectionEquality()
+                    .equals(other.tenantCompanyId, tenantCompanyId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(roleId) ^
+      const DeepCollectionEquality().hash(tenantCompanyId) ^
+      runtimeType.hashCode;
+}
+
+extension $RoleTenatDTOExtension on RoleTenatDTO {
+  RoleTenatDTO copyWith({String? roleId, String? tenantCompanyId}) {
+    return RoleTenatDTO(
+        roleId: roleId ?? this.roleId,
+        tenantCompanyId: tenantCompanyId ?? this.tenantCompanyId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class SelectDTO {
   SelectDTO({
     this.key,
@@ -14827,6 +14984,11 @@ class TenantLinkDTO {
   TenantLinkDTO({
     this.id,
     this.tenantCompanyId,
+    this.tenantCompanyName,
+    this.tenantCompanyDescription,
+    this.tenantCompanyLogo,
+    this.tenantCompanyOwner,
+    this.inviteDate,
     this.userId,
     this.status,
   });
@@ -14838,6 +15000,16 @@ class TenantLinkDTO {
   final int? id;
   @JsonKey(name: 'tenantCompanyId')
   final String? tenantCompanyId;
+  @JsonKey(name: 'tenantCompanyName')
+  final String? tenantCompanyName;
+  @JsonKey(name: 'tenantCompanyDescription')
+  final String? tenantCompanyDescription;
+  @JsonKey(name: 'tenantCompanyLogo')
+  final String? tenantCompanyLogo;
+  @JsonKey(name: 'tenantCompanyOwner')
+  final String? tenantCompanyOwner;
+  @JsonKey(name: 'inviteDate')
+  final String? inviteDate;
   @JsonKey(name: 'userId')
   final String? userId;
   @JsonKey(
@@ -14861,6 +15033,23 @@ class TenantLinkDTO {
             (identical(other.tenantCompanyId, tenantCompanyId) ||
                 const DeepCollectionEquality()
                     .equals(other.tenantCompanyId, tenantCompanyId)) &&
+            (identical(other.tenantCompanyName, tenantCompanyName) ||
+                const DeepCollectionEquality()
+                    .equals(other.tenantCompanyName, tenantCompanyName)) &&
+            (identical(
+                    other.tenantCompanyDescription, tenantCompanyDescription) ||
+                const DeepCollectionEquality().equals(
+                    other.tenantCompanyDescription,
+                    tenantCompanyDescription)) &&
+            (identical(other.tenantCompanyLogo, tenantCompanyLogo) ||
+                const DeepCollectionEquality()
+                    .equals(other.tenantCompanyLogo, tenantCompanyLogo)) &&
+            (identical(other.tenantCompanyOwner, tenantCompanyOwner) ||
+                const DeepCollectionEquality()
+                    .equals(other.tenantCompanyOwner, tenantCompanyOwner)) &&
+            (identical(other.inviteDate, inviteDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.inviteDate, inviteDate)) &&
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.status, status) ||
@@ -14871,6 +15060,11 @@ class TenantLinkDTO {
   int get hashCode =>
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(tenantCompanyId) ^
+      const DeepCollectionEquality().hash(tenantCompanyName) ^
+      const DeepCollectionEquality().hash(tenantCompanyDescription) ^
+      const DeepCollectionEquality().hash(tenantCompanyLogo) ^
+      const DeepCollectionEquality().hash(tenantCompanyOwner) ^
+      const DeepCollectionEquality().hash(inviteDate) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(status) ^
       runtimeType.hashCode;
@@ -14880,11 +15074,22 @@ extension $TenantLinkDTOExtension on TenantLinkDTO {
   TenantLinkDTO copyWith(
       {int? id,
       String? tenantCompanyId,
+      String? tenantCompanyName,
+      String? tenantCompanyDescription,
+      String? tenantCompanyLogo,
+      String? tenantCompanyOwner,
+      String? inviteDate,
       String? userId,
       enums.TenantLinkStatusEnum? status}) {
     return TenantLinkDTO(
         id: id ?? this.id,
         tenantCompanyId: tenantCompanyId ?? this.tenantCompanyId,
+        tenantCompanyName: tenantCompanyName ?? this.tenantCompanyName,
+        tenantCompanyDescription:
+            tenantCompanyDescription ?? this.tenantCompanyDescription,
+        tenantCompanyLogo: tenantCompanyLogo ?? this.tenantCompanyLogo,
+        tenantCompanyOwner: tenantCompanyOwner ?? this.tenantCompanyOwner,
+        inviteDate: inviteDate ?? this.inviteDate,
         userId: userId ?? this.userId,
         status: status ?? this.status);
   }
@@ -15112,95 +15317,13 @@ extension $TimeSpanExtension on TimeSpan {
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserPostDTO {
-  UserPostDTO({
-    required this.email,
-    required this.password,
-    this.firstName,
-    this.lastName,
-    this.roleName,
-  });
-
-  factory UserPostDTO.fromJson(Map<String, dynamic> json) =>
-      _$UserPostDTOFromJson(json);
-
-  @JsonKey(name: 'email')
-  final String email;
-  @JsonKey(name: 'password')
-  final String password;
-  @JsonKey(name: 'firstName')
-  final String? firstName;
-  @JsonKey(name: 'lastName')
-  final String? lastName;
-  @JsonKey(name: 'roleName')
-  final String? roleName;
-  static const fromJsonFactory = _$UserPostDTOFromJson;
-  static const toJsonFactory = _$UserPostDTOToJson;
-  Map<String, dynamic> toJson() => _$UserPostDTOToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UserPostDTO &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.roleName, roleName) ||
-                const DeepCollectionEquality()
-                    .equals(other.roleName, roleName)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(password) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(roleName) ^
-      runtimeType.hashCode;
-}
-
-extension $UserPostDTOExtension on UserPostDTO {
-  UserPostDTO copyWith(
-      {String? email,
-      String? password,
-      String? firstName,
-      String? lastName,
-      String? roleName}) {
-    return UserPostDTO(
-        email: email ?? this.email,
-        password: password ?? this.password,
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        roleName: roleName ?? this.roleName);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class UserPutDTO {
   UserPutDTO({
     this.imageFile,
-    this.name,
     required this.firstName,
     required this.lastName,
-    this.url,
-    this.titleAbbreviation,
     this.gender,
     required this.phoneNumber,
-    this.country,
-    this.city,
-    this.address,
   });
 
   factory UserPutDTO.fromJson(Map<String, dynamic> json) =>
@@ -15208,27 +15331,15 @@ class UserPutDTO {
 
   @JsonKey(name: 'imageFile')
   final String? imageFile;
-  @JsonKey(name: 'name')
-  final String? name;
   @JsonKey(name: 'firstName')
   final String firstName;
   @JsonKey(name: 'lastName')
   final String lastName;
-  @JsonKey(name: 'url')
-  final String? url;
-  @JsonKey(name: 'titleAbbreviation')
-  final String? titleAbbreviation;
   @JsonKey(
       name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
   final enums.GenderEnum? gender;
   @JsonKey(name: 'phoneNumber')
   final String phoneNumber;
-  @JsonKey(name: 'country')
-  final String? country;
-  @JsonKey(name: 'city')
-  final String? city;
-  @JsonKey(name: 'address')
-  final String? address;
   static const fromJsonFactory = _$UserPutDTOFromJson;
   static const toJsonFactory = _$UserPutDTOToJson;
   Map<String, dynamic> toJson() => _$UserPutDTOToJson(this);
@@ -15243,74 +15354,127 @@ class UserPutDTO {
             (identical(other.imageFile, imageFile) ||
                 const DeepCollectionEquality()
                     .equals(other.imageFile, imageFile)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.titleAbbreviation, titleAbbreviation) ||
-                const DeepCollectionEquality()
-                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
             (identical(other.gender, gender) ||
                 const DeepCollectionEquality().equals(other.gender, gender)) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.country, country) ||
-                const DeepCollectionEquality()
-                    .equals(other.country, country)) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(other.address, address)));
+                    .equals(other.phoneNumber, phoneNumber)));
   }
 
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(imageFile) ^
-      const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(titleAbbreviation) ^
       const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(country) ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(address) ^
       runtimeType.hashCode;
 }
 
 extension $UserPutDTOExtension on UserPutDTO {
   UserPutDTO copyWith(
       {String? imageFile,
-      String? name,
       String? firstName,
       String? lastName,
-      String? url,
-      String? titleAbbreviation,
       enums.GenderEnum? gender,
-      String? phoneNumber,
-      String? country,
-      String? city,
-      String? address}) {
+      String? phoneNumber}) {
     return UserPutDTO(
         imageFile: imageFile ?? this.imageFile,
-        name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
-        url: url ?? this.url,
-        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
         gender: gender ?? this.gender,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        country: country ?? this.country,
-        city: city ?? this.city,
-        address: address ?? this.address);
+        phoneNumber: phoneNumber ?? this.phoneNumber);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserRegisterDTO {
+  UserRegisterDTO({
+    required this.email,
+    required this.password,
+    this.firstName,
+    this.lastName,
+    this.roleName,
+    required this.companyName,
+  });
+
+  factory UserRegisterDTO.fromJson(Map<String, dynamic> json) =>
+      _$UserRegisterDTOFromJson(json);
+
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'password')
+  final String password;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'roleName')
+  final String? roleName;
+  @JsonKey(name: 'companyName')
+  final String companyName;
+  static const fromJsonFactory = _$UserRegisterDTOFromJson;
+  static const toJsonFactory = _$UserRegisterDTOToJson;
+  Map<String, dynamic> toJson() => _$UserRegisterDTOToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserRegisterDTO &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.roleName, roleName) ||
+                const DeepCollectionEquality()
+                    .equals(other.roleName, roleName)) &&
+            (identical(other.companyName, companyName) ||
+                const DeepCollectionEquality()
+                    .equals(other.companyName, companyName)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(roleName) ^
+      const DeepCollectionEquality().hash(companyName) ^
+      runtimeType.hashCode;
+}
+
+extension $UserRegisterDTOExtension on UserRegisterDTO {
+  UserRegisterDTO copyWith(
+      {String? email,
+      String? password,
+      String? firstName,
+      String? lastName,
+      String? roleName,
+      String? companyName}) {
+    return UserRegisterDTO(
+        email: email ?? this.email,
+        password: password ?? this.password,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        roleName: roleName ?? this.roleName,
+        companyName: companyName ?? this.companyName);
   }
 }
 

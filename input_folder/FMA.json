@@ -913,7 +913,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CompanyDTO"
+                "$ref": "#/components/schemas/CompanyPostDTO"
               }
             }
           }
@@ -16004,187 +16004,6 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Endpoint para el registro de los usuarios",
-        "description": "Sample request:\r\n            \r\n   GET api/User/Registrar \\n\r\n   [FirstName] Opcional\\n\r\n   [LastName] Opcional\\n\r\n   \\n\r\n   [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n\r\n   Para los roles existentes consultar el recurso \"/api/Role\"\r\n            \r\nEl user",
-        "requestBody": {
-          "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPostDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Description here",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Description here"
-          }
-        }
       }
     },
     "/api/User/Search": {
@@ -16329,6 +16148,367 @@
         }
       }
     },
+    "/api/User/Register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Endpoint para el registro de los usuarios",
+        "description": "Sample request:\r\n            \r\n   GET api/User/Registrar \\n\r\n   [FirstName] Opcional\\n\r\n   [LastName] Opcional\\n\r\n   \\n\r\n   [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n\r\n   Para los roles existentes consultar el recurso \"/api/Role\"\r\n            \r\nEl user",
+        "requestBody": {
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Description here",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Description here"
+          }
+        }
+      }
+    },
+    "/api/User/CreateUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Email",
+                  "FirstName",
+                  "LastName",
+                  "Password",
+                  "PhoneNumber",
+                  "RoleCompany"
+                ],
+                "type": "object",
+                "properties": {
+                  "Email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "Password": {
+                    "maxLength": 15,
+                    "minLength": 6,
+                    "type": "string"
+                  },
+                  "RoleCompany": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RoleTenatDTO"
+                    }
+                  },
+                  "ImageFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "FirstName": {
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "^[a-zA-Z\\s]+$",
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "^[a-zA-Z\\s]+$",
+                    "type": "string"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/GenderEnum"
+                  },
+                  "PhoneNumber": {
+                    "maxLength": 10,
+                    "minLength": 10,
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Email": {
+                  "style": "form"
+                },
+                "Password": {
+                  "style": "form"
+                },
+                "RoleCompany": {
+                  "style": "form"
+                },
+                "ImageFile": {
+                  "style": "form"
+                },
+                "FirstName": {
+                  "style": "form"
+                },
+                "LastName": {
+                  "style": "form"
+                },
+                "Gender": {
+                  "style": "form"
+                },
+                "PhoneNumber": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditUserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/User/{id}": {
       "get": {
         "tags": [
@@ -16451,101 +16631,52 @@
             "multipart/form-data": {
               "schema": {
                 "required": [
-                  "firstName",
-                  "lastName",
-                  "phoneNumber"
+                  "FirstName",
+                  "LastName",
+                  "PhoneNumber"
                 ],
                 "type": "object",
                 "properties": {
-                  "imageFile": {
+                  "ImageFile": {
                     "type": "string",
                     "format": "binary"
                   },
-                  "name": {
-                    "maxLength": 300,
-                    "minLength": 1,
-                    "pattern": "^[a-zA-Z\\s]+$",
-                    "type": "string"
-                  },
-                  "firstName": {
+                  "FirstName": {
                     "maxLength": 100,
                     "minLength": 1,
                     "pattern": "^[a-zA-Z\\s]+$",
                     "type": "string"
                   },
-                  "lastName": {
+                  "LastName": {
                     "maxLength": 100,
                     "minLength": 1,
                     "pattern": "^[a-zA-Z\\s]+$",
                     "type": "string"
                   },
-                  "Url": {
-                    "maxLength": 500,
-                    "minLength": 0,
-                    "type": "string"
-                  },
-                  "titleAbbreviation": {
-                    "maxLength": 50,
-                    "minLength": 0,
-                    "type": "string"
-                  },
-                  "gender": {
+                  "Gender": {
                     "$ref": "#/components/schemas/GenderEnum"
                   },
-                  "phoneNumber": {
+                  "PhoneNumber": {
                     "maxLength": 10,
                     "minLength": 10,
-                    "type": "string"
-                  },
-                  "country": {
-                    "maxLength": 150,
-                    "minLength": 0,
-                    "type": "string"
-                  },
-                  "city": {
-                    "maxLength": 150,
-                    "minLength": 0,
-                    "type": "string"
-                  },
-                  "address": {
-                    "maxLength": 200,
-                    "minLength": 0,
                     "type": "string"
                   }
                 }
               },
               "encoding": {
-                "imageFile": {
+                "ImageFile": {
                   "style": "form"
                 },
-                "name": {
+                "FirstName": {
                   "style": "form"
                 },
-                "firstName": {
+                "LastName": {
                   "style": "form"
                 },
-                "lastName": {
+                "Gender": {
                   "style": "form"
                 },
-                "Url": {
-                  "style": "form"
-                },
-                "titleAbbreviation": {
-                  "style": "form"
-                },
-                "gender": {
-                  "style": "form"
-                },
-                "phoneNumber": {
-                  "style": "form"
-                },
-                "country": {
-                  "style": "form"
-                },
-                "city": {
-                  "style": "form"
-                },
-                "address": {
+                "PhoneNumber": {
                   "style": "form"
                 }
               }
@@ -20243,6 +20374,10 @@
             "pattern": ".+\\S.*",
             "type": "string",
             "nullable": true
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -20271,6 +20406,42 @@
             "items": {
               "$ref": "#/components/schemas/CompanyDTO"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompanyPostDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "name": {
+            "maxLength": 150,
+            "minLength": 0,
+            "pattern": ".+\\S.*",
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 500,
+            "minLength": 0,
+            "pattern": ".+\\S.*",
+            "type": "string",
+            "nullable": true
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "logoFile": {
+            "type": "string",
+            "format": "binary",
             "nullable": true
           }
         },
@@ -23526,6 +23697,28 @@
         },
         "additionalProperties": false
       },
+      "RoleTenatDTO": {
+        "required": [
+          "roleId",
+          "tenantCompanyId"
+        ],
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "maxLength": 250,
+            "minLength": 1,
+            "pattern": ".+\\S.*",
+            "type": "string"
+          },
+          "tenantCompanyId": {
+            "maxLength": 250,
+            "minLength": 1,
+            "pattern": ".+\\S.*",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "SelectDTO": {
         "type": "object",
         "properties": {
@@ -23820,6 +24013,26 @@
             "type": "string",
             "nullable": true
           },
+          "tenantCompanyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantCompanyDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantCompanyLogo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantCompanyOwner": {
+            "type": "string",
+            "nullable": true
+          },
+          "inviteDate": {
+            "type": "string",
+            "nullable": true
+          },
           "userId": {
             "type": "string",
             "nullable": true
@@ -23936,8 +24149,45 @@
         },
         "additionalProperties": false
       },
-      "UserPostDTO": {
+      "UserPutDTO": {
         "required": [
+          "firstName",
+          "lastName",
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "imageFile": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
+          "firstName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z\\s]+$",
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z\\s]+$",
+            "type": "string"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderEnum"
+          },
+          "phoneNumber": {
+            "maxLength": 10,
+            "minLength": 10,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRegisterDTO": {
+        "required": [
+          "companyName",
           "email",
           "password"
         ],
@@ -23964,79 +24214,12 @@
           "roleName": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserPutDTO": {
-        "required": [
-          "firstName",
-          "lastName",
-          "phoneNumber"
-        ],
-        "type": "object",
-        "properties": {
-          "imageFile": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true
           },
-          "name": {
-            "maxLength": 300,
+          "companyName": {
+            "maxLength": 250,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
-            "type": "string",
-            "nullable": true
-          },
-          "firstName": {
-            "maxLength": 100,
-            "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": ".+\\S.*",
             "type": "string"
-          },
-          "lastName": {
-            "maxLength": 100,
-            "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
-            "type": "string"
-          },
-          "url": {
-            "maxLength": 500,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "titleAbbreviation": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "gender": {
-            "$ref": "#/components/schemas/GenderEnum"
-          },
-          "phoneNumber": {
-            "maxLength": 10,
-            "minLength": 10,
-            "type": "string"
-          },
-          "country": {
-            "maxLength": 150,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "maxLength": 150,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

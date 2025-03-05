@@ -267,7 +267,7 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiCompanyPost({required CompanyDTO? body}) {
+  Future<Response<String>> _apiCompanyPost({required CompanyPostDTO? body}) {
     final $url = '/api/Company';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -2423,14 +2423,6 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiUserPost({required UserPostDTO? body}) {
-    final $url = '/api/User';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
   Future<Response<AppUserDTOPagedResult>> _apiUserSearchGet(
       {required int? page,
       String? search,
@@ -2449,6 +2441,25 @@ class _$FMA extends FMA {
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<AppUserDTOPagedResult, AppUserDTOPagedResult>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiUserRegisterPost(
+      {required UserRegisterDTO? body}) {
+    final $url = '/api/User/Register';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<EditUserResponse>> _apiUserCreateUserPost(
+      {required List<int> partFile}) {
+    final $url = '/api/User/CreateUser';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
+    return client.send<EditUserResponse, EditUserResponse>($request);
   }
 
   @override
