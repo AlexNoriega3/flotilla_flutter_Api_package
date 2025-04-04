@@ -80,6 +80,22 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<bool>> _apiAccountConfirmEmailPost(
+      {required ConfirmEmailDTO? body}) {
+    final $url = '/api/Account/ConfirmEmail';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiAccountDeleteAccountPost() {
+    final $url = '/api/Account/DeleteAccount';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<AddressDTO>>> _apiAddressGet() {
     final $url = '/api/Address';
     final $request = Request('GET', $url, client.baseUrl);
@@ -267,10 +283,11 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiCompanyPost({required CompanyPostDTO? body}) {
+  Future<Response<String>> _apiCompanyPost({required List<int> partFile}) {
     final $url = '/api/Company';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<String, String>($request);
   }
 
@@ -304,10 +321,11 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<bool>> _apiCompanyIdPut(
-      {required String? id, required CompanyDTO? body}) {
+      {required String? id, required List<int> partFile}) {
     final $url = '/api/Company/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<bool, bool>($request);
   }
 
@@ -2269,7 +2287,7 @@ class _$FMA extends FMA {
   }
 
   @override
-  Future<Response<String>> _apiRolePost({required RoleDTO? body}) {
+  Future<Response<String>> _apiRolePost({required RoleFormDTO? body}) {
     final $url = '/api/Role';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -2306,7 +2324,7 @@ class _$FMA extends FMA {
 
   @override
   Future<Response<bool>> _apiRoleIdPut(
-      {required String? id, required RoleDTO? body}) {
+      {required String? id, required RoleFormDTO? body}) {
     final $url = '/api/Role/${id}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
@@ -2318,6 +2336,14 @@ class _$FMA extends FMA {
     final $url = '/api/Role/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<RoleFormDTO>> _apiRoleGetFormGet({String? id}) {
+    final $url = '/api/Role/GetForm';
+    final $params = <String, dynamic>{'id': id};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<RoleFormDTO, RoleFormDTO>($request);
   }
 
   @override
@@ -2480,6 +2506,21 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<bool>> _apiUserIdDelete({required String? id}) {
+    final $url = '/api/User/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<GeUsertFormDTO>> _apiUserGetFormGet({String? id}) {
+    final $url = '/api/User/GetForm';
+    final $params = <String, dynamic>{'id': id};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<GeUsertFormDTO, GeUsertFormDTO>($request);
+  }
+
+  @override
   Future<Response<EditUserResponse>> _apiUserEditUserAppIdPut(
       {required String? id, required UserPutDTO? body}) {
     final $url = '/api/User/EditUserApp/${id}';
@@ -2511,6 +2552,13 @@ class _$FMA extends FMA {
     final $url = '/api/User/TenantMyCompanies';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<List<CompanyTenantDTO>, CompanyTenantDTO>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiUserIdActivePut({required String? id}) {
+    final $url = '/api/User/${id}/Active';
+    final $request = Request('PUT', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
   }
 
   @override
@@ -2761,64 +2809,5 @@ class _$FMA extends FMA {
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
-  }
-
-  @override
-  Future<Response<List<VendorDTO>>> _apiVendorGet() {
-    final $url = '/api/Vendor';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<VendorDTO>, VendorDTO>($request);
-  }
-
-  @override
-  Future<Response<String>> _apiVendorPost({required VendorDTO? body}) {
-    final $url = '/api/Vendor';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
-  Future<Response<VendorDTOPagedResult>> _apiVendorSearchGet(
-      {required int? page,
-      String? search,
-      String? orderByPropertyName,
-      String? sortOrder,
-      required int? pageSize,
-      bool? active}) {
-    final $url = '/api/Vendor/Search';
-    final $params = <String, dynamic>{
-      'Page': page,
-      'Search': search,
-      'OrderByPropertyName': orderByPropertyName,
-      'SortOrder': sortOrder,
-      'PageSize': pageSize,
-      'Active': active
-    };
-    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<VendorDTOPagedResult, VendorDTOPagedResult>($request);
-  }
-
-  @override
-  Future<Response<VendorDTO>> _apiVendorIdGet({required String? id}) {
-    final $url = '/api/Vendor/${id}';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<VendorDTO, VendorDTO>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiVendorIdPut(
-      {required String? id, required VendorDTO? body}) {
-    final $url = '/api/Vendor/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiVendorIdDelete({required String? id}) {
-    final $url = '/api/Vendor/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
   }
 }

@@ -122,7 +122,9 @@ enum PermissionsEnum {
   @JsonValue('Update')
   update,
   @JsonValue('Delete')
-  delete
+  delete,
+  @JsonValue('Export')
+  $export
 }
 
 const $PermissionsEnumMap = {
@@ -130,7 +132,8 @@ const $PermissionsEnumMap = {
   PermissionsEnum.create: 'Create',
   PermissionsEnum.read: 'Read',
   PermissionsEnum.update: 'Update',
-  PermissionsEnum.delete: 'Delete'
+  PermissionsEnum.delete: 'Delete',
+  PermissionsEnum.$export: 'Export'
 };
 
 enum SortOrderEnum {

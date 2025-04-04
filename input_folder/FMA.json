@@ -253,6 +253,53 @@
         }
       }
     },
+    "/api/Account/ConfirmEmail": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmEmailDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Account/DeleteAccount": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Address": {
       "get": {
         "tags": [
@@ -893,7 +940,127 @@
           "200": {
             "description": "Success",
             "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
               "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyDTO"
+                  }
+                }
+              },
+              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -911,9 +1078,38 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/CompanyPostDTO"
+                "type": "object",
+                "properties": {
+                  "LogoFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Name": {
+                    "maxLength": 150,
+                    "minLength": 0,
+                    "pattern": ".+\\S.*",
+                    "type": "string"
+                  },
+                  "Description": {
+                    "maxLength": 500,
+                    "minLength": 0,
+                    "pattern": ".+\\S.*",
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "LogoFile": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -922,7 +1118,82 @@
           "200": {
             "description": "Success",
             "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "string"
+                }
+              },
               "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "type": "string"
                 }
@@ -989,7 +1260,82 @@
           "200": {
             "description": "Success",
             "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTOPagedResult"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CompanyDTOPagedResult"
                 }
@@ -1018,7 +1364,82 @@
           "200": {
             "description": "Success",
             "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDTO"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CompanyDTO"
                 }
@@ -1043,19 +1464,122 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/CompanyDTO"
+                "type": "object",
+                "properties": {
+                  "LogoFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Name": {
+                    "maxLength": 150,
+                    "minLength": 0,
+                    "pattern": ".+\\S.*",
+                    "type": "string"
+                  },
+                  "Description": {
+                    "maxLength": 500,
+                    "minLength": 0,
+                    "pattern": ".+\\S.*",
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "LogoFile": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                }
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
             "description": "Success",
             "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
               "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
@@ -1082,7 +1606,82 @@
           "200": {
             "description": "Success",
             "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
               "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
@@ -14977,7 +15576,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RoleDTO"
+                "$ref": "#/components/schemas/RoleFormDTO"
               }
             }
           }
@@ -15109,7 +15708,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RoleDTO"
+                "$ref": "#/components/schemas/RoleFormDTO"
               }
             }
           },
@@ -15149,6 +15748,34 @@
               "application/json": {
                 "schema": {
                   "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Role/GetForm": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleFormDTO"
                 }
               }
             }
@@ -16345,8 +16972,7 @@
                   "FirstName",
                   "LastName",
                   "Password",
-                  "PhoneNumber",
-                  "RoleCompany"
+                  "PhoneNumber"
                 ],
                 "type": "object",
                 "properties": {
@@ -16359,12 +16985,6 @@
                     "minLength": 6,
                     "type": "string"
                   },
-                  "RoleCompany": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/RoleTenatDTO"
-                    }
-                  },
                   "ImageFile": {
                     "type": "string",
                     "format": "binary"
@@ -16372,13 +16992,13 @@
                   "FirstName": {
                     "maxLength": 100,
                     "minLength": 1,
-                    "pattern": "^[a-zA-Z\\s]+$",
+                    "pattern": "^[\\p{L}\\s.'\\-_]+$",
                     "type": "string"
                   },
                   "LastName": {
                     "maxLength": 100,
                     "minLength": 1,
-                    "pattern": "^[a-zA-Z\\s]+$",
+                    "pattern": "^[\\p{L}\\s.'\\-_]+$",
                     "type": "string"
                   },
                   "Gender": {
@@ -16388,6 +17008,12 @@
                     "maxLength": 10,
                     "minLength": 10,
                     "type": "string"
+                  },
+                  "RoleCompany": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RoleTenantDTO"
+                    }
                   }
                 }
               },
@@ -16396,9 +17022,6 @@
                   "style": "form"
                 },
                 "Password": {
-                  "style": "form"
-                },
-                "RoleCompany": {
                   "style": "form"
                 },
                 "ImageFile": {
@@ -16414,6 +17037,9 @@
                   "style": "form"
                 },
                 "PhoneNumber": {
+                  "style": "form"
+                },
+                "RoleCompany": {
                   "style": "form"
                 }
               }
@@ -16644,13 +17270,13 @@
                   "FirstName": {
                     "maxLength": 100,
                     "minLength": 1,
-                    "pattern": "^[a-zA-Z\\s]+$",
+                    "pattern": "^[\\p{L}\\s.'\\-_]+$",
                     "type": "string"
                   },
                   "LastName": {
                     "maxLength": 100,
                     "minLength": 1,
-                    "pattern": "^[a-zA-Z\\s]+$",
+                    "pattern": "^[\\p{L}\\s.'\\-_]+$",
                     "type": "string"
                   },
                   "Gender": {
@@ -16660,6 +17286,12 @@
                     "maxLength": 10,
                     "minLength": 10,
                     "type": "string"
+                  },
+                  "RoleCompany": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RoleTenantDTO"
+                    }
                   }
                 }
               },
@@ -16677,6 +17309,9 @@
                   "style": "form"
                 },
                 "PhoneNumber": {
+                  "style": "form"
+                },
+                "RoleCompany": {
                   "style": "form"
                 }
               }
@@ -16765,6 +17400,211 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EditUserResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/GetForm": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeUsertFormDTO"
                 }
               }
             }
@@ -17361,6 +18201,110 @@
                   "items": {
                     "$ref": "#/components/schemas/CompanyTenantDTO"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/{Id}/Active": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
                 }
               }
             }
@@ -19648,214 +20592,6 @@
           }
         }
       }
-    },
-    "/api/Vendor": {
-      "get": {
-        "tags": [
-          "Vendor"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/VendorDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Vendor"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VendorDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Vendor/Search": {
-      "get": {
-        "tags": [
-          "Vendor"
-        ],
-        "parameters": [
-          {
-            "name": "Page",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrderByPropertyName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SortOrder",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/SortOrderEnum"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Active",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VendorDTOPagedResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Vendor/{id}": {
-      "get": {
-        "tags": [
-          "Vendor"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VendorDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Vendor"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VendorDTO"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Vendor"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -20037,7 +20773,7 @@
           "permissions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PermissionUserDTO"
+              "$ref": "#/components/schemas/PermissionFormDTO"
             },
             "nullable": true
           }
@@ -20089,6 +20825,9 @@
           "active": {
             "type": "boolean"
           },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
           "department": {
             "type": "array",
             "items": {
@@ -20100,6 +20839,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CompanyTenantDTO"
+            },
+            "nullable": true
+          },
+          "roleCompany": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleTenantDTO"
             },
             "nullable": true
           }
@@ -20411,42 +21157,6 @@
         },
         "additionalProperties": false
       },
-      "CompanyPostDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "name": {
-            "maxLength": 150,
-            "minLength": 0,
-            "pattern": ".+\\S.*",
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "maxLength": 500,
-            "minLength": 0,
-            "pattern": ".+\\S.*",
-            "type": "string",
-            "nullable": true
-          },
-          "logo": {
-            "type": "string",
-            "nullable": true
-          },
-          "logoFile": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CompanyTenantDTO": {
         "type": "object",
         "properties": {
@@ -20466,6 +21176,10 @@
             "type": "string",
             "nullable": true
           },
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
           "owner": {
             "type": "boolean"
           },
@@ -20478,6 +21192,26 @@
               "$ref": "#/components/schemas/TenantCompanyUserPermissionDTO"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConfirmEmailDTO": {
+        "required": [
+          "email",
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "token": {
+            "minLength": 1,
+            "pattern": ".+\\S.*",
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -21318,6 +22052,22 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FuelVendorDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GeUsertFormDTO": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/AppUserDTO"
+          },
+          "roleCompanies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleTenantSelectDTO"
             },
             "nullable": true
           }
@@ -22753,7 +23503,7 @@
         ],
         "type": "string"
       },
-      "PermissionUserDTO": {
+      "PermissionFormDTO": {
         "type": "object",
         "properties": {
           "permission": {
@@ -22769,13 +23519,31 @@
         },
         "additionalProperties": false
       },
+      "PermissionScreenDTO": {
+        "type": "object",
+        "properties": {
+          "screen": {
+            "type": "string",
+            "nullable": true
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PermissionFormDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PermissionsEnum": {
         "enum": [
           "Nulo",
           "Create",
           "Read",
           "Update",
-          "Delete"
+          "Delete",
+          "Export"
         ],
         "type": "string"
       },
@@ -23697,7 +24465,31 @@
         },
         "additionalProperties": false
       },
-      "RoleTenatDTO": {
+      "RoleFormDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PermissionScreenDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoleTenantDTO": {
         "required": [
           "roleId",
           "tenantCompanyId"
@@ -23715,6 +24507,27 @@
             "minLength": 1,
             "pattern": ".+\\S.*",
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoleTenantSelectDTO": {
+        "type": "object",
+        "properties": {
+          "tenantCompanyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantCompanyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDTO"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -24052,11 +24865,19 @@
         "type": "string"
       },
       "TenantLinkUserDTO": {
+        "required": [
+          "roleId",
+          "tenantCompanyId"
+        ],
         "type": "object",
         "properties": {
           "tenantCompanyId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
+          },
+          "roleId": {
+            "minLength": 1,
+            "type": "string"
           },
           "tenantCompanyName": {
             "type": "string",
@@ -24165,13 +24986,13 @@
           "firstName": {
             "maxLength": 100,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": "^[\\p{L}\\s.'\\-_]+$",
             "type": "string"
           },
           "lastName": {
             "maxLength": 100,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": "^[\\p{L}\\s.'\\-_]+$",
             "type": "string"
           },
           "gender": {
@@ -24181,6 +25002,13 @@
             "maxLength": 10,
             "minLength": 10,
             "type": "string"
+          },
+          "roleCompany": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleTenantDTO"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -24204,14 +25032,16 @@
             "type": "string"
           },
           "firstName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\s.'\\-_]+$",
             "type": "string",
             "nullable": true
           },
           "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "roleName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\s.'\\-_]+$",
             "type": "string",
             "nullable": true
           },
@@ -24266,6 +25096,9 @@
             "type": "string",
             "nullable": true
           },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
           "department": {
             "type": "array",
             "items": {
@@ -24277,6 +25110,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CompanyTenantDTO"
+            },
+            "nullable": true
+          },
+          "roleCompany": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleTenantDTO"
             },
             "nullable": true
           },
@@ -25079,69 +25919,6 @@
           "Asignado"
         ],
         "type": "string"
-      },
-      "VendorDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "name": {
-            "maxLength": 150,
-            "minLength": 0,
-            "pattern": ".+\\S.*",
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "maxLength": 30,
-            "minLength": 0,
-            "pattern": ".+\\S.*",
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "maxLength": 500,
-            "minLength": 0,
-            "pattern": ".+\\S.*",
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "VendorDTOPagedResult": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "recordNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/VendorDTO"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       }
     },
     "securitySchemes": {

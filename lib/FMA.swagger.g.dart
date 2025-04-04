@@ -108,7 +108,7 @@ AdminPermissionsDTO _$AdminPermissionsDTOFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       permissions: (json['permissions'] as List<dynamic>?)
               ?.map(
-                  (e) => PermissionUserDTO.fromJson(e as Map<String, dynamic>))
+                  (e) => PermissionFormDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
     );
@@ -133,12 +133,17 @@ AppUserDTO _$AppUserDTOFromJson(Map<String, dynamic> json) => AppUserDTO(
       countryCode: json['countryCode'] as String?,
       phone: json['phone'] as String?,
       active: json['active'] as bool?,
+      emailConfirmed: json['emailConfirmed'] as bool?,
       department: (json['department'] as List<dynamic>?)
               ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       companies: (json['companies'] as List<dynamic>?)
               ?.map((e) => CompanyTenantDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      roleCompany: (json['roleCompany'] as List<dynamic>?)
+              ?.map((e) => RoleTenantDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
     );
@@ -156,8 +161,10 @@ Map<String, dynamic> _$AppUserDTOToJson(AppUserDTO instance) =>
       'countryCode': instance.countryCode,
       'phone': instance.phone,
       'active': instance.active,
+      'emailConfirmed': instance.emailConfirmed,
       'department': instance.department?.map((e) => e.toJson()).toList(),
       'companies': instance.companies?.map((e) => e.toJson()).toList(),
+      'roleCompany': instance.roleCompany?.map((e) => e.toJson()).toList(),
     };
 
 AppUserDTOPagedResult _$AppUserDTOPagedResultFromJson(
@@ -345,32 +352,13 @@ Map<String, dynamic> _$CompanyDTOPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-CompanyPostDTO _$CompanyPostDTOFromJson(Map<String, dynamic> json) =>
-    CompanyPostDTO(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      logo: json['logo'] as String?,
-      logoFile: json['logoFile'] as String?,
-    );
-
-Map<String, dynamic> _$CompanyPostDTOToJson(CompanyPostDTO instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'name': instance.name,
-      'description': instance.description,
-      'logo': instance.logo,
-      'logoFile': instance.logoFile,
-    };
-
 CompanyTenantDTO _$CompanyTenantDTOFromJson(Map<String, dynamic> json) =>
     CompanyTenantDTO(
       id: json['id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
       userCreationId: json['userCreationId'] as String?,
+      logo: json['logo'] as String?,
       owner: json['owner'] as bool?,
       tenantLinkStatusEnum:
           tenantLinkStatusEnumFromJson(json['tenantLinkStatusEnum']),
@@ -387,10 +375,23 @@ Map<String, dynamic> _$CompanyTenantDTOToJson(CompanyTenantDTO instance) =>
       'name': instance.name,
       'description': instance.description,
       'userCreationId': instance.userCreationId,
+      'logo': instance.logo,
       'owner': instance.owner,
       'tenantLinkStatusEnum':
           tenantLinkStatusEnumToJson(instance.tenantLinkStatusEnum),
       'permissions': instance.permissions?.map((e) => e.toJson()).toList(),
+    };
+
+ConfirmEmailDTO _$ConfirmEmailDTOFromJson(Map<String, dynamic> json) =>
+    ConfirmEmailDTO(
+      email: json['email'] as String,
+      token: json['token'] as String,
+    );
+
+Map<String, dynamic> _$ConfirmEmailDTOToJson(ConfirmEmailDTO instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'token': instance.token,
     };
 
 DocumentDTO _$DocumentDTOFromJson(Map<String, dynamic> json) => DocumentDTO(
@@ -941,6 +942,24 @@ Map<String, dynamic> _$FuelVendorDTOPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+GeUsertFormDTO _$GeUsertFormDTOFromJson(Map<String, dynamic> json) =>
+    GeUsertFormDTO(
+      user: json['user'] == null
+          ? null
+          : AppUserDTO.fromJson(json['user'] as Map<String, dynamic>),
+      roleCompanies: (json['roleCompanies'] as List<dynamic>?)
+              ?.map((e) =>
+                  RoleTenantSelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$GeUsertFormDTOToJson(GeUsertFormDTO instance) =>
+    <String, dynamic>{
+      'user': instance.user?.toJson(),
+      'roleCompanies': instance.roleCompanies?.map((e) => e.toJson()).toList(),
     };
 
 ImageDTO _$ImageDTOFromJson(Map<String, dynamic> json) => ImageDTO(
@@ -1912,18 +1931,35 @@ Map<String, dynamic> _$PerformanceFilterDTOToJson(
       'statistics': instance.statistics?.toJson(),
     };
 
-PermissionUserDTO _$PermissionUserDTOFromJson(Map<String, dynamic> json) =>
-    PermissionUserDTO(
+PermissionFormDTO _$PermissionFormDTOFromJson(Map<String, dynamic> json) =>
+    PermissionFormDTO(
       permission: permissionsEnumFromJson(json['permission']),
       had: json['had'] as bool?,
       description: json['description'] as String?,
     );
 
-Map<String, dynamic> _$PermissionUserDTOToJson(PermissionUserDTO instance) =>
+Map<String, dynamic> _$PermissionFormDTOToJson(PermissionFormDTO instance) =>
     <String, dynamic>{
       'permission': permissionsEnumToJson(instance.permission),
       'had': instance.had,
       'description': instance.description,
+    };
+
+PermissionScreenDTO _$PermissionScreenDTOFromJson(Map<String, dynamic> json) =>
+    PermissionScreenDTO(
+      screen: json['screen'] as String?,
+      permissions: (json['permissions'] as List<dynamic>?)
+              ?.map(
+                  (e) => PermissionFormDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$PermissionScreenDTOToJson(
+        PermissionScreenDTO instance) =>
+    <String, dynamic>{
+      'screen': instance.screen,
+      'permissions': instance.permissions?.map((e) => e.toJson()).toList(),
     };
 
 PolicyDTO _$PolicyDTOFromJson(Map<String, dynamic> json) => PolicyDTO(
@@ -2537,15 +2573,53 @@ Map<String, dynamic> _$RoleDTOPagedResultToJson(RoleDTOPagedResult instance) =>
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-RoleTenatDTO _$RoleTenatDTOFromJson(Map<String, dynamic> json) => RoleTenatDTO(
+RoleFormDTO _$RoleFormDTOFromJson(Map<String, dynamic> json) => RoleFormDTO(
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+      active: json['active'] as bool?,
+      permissions: (json['permissions'] as List<dynamic>?)
+              ?.map((e) =>
+                  PermissionScreenDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$RoleFormDTOToJson(RoleFormDTO instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'active': instance.active,
+      'permissions': instance.permissions?.map((e) => e.toJson()).toList(),
+    };
+
+RoleTenantDTO _$RoleTenantDTOFromJson(Map<String, dynamic> json) =>
+    RoleTenantDTO(
       roleId: json['roleId'] as String,
       tenantCompanyId: json['tenantCompanyId'] as String,
     );
 
-Map<String, dynamic> _$RoleTenatDTOToJson(RoleTenatDTO instance) =>
+Map<String, dynamic> _$RoleTenantDTOToJson(RoleTenantDTO instance) =>
     <String, dynamic>{
       'roleId': instance.roleId,
       'tenantCompanyId': instance.tenantCompanyId,
+    };
+
+RoleTenantSelectDTO _$RoleTenantSelectDTOFromJson(Map<String, dynamic> json) =>
+    RoleTenantSelectDTO(
+      tenantCompanyId: json['tenantCompanyId'] as String?,
+      tenantCompanyName: json['tenantCompanyName'] as String?,
+      roles: (json['roles'] as List<dynamic>?)
+              ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$RoleTenantSelectDTOToJson(
+        RoleTenantSelectDTO instance) =>
+    <String, dynamic>{
+      'tenantCompanyId': instance.tenantCompanyId,
+      'tenantCompanyName': instance.tenantCompanyName,
+      'roles': instance.roles?.map((e) => e.toJson()).toList(),
     };
 
 SelectDTO _$SelectDTOFromJson(Map<String, dynamic> json) => SelectDTO(
@@ -2769,7 +2843,8 @@ Map<String, dynamic> _$TenantLinkDTOToJson(TenantLinkDTO instance) =>
 
 TenantLinkUserDTO _$TenantLinkUserDTOFromJson(Map<String, dynamic> json) =>
     TenantLinkUserDTO(
-      tenantCompanyId: json['tenantCompanyId'] as String?,
+      tenantCompanyId: json['tenantCompanyId'] as String,
+      roleId: json['roleId'] as String,
       tenantCompanyName: json['tenantCompanyName'] as String?,
       userEmail: json['userEmail'] as String?,
     );
@@ -2777,6 +2852,7 @@ TenantLinkUserDTO _$TenantLinkUserDTOFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TenantLinkUserDTOToJson(TenantLinkUserDTO instance) =>
     <String, dynamic>{
       'tenantCompanyId': instance.tenantCompanyId,
+      'roleId': instance.roleId,
       'tenantCompanyName': instance.tenantCompanyName,
       'userEmail': instance.userEmail,
     };
@@ -2823,6 +2899,10 @@ UserPutDTO _$UserPutDTOFromJson(Map<String, dynamic> json) => UserPutDTO(
       lastName: json['lastName'] as String,
       gender: genderEnumFromJson(json['gender']),
       phoneNumber: json['phoneNumber'] as String,
+      roleCompany: (json['roleCompany'] as List<dynamic>?)
+              ?.map((e) => RoleTenantDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$UserPutDTOToJson(UserPutDTO instance) =>
@@ -2832,6 +2912,7 @@ Map<String, dynamic> _$UserPutDTOToJson(UserPutDTO instance) =>
       'lastName': instance.lastName,
       'gender': genderEnumToJson(instance.gender),
       'phoneNumber': instance.phoneNumber,
+      'roleCompany': instance.roleCompany?.map((e) => e.toJson()).toList(),
     };
 
 UserRegisterDTO _$UserRegisterDTOFromJson(Map<String, dynamic> json) =>
@@ -2840,7 +2921,6 @@ UserRegisterDTO _$UserRegisterDTOFromJson(Map<String, dynamic> json) =>
       password: json['password'] as String,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
-      roleName: json['roleName'] as String?,
       companyName: json['companyName'] as String,
     );
 
@@ -2850,7 +2930,6 @@ Map<String, dynamic> _$UserRegisterDTOToJson(UserRegisterDTO instance) =>
       'password': instance.password,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
-      'roleName': instance.roleName,
       'companyName': instance.companyName,
     };
 
@@ -2866,12 +2945,17 @@ UserResponseDTO _$UserResponseDTOFromJson(Map<String, dynamic> json) =>
       url: json['url'] as String?,
       countryCode: json['countryCode'] as String?,
       phone: json['phone'] as String?,
+      emailConfirmed: json['emailConfirmed'] as bool?,
       department: (json['department'] as List<dynamic>?)
               ?.map((e) => SelectDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       companies: (json['companies'] as List<dynamic>?)
               ?.map((e) => CompanyTenantDTO.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      roleCompany: (json['roleCompany'] as List<dynamic>?)
+              ?.map((e) => RoleTenantDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       role: json['role'] as String?,
@@ -2889,8 +2973,10 @@ Map<String, dynamic> _$UserResponseDTOToJson(UserResponseDTO instance) =>
       'url': instance.url,
       'countryCode': instance.countryCode,
       'phone': instance.phone,
+      'emailConfirmed': instance.emailConfirmed,
       'department': instance.department?.map((e) => e.toJson()).toList(),
       'companies': instance.companies?.map((e) => e.toJson()).toList(),
+      'roleCompany': instance.roleCompany?.map((e) => e.toJson()).toList(),
       'role': instance.role,
     };
 
@@ -3390,43 +3476,4 @@ Map<String, dynamic> _$VehicleStatisticsDTOToJson(
       'costTotalFuel': instance.costTotalFuel,
       'costTotalMaintenance': instance.costTotalMaintenance,
       'costAdditional': instance.costAdditional,
-    };
-
-VendorDTO _$VendorDTOFromJson(Map<String, dynamic> json) => VendorDTO(
-      id: json['id'] as String?,
-      active: json['active'] as bool?,
-      name: json['name'] as String?,
-      code: json['code'] as String?,
-      description: json['description'] as String?,
-    );
-
-Map<String, dynamic> _$VendorDTOToJson(VendorDTO instance) => <String, dynamic>{
-      'id': instance.id,
-      'active': instance.active,
-      'name': instance.name,
-      'code': instance.code,
-      'description': instance.description,
-    };
-
-VendorDTOPagedResult _$VendorDTOPagedResultFromJson(
-        Map<String, dynamic> json) =>
-    VendorDTOPagedResult(
-      totalCount: json['totalCount'] as int?,
-      pageNumber: json['pageNumber'] as int?,
-      recordNumber: json['recordNumber'] as int?,
-      totalPages: json['totalPages'] as int?,
-      items: (json['items'] as List<dynamic>?)
-              ?.map((e) => VendorDTO.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$VendorDTOPagedResultToJson(
-        VendorDTOPagedResult instance) =>
-    <String, dynamic>{
-      'totalCount': instance.totalCount,
-      'pageNumber': instance.pageNumber,
-      'recordNumber': instance.recordNumber,
-      'totalPages': instance.totalPages,
-      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
