@@ -165,6 +165,17 @@ abstract class FMA extends ChopperService {
   Future<chopper.Response<bool>> _apiAccountDeleteAccountPost();
 
   ///
+  Future<chopper.Response<bool>> apiAccountResendemailconfirmationPost(
+      {required String? body}) {
+    return _apiAccountResendemailconfirmationPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Account/resendemailconfirmation')
+  Future<chopper.Response<bool>> _apiAccountResendemailconfirmationPost(
+      {@Body() required String? body});
+
+  ///
   Future<chopper.Response<List<AddressDTO>>> apiAddressGet() {
     generatedMapping.putIfAbsent(AddressDTO, () => AddressDTO.fromJsonFactory);
 

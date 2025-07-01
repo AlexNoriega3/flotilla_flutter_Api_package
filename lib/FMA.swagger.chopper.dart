@@ -96,6 +96,15 @@ class _$FMA extends FMA {
   }
 
   @override
+  Future<Response<bool>> _apiAccountResendemailconfirmationPost(
+      {required String? body}) {
+    final $url = '/api/Account/resendemailconfirmation';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<AddressDTO>>> _apiAddressGet() {
     final $url = '/api/Address';
     final $request = Request('GET', $url, client.baseUrl);
